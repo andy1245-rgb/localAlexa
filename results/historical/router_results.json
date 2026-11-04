@@ -1,0 +1,499 @@
+{
+  "config": {
+    "tau": 0.08,
+    "low_sim_floor": 0.35,
+    "model": "sentence-transformers/all-MiniLM-L6-v2"
+  },
+  "n_rows": 382,
+  "n_classes": 18,
+  "timing": {
+    "load_and_first_predict_s": 16.218,
+    "batch_eval_s": 0.96,
+    "batch_ms_per_row": 2.51
+  },
+  "accuracy": {
+    "overall": 0.8664921465968587,
+    "n_correct": 331,
+    "per_family": {
+      "climate": {
+        "n": 48,
+        "n_correct": 48,
+        "acc": 1.0
+      },
+      "knowledge": {
+        "n": 96,
+        "n_correct": 87,
+        "acc": 0.90625
+      },
+      "lights": {
+        "n": 50,
+        "n_correct": 44,
+        "acc": 0.88
+      },
+      "none": {
+        "n": 25,
+        "n_correct": 11,
+        "acc": 0.44
+      },
+      "reminders": {
+        "n": 50,
+        "n_correct": 42,
+        "acc": 0.84
+      },
+      "shopping": {
+        "n": 56,
+        "n_correct": 44,
+        "acc": 0.7857142857142857
+      },
+      "timers": {
+        "n": 57,
+        "n_correct": 55,
+        "acc": 0.9649122807017544
+      }
+    },
+    "per_tool": {
+      "__none__": {
+        "n": 25,
+        "n_correct": 11,
+        "acc": 0.44
+      },
+      "calendar_today": {
+        "n": 21,
+        "n_correct": 21,
+        "acc": 1.0
+      },
+      "docs_query": {
+        "n": 25,
+        "n_correct": 20,
+        "acc": 0.8
+      },
+      "email_unread": {
+        "n": 7,
+        "n_correct": 7,
+        "acc": 1.0
+      },
+      "light_query": {
+        "n": 25,
+        "n_correct": 21,
+        "acc": 0.84
+      },
+      "light_set": {
+        "n": 25,
+        "n_correct": 23,
+        "acc": 0.92
+      },
+      "projects_query": {
+        "n": 18,
+        "n_correct": 16,
+        "acc": 0.8888888888888888
+      },
+      "reminder_cancel": {
+        "n": 25,
+        "n_correct": 23,
+        "acc": 0.92
+      },
+      "reminder_create": {
+        "n": 25,
+        "n_correct": 19,
+        "acc": 0.76
+      },
+      "research_deep": {
+        "n": 25,
+        "n_correct": 23,
+        "acc": 0.92
+      },
+      "shoppinglist_add": {
+        "n": 25,
+        "n_correct": 21,
+        "acc": 0.84
+      },
+      "shoppinglist_remove": {
+        "n": 25,
+        "n_correct": 17,
+        "acc": 0.68
+      },
+      "shoppinglist_view": {
+        "n": 6,
+        "n_correct": 6,
+        "acc": 1.0
+      },
+      "thermostat_offset": {
+        "n": 23,
+        "n_correct": 23,
+        "acc": 1.0
+      },
+      "thermostat_set": {
+        "n": 25,
+        "n_correct": 25,
+        "acc": 1.0
+      },
+      "timer_cancel": {
+        "n": 19,
+        "n_correct": 18,
+        "acc": 0.9473684210526315
+      },
+      "timer_create": {
+        "n": 25,
+        "n_correct": 24,
+        "acc": 0.96
+      },
+      "timer_status": {
+        "n": 13,
+        "n_correct": 13,
+        "acc": 1.0
+      }
+    }
+  },
+  "confusion": {
+    "top10_pairs": [
+      {
+        "predicted": "shoppinglist_add",
+        "true": "shoppinglist_remove",
+        "count": 7,
+        "example": "remove bread from the shopping list"
+      },
+      {
+        "predicted": "shoppinglist_remove",
+        "true": "shoppinglist_add",
+        "count": 4,
+        "example": "throw pasta on the shopping list"
+      },
+      {
+        "predicted": "light_set",
+        "true": "light_query",
+        "count": 4,
+        "example": "is the living room lamp off"
+      },
+      {
+        "predicted": "reminder_cancel",
+        "true": "reminder_create",
+        "count": 3,
+        "example": "set a reminder to feed the cat on Friday"
+      },
+      {
+        "predicted": "email_unread",
+        "true": "docs_query",
+        "count": 3,
+        "example": "look up error envelopes in the docs"
+      },
+      {
+        "predicted": "calendar_today",
+        "true": "reminder_create",
+        "count": 2,
+        "example": "remember to feed the cat next Monday"
+      },
+      {
+        "predicted": "reminder_create",
+        "true": "reminder_cancel",
+        "count": 2,
+        "example": "get rid of the meeting reminder"
+      },
+      {
+        "predicted": "light_query",
+        "true": "light_set",
+        "count": 2,
+        "example": "bathroom lights on please"
+      },
+      {
+        "predicted": "research_deep",
+        "true": "docs_query",
+        "count": 2,
+        "example": "look up the voice pipeline in the docs"
+      },
+      {
+        "predicted": "docs_query",
+        "true": "research_deep",
+        "count": 2,
+        "example": "dig into home assistant voice pipeline latency"
+      }
+    ],
+    "n_errors": 51,
+    "confusable_pairs": [
+      {
+        "pair": [
+          "timer_create",
+          "reminder_create"
+        ],
+        "n_a": 25,
+        "acc_a": 0.96,
+        "n_b": 25,
+        "acc_b": 0.76,
+        "a_predicted_as_b": 0,
+        "b_predicted_as_a": 1,
+        "combined_acc": 0.86
+      },
+      {
+        "pair": [
+          "timer_cancel",
+          "reminder_cancel"
+        ],
+        "n_a": 19,
+        "acc_a": 0.9473684210526315,
+        "n_b": 25,
+        "acc_b": 0.92,
+        "a_predicted_as_b": 0,
+        "b_predicted_as_a": 0,
+        "combined_acc": 0.9318181818181818
+      },
+      {
+        "pair": [
+          "thermostat_set",
+          "thermostat_offset"
+        ],
+        "n_a": 25,
+        "acc_a": 1.0,
+        "n_b": 23,
+        "acc_b": 1.0,
+        "a_predicted_as_b": 0,
+        "b_predicted_as_a": 0,
+        "combined_acc": 1.0
+      },
+      {
+        "pair": [
+          "light_set",
+          "light_query"
+        ],
+        "n_a": 25,
+        "acc_a": 0.92,
+        "n_b": 25,
+        "acc_b": 0.84,
+        "a_predicted_as_b": 2,
+        "b_predicted_as_a": 4,
+        "combined_acc": 0.88
+      },
+      {
+        "pair": [
+          "research_deep",
+          "docs_query"
+        ],
+        "n_a": 25,
+        "acc_a": 0.92,
+        "n_b": 25,
+        "acc_b": 0.8,
+        "a_predicted_as_b": 2,
+        "b_predicted_as_a": 2,
+        "combined_acc": 0.86
+      }
+    ]
+  },
+  "abstain_curve": {
+    "sweep": [
+      {
+        "threshold": 0.3,
+        "n_covered": 371,
+        "coverage": 0.9712041884816754,
+        "accuracy": 0.8840970350404312
+      },
+      {
+        "threshold": 0.35,
+        "n_covered": 360,
+        "coverage": 0.9424083769633508,
+        "accuracy": 0.8972222222222223
+      },
+      {
+        "threshold": 0.4,
+        "n_covered": 354,
+        "coverage": 0.9267015706806283,
+        "accuracy": 0.9011299435028248
+      },
+      {
+        "threshold": 0.45,
+        "n_covered": 346,
+        "coverage": 0.9057591623036649,
+        "accuracy": 0.9161849710982659
+      },
+      {
+        "threshold": 0.5,
+        "n_covered": 332,
+        "coverage": 0.8691099476439791,
+        "accuracy": 0.9216867469879518
+      },
+      {
+        "threshold": 0.55,
+        "n_covered": 316,
+        "coverage": 0.8272251308900523,
+        "accuracy": 0.9272151898734177
+      },
+      {
+        "threshold": 0.6,
+        "n_covered": 310,
+        "coverage": 0.8115183246073299,
+        "accuracy": 0.9290322580645162
+      },
+      {
+        "threshold": 0.65,
+        "n_covered": 293,
+        "coverage": 0.7670157068062827,
+        "accuracy": 0.931740614334471
+      },
+      {
+        "threshold": 0.7,
+        "n_covered": 273,
+        "coverage": 0.7146596858638743,
+        "accuracy": 0.9377289377289377
+      },
+      {
+        "threshold": 0.75,
+        "n_covered": 243,
+        "coverage": 0.6361256544502618,
+        "accuracy": 0.9588477366255144
+      },
+      {
+        "threshold": 0.8,
+        "n_covered": 191,
+        "coverage": 0.5,
+        "accuracy": 0.9738219895287958
+      },
+      {
+        "threshold": 0.85,
+        "n_covered": 116,
+        "coverage": 0.3036649214659686,
+        "accuracy": 1.0
+      }
+    ],
+    "knee": {
+      "threshold": 0.45,
+      "n_covered": 346,
+      "coverage": 0.9057591623036649,
+      "accuracy": 0.9161849710982659,
+      "knee_distance": 0.1264395395815504
+    },
+    "peak_accuracy": 1.0,
+    "knee_alt_within_1pt_of_peak": {
+      "threshold": 0.85,
+      "n_covered": 116,
+      "coverage": 0.3036649214659686,
+      "accuracy": 1.0
+    }
+  },
+  "calibration": {
+    "bins": [
+      {
+        "bin": "0.0-0.1",
+        "count": 8,
+        "mean_conf": 0.078,
+        "acc": 0.25
+      },
+      {
+        "bin": "0.1-0.2",
+        "count": 6,
+        "mean_conf": 0.147,
+        "acc": 0.3333333333333333
+      },
+      {
+        "bin": "0.2-0.3",
+        "count": 18,
+        "mean_conf": 0.236,
+        "acc": 0.5555555555555556
+      },
+      {
+        "bin": "0.3-0.4",
+        "count": 13,
+        "mean_conf": 0.341,
+        "acc": 0.7692307692307693
+      },
+      {
+        "bin": "0.4-0.5",
+        "count": 10,
+        "mean_conf": 0.462,
+        "acc": 0.7
+      },
+      {
+        "bin": "0.5-0.6",
+        "count": 22,
+        "mean_conf": 0.562,
+        "acc": 0.6818181818181818
+      },
+      {
+        "bin": "0.6-0.7",
+        "count": 32,
+        "mean_conf": 0.666,
+        "acc": 0.8125
+      },
+      {
+        "bin": "0.7-0.8",
+        "count": 64,
+        "mean_conf": 0.754,
+        "acc": 0.890625
+      },
+      {
+        "bin": "0.8-0.9",
+        "count": 99,
+        "mean_conf": 0.848,
+        "acc": 0.9393939393939394
+      },
+      {
+        "bin": "0.9-1.0",
+        "count": 110,
+        "mean_conf": 0.955,
+        "acc": 0.990909090909091
+      }
+    ],
+    "pearson_r_conf_vs_correct": 0.46140592426241417,
+    "accuracy_at_min_conf": [
+      {
+        "min_conf": 0.5,
+        "n": 327,
+        "coverage": 0.856020942408377,
+        "accuracy": 0.9174311926605505
+      },
+      {
+        "min_conf": 0.7,
+        "n": 273,
+        "coverage": 0.7146596858638743,
+        "accuracy": 0.9487179487179487
+      },
+      {
+        "min_conf": 0.9,
+        "n": 110,
+        "coverage": 0.2879581151832461,
+        "accuracy": 0.990909090909091
+      }
+    ]
+  },
+  "none_detection": {
+    "none_rows": 25,
+    "none_correct": 11,
+    "none_accuracy": 0.44,
+    "false_none_count": 0,
+    "real_tool_rows": 357,
+    "false_none_rate": 0.0,
+    "none_misroutes": {
+      "shoppinglist_view": 2,
+      "docs_query": 2,
+      "calendar_today": 2,
+      "shoppinglist_add": 2,
+      "timer_status": 1,
+      "research_deep": 1,
+      "projects_query": 1,
+      "reminder_create": 1,
+      "light_query": 1,
+      "shoppinglist_remove": 1
+    }
+  },
+  "latency": {
+    "n_calls": 30,
+    "p50_ms": 17.88,
+    "p95_ms": 23.64,
+    "mean_ms": 18.77,
+    "max_ms": 32.01,
+    "note": "model warm before timing; fresh unseen texts"
+  },
+  "tau_sensitivity": [
+    {
+      "tau": 0.05,
+      "top1_acc": 0.8664921465968587,
+      "mean_confidence": 0.861858832856285
+    },
+    {
+      "tau": 0.08,
+      "top1_acc": 0.8664921465968587,
+      "mean_confidence": 0.74795541453125
+    },
+    {
+      "tau": 0.12,
+      "top1_acc": 0.8664921465968587,
+      "mean_confidence": 0.5672803470614812
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "localalexa"
+version = "0.1.0"
+description = "Offline intent-classification cascade for an embedded voice assistant, with the generalisation measurement behind it"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Andrew Radu" }]
+keywords = ["intent-classification", "voice-assistant", "offline", "cascade", "routing"]
+classifiers = [
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy>=1.26",
+    "scikit-learn>=1.4",
+]
+
+[project.optional-dependencies]
+embeddings = ["sentence-transformers>=2.6"]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[project.scripts]
+localalexa = "localalexa.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

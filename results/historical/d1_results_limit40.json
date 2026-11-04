@@ -1,0 +1,36 @@
+{
+ "model": "LiquidAI/d1-3B-GGUF:Q4_K_M",
+ "endpoint": "http://127.0.0.1:8080/v1/systemone",
+ "n": 40,
+ "accuracy": 1,
+ "per_family_accuracy": {
+  "timers": 1
+ },
+ "per_tool_accuracy": {
+  "timer_create": 1,
+  "timer_cancel": 1
+ },
+ "none_detection": null,
+ "false_none_rate": 0.0,
+ "confidence_cutoffs": {
+  "0.5": {
+   "coverage": 1.0,
+   "acc": 1
+  },
+  "0.7": {
+   "coverage": 1.0,
+   "acc": 1
+  },
+  "0.9": {
+   "coverage": 1.0,
+   "acc": 1
+  }
+ },
+ "latency_p50_ms": 185.8,
+ "latency_p95_ms": 202.4,
+ "latency_mean_ms": 185.1,
+ "total_wall_s": 7.4,
+ "errors": 0,
+ "top_confusion": [],
+ "failures": []
+}

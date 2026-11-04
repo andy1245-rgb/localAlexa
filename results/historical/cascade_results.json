@@ -1,0 +1,485 @@
+{
+  "meta": {
+    "n_rows": 382,
+    "registry_tools": 17,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "rows_routed_to_router": 126,
+    "router_batch_seconds": 21.96,
+    "router_warm_ms_per_query": 26.9,
+    "smart_model_assumed_accuracy": 0.95,
+    "operating_points": {
+      "strict": {
+        "top_sim_min": 0.55,
+        "confidence_min": 0.5
+      },
+      "medium": {
+        "top_sim_min": 0.45,
+        "confidence_min": 0.35
+      },
+      "loose": {
+        "top_sim_min": 0.35,
+        "confidence_min": 0.25
+      }
+    }
+  },
+  "regex_tier": {
+    "coverage_pct": 76.2,
+    "covered_rows": 291,
+    "accuracy_on_covered_pct": 83.8,
+    "ambiguous_rows": 35,
+    "ambiguous_share_of_covered_pct": 12.0,
+    "none_false_positive_rows": 1,
+    "none_false_positive_rate_pct": 4.0,
+    "miss_rows_tool_true": 67,
+    "miss_counts_by_tool": {
+      "projects_query": 15,
+      "calendar_today": 10,
+      "light_query": 8,
+      "timer_create": 5,
+      "shoppinglist_remove": 5,
+      "docs_query": 5,
+      "timer_status": 4,
+      "reminder_cancel": 4,
+      "light_set": 4,
+      "shoppinglist_view": 2,
+      "thermostat_set": 2,
+      "timer_cancel": 1,
+      "reminder_create": 1,
+      "email_unread": 1
+    },
+    "worst_misses": [
+      {
+        "tool": "projects_query",
+        "text": "how is electronicsProjects doing"
+      },
+      {
+        "tool": "projects_query",
+        "text": "what's happening in todo app"
+      },
+      {
+        "tool": "projects_query",
+        "text": "how is todo app doing"
+      },
+      {
+        "tool": "projects_query",
+        "text": "what's happening in minicpmTune"
+      },
+      {
+        "tool": "projects_query",
+        "text": "what's happening in localAlexa"
+      },
+      {
+        "tool": "projects_query",
+        "text": "give me a summary of the electronicsProjects project"
+      },
+      {
+        "tool": "projects_query",
+        "text": "how is localAlexa doing"
+      },
+      {
+        "tool": "projects_query",
+        "text": "what's happening in liveCaptions"
+      },
+      {
+        "tool": "projects_query",
+        "text": "how is minicpmTune doing"
+      },
+      {
+        "tool": "projects_query",
+        "text": "what's happening in electronicsProjects"
+      }
+    ],
+    "per_tool": {
+      "timer_create": {
+        "n": 25,
+        "covered": 20,
+        "coverage_pct": 80.0,
+        "correct": 20,
+        "accuracy_pct": 80.0
+      },
+      "timer_cancel": {
+        "n": 19,
+        "covered": 18,
+        "coverage_pct": 94.7,
+        "correct": 11,
+        "accuracy_pct": 57.9
+      },
+      "timer_status": {
+        "n": 13,
+        "covered": 9,
+        "coverage_pct": 69.2,
+        "correct": 7,
+        "accuracy_pct": 53.8
+      },
+      "reminder_create": {
+        "n": 25,
+        "covered": 24,
+        "coverage_pct": 96.0,
+        "correct": 24,
+        "accuracy_pct": 96.0
+      },
+      "reminder_cancel": {
+        "n": 25,
+        "covered": 21,
+        "coverage_pct": 84.0,
+        "correct": 21,
+        "accuracy_pct": 84.0
+      },
+      "shoppinglist_add": {
+        "n": 25,
+        "covered": 25,
+        "coverage_pct": 100.0,
+        "correct": 19,
+        "accuracy_pct": 76.0
+      },
+      "shoppinglist_remove": {
+        "n": 25,
+        "covered": 20,
+        "coverage_pct": 80.0,
+        "correct": 14,
+        "accuracy_pct": 56.0
+      },
+      "shoppinglist_view": {
+        "n": 6,
+        "covered": 4,
+        "coverage_pct": 66.7,
+        "correct": 4,
+        "accuracy_pct": 66.7
+      },
+      "thermostat_set": {
+        "n": 25,
+        "covered": 23,
+        "coverage_pct": 92.0,
+        "correct": 23,
+        "accuracy_pct": 92.0
+      },
+      "thermostat_offset": {
+        "n": 23,
+        "covered": 23,
+        "coverage_pct": 100.0,
+        "correct": 15,
+        "accuracy_pct": 65.2
+      },
+      "light_set": {
+        "n": 25,
+        "covered": 21,
+        "coverage_pct": 84.0,
+        "correct": 21,
+        "accuracy_pct": 84.0
+      },
+      "light_query": {
+        "n": 25,
+        "covered": 17,
+        "coverage_pct": 68.0,
+        "correct": 0,
+        "accuracy_pct": 0.0
+      },
+      "docs_query": {
+        "n": 25,
+        "covered": 20,
+        "coverage_pct": 80.0,
+        "correct": 20,
+        "accuracy_pct": 80.0
+      },
+      "projects_query": {
+        "n": 18,
+        "covered": 3,
+        "coverage_pct": 16.7,
+        "correct": 3,
+        "accuracy_pct": 16.7
+      },
+      "email_unread": {
+        "n": 7,
+        "covered": 6,
+        "coverage_pct": 85.7,
+        "correct": 6,
+        "accuracy_pct": 85.7
+      },
+      "calendar_today": {
+        "n": 21,
+        "covered": 11,
+        "coverage_pct": 52.4,
+        "correct": 11,
+        "accuracy_pct": 52.4
+      },
+      "research_deep": {
+        "n": 25,
+        "covered": 25,
+        "coverage_pct": 100.0,
+        "correct": 25,
+        "accuracy_pct": 100.0
+      },
+      "__none__": {
+        "n": 25,
+        "covered": 1,
+        "coverage_pct": 4.0,
+        "correct": 24,
+        "accuracy_pct": 96.0
+      }
+    }
+  },
+  "router_residue": {
+    "rows": 126,
+    "router_alone_accuracy_pct": 79.4,
+    "note": "router top-1 accuracy on rows regex did not uniquely resolve, no abstention applied"
+  },
+  "cascade_sweep": {
+    "strict": {
+      "thresholds": {
+        "top_sim_min": 0.55,
+        "confidence_min": 0.5
+      },
+      "tier_counts": {
+        "tier0_regex": 256,
+        "tier1_router": 95,
+        "tier2_escalated": 31
+      },
+      "tier_share_pct": {
+        "tier0_regex": 67.0,
+        "tier1_router": 24.9,
+        "tier2_escalated": 8.1
+      },
+      "tier_accuracy_pct": {
+        "tier0_regex": 91.4,
+        "tier1_router": 90.5
+      },
+      "tier_correct": {
+        "tier0_regex": 234,
+        "tier1_router": 86
+      },
+      "overall_cascade_accuracy_pct": 83.8,
+      "auto_resolved_share_pct": 91.9,
+      "auto_resolved_accuracy_pct": 91.2,
+      "escalation_rate_pct": 8.1,
+      "e2e_smart95_pct": 91.5
+    },
+    "medium": {
+      "thresholds": {
+        "top_sim_min": 0.45,
+        "confidence_min": 0.35
+      },
+      "tier_counts": {
+        "tier0_regex": 256,
+        "tier1_router": 99,
+        "tier2_escalated": 27
+      },
+      "tier_share_pct": {
+        "tier0_regex": 67.0,
+        "tier1_router": 25.9,
+        "tier2_escalated": 7.1
+      },
+      "tier_accuracy_pct": {
+        "tier0_regex": 91.4,
+        "tier1_router": 89.9
+      },
+      "tier_correct": {
+        "tier0_regex": 234,
+        "tier1_router": 89
+      },
+      "overall_cascade_accuracy_pct": 84.6,
+      "auto_resolved_share_pct": 92.9,
+      "auto_resolved_accuracy_pct": 91.0,
+      "escalation_rate_pct": 7.1,
+      "e2e_smart95_pct": 91.3
+    },
+    "loose": {
+      "thresholds": {
+        "top_sim_min": 0.35,
+        "confidence_min": 0.25
+      },
+      "tier_counts": {
+        "tier0_regex": 256,
+        "tier1_router": 104,
+        "tier2_escalated": 22
+      },
+      "tier_share_pct": {
+        "tier0_regex": 67.0,
+        "tier1_router": 27.2,
+        "tier2_escalated": 5.8
+      },
+      "tier_accuracy_pct": {
+        "tier0_regex": 91.4,
+        "tier1_router": 87.5
+      },
+      "tier_correct": {
+        "tier0_regex": 234,
+        "tier1_router": 91
+      },
+      "overall_cascade_accuracy_pct": 85.1,
+      "auto_resolved_share_pct": 94.2,
+      "auto_resolved_accuracy_pct": 90.3,
+      "escalation_rate_pct": 5.8,
+      "e2e_smart95_pct": 90.5
+    }
+  },
+  "cascade_medium": {
+    "thresholds": {
+      "top_sim_min": 0.45,
+      "confidence_min": 0.35
+    },
+    "tier_counts": {
+      "tier0_regex": 256,
+      "tier1_router": 99,
+      "tier2_escalated": 27
+    },
+    "tier_share_pct": {
+      "tier0_regex": 67.0,
+      "tier1_router": 25.9,
+      "tier2_escalated": 7.1
+    },
+    "tier_accuracy_pct": {
+      "tier0_regex": 91.4,
+      "tier1_router": 89.9
+    },
+    "tier_correct": {
+      "tier0_regex": 234,
+      "tier1_router": 89
+    },
+    "overall_cascade_accuracy_pct": 84.6,
+    "auto_resolved_share_pct": 92.9,
+    "auto_resolved_accuracy_pct": 91.0,
+    "escalation_rate_pct": 7.1,
+    "e2e_smart95_pct": 91.3,
+    "none_class_flow": {
+      "tier0_regex_false_positive": 1,
+      "tier1_routed_to_none_correct": 2,
+      "tier1_leaked_to_real_tool": 1,
+      "tier2_escalated": 21,
+      "leaked_tools": {
+        "shoppinglist_view": 1
+      }
+    },
+    "error_counts": {
+      "tier0_wrong_hits": 22,
+      "tier1_wrong": 10
+    },
+    "top_confusion_pairs_true_pred": [
+      {
+        "true": "timer_cancel",
+        "pred": "timer_create",
+        "count": 7
+      },
+      {
+        "true": "shoppinglist_add",
+        "pred": "shoppinglist_view",
+        "count": 6
+      },
+      {
+        "true": "shoppinglist_remove",
+        "pred": "shoppinglist_view",
+        "count": 6
+      }
+    ],
+    "tier0_error_examples": [
+      {
+        "text": "cancel the countdown",
+        "true": "timer_cancel",
+        "predicted": "timer_create"
+      },
+      {
+        "text": "abort the 10 minute countdown",
+        "true": "timer_cancel",
+        "predicted": "timer_create"
+      },
+      {
+        "text": "abort the 1 hour countdown",
+        "true": "timer_cancel",
+        "predicted": "timer_create"
+      },
+      {
+        "text": "abort the 30 second countdown",
+        "true": "timer_cancel",
+        "predicted": "timer_create"
+      },
+      {
+        "text": "abort the 5 minute countdown",
+        "true": "timer_cancel",
+        "predicted": "timer_create"
+      },
+      {
+        "text": "cancel my countdown please",
+        "true": "timer_cancel",
+        "predicted": "timer_create"
+      },
+      {
+        "text": "abort the 3 minute countdown",
+        "true": "timer_cancel",
+        "predicted": "timer_create"
+      },
+      {
+        "text": "what's remaining on the countdown",
+        "true": "timer_status",
+        "predicted": "timer_create"
+      },
+      {
+        "text": "when does the countdown finish",
+        "true": "timer_status",
+        "predicted": "timer_create"
+      },
+      {
+        "text": "throw pasta on the shopping list",
+        "true": "shoppinglist_add",
+        "predicted": "shoppinglist_view"
+      }
+    ],
+    "tier1_error_examples": [
+      {
+        "text": "get rid of the meeting reminder",
+        "true": "reminder_cancel",
+        "predicted": "reminder_create"
+      },
+      {
+        "text": "add batteries to the shopping list",
+        "true": "shoppinglist_add",
+        "predicted": "shoppinglist_remove"
+      },
+      {
+        "text": "remove bread from the shopping list",
+        "true": "shoppinglist_remove",
+        "predicted": "shoppinglist_add"
+      },
+      {
+        "text": "remove olive oil from the shopping list",
+        "true": "shoppinglist_remove",
+        "predicted": "shoppinglist_add"
+      },
+      {
+        "text": "fire up the bathroom lights",
+        "true": "light_set",
+        "predicted": "light_query"
+      },
+      {
+        "text": "is the living room lamp off",
+        "true": "light_query",
+        "predicted": "light_set"
+      },
+      {
+        "text": "are the garage lights on",
+        "true": "light_query",
+        "predicted": "light_set"
+      },
+      {
+        "text": "what's the state of the garage lights",
+        "true": "light_query",
+        "predicted": "light_set"
+      },
+      {
+        "text": "check the garage light status",
+        "true": "light_query",
+        "predicted": "light_set"
+      },
+      {
+        "text": "what should I have for dinner",
+        "true": "__none__",
+        "predicted": "shoppinglist_view"
+      }
+    ]
+  },
+  "findings": [
+    "Regex tier value: covers 76.2% of traffic at 83.8% accuracy for ~0 ms -> MARGINAL - review patterns; it wrongly fires on 1/25 chitchat rows (4.0%) and leaves 67 tool rows unmatched (worst: projects_query with 15 misses).",
+    "Best operating point: strict (e2e@95% = 91.5%), auto-resolves 91.9% of traffic at 91.2% while escalating 8.1%; medium is the balanced default (92.9% auto at 91.0%, 7.1% escalated).",
+    "Error concentration: 22 tier-0 errors vs 10 tier-1 errors; top confusions: timer_cancel->timer_create x7, shoppinglist_add->shoppinglist_view x6, shoppinglist_remove->shoppinglist_view x6.",
+    "None-class leakage: regex FPs fire on 4.0% of chitchat; of chitchat reaching the router at medium, 4.2% of auto-handled chitchat leaks to a real tool (1/25 rows overall), 21 are safely escalated.",
+    "Recommendation: keep the cascade at medium, add regex patterns for projects_query (largest regex miss bucket) and harden the timer_cancel->timer_create confusion (e.g. a negation/cancel disambiguator), then re-measure."
+  ]
+}

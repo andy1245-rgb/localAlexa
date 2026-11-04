@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Generated results: the historical records in results/historical/ stay tracked
+results/*
+!results/historical/
+!results/historical/*.json
+
+# Data that is downloaded rather than shipped (CLINC150 / Banking77 / HWU64)
+data/raw/
+
+# Model weights
+*.gguf
+*.onnx
+*.safetensors

@@ -1,0 +1,640 @@
+{
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "seed": 42,
+  "none_route": {
+    "id": "__none__",
+    "family": "none",
+    "references": [
+      "what's the weather like outside",
+      "tell me a joke",
+      "who won the game last night",
+      "how do I make pasta",
+      "what is twelve times seven",
+      "play some music",
+      "what's the capital of Portugal",
+      "read me the news",
+      "how are you doing today",
+      "what's your favorite movie",
+      "translate good morning to Spanish",
+      "when was the Eiffel Tower built",
+      "do you like pizza",
+      "what's the population of Japan",
+      "give me a fun fact",
+      "sing me a song"
+    ]
+  },
+  "tools": [
+    {
+      "id": "timer_create",
+      "family": "timers",
+      "class": "1tool",
+      "entity_domain": "internal.timers",
+      "commit": "immediate",
+      "patterns": [
+        "\\b(set|start|create)\\b[^.?!]*\\btimer\\b",
+        "\\btimer\\b[^.?!]*\\bfor\\b",
+        "\\bcountdown\\b"
+      ],
+      "references": [
+        "set a timer for 3 minutes",
+        "start a 10 minute timer",
+        "timer for 90 seconds",
+        "set a countdown for one hour",
+        "start a timer for 45 minutes",
+        "give me a 5 minute countdown",
+        "set a timer for half an hour",
+        "start counting down from 20 minutes",
+        "timer 15 minutes please",
+        "set a 2 hour timer",
+        "can you start a timer for 8 minutes",
+        "put on a 30 second timer"
+      ],
+      "templates": [
+        "set a timer for {duration}",
+        "start a {duration} timer",
+        "timer for {duration}",
+        "start a countdown of {duration}",
+        "give me a {duration} timer please",
+        "kick off a {duration} countdown",
+        "I need a {duration} timer",
+        "run a timer for {duration}"
+      ],
+      "slots": {
+        "duration": ["3 minutes", "5 minutes", "10 minutes", "45 seconds", "1 hour", "2 hours", "90 seconds", "25 minutes", "12 minutes", "half an hour"]
+      }
+    },
+    {
+      "id": "timer_cancel",
+      "family": "timers",
+      "class": "1tool",
+      "entity_domain": "internal.timers",
+      "commit": "immediate",
+      "patterns": [
+        "\\b(cancel|stop|kill)\\b[^.?!]*\\btimer\\b",
+        "\\btimer\\b[^.?!]*\\b(cancel|stop)\\b"
+      ],
+      "references": [
+        "cancel the timer",
+        "stop the timer",
+        "cancel my countdown",
+        "stop the countdown please",
+        "kill the running timer",
+        "cancel that timer",
+        "turn off the timer",
+        "abort the countdown",
+        "stop the 10 minute timer",
+        "cancel all timers"
+      ],
+      "templates": [
+        "cancel the {duration} timer",
+        "stop the timer",
+        "cancel my countdown please",
+        "kill that timer",
+        "abort the {duration} countdown",
+        "shut off the running timer",
+        "cancel the countdown",
+        "stop the {duration} timer now"
+      ],
+      "slots": {
+        "duration": ["5 minute", "10 minute", "3 minute", "1 hour", "30 second"]
+      }
+    },
+    {
+      "id": "timer_status",
+      "family": "timers",
+      "class": "1tool",
+      "entity_domain": "internal.timers",
+      "commit": "read",
+      "patterns": [
+        "\\b(how much|how long|time)\\b[^.?!]*\\b(timer|left|remaining)\\b",
+        "\\btime (left|remaining)\\b"
+      ],
+      "references": [
+        "how much time is left on the timer",
+        "how long until the timer goes off",
+        "check the timer",
+        "what's left on my countdown",
+        "how much time remains on the timer",
+        "is the timer still running",
+        "time remaining on the countdown",
+        "how long is left on the timer",
+        "when does the timer end",
+        "any time left on that timer"
+      ],
+      "templates": [
+        "how much time is left on the {duration} timer",
+        "how long until the timer goes off",
+        "what's remaining on the countdown",
+        "check how long is left on the timer",
+        "time left on the timer please",
+        "is the {duration} timer still going",
+        "when does the countdown finish",
+        "how much longer on the timer"
+      ],
+      "slots": {
+        "duration": ["5 minute", "10 minute", "1 hour", "25 minute"]
+      }
+    },
+    {
+      "id": "reminder_create",
+      "family": "reminders",
+      "class": "deferred",
+      "entity_domain": "internal.reminders",
+      "commit": "immediate",
+      "patterns": [
+        "\\bremind me\\b",
+        "\\bremember to\\b",
+        "\\b(don't|do not) let me forget\\b"
+      ],
+      "references": [
+        "remind me to call mom at 6pm",
+        "remind me in 20 minutes to check the oven",
+        "remember to take out the trash tomorrow",
+        "remind me about the dentist appointment at 9am",
+        "set a reminder for my meeting at noon",
+        "remind me to water the plants this evening",
+        "don't let me forget the package pickup at 5",
+        "remind me at 7:30 to submit the report",
+        "set a reminder to stretch every hour",
+        "remind me tomorrow to pay the rent",
+        "remind me to text Alex when I get home",
+        "make sure I remember the groceries at 4pm"
+      ],
+      "templates": [
+        "remind me to {task} at {time}",
+        "remind me at {time} to {task}",
+        "remember to {task} {time}",
+        "set a reminder to {task} {time}",
+        "don't let me forget to {task} {time}",
+        "remind me about {task} {time}"
+      ],
+      "slots": {
+        "task": ["call the dentist", "check the laundry", "submit the tax form", "water the plants", "feed the cat", "take the cookies out", "lock the back door", "charge the scooter"],
+        "time": ["at 6pm", "tomorrow at 9am", "this evening", "at noon", "in 20 minutes", "on Friday", "at 7:30am", "next Monday"]
+      }
+    },
+    {
+      "id": "reminder_cancel",
+      "family": "reminders",
+      "class": "1tool",
+      "entity_domain": "internal.reminders",
+      "commit": "immediate",
+      "patterns": [
+        "\\b(cancel|remove|delete)\\b[^.?!]*\\breminder\\b",
+        "\\breminder\\b[^.?!]*\\b(cancel|remove|delete)\\b"
+      ],
+      "references": [
+        "cancel my reminder",
+        "remove the reminder for the dentist",
+        "delete the 6pm reminder",
+        "cancel that reminder please",
+        "get rid of the laundry reminder",
+        "remove all reminders for today",
+        "cancel the reminder about the trash",
+        "delete my upcoming reminders",
+        "remove the reminder I set for noon",
+        "cancel tomorrow's reminder"
+      ],
+      "templates": [
+        "cancel the reminder for {task}",
+        "remove the {time} reminder",
+        "delete my reminder about {task}",
+        "cancel that reminder",
+        "remove the reminder to {task}",
+        "delete the reminder set for {time}",
+        "cancel all my reminders",
+        "get rid of the {task} reminder"
+      ],
+      "slots": {
+        "task": ["dentist", "laundry", "trash", "meeting", "package"],
+        "time": ["6pm", "noon", "9am", "5pm"]
+      }
+    },
+    {
+      "id": "shoppinglist_add",
+      "family": "shopping",
+      "class": "1tool",
+      "entity_domain": "internal.shoppinglists",
+      "commit": "staged",
+      "patterns": [
+        "\\b(add|put)\\b[^.?!]*\\b(shopping list|list)\\b",
+        "\\b(add|buy)\\b[^.?!]*\\b(milk|eggs|bread|groceries)\\b"
+      ],
+      "references": [
+        "add milk to the shopping list",
+        "put eggs on the grocery list",
+        "add bread to my shopping list",
+        "put rice on the list",
+        "add coffee to the shopping list",
+        "we need batteries, add them to the list",
+        "add two bags of flour to groceries",
+        "put dog food on the shopping list",
+        "add tomatoes to the grocery list",
+        "add printer paper to the list",
+        "can you add olive oil to the shopping list",
+        "put cereal on the grocery list"
+      ],
+      "templates": [
+        "add {item} to the shopping list",
+        "put {item} on the grocery list",
+        "add {item} to my list",
+        "we're out of {item}, add it to groceries",
+        "throw {item} on the shopping list",
+        "add some {item} to the grocery list"
+      ],
+      "slots": {
+        "item": ["milk", "eggs", "bread", "coffee", "batteries", "rice", "olive oil", "paper towels", "bananas", "dish soap", "chicken", "pasta"]
+      }
+    },
+    {
+      "id": "shoppinglist_remove",
+      "family": "shopping",
+      "class": "1tool",
+      "entity_domain": "internal.shoppinglists",
+      "commit": "immediate",
+      "patterns": [
+        "\\b(remove|take off|delete)\\b[^.?!]*\\b(list)\\b",
+        "\\b(remove|delete)\\b[^.?!]*\\bfrom\\b"
+      ],
+      "references": [
+        "remove milk from the shopping list",
+        "take eggs off the grocery list",
+        "delete bread from my list",
+        "remove the rice from groceries",
+        "take coffee off the shopping list",
+        "delete batteries from the list",
+        "remove everything from the grocery list",
+        "take the pasta off my list",
+        "remove dog food from groceries",
+        "delete the flour from the shopping list"
+      ],
+      "templates": [
+        "remove {item} from the shopping list",
+        "take {item} off the grocery list",
+        "delete {item} from my list",
+        "remove the {item} from groceries",
+        "cross {item} off the shopping list",
+        "take {item} off the list please"
+      ],
+      "slots": {
+        "item": ["milk", "eggs", "bread", "coffee", "batteries", "rice", "olive oil", "bananas", "chicken", "pasta"]
+      }
+    },
+    {
+      "id": "shoppinglist_view",
+      "family": "shopping",
+      "class": "1tool",
+      "entity_domain": "internal.shoppinglists",
+      "commit": "read",
+      "patterns": [
+        "\\b(what's|what is|read|show)\\b[^.?!]*\\b(list)\\b",
+        "\\bshopping list\\b"
+      ],
+      "references": [
+        "what's on my shopping list",
+        "read me the grocery list",
+        "show me the shopping list",
+        "what do I need from the store",
+        "what's on the list",
+        "read out my grocery list",
+        "what am I supposed to buy",
+        "show the list please",
+        "what's in the shopping list right now",
+        "do I have anything on the grocery list"
+      ],
+      "templates": [
+        "what's on my shopping list",
+        "read me the grocery list",
+        "show my shopping list",
+        "what do I need to buy",
+        "what's on the grocery list today",
+        "list out my shopping items",
+        "read the shopping list to me",
+        "what's on the list right now"
+      ],
+      "slots": {}
+    },
+    {
+      "id": "thermostat_set",
+      "family": "climate",
+      "class": "1tool",
+      "entity_domain": "ha.climate",
+      "commit": "immediate",
+      "patterns": [
+        "\\b(set|change|turn)\\b[^.?!]*\\b(temperature|thermostat|heat|ac|cooling)\\b",
+        "\\b(degrees|°)\\b"
+      ],
+      "references": [
+        "set the temperature to 22 degrees",
+        "change the thermostat to 20",
+        "set the heat to 24 degrees",
+        "put the thermostat at 21",
+        "turn the heating up to 23 degrees",
+        "set the ac to 19 degrees",
+        "change the temperature to 18",
+        "make it 25 degrees in here",
+        "set upstairs thermostat to 20 degrees",
+        "drop the thermostat to 17 degrees",
+        "raise the temperature to 26",
+        "set the house to 22 degrees"
+      ],
+      "templates": [
+        "set the temperature to {temp} degrees",
+        "change the thermostat to {temp}",
+        "set the heat to {temp} degrees",
+        "make it {temp} degrees in here",
+        "put the thermostat on {temp}",
+        "turn the heat up to {temp} degrees",
+        "set the house temperature to {temp}",
+        "drop the temperature to {temp} degrees"
+      ],
+      "slots": {
+        "temp": ["18", "19", "20", "21", "22", "23", "24", "25", "26"]
+      }
+    },
+    {
+      "id": "thermostat_offset",
+      "family": "climate",
+      "class": "1tool",
+      "entity_domain": "ha.climate",
+      "commit": "immediate",
+      "patterns": [
+        "\\b(warmer|colder|hotter|cooler)\\b",
+        "\\b(turn (up|down))\\b[^.?!]*\\b(temperature|heat|thermostat)\\b",
+        "\\b(a bit|a little|couple degrees)\\b[^.?!]*\\b(warmer|colder)\\b"
+      ],
+      "references": [
+        "make it warmer in here",
+        "it's cold, turn up the heat a bit",
+        "make it a little cooler",
+        "turn the temperature down a couple degrees",
+        "bump the heat up two degrees",
+        "lower the temperature slightly",
+        "it's too hot in here",
+        "warm the place up a little",
+        "cool it down a bit please",
+        "nudge the thermostat up one degree",
+        "turn the heating down a notch",
+        "make the bedroom warmer"
+      ],
+      "templates": [
+        "make it {direction} in here",
+        "turn the temperature {direction} a bit",
+        "it's {direction} in here, fix it",
+        "{direction} the heat a little",
+        "make the living room {direction}",
+        "bump the thermostat {direction} a couple degrees"
+      ],
+      "slots": {
+        "direction": ["warmer", "colder", "hotter", "cooler", "warmer", "cooler"]
+      }
+    },
+    {
+      "id": "light_set",
+      "family": "lights",
+      "class": "1tool",
+      "entity_domain": "ha.light",
+      "commit": "immediate",
+      "patterns": [
+        "\\b(turn|switch)\\b[^.?!]*\\b(light|lamp|lights)\\b",
+        "\\b(light|lights|lamp)\\b[^.?!]*\\b(on|off)\\b",
+        "\\bdim\\b"
+      ],
+      "references": [
+        "turn off the kitchen lights",
+        "turn on the living room lamp",
+        "switch the bedroom lights off",
+        "lights on in the garage",
+        "dim the living room lights to 50 percent",
+        "turn the hallway light on",
+        "kill the office lights",
+        "switch off the porch light",
+        "brighten the kitchen lights",
+        "turn on all the downstairs lights",
+        "shut the bedroom lamp off",
+        "make the garage lights brighter"
+      ],
+      "templates": [
+        "turn {state} the {room} lights",
+        "switch the {room} light {state}",
+        "{room} lights {state} please",
+        "turn the {room} lamp {state}",
+        "kill the {room} lights",
+        "fire up the {room} lights"
+      ],
+      "slots": {
+        "state": ["on", "off"],
+        "room": ["kitchen", "living room", "bedroom", "hallway", "garage", "office", "porch", "bathroom"]
+      }
+    },
+    {
+      "id": "light_query",
+      "family": "lights",
+      "class": "1tool",
+      "entity_domain": "ha.light",
+      "commit": "read",
+      "patterns": [
+        "\\b(is|are|did)\\b[^.?!]*\\b(light|lights|lamp)\\b",
+        "\\b(light|lights)\\b[^.?!]*\\b(on|off)\\?\\b"
+      ],
+      "references": [
+        "are the kitchen lights on",
+        "is the garage light still on",
+        "did I leave the bedroom light on",
+        "which lights are on right now",
+        "is the porch light off",
+        "check if the office lights are on",
+        "are any lights on downstairs",
+        "is the hallway light on",
+        "status of the living room lights",
+        "did the bathroom lights get left on"
+      ],
+      "templates": [
+        "are the {room} lights on",
+        "is the {room} light still on",
+        "did I leave the {room} lights on",
+        "check the {room} light status",
+        "is the {room} lamp off",
+        "what's the state of the {room} lights"
+      ],
+      "slots": {
+        "room": ["kitchen", "living room", "bedroom", "hallway", "garage", "office", "porch", "bathroom"]
+      }
+    },
+    {
+      "id": "docs_query",
+      "family": "knowledge",
+      "class": "1tool",
+      "entity_domain": "internal.docs",
+      "commit": "read",
+      "patterns": [
+        "\\b(docs|documentation)\\b",
+        "\\bhow does\\b[^.?!]*\\bwork\\b",
+        "\\bwhat does the (doc|readme)\\b"
+      ],
+      "references": [
+        "how does the knowledge layer work",
+        "what do the docs say about tool calling",
+        "look up the documentation on model serving",
+        "what does the readme say about setup",
+        "find the docs on the telegram integration",
+        "how does the splitter work according to the docs",
+        "search the documentation for home assistant",
+        "what's in the docs about the orchestrator",
+        "pull up the documentation on latency",
+        "how is the context assembler documented"
+      ],
+      "templates": [
+        "what do the docs say about {topic}",
+        "how does {topic} work in the documentation",
+        "look up {topic} in the docs",
+        "find documentation on {topic}",
+        "search the docs for {topic}",
+        "pull up what's documented about {topic}"
+      ],
+      "slots": {
+        "topic": ["tool calling", "the knowledge layer", "model serving", "the voice pipeline", "session init", "the docs tool", "error envelopes", "the splitter"]
+      }
+    },
+    {
+      "id": "projects_query",
+      "family": "knowledge",
+      "class": "1tool",
+      "entity_domain": "internal.projects",
+      "commit": "read",
+      "patterns": [
+        "\\b(what|which)\\b[^.?!]*\\b(projects?|repos?)\\b",
+        "\\bworking on\\b",
+        "\\bproject (status|health|summary)\\b"
+      ],
+      "references": [
+        "what am I working on",
+        "what projects do I have",
+        "how is the localAlexa project doing",
+        "give me a summary of my repos",
+        "what's the status of minicpmTune",
+        "which projects have open todos",
+        "what did I work on recently",
+        "show me my project list",
+        "how many projects are active",
+        "what's the health of the electronics project"
+      ],
+      "templates": [
+        "what am I working on these days",
+        "give me a summary of the {project} project",
+        "how is {project} doing",
+        "what's the status of my projects",
+        "which repos are active right now",
+        "what's happening in {project}"
+      ],
+      "slots": {
+        "project": ["minicpmTune", "electronicsProjects", "localAlexa", "todo app", "liveCaptions"]
+      }
+    },
+    {
+      "id": "email_unread",
+      "family": "knowledge",
+      "class": "1tool",
+      "entity_domain": "internal.email",
+      "commit": "read",
+      "patterns": [
+        "\\b(unread|inbox|emails?)\\b",
+        "\\b(check|read|any)\\b[^.?!]*\\bmail\\b"
+      ],
+      "references": [
+        "check my email",
+        "any unread emails",
+        "what's in my inbox",
+        "read me my unread mail",
+        "do I have any new emails",
+        "how many unread messages do I have",
+        "check the inbox please",
+        "any new mail from today",
+        "what emails came in this morning",
+        "show my unread emails"
+      ],
+      "templates": [
+        "check my email",
+        "any unread emails this morning",
+        "what's sitting in my inbox",
+        "do I have new mail",
+        "read my unread messages",
+        "how many emails are unread",
+        "check the inbox for anything new",
+        "any mail I haven't seen"
+      ],
+      "slots": {}
+    },
+    {
+      "id": "calendar_today",
+      "family": "knowledge",
+      "class": "1tool",
+      "entity_domain": "internal.calendar",
+      "commit": "read",
+      "patterns": [
+        "\\b(calendar|schedule|agenda)\\b",
+        "\\b(my day|today)\\b[^.?!]*\\b(look|events|meetings)\\b"
+      ],
+      "references": [
+        "what's on my calendar today",
+        "what does my day look like",
+        "any meetings today",
+        "show me today's schedule",
+        "what's my agenda for today",
+        "do I have anything on the calendar tomorrow",
+        "read out my schedule",
+        "what events do I have this week",
+        "am I free this afternoon",
+        "what's scheduled for today"
+      ],
+      "templates": [
+        "what's on my calendar {day}",
+        "what does my {span} look like",
+        "any meetings {day}",
+        "show me the schedule for {day}",
+        "what's my agenda {day}",
+        "am I free {span}"
+      ],
+      "slots": {
+        "day": ["today", "tomorrow", "on Friday", "this weekend"],
+        "span": ["day", "week", "afternoon", "morning"]
+      }
+    },
+    {
+      "id": "research_deep",
+      "family": "knowledge",
+      "class": "deep-query",
+      "entity_domain": "internal.web",
+      "commit": "read",
+      "patterns": [
+        "\\b(research|dive into|dig into|look into)\\b",
+        "\\b(compare|find out about|investigate)\\b"
+      ],
+      "references": [
+        "research the best esp32 boards for voice",
+        "dive into how wyoming protocol works",
+        "look into piper vs other tts engines",
+        "dig into llama.cpp quantization options",
+        "find out about openWakeWord alternatives",
+        "compare faster-whisper model sizes",
+        "investigate whether home assistant supports multiple satellites",
+        "research miniCPM fine-tuning approaches",
+        "look into esp32-s3 box pricing",
+        "dig into what's new in home assistant 2026",
+        "find out about wyoming satellite projects",
+        "research local tts options for the pi"
+      ],
+      "templates": [
+        "research {topic}",
+        "dive into {topic}",
+        "look into {topic}",
+        "dig into {topic} for me",
+        "find out about {topic}",
+        "investigate {topic} and give me options"
+      ],
+      "slots": {
+        "topic": ["esp32 voice satellite options", "wyoming protocol internals", "piper voice quality", "llama.cpp quantization formats", "openWakeWord custom models", "MiniCPM fine-tuning data requirements", "esp32-s3 box alternatives", "home assistant voice pipeline latency"]
+      }
+    }
+  ]
+}

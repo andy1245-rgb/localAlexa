@@ -1,0 +1,151 @@
+[
+ {
+  "model": "tfidf-word+logreg",
+  "train_seconds": 0.1,
+  "accuracy": 0.9293,
+  "none_detection": 0.68,
+  "false_none_rate": 0.0,
+  "latency_p50_ms": 0.66,
+  "latency_p95_ms": 1.17,
+  "worst_classes": {
+   "__none__": 0.68,
+   "light_query": 0.76,
+   "thermostat_offset": 0.826,
+   "projects_query": 0.833,
+   "timer_status": 0.846
+  },
+  "top_confusions": [
+   {
+    "true": "light_query",
+    "pred": "light_set",
+    "n": 6
+   },
+   {
+    "true": "__none__",
+    "pred": "light_query",
+    "n": 4
+   },
+   {
+    "true": "thermostat_offset",
+    "pred": "light_set",
+    "n": 4
+   },
+   {
+    "true": "projects_query",
+    "pred": "shoppinglist_view",
+    "n": 3
+   },
+   {
+    "true": "light_set",
+    "pred": "light_query",
+    "n": 2
+   },
+   {
+    "true": "timer_status",
+    "pred": "timer_create",
+    "n": 2
+   }
+  ]
+ },
+ {
+  "model": "tfidf-char+logreg",
+  "train_seconds": 0.19,
+  "accuracy": 0.9162,
+  "none_detection": 0.8,
+  "false_none_rate": 0.014,
+  "latency_p50_ms": 0.81,
+  "latency_p95_ms": 1.37,
+  "worst_classes": {
+   "timer_status": 0.769,
+   "projects_query": 0.778,
+   "__none__": 0.8,
+   "light_query": 0.8,
+   "light_set": 0.88
+  },
+  "top_confusions": [
+   {
+    "true": "light_query",
+    "pred": "light_set",
+    "n": 5
+   },
+   {
+    "true": "projects_query",
+    "pred": "__none__",
+    "n": 4
+   },
+   {
+    "true": "light_set",
+    "pred": "light_query",
+    "n": 3
+   },
+   {
+    "true": "shoppinglist_add",
+    "pred": "shoppinglist_view",
+    "n": 3
+   },
+   {
+    "true": "timer_status",
+    "pred": "timer_create",
+    "n": 3
+   },
+   {
+    "true": "__none__",
+    "pred": "light_query",
+    "n": 2
+   },
+   {
+    "true": "shoppinglist_remove",
+    "pred": "shoppinglist_add",
+    "n": 2
+   },
+   {
+    "true": "thermostat_offset",
+    "pred": "light_set",
+    "n": 2
+   }
+  ]
+ },
+ {
+  "model": "tfidf-word+linearsvc",
+  "train_seconds": 0.01,
+  "accuracy": 0.9319,
+  "none_detection": 0.6,
+  "false_none_rate": 0.0,
+  "latency_p50_ms": 0.61,
+  "latency_p95_ms": 1.13,
+  "worst_classes": {
+   "__none__": 0.6,
+   "light_query": 0.8,
+   "projects_query": 0.833,
+   "thermostat_offset": 0.87,
+   "light_set": 0.92
+  },
+  "top_confusions": [
+   {
+    "true": "light_query",
+    "pred": "light_set",
+    "n": 5
+   },
+   {
+    "true": "__none__",
+    "pred": "light_query",
+    "n": 4
+   },
+   {
+    "true": "projects_query",
+    "pred": "shoppinglist_view",
+    "n": 3
+   },
+   {
+    "true": "thermostat_offset",
+    "pred": "light_set",
+    "n": 3
+   },
+   {
+    "true": "light_set",
+    "pred": "light_query",
+    "n": 2
+   }
+  ]
+ }
+]

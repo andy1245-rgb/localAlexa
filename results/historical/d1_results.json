@@ -1,0 +1,150 @@
+{
+ "model": "LiquidAI/d1-3B-GGUF:Q4_K_M",
+ "endpoint": "http://127.0.0.1:8080/v1/systemone",
+ "n": 382,
+ "accuracy": 0.9136,
+ "per_family_accuracy": {
+  "timers": 1,
+  "reminders": 1,
+  "shopping": 0.964,
+  "climate": 0.938,
+  "lights": 1,
+  "knowledge": 0.708,
+  "none": 1
+ },
+ "per_tool_accuracy": {
+  "timer_create": 1,
+  "timer_cancel": 1,
+  "timer_status": 1,
+  "reminder_create": 1,
+  "reminder_cancel": 1,
+  "shoppinglist_add": 1,
+  "shoppinglist_remove": 1,
+  "shoppinglist_view": 0.667,
+  "thermostat_set": 1,
+  "thermostat_offset": 0.87,
+  "light_set": 1,
+  "light_query": 1,
+  "docs_query": 1,
+  "projects_query": 0.5,
+  "email_unread": 1,
+  "calendar_today": 1,
+  "research_deep": 0.24,
+  "__none__": 1
+ },
+ "none_detection": 1.0,
+ "false_none_rate": 0.059,
+ "confidence_cutoffs": {
+  "0.5": {
+   "coverage": 0.942,
+   "acc": 0.953
+  },
+  "0.7": {
+   "coverage": 0.895,
+   "acc": 0.98
+  },
+  "0.9": {
+   "coverage": 0.751,
+   "acc": 0.997
+  }
+ },
+ "latency_p50_ms": 242.7,
+ "latency_p95_ms": 375.3,
+ "latency_mean_ms": 266.2,
+ "total_wall_s": 101.7,
+ "errors": 0,
+ "top_confusion": [
+  {
+   "pred": "__none__",
+   "true": "research_deep",
+   "n": 11
+  },
+  {
+   "pred": "__none__",
+   "true": "projects_query",
+   "n": 9
+  },
+  {
+   "pred": "docs_query",
+   "true": "research_deep",
+   "n": 8
+  },
+  {
+   "pred": "thermostat_set",
+   "true": "thermostat_offset",
+   "n": 3
+  },
+  {
+   "pred": "__none__",
+   "true": "shoppinglist_view",
+   "n": 1
+  },
+  {
+   "pred": "shoppinglist_add",
+   "true": "shoppinglist_view",
+   "n": 1
+  }
+ ],
+ "failures": [
+  {
+   "text": "what's on the list right now",
+   "true": "shoppinglist_view",
+   "pred": "__none__"
+  },
+  {
+   "text": "what do I need to buy",
+   "true": "shoppinglist_view",
+   "pred": "shoppinglist_add"
+  },
+  {
+   "text": "it's cooler in here, fix it",
+   "true": "thermostat_offset",
+   "pred": "thermostat_set"
+  },
+  {
+   "text": "it's hotter in here, fix it",
+   "true": "thermostat_offset",
+   "pred": "thermostat_set"
+  },
+  {
+   "text": "it's colder in here, fix it",
+   "true": "thermostat_offset",
+   "pred": "thermostat_set"
+  },
+  {
+   "text": "what's happening in todo app",
+   "true": "projects_query",
+   "pred": "__none__"
+  },
+  {
+   "text": "how is todo app doing",
+   "true": "projects_query",
+   "pred": "__none__"
+  },
+  {
+   "text": "what's happening in minicpmTune",
+   "true": "projects_query",
+   "pred": "__none__"
+  },
+  {
+   "text": "what's happening in localAlexa",
+   "true": "projects_query",
+   "pred": "__none__"
+  },
+  {
+   "text": "how is localAlexa doing",
+   "true": "projects_query",
+   "pred": "__none__"
+  },
+  {
+   "text": "what's happening in liveCaptions",
+   "true": "projects_query",
+   "pred": "__none__"
+  },
+  {
+   "text": "how is minicpmTune doing",
+   "true": "projects_query",
+   "pred": "__none__"
+  }
+ ]
+}

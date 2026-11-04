@@ -1,0 +1,1912 @@
+[
+ {
+  "text": "run a timer for 2 hours",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "set a timer for 90 seconds",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "I need a 90 seconds timer",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "run a timer for 1 hour",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "set a timer for 5 minutes",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "run a timer for 45 seconds",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "start a 10 minutes timer",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "give me a 3 minutes timer please",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "set a timer for 1 hour",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "run a timer for half an hour",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "kick off a half an hour countdown",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "start a 90 seconds timer",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "start a countdown of 25 minutes",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "start a countdown of half an hour",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "start a 25 minutes timer",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "I need a 5 minutes timer",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "start a countdown of 12 minutes",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "kick off a 3 minutes countdown",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "start a countdown of 10 minutes",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "give me a 90 seconds timer please",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "start a countdown of 5 minutes",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "give me a half an hour timer please",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "kick off a 1 hour countdown",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "start a 5 minutes timer",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "start a 12 minutes timer",
+  "tool": "timer_create",
+  "family": "timers"
+ },
+ {
+  "text": "cancel the 30 second timer",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "stop the 1 hour timer now",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "cancel the countdown",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "shut off the running timer",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "abort the 10 minute countdown",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "abort the 1 hour countdown",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "kill that timer",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "stop the 3 minute timer now",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "abort the 30 second countdown",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "stop the 5 minute timer now",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "cancel the 5 minute timer",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "abort the 5 minute countdown",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "cancel the 1 hour timer",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "stop the 10 minute timer now",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "stop the 30 second timer now",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "cancel the 10 minute timer",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "cancel my countdown please",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "abort the 3 minute countdown",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "cancel the 3 minute timer",
+  "tool": "timer_cancel",
+  "family": "timers"
+ },
+ {
+  "text": "how much time is left on the 1 hour timer",
+  "tool": "timer_status",
+  "family": "timers"
+ },
+ {
+  "text": "what's remaining on the countdown",
+  "tool": "timer_status",
+  "family": "timers"
+ },
+ {
+  "text": "check how long is left on the timer",
+  "tool": "timer_status",
+  "family": "timers"
+ },
+ {
+  "text": "when does the countdown finish",
+  "tool": "timer_status",
+  "family": "timers"
+ },
+ {
+  "text": "is the 1 hour timer still going",
+  "tool": "timer_status",
+  "family": "timers"
+ },
+ {
+  "text": "is the 10 minute timer still going",
+  "tool": "timer_status",
+  "family": "timers"
+ },
+ {
+  "text": "is the 25 minute timer still going",
+  "tool": "timer_status",
+  "family": "timers"
+ },
+ {
+  "text": "time left on the timer please",
+  "tool": "timer_status",
+  "family": "timers"
+ },
+ {
+  "text": "how much time is left on the 5 minute timer",
+  "tool": "timer_status",
+  "family": "timers"
+ },
+ {
+  "text": "is the 5 minute timer still going",
+  "tool": "timer_status",
+  "family": "timers"
+ },
+ {
+  "text": "how much time is left on the 10 minute timer",
+  "tool": "timer_status",
+  "family": "timers"
+ },
+ {
+  "text": "how much longer on the timer",
+  "tool": "timer_status",
+  "family": "timers"
+ },
+ {
+  "text": "how much time is left on the 25 minute timer",
+  "tool": "timer_status",
+  "family": "timers"
+ },
+ {
+  "text": "remind me at next Monday to feed the cat",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remind me at in 20 minutes to charge the scooter",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "set a reminder to feed the cat on Friday",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remember to water the plants tomorrow at 9am",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remind me to water the plants at at 7:30am",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remember to feed the cat next Monday",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remember to charge the scooter tomorrow at 9am",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remind me about charge the scooter in 20 minutes",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remind me at at 7:30am to feed the cat",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remind me about water the plants next Monday",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remind me to take the cookies out at at 6pm",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remind me about water the plants on Friday",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remember to feed the cat on Friday",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remind me about check the laundry in 20 minutes",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remind me to lock the back door at at 7:30am",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "don't let me forget to feed the cat tomorrow at 9am",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "don't let me forget to charge the scooter at 6pm",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remember to water the plants at 6pm",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remind me about take the cookies out next Monday",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remind me at tomorrow at 9am to charge the scooter",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remind me to submit the tax form at this evening",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remind me to water the plants at tomorrow at 9am",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "don't let me forget to feed the cat next Monday",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "don't let me forget to submit the tax form on Friday",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remind me at on Friday to charge the scooter",
+  "tool": "reminder_create",
+  "family": "reminders"
+ },
+ {
+  "text": "remove the reminder to trash",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "delete my reminder about dentist",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "get rid of the meeting reminder",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "cancel the reminder for meeting",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "cancel the reminder for dentist",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "remove the 6pm reminder",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "delete my reminder about meeting",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "cancel the reminder for package",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "get rid of the package reminder",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "remove the 9am reminder",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "delete the reminder set for noon",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "delete the reminder set for 9am",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "remove the 5pm reminder",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "remove the reminder to dentist",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "cancel all my reminders",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "delete my reminder about laundry",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "cancel the reminder for trash",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "delete the reminder set for 5pm",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "remove the reminder to package",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "get rid of the dentist reminder",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "remove the reminder to meeting",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "remove the reminder to laundry",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "delete my reminder about package",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "remove the noon reminder",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "delete my reminder about trash",
+  "tool": "reminder_cancel",
+  "family": "reminders"
+ },
+ {
+  "text": "add some paper towels to the grocery list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "add paper towels to the shopping list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "throw pasta on the shopping list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "we're out of dish soap, add it to groceries",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "we're out of olive oil, add it to groceries",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "throw chicken on the shopping list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "we're out of bread, add it to groceries",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "throw olive oil on the shopping list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "add batteries to the shopping list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "we're out of bananas, add it to groceries",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "add olive oil to my list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "put milk on the grocery list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "we're out of batteries, add it to groceries",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "add some bananas to the grocery list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "add olive oil to the shopping list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "throw rice on the shopping list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "add bananas to the shopping list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "throw batteries on the shopping list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "add bread to my list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "add chicken to my list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "add some batteries to the grocery list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "add some rice to the grocery list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "throw dish soap on the shopping list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "add chicken to the shopping list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "add batteries to my list",
+  "tool": "shoppinglist_add",
+  "family": "shopping"
+ },
+ {
+  "text": "remove bananas from the shopping list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "take pasta off the grocery list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "cross bananas off the shopping list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "delete coffee from my list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "take pasta off the list please",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "delete pasta from my list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "remove the bread from groceries",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "remove the chicken from groceries",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "remove bread from the shopping list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "cross batteries off the shopping list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "delete rice from my list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "delete chicken from my list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "cross eggs off the shopping list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "cross coffee off the shopping list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "take coffee off the grocery list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "cross rice off the shopping list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "cross bread off the shopping list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "take batteries off the grocery list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "remove chicken from the shopping list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "remove olive oil from the shopping list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "remove the milk from groceries",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "delete olive oil from my list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "remove pasta from the shopping list",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "remove the pasta from groceries",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "take bread off the list please",
+  "tool": "shoppinglist_remove",
+  "family": "shopping"
+ },
+ {
+  "text": "what's on the grocery list today",
+  "tool": "shoppinglist_view",
+  "family": "shopping"
+ },
+ {
+  "text": "list out my shopping items",
+  "tool": "shoppinglist_view",
+  "family": "shopping"
+ },
+ {
+  "text": "read the shopping list to me",
+  "tool": "shoppinglist_view",
+  "family": "shopping"
+ },
+ {
+  "text": "what's on the list right now",
+  "tool": "shoppinglist_view",
+  "family": "shopping"
+ },
+ {
+  "text": "show my shopping list",
+  "tool": "shoppinglist_view",
+  "family": "shopping"
+ },
+ {
+  "text": "what do I need to buy",
+  "tool": "shoppinglist_view",
+  "family": "shopping"
+ },
+ {
+  "text": "put the thermostat on 25",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "set the temperature to 26 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "change the thermostat to 22",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "drop the temperature to 21 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "drop the temperature to 19 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "set the house temperature to 20",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "turn the heat up to 21 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "drop the temperature to 25 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "turn the heat up to 20 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "change the thermostat to 26",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "set the heat to 25 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "set the house temperature to 19",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "set the heat to 20 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "put the thermostat on 21",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "drop the temperature to 26 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "make it 24 degrees in here",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "turn the heat up to 18 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "make it 19 degrees in here",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "set the heat to 23 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "set the temperature to 23 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "change the thermostat to 25",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "set the heat to 21 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "drop the temperature to 22 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "set the heat to 19 degrees",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "set the house temperature to 18",
+  "tool": "thermostat_set",
+  "family": "climate"
+ },
+ {
+  "text": "make the living room colder",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "make it hotter in here",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "it's warmer in here, fix it",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "turn the temperature warmer a bit",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "it's cooler in here, fix it",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "make it cooler in here",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "warmer the heat a little",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "bump the thermostat cooler a couple degrees",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "bump the thermostat hotter a couple degrees",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "cooler the heat a little",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "make the living room warmer",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "make it colder in here",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "turn the temperature colder a bit",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "make the living room hotter",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "it's hotter in here, fix it",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "bump the thermostat warmer a couple degrees",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "make the living room cooler",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "turn the temperature hotter a bit",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "it's colder in here, fix it",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "colder the heat a little",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "turn the temperature cooler a bit",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "bump the thermostat colder a couple degrees",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "hotter the heat a little",
+  "tool": "thermostat_offset",
+  "family": "climate"
+ },
+ {
+  "text": "turn on the bedroom lights",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "turn the bathroom lamp off",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "bedroom lights off please",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "switch the garage light off",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "turn off the living room lights",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "bathroom lights on please",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "switch the living room light on",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "bedroom lights on please",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "kill the porch lights",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "turn the hallway lamp on",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "turn the kitchen lamp off",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "kill the bathroom lights",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "turn the office lamp on",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "fire up the bathroom lights",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "turn on the hallway lights",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "turn the bathroom lamp on",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "switch the porch light on",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "turn on the kitchen lights",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "turn the porch lamp off",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "turn off the garage lights",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "turn on the garage lights",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "turn the garage lamp off",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "turn on the living room lights",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "fire up the office lights",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "garage lights off please",
+  "tool": "light_set",
+  "family": "lights"
+ },
+ {
+  "text": "check the living room light status",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "what's the state of the bathroom lights",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "is the living room lamp off",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "is the office light still on",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "are the garage lights on",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "what's the state of the garage lights",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "are the bathroom lights on",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "what's the state of the living room lights",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "did I leave the office lights on",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "is the porch lamp off",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "are the living room lights on",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "did I leave the living room lights on",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "is the bedroom light still on",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "is the bathroom light still on",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "did I leave the bedroom lights on",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "what's the state of the bedroom lights",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "is the office lamp off",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "is the garage lamp off",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "are the porch lights on",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "are the hallway lights on",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "check the bathroom light status",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "is the hallway light still on",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "check the garage light status",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "check the bedroom light status",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "is the porch light still on",
+  "tool": "light_query",
+  "family": "lights"
+ },
+ {
+  "text": "look up error envelopes in the docs",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "what do the docs say about the knowledge layer",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "look up the voice pipeline in the docs",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "pull up what's documented about the knowledge layer",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "look up the knowledge layer in the docs",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "find documentation on tool calling",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "how does the docs tool work in the documentation",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "pull up what's documented about the splitter",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "how does the splitter work in the documentation",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "look up the splitter in the docs",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "search the docs for tool calling",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "pull up what's documented about session init",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "search the docs for the knowledge layer",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "pull up what's documented about error envelopes",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "what do the docs say about the voice pipeline",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "how does model serving work in the documentation",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "what do the docs say about session init",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "find documentation on the knowledge layer",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "pull up what's documented about the docs tool",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "search the docs for model serving",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "look up tool calling in the docs",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "pull up what's documented about model serving",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "how does the knowledge layer work in the documentation",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "what do the docs say about model serving",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "what do the docs say about error envelopes",
+  "tool": "docs_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "how is electronicsProjects doing",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's happening in todo app",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "how is todo app doing",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's happening in minicpmTune",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's happening in localAlexa",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "give me a summary of the electronicsProjects project",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "how is localAlexa doing",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's happening in liveCaptions",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "how is minicpmTune doing",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's happening in electronicsProjects",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "which repos are active right now",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "give me a summary of the localAlexa project",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "give me a summary of the liveCaptions project",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "what am I working on these days",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "give me a summary of the todo app project",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's the status of my projects",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "how is liveCaptions doing",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "give me a summary of the minicpmTune project",
+  "tool": "projects_query",
+  "family": "knowledge"
+ },
+ {
+  "text": "read my unread messages",
+  "tool": "email_unread",
+  "family": "knowledge"
+ },
+ {
+  "text": "how many emails are unread",
+  "tool": "email_unread",
+  "family": "knowledge"
+ },
+ {
+  "text": "do I have new mail",
+  "tool": "email_unread",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's sitting in my inbox",
+  "tool": "email_unread",
+  "family": "knowledge"
+ },
+ {
+  "text": "any unread emails this morning",
+  "tool": "email_unread",
+  "family": "knowledge"
+ },
+ {
+  "text": "any mail I haven't seen",
+  "tool": "email_unread",
+  "family": "knowledge"
+ },
+ {
+  "text": "check the inbox for anything new",
+  "tool": "email_unread",
+  "family": "knowledge"
+ },
+ {
+  "text": "what does my morning look like",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's my agenda today",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "any meetings this weekend",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "show me the schedule for today",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's my agenda this weekend",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's on my calendar on Friday",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "am I free afternoon",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's on my calendar tomorrow",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "what does my afternoon look like",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "any meetings on Friday",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's on my calendar this weekend",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "show me the schedule for tomorrow",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "am I free week",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's my agenda tomorrow",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "am I free day",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "what does my week look like",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "any meetings tomorrow",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "show me the schedule for this weekend",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "show me the schedule for on Friday",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "am I free morning",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's my agenda on Friday",
+  "tool": "calendar_today",
+  "family": "knowledge"
+ },
+ {
+  "text": "dig into llama.cpp quantization formats for me",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "dive into openWakeWord custom models",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "dive into llama.cpp quantization formats",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "investigate MiniCPM fine-tuning data requirements and give me options",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "find out about wyoming protocol internals",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "research esp32-s3 box alternatives",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "dig into home assistant voice pipeline latency for me",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "research openWakeWord custom models",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "dive into home assistant voice pipeline latency",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "research MiniCPM fine-tuning data requirements",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "investigate piper voice quality and give me options",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "dive into esp32-s3 box alternatives",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "dig into piper voice quality for me",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "dive into esp32 voice satellite options",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "look into llama.cpp quantization formats",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "find out about piper voice quality",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "dive into piper voice quality",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "look into esp32 voice satellite options",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "dive into wyoming protocol internals",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "look into wyoming protocol internals",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "research esp32 voice satellite options",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "research home assistant voice pipeline latency",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "dive into MiniCPM fine-tuning data requirements",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "research wyoming protocol internals",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "dig into MiniCPM fine-tuning data requirements for me",
+  "tool": "research_deep",
+  "family": "knowledge"
+ },
+ {
+  "text": "what's the tallest mountain in the world",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "tell me something interesting about space",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "how far is the moon",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "what should I have for dinner",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "give me a recipe for pancakes",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "who invented the telephone",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "what's the weather this weekend",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "recommend me a good book",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "how do you say thank you in Japanese",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "what's a good workout for beginners",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "explain quantum computing simply",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "when is the next lunar eclipse",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "what's the difference between a fruit and a vegetable",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "help me write a birthday message",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "what's the stock price of Apple",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "how many bones are in the human body",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "tell me about the roman empire",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "what's a good name for a dog",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "why is the sky blue",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "how do I fix a leaky faucet",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "what language do they speak in Brazil",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "suggest a movie for tonight",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "what's the speed of light",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "how do I remove a stain from a shirt",
+  "tool": "__none__",
+  "family": "none"
+ },
+ {
+  "text": "who is the president of France",
+  "tool": "__none__",
+  "family": "none"
+ }
+]
