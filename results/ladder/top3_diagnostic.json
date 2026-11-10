@@ -1,0 +1,954 @@
+[
+  {
+    "rung": "r0-word-svc",
+    "n_rows": 382,
+    "top_k_recall": {
+      "1": 0.8979,
+      "2": 0.9581,
+      "3": 0.9764,
+      "5": 0.9921
+    },
+    "errors": 39,
+    "errors_in_top3": 30,
+    "errors_outside_top3": 9,
+    "top_confusions": {
+      "light_query -> light_set": 6,
+      "__none__ -> light_query": 4,
+      "thermostat_offset -> light_set": 3,
+      "light_set -> light_query": 3,
+      "projects_query -> shoppinglist_view": 3,
+      "calendar_today -> email_unread": 2,
+      "calendar_today -> docs_query": 2,
+      "__none__ -> projects_query": 2,
+      "thermostat_set -> thermostat_offset": 2,
+      "shoppinglist_add -> shoppinglist_view": 2,
+      "calendar_today -> __none__": 1,
+      "calendar_today -> light_query": 1
+    },
+    "error_rows": [
+      {
+        "text": "make the living room colder",
+        "truth": "thermostat_offset",
+        "top": [
+          "light_set",
+          "thermostat_offset",
+          "light_query",
+          "__none__",
+          "reminder_create"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "make the living room hotter",
+        "truth": "thermostat_offset",
+        "top": [
+          "light_set",
+          "thermostat_offset",
+          "light_query",
+          "__none__",
+          "reminder_create"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "make the living room cooler",
+        "truth": "thermostat_offset",
+        "top": [
+          "light_set",
+          "thermostat_offset",
+          "light_query",
+          "__none__",
+          "reminder_create"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "kill the bathroom lights",
+        "truth": "light_set",
+        "top": [
+          "light_query",
+          "timer_cancel",
+          "light_set",
+          "__none__",
+          "research_deep"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what does my morning look like",
+        "truth": "calendar_today",
+        "top": [
+          "__none__",
+          "docs_query",
+          "email_unread",
+          "projects_query",
+          "research_deep"
+        ],
+        "in_top3": false
+      },
+      {
+        "text": "any meetings this weekend",
+        "truth": "calendar_today",
+        "top": [
+          "email_unread",
+          "calendar_today",
+          "light_query",
+          "reminder_create",
+          "timer_status"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what does my afternoon look like",
+        "truth": "calendar_today",
+        "top": [
+          "docs_query",
+          "__none__",
+          "calendar_today",
+          "email_unread",
+          "research_deep"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "any meetings on Friday",
+        "truth": "calendar_today",
+        "top": [
+          "light_query",
+          "email_unread",
+          "timer_status",
+          "shoppinglist_add",
+          "docs_query"
+        ],
+        "in_top3": false
+      },
+      {
+        "text": "what does my week look like",
+        "truth": "calendar_today",
+        "top": [
+          "docs_query",
+          "__none__",
+          "calendar_today",
+          "research_deep",
+          "email_unread"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "any meetings tomorrow",
+        "truth": "calendar_today",
+        "top": [
+          "email_unread",
+          "reminder_create",
+          "reminder_cancel",
+          "calendar_today",
+          "light_query"
+        ],
+        "in_top3": false
+      },
+      {
+        "text": "how far is the moon",
+        "truth": "__none__",
+        "top": [
+          "light_query",
+          "docs_query",
+          "timer_status",
+          "projects_query",
+          "__none__"
+        ],
+        "in_top3": false
+      },
+      {
+        "text": "what should I have for dinner",
+        "truth": "__none__",
+        "top": [
+          "projects_query",
+          "calendar_today",
+          "shoppinglist_view",
+          "timer_create",
+          "email_unread"
+        ],
+        "in_top3": false
+      },
+      {
+        "text": "give me a recipe for pancakes",
+        "truth": "__none__",
+        "top": [
+          "timer_create",
+          "__none__",
+          "projects_query",
+          "reminder_create",
+          "calendar_today"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "when is the next lunar eclipse",
+        "truth": "__none__",
+        "top": [
+          "light_query",
+          "timer_status",
+          "__none__",
+          "projects_query",
+          "docs_query"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "help me write a birthday message",
+        "truth": "__none__",
+        "top": [
+          "reminder_create",
+          "__none__",
+          "projects_query",
+          "shoppinglist_view",
+          "timer_create"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "how many bones are in the human body",
+        "truth": "__none__",
+        "top": [
+          "projects_query",
+          "email_unread",
+          "docs_query",
+          "__none__",
+          "light_set"
+        ],
+        "in_top3": false
+      },
+      {
+        "text": "why is the sky blue",
+        "truth": "__none__",
+        "top": [
+          "light_query",
+          "timer_status",
+          "docs_query",
+          "projects_query",
+          "__none__"
+        ],
+        "in_top3": false
+      },
+      {
+        "text": "what language do they speak in Brazil",
+        "truth": "__none__",
+        "top": [
+          "shoppinglist_view",
+          "__none__",
+          "email_unread",
+          "projects_query",
+          "calendar_today"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "how do I remove a stain from a shirt",
+        "truth": "__none__",
+        "top": [
+          "shoppinglist_remove",
+          "__none__",
+          "email_unread",
+          "reminder_cancel",
+          "docs_query"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "who is the president of France",
+        "truth": "__none__",
+        "top": [
+          "light_query",
+          "__none__",
+          "projects_query",
+          "timer_status",
+          "docs_query"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "cancel the 30 second timer",
+        "truth": "timer_cancel",
+        "top": [
+          "timer_create",
+          "timer_cancel",
+          "reminder_cancel",
+          "thermostat_offset",
+          "__none__"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "is the living room lamp off",
+        "truth": "light_query",
+        "top": [
+          "light_set",
+          "light_query",
+          "shoppinglist_remove",
+          "docs_query",
+          "timer_status"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "is the office lamp off",
+        "truth": "light_query",
+        "top": [
+          "light_set",
+          "light_query",
+          "shoppinglist_remove",
+          "timer_status",
+          "docs_query"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "is the garage lamp off",
+        "truth": "light_query",
+        "top": [
+          "light_set",
+          "light_query",
+          "shoppinglist_remove",
+          "projects_query",
+          "timer_status"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what's happening in todo app",
+        "truth": "projects_query",
+        "top": [
+          "shoppinglist_view",
+          "email_unread",
+          "projects_query",
+          "__none__",
+          "calendar_today"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what's happening in liveCaptions",
+        "truth": "projects_query",
+        "top": [
+          "shoppinglist_view",
+          "email_unread",
+          "projects_query",
+          "__none__",
+          "calendar_today"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what's happening in electronicsProjects",
+        "truth": "projects_query",
+        "top": [
+          "shoppinglist_view",
+          "email_unread",
+          "projects_query",
+          "__none__",
+          "calendar_today"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "is the 1 hour timer still going",
+        "truth": "timer_status",
+        "top": [
+          "timer_create",
+          "timer_status",
+          "light_query",
+          "docs_query",
+          "projects_query"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "make it 24 degrees in here",
+        "truth": "thermostat_set",
+        "top": [
+          "thermostat_offset",
+          "thermostat_set",
+          "email_unread",
+          "__none__",
+          "light_set"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "make it 19 degrees in here",
+        "truth": "thermostat_set",
+        "top": [
+          "thermostat_offset",
+          "thermostat_set",
+          "email_unread",
+          "__none__",
+          "light_set"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "are the garage lights on",
+        "truth": "light_query",
+        "top": [
+          "light_set",
+          "light_query",
+          "projects_query",
+          "__none__",
+          "shoppinglist_add"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what's the state of the garage lights",
+        "truth": "light_query",
+        "top": [
+          "light_set",
+          "projects_query",
+          "__none__",
+          "light_query",
+          "reminder_cancel"
+        ],
+        "in_top3": false
+      },
+      {
+        "text": "what's the state of the bedroom lights",
+        "truth": "light_query",
+        "top": [
+          "light_set",
+          "light_query",
+          "projects_query",
+          "__none__",
+          "thermostat_offset"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what's on my calendar on Friday",
+        "truth": "calendar_today",
+        "top": [
+          "shoppinglist_view",
+          "calendar_today",
+          "timer_status",
+          "light_query",
+          "projects_query"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "cancel all my reminders",
+        "truth": "reminder_cancel",
+        "top": [
+          "timer_cancel",
+          "reminder_cancel",
+          "email_unread",
+          "light_set",
+          "projects_query"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "throw chicken on the shopping list",
+        "truth": "shoppinglist_add",
+        "top": [
+          "shoppinglist_view",
+          "shoppinglist_add",
+          "shoppinglist_remove",
+          "timer_status",
+          "light_query"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "throw dish soap on the shopping list",
+        "truth": "shoppinglist_add",
+        "top": [
+          "shoppinglist_view",
+          "shoppinglist_add",
+          "shoppinglist_remove",
+          "timer_status",
+          "light_query"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "bathroom lights on please",
+        "truth": "light_set",
+        "top": [
+          "light_query",
+          "light_set",
+          "timer_create",
+          "email_unread",
+          "shoppinglist_view"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "fire up the bathroom lights",
+        "truth": "light_set",
+        "top": [
+          "light_query",
+          "thermostat_offset",
+          "docs_query",
+          "light_set",
+          "__none__"
+        ],
+        "in_top3": false
+      }
+    ],
+    "one_minus_recall_at_1": 0.1021,
+    "one_minus_recall_at_3": 0.0236,
+    "ceiling_gain_points_if_reranker_perfect": 7.85
+  },
+  {
+    "rung": "r2-word-logreg-C100",
+    "n_rows": 382,
+    "top_k_recall": {
+      "1": 0.9084,
+      "2": 0.9503,
+      "3": 0.9843,
+      "5": 0.9948
+    },
+    "errors": 35,
+    "errors_in_top3": 29,
+    "errors_outside_top3": 6,
+    "top_confusions": {
+      "light_query -> light_set": 6,
+      "__none__ -> light_query": 4,
+      "thermostat_offset -> light_set": 3,
+      "light_set -> light_query": 3,
+      "calendar_today -> __none__": 3,
+      "projects_query -> shoppinglist_view": 3,
+      "calendar_today -> email_unread": 2,
+      "thermostat_set -> thermostat_offset": 2,
+      "calendar_today -> light_query": 1,
+      "__none__ -> calendar_today": 1,
+      "__none__ -> timer_create": 1,
+      "__none__ -> projects_query": 1
+    },
+    "error_rows": [
+      {
+        "text": "make the living room colder",
+        "truth": "thermostat_offset",
+        "top": [
+          "light_set",
+          "light_query",
+          "thermostat_offset",
+          "__none__",
+          "thermostat_set"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "make the living room hotter",
+        "truth": "thermostat_offset",
+        "top": [
+          "light_set",
+          "light_query",
+          "thermostat_offset",
+          "__none__",
+          "thermostat_set"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "make the living room cooler",
+        "truth": "thermostat_offset",
+        "top": [
+          "light_set",
+          "thermostat_offset",
+          "light_query",
+          "__none__",
+          "reminder_create"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "kill the bathroom lights",
+        "truth": "light_set",
+        "top": [
+          "light_query",
+          "timer_cancel",
+          "light_set",
+          "__none__",
+          "research_deep"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what does my morning look like",
+        "truth": "calendar_today",
+        "top": [
+          "__none__",
+          "docs_query",
+          "email_unread",
+          "projects_query",
+          "calendar_today"
+        ],
+        "in_top3": false
+      },
+      {
+        "text": "any meetings this weekend",
+        "truth": "calendar_today",
+        "top": [
+          "email_unread",
+          "calendar_today",
+          "reminder_create",
+          "__none__",
+          "light_query"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what does my afternoon look like",
+        "truth": "calendar_today",
+        "top": [
+          "__none__",
+          "docs_query",
+          "calendar_today",
+          "projects_query",
+          "email_unread"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "any meetings on Friday",
+        "truth": "calendar_today",
+        "top": [
+          "light_query",
+          "email_unread",
+          "timer_status",
+          "projects_query",
+          "light_set"
+        ],
+        "in_top3": false
+      },
+      {
+        "text": "what does my week look like",
+        "truth": "calendar_today",
+        "top": [
+          "__none__",
+          "docs_query",
+          "calendar_today",
+          "projects_query",
+          "email_unread"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "any meetings tomorrow",
+        "truth": "calendar_today",
+        "top": [
+          "email_unread",
+          "reminder_create",
+          "calendar_today",
+          "reminder_cancel",
+          "__none__"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "how far is the moon",
+        "truth": "__none__",
+        "top": [
+          "light_query",
+          "docs_query",
+          "timer_status",
+          "projects_query",
+          "__none__"
+        ],
+        "in_top3": false
+      },
+      {
+        "text": "what should I have for dinner",
+        "truth": "__none__",
+        "top": [
+          "calendar_today",
+          "projects_query",
+          "shoppinglist_view",
+          "email_unread",
+          "timer_create"
+        ],
+        "in_top3": false
+      },
+      {
+        "text": "give me a recipe for pancakes",
+        "truth": "__none__",
+        "top": [
+          "timer_create",
+          "__none__",
+          "projects_query",
+          "reminder_create",
+          "calendar_today"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "when is the next lunar eclipse",
+        "truth": "__none__",
+        "top": [
+          "light_query",
+          "timer_status",
+          "__none__",
+          "docs_query",
+          "projects_query"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "how many bones are in the human body",
+        "truth": "__none__",
+        "top": [
+          "projects_query",
+          "email_unread",
+          "docs_query",
+          "__none__",
+          "light_query"
+        ],
+        "in_top3": false
+      },
+      {
+        "text": "why is the sky blue",
+        "truth": "__none__",
+        "top": [
+          "light_query",
+          "docs_query",
+          "timer_status",
+          "projects_query",
+          "__none__"
+        ],
+        "in_top3": false
+      },
+      {
+        "text": "what language do they speak in Brazil",
+        "truth": "__none__",
+        "top": [
+          "shoppinglist_view",
+          "__none__",
+          "email_unread",
+          "projects_query",
+          "calendar_today"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "who is the president of France",
+        "truth": "__none__",
+        "top": [
+          "light_query",
+          "__none__",
+          "projects_query",
+          "docs_query",
+          "timer_status"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "cancel the 30 second timer",
+        "truth": "timer_cancel",
+        "top": [
+          "timer_create",
+          "timer_cancel",
+          "reminder_cancel",
+          "__none__",
+          "thermostat_offset"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "is the living room lamp off",
+        "truth": "light_query",
+        "top": [
+          "light_set",
+          "light_query",
+          "__none__",
+          "docs_query",
+          "timer_status"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "is the office lamp off",
+        "truth": "light_query",
+        "top": [
+          "light_set",
+          "light_query",
+          "docs_query",
+          "__none__",
+          "timer_status"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "is the garage lamp off",
+        "truth": "light_query",
+        "top": [
+          "light_set",
+          "light_query",
+          "docs_query",
+          "__none__",
+          "timer_status"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what's happening in todo app",
+        "truth": "projects_query",
+        "top": [
+          "shoppinglist_view",
+          "email_unread",
+          "projects_query",
+          "__none__",
+          "calendar_today"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what's happening in liveCaptions",
+        "truth": "projects_query",
+        "top": [
+          "shoppinglist_view",
+          "email_unread",
+          "projects_query",
+          "__none__",
+          "calendar_today"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what's happening in electronicsProjects",
+        "truth": "projects_query",
+        "top": [
+          "shoppinglist_view",
+          "email_unread",
+          "projects_query",
+          "__none__",
+          "calendar_today"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "is the 10 minute timer still going",
+        "truth": "timer_status",
+        "top": [
+          "timer_create",
+          "timer_cancel",
+          "timer_status",
+          "light_query",
+          "__none__"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "make it 24 degrees in here",
+        "truth": "thermostat_set",
+        "top": [
+          "thermostat_offset",
+          "thermostat_set",
+          "__none__",
+          "research_deep",
+          "email_unread"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "make it 19 degrees in here",
+        "truth": "thermostat_set",
+        "top": [
+          "thermostat_offset",
+          "thermostat_set",
+          "__none__",
+          "research_deep",
+          "email_unread"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "are the garage lights on",
+        "truth": "light_query",
+        "top": [
+          "light_set",
+          "light_query",
+          "__none__",
+          "projects_query",
+          "docs_query"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what's the state of the garage lights",
+        "truth": "light_query",
+        "top": [
+          "light_set",
+          "projects_query",
+          "light_query",
+          "__none__",
+          "reminder_cancel"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what's the state of the bedroom lights",
+        "truth": "light_query",
+        "top": [
+          "light_set",
+          "light_query",
+          "projects_query",
+          "__none__",
+          "thermostat_offset"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "what's on my calendar on Friday",
+        "truth": "calendar_today",
+        "top": [
+          "shoppinglist_view",
+          "calendar_today",
+          "timer_status",
+          "projects_query",
+          "light_query"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "cancel all my reminders",
+        "truth": "reminder_cancel",
+        "top": [
+          "timer_cancel",
+          "reminder_cancel",
+          "email_unread",
+          "projects_query",
+          "calendar_today"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "bathroom lights on please",
+        "truth": "light_set",
+        "top": [
+          "light_query",
+          "light_set",
+          "timer_create",
+          "email_unread",
+          "__none__"
+        ],
+        "in_top3": true
+      },
+      {
+        "text": "fire up the bathroom lights",
+        "truth": "light_set",
+        "top": [
+          "light_query",
+          "thermostat_offset",
+          "light_set",
+          "docs_query",
+          "__none__"
+        ],
+        "in_top3": true
+      }
+    ],
+    "one_minus_recall_at_1": 0.0916,
+    "one_minus_recall_at_3": 0.0157,
+    "ceiling_gain_points_if_reranker_perfect": 7.59
+  }
+]

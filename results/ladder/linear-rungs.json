@@ -1,0 +1,6278 @@
+{
+  "bench": {
+    "n_rows": 382,
+    "n_families": 110,
+    "n_labels": 18,
+    "n_reference_rows": 200,
+    "examples_per_intent": 21.2
+  },
+  "fold_assignments": {
+    "4": {
+      "n_folds": 4,
+      "n_families": 110,
+      "rows_per_fold": [
+        96,
+        96,
+        95,
+        95
+      ],
+      "family_fold": {
+        "I need a {duration} timer": 0,
+        "__chitchat__": 0,
+        "abort the {duration} countdown": 2,
+        "add some {item} to the grocery list": 0,
+        "add {item} to my list": 3,
+        "add {item} to the shopping list": 1,
+        "am I free {span}": 2,
+        "any mail I haven't seen": 1,
+        "any meetings {day}": 3,
+        "any unread emails this morning": 0,
+        "are the {room} lights on": 3,
+        "bump the thermostat {direction} a couple degrees": 1,
+        "cancel all my reminders": 3,
+        "cancel my countdown please": 2,
+        "cancel the countdown": 1,
+        "cancel the reminder for {task}": 0,
+        "cancel the {duration} timer": 0,
+        "change the thermostat to {temp}": 2,
+        "check how long is left on the timer": 0,
+        "check the inbox for anything new": 3,
+        "check the {room} light status": 3,
+        "cross {item} off the shopping list": 2,
+        "delete my reminder about {task}": 2,
+        "delete the reminder set for {time}": 1,
+        "delete {item} from my list": 1,
+        "did I leave the {room} lights on": 0,
+        "dig into {topic} for me": 2,
+        "dive into {topic}": 1,
+        "do I have new mail": 2,
+        "don't let me forget to {task} {time}": 1,
+        "drop the temperature to {temp} degrees": 3,
+        "find documentation on {topic}": 3,
+        "find out about {topic}": 2,
+        "fire up the {room} lights": 1,
+        "get rid of the {task} reminder": 3,
+        "give me a summary of the {project} project": 0,
+        "give me a {duration} timer please": 2,
+        "how does {topic} work in the documentation": 0,
+        "how is {project} doing": 2,
+        "how many emails are unread": 1,
+        "how much longer on the timer": 0,
+        "how much time is left on the {duration} timer": 3,
+        "investigate {topic} and give me options": 0,
+        "is the {duration} timer still going": 2,
+        "is the {room} lamp off": 1,
+        "is the {room} light still on": 1,
+        "it's {direction} in here, fix it": 0,
+        "kick off a {duration} countdown": 1,
+        "kill that timer": 3,
+        "kill the {room} lights": 3,
+        "list out my shopping items": 2,
+        "look into {topic}": 0,
+        "look up {topic} in the docs": 3,
+        "make it {direction} in here": 3,
+        "make it {temp} degrees in here": 2,
+        "make the living room {direction}": 3,
+        "pull up what's documented about {topic}": 1,
+        "put the thermostat on {temp}": 1,
+        "put {item} on the grocery list": 1,
+        "read my unread messages": 0,
+        "read the shopping list to me": 3,
+        "remember to {task} {time}": 0,
+        "remind me about {task} {time}": 2,
+        "remind me at {time} to {task}": 1,
+        "remind me to {task} at {time}": 3,
+        "remove the reminder to {task}": 0,
+        "remove the {item} from groceries": 2,
+        "remove the {time} reminder": 1,
+        "remove {item} from the shopping list": 2,
+        "research {topic}": 3,
+        "run a timer for {duration}": 0,
+        "search the docs for {topic}": 2,
+        "set a reminder to {task} {time}": 2,
+        "set a timer for {duration}": 1,
+        "set the heat to {temp} degrees": 1,
+        "set the house temperature to {temp}": 0,
+        "set the temperature to {temp} degrees": 0,
+        "show me the schedule for {day}": 3,
+        "show my shopping list": 1,
+        "shut off the running timer": 0,
+        "start a countdown of {duration}": 3,
+        "start a {duration} timer": 2,
+        "stop the {duration} timer now": 1,
+        "switch the {room} light {state}": 3,
+        "take {item} off the grocery list": 2,
+        "take {item} off the list please": 0,
+        "throw {item} on the shopping list": 2,
+        "time left on the timer please": 3,
+        "turn the heat up to {temp} degrees": 1,
+        "turn the temperature {direction} a bit": 2,
+        "turn the {room} lamp {state}": 3,
+        "turn {state} the {room} lights": 2,
+        "we're out of {item}, add it to groceries": 3,
+        "what am I working on these days": 2,
+        "what do I need to buy": 1,
+        "what do the docs say about {topic}": 1,
+        "what does my {span} look like": 2,
+        "what's happening in {project}": 3,
+        "what's my agenda {day}": 1,
+        "what's on my calendar {day}": 1,
+        "what's on the grocery list today": 0,
+        "what's on the list right now": 3,
+        "what's remaining on the countdown": 2,
+        "what's sitting in my inbox": 1,
+        "what's the state of the {room} lights": 0,
+        "what's the status of my projects": 3,
+        "when does the countdown finish": 2,
+        "which repos are active right now": 1,
+        "{direction} the heat a little": 3,
+        "{room} lights {state} please": 0
+      }
+    }
+  },
+  "runs": [
+    {
+      "rung": "r0-word-svc",
+      "note": "the 93.19% / 0.61 ms baseline, re-measured on these folds",
+      "fold_count": 4,
+      "protocol": "grouped",
+      "n_folds": 4,
+      "train_rows": [
+        199,
+        190,
+        193,
+        195
+      ],
+      "fold_rows": [
+        96,
+        96,
+        95,
+        95
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.343,
+        "p95": 0.395,
+        "mean": 0.349
+      },
+      "per_fold_accuracy": [
+        0.8542,
+        0.9271,
+        0.9158,
+        0.8737
+      ],
+      "fold_spread": {
+        "mean": 0.8927,
+        "min": 0.8542,
+        "max": 0.9271,
+        "sd": 0.0345
+      },
+      "accuracy": 0.8927,
+      "ece": 0.7304,
+      "mean_confidence": 0.1623,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0839,
+            "coverage": 0.9791,
+            "precision": 0.9064,
+            "residue_rows": 8,
+            "residue_accuracy": 0.25
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1089,
+            "coverage": 0.856,
+            "precision": 0.9511,
+            "residue_rows": 55,
+            "residue_accuracy": 0.5455
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1294,
+            "coverage": 0.699,
+            "precision": 0.9775,
+            "residue_rows": 115,
+            "residue_accuracy": 0.6957
+          }
+        ]
+      },
+      "none_recall": 0.6,
+      "false_none_rate": 0.0028,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 15,
+          "recall": 0.6
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 14,
+          "recall": 0.667
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 18,
+          "recall": 0.72
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 12,
+          "recall": 0.923
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8399,
+        0.9432
+      ]
+    },
+    {
+      "rung": "r1-union-svc",
+      "note": "rung 1: vectoriser union",
+      "fold_count": 4,
+      "protocol": "grouped",
+      "n_folds": 4,
+      "train_rows": [
+        199,
+        190,
+        193,
+        195
+      ],
+      "fold_rows": [
+        96,
+        96,
+        95,
+        95
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.846,
+        "p95": 0.93,
+        "mean": 0.855
+      },
+      "per_fold_accuracy": [
+        0.8438,
+        0.9479,
+        0.8737,
+        0.9053
+      ],
+      "fold_spread": {
+        "mean": 0.8927,
+        "min": 0.8438,
+        "max": 0.9479,
+        "sd": 0.0446
+      },
+      "accuracy": 0.8927,
+      "ece": 0.6961,
+      "mean_confidence": 0.1966,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0828,
+            "coverage": 0.9895,
+            "precision": 0.9021,
+            "residue_rows": 4,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1208,
+            "coverage": 0.8717,
+            "precision": 0.952,
+            "residue_rows": 49,
+            "residue_accuracy": 0.4898
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1509,
+            "coverage": 0.7513,
+            "precision": 0.9756,
+            "residue_rows": 95,
+            "residue_accuracy": 0.6421
+          }
+        ]
+      },
+      "none_recall": 0.52,
+      "false_none_rate": 0.0084,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 13,
+          "recall": 0.52
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 17,
+          "recall": 0.81
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8325,
+        0.9483
+      ]
+    },
+    {
+      "rung": "r1-union-svc-C4",
+      "note": "rung 1: union with C swept (selection on these folds)",
+      "fold_count": 4,
+      "protocol": "grouped",
+      "n_folds": 4,
+      "train_rows": [
+        199,
+        190,
+        193,
+        195
+      ],
+      "fold_rows": [
+        96,
+        96,
+        95,
+        95
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.852,
+        "p95": 0.951,
+        "mean": 0.913
+      },
+      "per_fold_accuracy": [
+        0.8333,
+        0.9688,
+        0.8737,
+        0.9053
+      ],
+      "fold_spread": {
+        "mean": 0.8953,
+        "min": 0.8333,
+        "max": 0.9688,
+        "sd": 0.0572
+      },
+      "accuracy": 0.8953,
+      "ece": 0.6654,
+      "mean_confidence": 0.2299,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0875,
+            "coverage": 0.9948,
+            "precision": 0.9,
+            "residue_rows": 2,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1283,
+            "coverage": 0.8848,
+            "precision": 0.9527,
+            "residue_rows": 44,
+            "residue_accuracy": 0.4545
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1659,
+            "coverage": 0.7749,
+            "precision": 0.9764,
+            "residue_rows": 86,
+            "residue_accuracy": 0.6163
+          }
+        ]
+      },
+      "none_recall": 0.52,
+      "false_none_rate": 0.0084,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 13,
+          "recall": 0.52
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 17,
+          "recall": 0.81
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8337,
+        0.95
+      ]
+    },
+    {
+      "rung": "r2-word-logreg-C100",
+      "note": "rung 2: natively calibrated, word features",
+      "fold_count": 4,
+      "protocol": "grouped",
+      "n_folds": 4,
+      "train_rows": [
+        199,
+        190,
+        193,
+        195
+      ],
+      "fold_rows": [
+        96,
+        96,
+        95,
+        95
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.556,
+        "p95": 3.625,
+        "mean": 1.115
+      },
+      "per_fold_accuracy": [
+        0.8646,
+        0.9271,
+        0.9368,
+        0.8737
+      ],
+      "fold_spread": {
+        "mean": 0.9005,
+        "min": 0.8646,
+        "max": 0.9368,
+        "sd": 0.0367
+      },
+      "accuracy": 0.9005,
+      "ece": 0.1248,
+      "mean_confidence": 0.7757,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1601,
+            "coverage": 1.0,
+            "precision": 0.9005,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.4964,
+            "coverage": 0.8482,
+            "precision": 0.9506,
+            "residue_rows": 58,
+            "residue_accuracy": 0.6207
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.622,
+            "coverage": 0.7644,
+            "precision": 0.976,
+            "residue_rows": 90,
+            "residue_accuracy": 0.6556
+          }
+        ]
+      },
+      "none_recall": 0.64,
+      "false_none_rate": 0.0084,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 16,
+          "recall": 0.64
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 14,
+          "recall": 0.667
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 12,
+          "recall": 0.923
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8514,
+        0.9471
+      ]
+    },
+    {
+      "rung": "r2-union-svc-sigmoid",
+      "note": "rung 2: LinearSVC + sigmoid calibration",
+      "fold_count": 4,
+      "protocol": "grouped",
+      "n_folds": 4,
+      "train_rows": [
+        199,
+        190,
+        193,
+        195
+      ],
+      "fold_rows": [
+        96,
+        96,
+        95,
+        95
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 2.811,
+        "p95": 5.388,
+        "mean": 3.395
+      },
+      "per_fold_accuracy": [
+        0.8854,
+        0.9271,
+        0.8316,
+        0.8737
+      ],
+      "fold_spread": {
+        "mean": 0.8794,
+        "min": 0.8316,
+        "max": 0.9271,
+        "sd": 0.0393
+      },
+      "accuracy": 0.8796,
+      "ece": 0.2931,
+      "mean_confidence": 0.5902,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.2601,
+            "coverage": 0.9738,
+            "precision": 0.9005,
+            "residue_rows": 10,
+            "residue_accuracy": 0.1
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.4305,
+            "coverage": 0.8613,
+            "precision": 0.9514,
+            "residue_rows": 53,
+            "residue_accuracy": 0.434
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.468,
+            "coverage": 0.801,
+            "precision": 0.9771,
+            "residue_rows": 76,
+            "residue_accuracy": 0.4868
+          }
+        ]
+      },
+      "none_recall": 0.72,
+      "false_none_rate": 0.014,
+      "ledger": {
+        "calendar_today": {
+          "n": 21,
+          "correct": 14,
+          "recall": 0.667
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 9,
+          "recall": 0.692
+        },
+        "__none__": {
+          "n": 25,
+          "correct": 18,
+          "recall": 0.72
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 17,
+          "recall": 0.895
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8295,
+        0.9276
+      ]
+    },
+    {
+      "rung": "r2-word-svc-sigmoid",
+      "note": "rung 2: isolates calibration from the union",
+      "fold_count": 4,
+      "protocol": "grouped",
+      "n_folds": 4,
+      "train_rows": [
+        199,
+        190,
+        193,
+        195
+      ],
+      "fold_rows": [
+        96,
+        96,
+        95,
+        95
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 2.846,
+        "p95": 5.444,
+        "mean": 3.201
+      },
+      "per_fold_accuracy": [
+        0.8542,
+        0.9167,
+        0.9053,
+        0.8737
+      ],
+      "fold_spread": {
+        "mean": 0.8874,
+        "min": 0.8542,
+        "max": 0.9167,
+        "sd": 0.0287
+      },
+      "accuracy": 0.8874,
+      "ece": 0.3302,
+      "mean_confidence": 0.5572,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.2939,
+            "coverage": 0.9581,
+            "precision": 0.9016,
+            "residue_rows": 16,
+            "residue_accuracy": 0.5625
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.3875,
+            "coverage": 0.8482,
+            "precision": 0.9506,
+            "residue_rows": 58,
+            "residue_accuracy": 0.5345
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.4527,
+            "coverage": 0.7461,
+            "precision": 0.9754,
+            "residue_rows": 97,
+            "residue_accuracy": 0.6289
+          }
+        ]
+      },
+      "none_recall": 0.64,
+      "false_none_rate": 0.0028,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 16,
+          "recall": 0.64
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 14,
+          "recall": 0.667
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 11,
+          "recall": 0.846
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8369,
+        0.9359
+      ]
+    },
+    {
+      "rung": "r0-word-svc",
+      "note": "the 93.19% / 0.61 ms baseline, re-measured on these folds",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.405,
+        "p95": 0.442,
+        "mean": 0.41
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9319,
+      "ece": 0.7601,
+      "mean_confidence": 0.1718,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0656,
+            "coverage": 1.0,
+            "precision": 0.9319,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.0981,
+            "coverage": 0.945,
+            "precision": 0.9501,
+            "residue_rows": 21,
+            "residue_accuracy": 0.619
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1142,
+            "coverage": 0.8691,
+            "precision": 0.9759,
+            "residue_rows": 50,
+            "residue_accuracy": 0.64
+          }
+        ]
+      },
+      "none_recall": 0.6,
+      "false_none_rate": 0.0,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 15,
+          "recall": 0.6
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 12,
+          "recall": 0.923
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8801,
+        0.9764
+      ]
+    },
+    {
+      "rung": "r1-union-svc",
+      "note": "rung 1: vectoriser union",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.984,
+        "p95": 1.063,
+        "mean": 0.991
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9241,
+      "ece": 0.7162,
+      "mean_confidence": 0.2079,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0795,
+            "coverage": 1.0,
+            "precision": 0.9241,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1022,
+            "coverage": 0.9555,
+            "precision": 0.9507,
+            "residue_rows": 17,
+            "residue_accuracy": 0.3529
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1304,
+            "coverage": 0.8691,
+            "precision": 0.9759,
+            "residue_rows": 50,
+            "residue_accuracy": 0.58
+          }
+        ]
+      },
+      "none_recall": 0.52,
+      "false_none_rate": 0.0056,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 13,
+          "recall": 0.52
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8654,
+        0.9741
+      ]
+    },
+    {
+      "rung": "r1-union-svc-C4",
+      "note": "rung 1: union with C swept (selection on these folds)",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.979,
+        "p95": 1.084,
+        "mean": 0.987
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9267,
+      "ece": 0.6832,
+      "mean_confidence": 0.2435,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0834,
+            "coverage": 1.0,
+            "precision": 0.9267,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1088,
+            "coverage": 0.9607,
+            "precision": 0.951,
+            "residue_rows": 15,
+            "residue_accuracy": 0.3333
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1435,
+            "coverage": 0.8796,
+            "precision": 0.9762,
+            "residue_rows": 46,
+            "residue_accuracy": 0.5652
+          }
+        ]
+      },
+      "none_recall": 0.52,
+      "false_none_rate": 0.0056,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 13,
+          "recall": 0.52
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8656,
+        0.9748
+      ]
+    },
+    {
+      "rung": "r2-word-logreg-C100",
+      "note": "rung 2: natively calibrated, word features",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.488,
+        "p95": 0.838,
+        "mean": 0.657
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9346,
+      "ece": 0.1241,
+      "mean_confidence": 0.8105,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1596,
+            "coverage": 1.0,
+            "precision": 0.9346,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.3359,
+            "coverage": 0.9738,
+            "precision": 0.9516,
+            "residue_rows": 10,
+            "residue_accuracy": 0.3
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.5287,
+            "coverage": 0.8796,
+            "precision": 0.9762,
+            "residue_rows": 46,
+            "residue_accuracy": 0.6304
+          }
+        ]
+      },
+      "none_recall": 0.64,
+      "false_none_rate": 0.0,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 16,
+          "recall": 0.64
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 12,
+          "recall": 0.923
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8863,
+        0.9764
+      ]
+    },
+    {
+      "rung": "r2-union-svc-sigmoid",
+      "note": "rung 2: LinearSVC + sigmoid calibration",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 3.24,
+        "p95": 4.06,
+        "mean": 3.467
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9188,
+      "ece": 0.3166,
+      "mean_confidence": 0.6136,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1955,
+            "coverage": 1.0,
+            "precision": 0.9188,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.3214,
+            "coverage": 0.966,
+            "precision": 0.9512,
+            "residue_rows": 13,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.415,
+            "coverage": 0.8953,
+            "precision": 0.9766,
+            "residue_rows": 40,
+            "residue_accuracy": 0.425
+          }
+        ]
+      },
+      "none_recall": 0.68,
+      "false_none_rate": 0.014,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 17,
+          "recall": 0.68
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 9,
+          "recall": 0.692
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 13,
+          "recall": 0.722
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 17,
+          "recall": 0.895
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 20,
+          "recall": 0.952
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8739,
+        0.9611
+      ]
+    },
+    {
+      "rung": "r2-word-svc-sigmoid",
+      "note": "rung 2: isolates calibration from the union",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 2.634,
+        "p95": 3.108,
+        "mean": 2.701
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9188,
+      "ece": 0.3352,
+      "mean_confidence": 0.5836,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1706,
+            "coverage": 1.0,
+            "precision": 0.9188,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.3247,
+            "coverage": 0.9476,
+            "precision": 0.9503,
+            "residue_rows": 20,
+            "residue_accuracy": 0.35
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.403,
+            "coverage": 0.8717,
+            "precision": 0.976,
+            "residue_rows": 49,
+            "residue_accuracy": 0.5306
+          }
+        ]
+      },
+      "none_recall": 0.64,
+      "false_none_rate": 0.0084,
+      "ledger": {
+        "projects_query": {
+          "n": 18,
+          "correct": 11,
+          "recall": 0.611
+        },
+        "__none__": {
+          "n": 25,
+          "correct": 16,
+          "recall": 0.64
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 11,
+          "recall": 0.846
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.87,
+        0.9631
+      ]
+    },
+    {
+      "rung": "r0-word-svc",
+      "note": "the 93.19% / 0.61 ms baseline, re-measured on these folds",
+      "fold_count": 5,
+      "protocol": "grouped",
+      "n_folds": 5,
+      "train_rows": [
+        194,
+        199,
+        195,
+        195,
+        194
+      ],
+      "fold_rows": [
+        77,
+        77,
+        76,
+        76,
+        76
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.389,
+        "p95": 0.425,
+        "mean": 0.393
+      },
+      "per_fold_accuracy": [
+        0.7403,
+        0.9091,
+        0.9211,
+        0.9868,
+        0.9342
+      ],
+      "fold_spread": {
+        "mean": 0.8983,
+        "min": 0.7403,
+        "max": 0.9868,
+        "sd": 0.0932
+      },
+      "accuracy": 0.8979,
+      "ece": 0.7348,
+      "mean_confidence": 0.1631,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0816,
+            "coverage": 0.9948,
+            "precision": 0.9,
+            "residue_rows": 2,
+            "residue_accuracy": 0.5
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1101,
+            "coverage": 0.8639,
+            "precision": 0.9515,
+            "residue_rows": 52,
+            "residue_accuracy": 0.5577
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1291,
+            "coverage": 0.7147,
+            "precision": 0.978,
+            "residue_rows": 109,
+            "residue_accuracy": 0.6972
+          }
+        ]
+      },
+      "none_recall": 0.6,
+      "false_none_rate": 0.0028,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 15,
+          "recall": 0.6
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 14,
+          "recall": 0.667
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 12,
+          "recall": 0.923
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.845,
+        0.9478
+      ]
+    },
+    {
+      "rung": "r1-union-svc",
+      "note": "rung 1: vectoriser union",
+      "fold_count": 5,
+      "protocol": "grouped",
+      "n_folds": 5,
+      "train_rows": [
+        194,
+        199,
+        195,
+        195,
+        194
+      ],
+      "fold_rows": [
+        77,
+        77,
+        76,
+        76,
+        76
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.977,
+        "p95": 1.073,
+        "mean": 0.983
+      },
+      "per_fold_accuracy": [
+        0.7532,
+        0.8701,
+        0.9474,
+        0.9868,
+        0.9211
+      ],
+      "fold_spread": {
+        "mean": 0.8957,
+        "min": 0.7532,
+        "max": 0.9868,
+        "sd": 0.0902
+      },
+      "accuracy": 0.8953,
+      "ece": 0.6969,
+      "mean_confidence": 0.1984,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0826,
+            "coverage": 0.9948,
+            "precision": 0.9,
+            "residue_rows": 2,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1149,
+            "coverage": 0.8901,
+            "precision": 0.95,
+            "residue_rows": 42,
+            "residue_accuracy": 0.4524
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1521,
+            "coverage": 0.7618,
+            "precision": 0.9759,
+            "residue_rows": 91,
+            "residue_accuracy": 0.6374
+          }
+        ]
+      },
+      "none_recall": 0.52,
+      "false_none_rate": 0.0084,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 13,
+          "recall": 0.52
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 17,
+          "recall": 0.81
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8337,
+        0.9491
+      ]
+    },
+    {
+      "rung": "r1-union-svc-C4",
+      "note": "rung 1: union with C swept (selection on these folds)",
+      "fold_count": 5,
+      "protocol": "grouped",
+      "n_folds": 5,
+      "train_rows": [
+        194,
+        199,
+        195,
+        195,
+        194
+      ],
+      "fold_rows": [
+        77,
+        77,
+        76,
+        76,
+        76
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.959,
+        "p95": 1.053,
+        "mean": 0.966
+      },
+      "per_fold_accuracy": [
+        0.7532,
+        0.9091,
+        0.9474,
+        0.9868,
+        0.9211
+      ],
+      "fold_spread": {
+        "mean": 0.9035,
+        "min": 0.7532,
+        "max": 0.9868,
+        "sd": 0.0891
+      },
+      "accuracy": 0.9031,
+      "ece": 0.671,
+      "mean_confidence": 0.2321,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0835,
+            "coverage": 1.0,
+            "precision": 0.9031,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1276,
+            "coverage": 0.8953,
+            "precision": 0.9503,
+            "residue_rows": 40,
+            "residue_accuracy": 0.5
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1619,
+            "coverage": 0.8063,
+            "precision": 0.9773,
+            "residue_rows": 74,
+            "residue_accuracy": 0.5946
+          }
+        ]
+      },
+      "none_recall": 0.52,
+      "false_none_rate": 0.0084,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 13,
+          "recall": 0.52
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 17,
+          "recall": 0.81
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8433,
+        0.9552
+      ]
+    },
+    {
+      "rung": "r2-word-logreg-C100",
+      "note": "rung 2: natively calibrated, word features",
+      "fold_count": 5,
+      "protocol": "grouped",
+      "n_folds": 5,
+      "train_rows": [
+        194,
+        199,
+        195,
+        195,
+        194
+      ],
+      "fold_rows": [
+        77,
+        77,
+        76,
+        76,
+        76
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.73,
+        "p95": 3.793,
+        "mean": 1.205
+      },
+      "per_fold_accuracy": [
+        0.7662,
+        0.9091,
+        0.9211,
+        0.9868,
+        0.9605
+      ],
+      "fold_spread": {
+        "mean": 0.9087,
+        "min": 0.7662,
+        "max": 0.9868,
+        "sd": 0.0855
+      },
+      "accuracy": 0.9084,
+      "ece": 0.1278,
+      "mean_confidence": 0.7806,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1626,
+            "coverage": 1.0,
+            "precision": 0.9084,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.4793,
+            "coverage": 0.8639,
+            "precision": 0.9515,
+            "residue_rows": 52,
+            "residue_accuracy": 0.6346
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.616,
+            "coverage": 0.788,
+            "precision": 0.9767,
+            "residue_rows": 81,
+            "residue_accuracy": 0.6543
+          }
+        ]
+      },
+      "none_recall": 0.68,
+      "false_none_rate": 0.0084,
+      "ledger": {
+        "calendar_today": {
+          "n": 21,
+          "correct": 14,
+          "recall": 0.667
+        },
+        "__none__": {
+          "n": 25,
+          "correct": 17,
+          "recall": 0.68
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 12,
+          "recall": 0.923
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.862,
+        0.9529
+      ]
+    },
+    {
+      "rung": "r2-union-svc-sigmoid",
+      "note": "rung 2: LinearSVC + sigmoid calibration",
+      "fold_count": 5,
+      "protocol": "grouped",
+      "n_folds": 5,
+      "train_rows": [
+        194,
+        199,
+        195,
+        195,
+        194
+      ],
+      "fold_rows": [
+        77,
+        77,
+        76,
+        76,
+        76
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 3.811,
+        "p95": 4.449,
+        "mean": 3.946
+      },
+      "per_fold_accuracy": [
+        0.7532,
+        0.8961,
+        0.8816,
+        0.9737,
+        0.9474
+      ],
+      "fold_spread": {
+        "mean": 0.8904,
+        "min": 0.7532,
+        "max": 0.9737,
+        "sd": 0.0853
+      },
+      "accuracy": 0.8901,
+      "ece": 0.3022,
+      "mean_confidence": 0.5944,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.2465,
+            "coverage": 0.9869,
+            "precision": 0.9019,
+            "residue_rows": 5,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.4149,
+            "coverage": 0.8796,
+            "precision": 0.9524,
+            "residue_rows": 46,
+            "residue_accuracy": 0.4348
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.4661,
+            "coverage": 0.8089,
+            "precision": 0.9773,
+            "residue_rows": 73,
+            "residue_accuracy": 0.5205
+          }
+        ]
+      },
+      "none_recall": 0.72,
+      "false_none_rate": 0.0196,
+      "ledger": {
+        "timer_status": {
+          "n": 13,
+          "correct": 9,
+          "recall": 0.692
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 15,
+          "recall": 0.714
+        },
+        "__none__": {
+          "n": 25,
+          "correct": 18,
+          "recall": 0.72
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 15,
+          "recall": 0.789
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8421,
+        0.9368
+      ]
+    },
+    {
+      "rung": "r2-word-svc-sigmoid",
+      "note": "rung 2: isolates calibration from the union",
+      "fold_count": 5,
+      "protocol": "grouped",
+      "n_folds": 5,
+      "train_rows": [
+        194,
+        199,
+        195,
+        195,
+        194
+      ],
+      "fold_rows": [
+        77,
+        77,
+        76,
+        76,
+        76
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 3.23,
+        "p95": 3.928,
+        "mean": 3.288
+      },
+      "per_fold_accuracy": [
+        0.7013,
+        0.8571,
+        0.8816,
+        0.9605,
+        0.9605
+      ],
+      "fold_spread": {
+        "mean": 0.8722,
+        "min": 0.7013,
+        "max": 0.9605,
+        "sd": 0.1062
+      },
+      "accuracy": 0.8717,
+      "ece": 0.3104,
+      "mean_confidence": 0.5613,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.3194,
+            "coverage": 0.945,
+            "precision": 0.9003,
+            "residue_rows": 21,
+            "residue_accuracy": 0.381
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.388,
+            "coverage": 0.8508,
+            "precision": 0.9508,
+            "residue_rows": 57,
+            "residue_accuracy": 0.4211
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.4402,
+            "coverage": 0.767,
+            "precision": 0.9761,
+            "residue_rows": 89,
+            "residue_accuracy": 0.5281
+          }
+        ]
+      },
+      "none_recall": 0.64,
+      "false_none_rate": 0.0112,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 16,
+          "recall": 0.64
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 14,
+          "recall": 0.667
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 12,
+          "recall": 0.667
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 17,
+          "recall": 0.68
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 15,
+          "recall": 0.789
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 11,
+          "recall": 0.846
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8166,
+        0.9243
+      ]
+    },
+    {
+      "rung": "r0-word-svc",
+      "note": "the 93.19% / 0.61 ms baseline, re-measured on these folds",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.421,
+        "p95": 0.48,
+        "mean": 0.427
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9319,
+      "ece": 0.7601,
+      "mean_confidence": 0.1718,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0656,
+            "coverage": 1.0,
+            "precision": 0.9319,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.0981,
+            "coverage": 0.945,
+            "precision": 0.9501,
+            "residue_rows": 21,
+            "residue_accuracy": 0.619
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1142,
+            "coverage": 0.8691,
+            "precision": 0.9759,
+            "residue_rows": 50,
+            "residue_accuracy": 0.64
+          }
+        ]
+      },
+      "none_recall": 0.6,
+      "false_none_rate": 0.0,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 15,
+          "recall": 0.6
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 12,
+          "recall": 0.923
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8801,
+        0.9764
+      ]
+    },
+    {
+      "rung": "r1-union-svc",
+      "note": "rung 1: vectoriser union",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.989,
+        "p95": 1.1,
+        "mean": 0.998
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9241,
+      "ece": 0.7162,
+      "mean_confidence": 0.2079,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0795,
+            "coverage": 1.0,
+            "precision": 0.9241,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1022,
+            "coverage": 0.9555,
+            "precision": 0.9507,
+            "residue_rows": 17,
+            "residue_accuracy": 0.3529
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1304,
+            "coverage": 0.8691,
+            "precision": 0.9759,
+            "residue_rows": 50,
+            "residue_accuracy": 0.58
+          }
+        ]
+      },
+      "none_recall": 0.52,
+      "false_none_rate": 0.0056,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 13,
+          "recall": 0.52
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8654,
+        0.9741
+      ]
+    },
+    {
+      "rung": "r1-union-svc-C4",
+      "note": "rung 1: union with C swept (selection on these folds)",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.958,
+        "p95": 1.072,
+        "mean": 0.971
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9267,
+      "ece": 0.6832,
+      "mean_confidence": 0.2435,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0834,
+            "coverage": 1.0,
+            "precision": 0.9267,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1088,
+            "coverage": 0.9607,
+            "precision": 0.951,
+            "residue_rows": 15,
+            "residue_accuracy": 0.3333
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1435,
+            "coverage": 0.8796,
+            "precision": 0.9762,
+            "residue_rows": 46,
+            "residue_accuracy": 0.5652
+          }
+        ]
+      },
+      "none_recall": 0.52,
+      "false_none_rate": 0.0056,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 13,
+          "recall": 0.52
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8656,
+        0.9748
+      ]
+    },
+    {
+      "rung": "r2-word-logreg-C100",
+      "note": "rung 2: natively calibrated, word features",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.513,
+        "p95": 0.804,
+        "mean": 0.592
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9346,
+      "ece": 0.1241,
+      "mean_confidence": 0.8105,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1596,
+            "coverage": 1.0,
+            "precision": 0.9346,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.3359,
+            "coverage": 0.9738,
+            "precision": 0.9516,
+            "residue_rows": 10,
+            "residue_accuracy": 0.3
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.5287,
+            "coverage": 0.8796,
+            "precision": 0.9762,
+            "residue_rows": 46,
+            "residue_accuracy": 0.6304
+          }
+        ]
+      },
+      "none_recall": 0.64,
+      "false_none_rate": 0.0,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 16,
+          "recall": 0.64
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 12,
+          "recall": 0.923
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8863,
+        0.9764
+      ]
+    },
+    {
+      "rung": "r2-union-svc-sigmoid",
+      "note": "rung 2: LinearSVC + sigmoid calibration",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 3.185,
+        "p95": 4.236,
+        "mean": 3.432
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9188,
+      "ece": 0.3166,
+      "mean_confidence": 0.6136,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1955,
+            "coverage": 1.0,
+            "precision": 0.9188,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.3214,
+            "coverage": 0.966,
+            "precision": 0.9512,
+            "residue_rows": 13,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.415,
+            "coverage": 0.8953,
+            "precision": 0.9766,
+            "residue_rows": 40,
+            "residue_accuracy": 0.425
+          }
+        ]
+      },
+      "none_recall": 0.68,
+      "false_none_rate": 0.014,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 17,
+          "recall": 0.68
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 9,
+          "recall": 0.692
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 13,
+          "recall": 0.722
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 17,
+          "recall": 0.895
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 20,
+          "recall": 0.952
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8739,
+        0.9611
+      ]
+    },
+    {
+      "rung": "r2-word-svc-sigmoid",
+      "note": "rung 2: isolates calibration from the union",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 2.569,
+        "p95": 4.938,
+        "mean": 2.779
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9188,
+      "ece": 0.3352,
+      "mean_confidence": 0.5836,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1706,
+            "coverage": 1.0,
+            "precision": 0.9188,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.3247,
+            "coverage": 0.9476,
+            "precision": 0.9503,
+            "residue_rows": 20,
+            "residue_accuracy": 0.35
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.403,
+            "coverage": 0.8717,
+            "precision": 0.976,
+            "residue_rows": 49,
+            "residue_accuracy": 0.5306
+          }
+        ]
+      },
+      "none_recall": 0.64,
+      "false_none_rate": 0.0084,
+      "ledger": {
+        "projects_query": {
+          "n": 18,
+          "correct": 11,
+          "recall": 0.611
+        },
+        "__none__": {
+          "n": 25,
+          "correct": 16,
+          "recall": 0.64
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 11,
+          "recall": 0.846
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.87,
+        0.9631
+      ]
+    },
+    {
+      "rung": "r0-word-svc",
+      "note": "the 93.19% / 0.61 ms baseline, re-measured on these folds",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "n_folds": 10,
+      "train_rows": [
+        199,
+        196,
+        198,
+        197,
+        198,
+        198,
+        198,
+        198,
+        199,
+        196
+      ],
+      "fold_rows": [
+        39,
+        39,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.385,
+        "p95": 0.426,
+        "mean": 0.39
+      },
+      "per_fold_accuracy": [
+        0.7436,
+        0.8974,
+        0.8421,
+        1.0,
+        0.8158,
+        0.9211,
+        0.8947,
+        1.0,
+        0.8947,
+        0.9474
+      ],
+      "fold_spread": {
+        "mean": 0.8957,
+        "min": 0.7436,
+        "max": 1.0,
+        "sd": 0.0799
+      },
+      "accuracy": 0.8953,
+      "ece": 0.7328,
+      "mean_confidence": 0.1625,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.083,
+            "coverage": 0.9869,
+            "precision": 0.9019,
+            "residue_rows": 5,
+            "residue_accuracy": 0.4
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1111,
+            "coverage": 0.8586,
+            "precision": 0.9512,
+            "residue_rows": 54,
+            "residue_accuracy": 0.5556
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1344,
+            "coverage": 0.6649,
+            "precision": 0.9803,
+            "residue_rows": 128,
+            "residue_accuracy": 0.7266
+          }
+        ]
+      },
+      "none_recall": 0.6,
+      "false_none_rate": 0.0028,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 15,
+          "recall": 0.6
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 14,
+          "recall": 0.667
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 12,
+          "recall": 0.923
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8404,
+        0.9459
+      ]
+    },
+    {
+      "rung": "r1-union-svc",
+      "note": "rung 1: vectoriser union",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "n_folds": 10,
+      "train_rows": [
+        199,
+        196,
+        198,
+        197,
+        198,
+        198,
+        198,
+        198,
+        199,
+        196
+      ],
+      "fold_rows": [
+        39,
+        39,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.975,
+        "p95": 1.067,
+        "mean": 0.981
+      },
+      "per_fold_accuracy": [
+        0.6923,
+        0.9487,
+        0.8947,
+        1.0,
+        0.7895,
+        0.9474,
+        0.8421,
+        0.9737,
+        0.9211,
+        0.9737
+      ],
+      "fold_spread": {
+        "mean": 0.8983,
+        "min": 0.6923,
+        "max": 1.0,
+        "sd": 0.097
+      },
+      "accuracy": 0.8979,
+      "ece": 0.7006,
+      "mean_confidence": 0.1973,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0811,
+            "coverage": 0.9974,
+            "precision": 0.9003,
+            "residue_rows": 1,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1147,
+            "coverage": 0.8979,
+            "precision": 0.9504,
+            "residue_rows": 39,
+            "residue_accuracy": 0.4359
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1533,
+            "coverage": 0.7513,
+            "precision": 0.9756,
+            "residue_rows": 95,
+            "residue_accuracy": 0.6632
+          }
+        ]
+      },
+      "none_recall": 0.52,
+      "false_none_rate": 0.0084,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 13,
+          "recall": 0.52
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 17,
+          "recall": 0.81
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8362,
+        0.9514
+      ]
+    },
+    {
+      "rung": "r1-union-svc-C4",
+      "note": "rung 1: union with C swept (selection on these folds)",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "n_folds": 10,
+      "train_rows": [
+        199,
+        196,
+        198,
+        197,
+        198,
+        198,
+        198,
+        198,
+        199,
+        196
+      ],
+      "fold_rows": [
+        39,
+        39,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.951,
+        "p95": 1.039,
+        "mean": 0.958
+      },
+      "per_fold_accuracy": [
+        0.6923,
+        0.9487,
+        0.8947,
+        1.0,
+        0.8421,
+        0.9474,
+        0.8421,
+        0.9737,
+        0.9211,
+        0.9737
+      ],
+      "fold_spread": {
+        "mean": 0.9036,
+        "min": 0.6923,
+        "max": 1.0,
+        "sd": 0.0917
+      },
+      "accuracy": 0.9031,
+      "ece": 0.6723,
+      "mean_confidence": 0.2308,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0834,
+            "coverage": 1.0,
+            "precision": 0.9031,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1275,
+            "coverage": 0.9005,
+            "precision": 0.9506,
+            "residue_rows": 38,
+            "residue_accuracy": 0.4737
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1618,
+            "coverage": 0.8037,
+            "precision": 0.9772,
+            "residue_rows": 75,
+            "residue_accuracy": 0.6
+          }
+        ]
+      },
+      "none_recall": 0.52,
+      "false_none_rate": 0.0084,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 13,
+          "recall": 0.52
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 17,
+          "recall": 0.81
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8433,
+        0.9552
+      ]
+    },
+    {
+      "rung": "r2-word-logreg-C100",
+      "note": "rung 2: natively calibrated, word features",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "n_folds": 10,
+      "train_rows": [
+        199,
+        196,
+        198,
+        197,
+        198,
+        198,
+        198,
+        198,
+        199,
+        196
+      ],
+      "fold_rows": [
+        39,
+        39,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.782,
+        "p95": 3.878,
+        "mean": 1.395
+      },
+      "per_fold_accuracy": [
+        0.7692,
+        0.8974,
+        0.8684,
+        1.0,
+        0.8158,
+        0.9211,
+        0.8947,
+        1.0,
+        0.8947,
+        0.9474
+      ],
+      "fold_spread": {
+        "mean": 0.9009,
+        "min": 0.7692,
+        "max": 1.0,
+        "sd": 0.073
+      },
+      "accuracy": 0.9005,
+      "ece": 0.1209,
+      "mean_confidence": 0.7796,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1608,
+            "coverage": 1.0,
+            "precision": 0.9005,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.5202,
+            "coverage": 0.856,
+            "precision": 0.9511,
+            "residue_rows": 55,
+            "residue_accuracy": 0.6
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.6094,
+            "coverage": 0.788,
+            "precision": 0.9767,
+            "residue_rows": 81,
+            "residue_accuracy": 0.6173
+          }
+        ]
+      },
+      "none_recall": 0.64,
+      "false_none_rate": 0.0084,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 16,
+          "recall": 0.64
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 14,
+          "recall": 0.667
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 12,
+          "recall": 0.923
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8494,
+        0.9485
+      ]
+    },
+    {
+      "rung": "r2-union-svc-sigmoid",
+      "note": "rung 2: LinearSVC + sigmoid calibration",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "n_folds": 10,
+      "train_rows": [
+        199,
+        196,
+        198,
+        197,
+        198,
+        198,
+        198,
+        198,
+        199,
+        196
+      ],
+      "fold_rows": [
+        39,
+        39,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 4.268,
+        "p95": 5.887,
+        "mean": 4.422
+      },
+      "per_fold_accuracy": [
+        0.8205,
+        0.9231,
+        0.8421,
+        0.9737,
+        0.8421,
+        0.8684,
+        0.8158,
+        0.9474,
+        0.9211,
+        0.9737
+      ],
+      "fold_spread": {
+        "mean": 0.8928,
+        "min": 0.8158,
+        "max": 0.9737,
+        "sd": 0.0621
+      },
+      "accuracy": 0.8927,
+      "ece": 0.309,
+      "mean_confidence": 0.5933,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.2452,
+            "coverage": 0.9869,
+            "precision": 0.9019,
+            "residue_rows": 5,
+            "residue_accuracy": 0.2
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.3942,
+            "coverage": 0.9005,
+            "precision": 0.9506,
+            "residue_rows": 38,
+            "residue_accuracy": 0.3684
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.4522,
+            "coverage": 0.8272,
+            "precision": 0.9778,
+            "residue_rows": 66,
+            "residue_accuracy": 0.4848
+          }
+        ]
+      },
+      "none_recall": 0.72,
+      "false_none_rate": 0.0196,
+      "ledger": {
+        "calendar_today": {
+          "n": 21,
+          "correct": 14,
+          "recall": 0.667
+        },
+        "__none__": {
+          "n": 25,
+          "correct": 18,
+          "recall": 0.72
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 11,
+          "recall": 0.846
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 17,
+          "recall": 0.895
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8475,
+        0.9363
+      ]
+    },
+    {
+      "rung": "r2-word-svc-sigmoid",
+      "note": "rung 2: isolates calibration from the union",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "n_folds": 10,
+      "train_rows": [
+        199,
+        196,
+        198,
+        197,
+        198,
+        198,
+        198,
+        198,
+        199,
+        196
+      ],
+      "fold_rows": [
+        39,
+        39,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 3.547,
+        "p95": 4.272,
+        "mean": 3.635
+      },
+      "per_fold_accuracy": [
+        0.7692,
+        0.8974,
+        0.8421,
+        1.0,
+        0.9211,
+        0.8947,
+        0.7895,
+        0.9474,
+        0.8947,
+        0.9737
+      ],
+      "fold_spread": {
+        "mean": 0.893,
+        "min": 0.7692,
+        "max": 1.0,
+        "sd": 0.0748
+      },
+      "accuracy": 0.8927,
+      "ece": 0.3368,
+      "mean_confidence": 0.5616,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.2468,
+            "coverage": 0.9869,
+            "precision": 0.9019,
+            "residue_rows": 5,
+            "residue_accuracy": 0.2
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.3883,
+            "coverage": 0.8639,
+            "precision": 0.9515,
+            "residue_rows": 52,
+            "residue_accuracy": 0.5192
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.4431,
+            "coverage": 0.7696,
+            "precision": 0.9762,
+            "residue_rows": 88,
+            "residue_accuracy": 0.6136
+          }
+        ]
+      },
+      "none_recall": 0.64,
+      "false_none_rate": 0.0112,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 16,
+          "recall": 0.64
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 14,
+          "recall": 0.667
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 12,
+          "recall": 0.667
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 11,
+          "recall": 0.846
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8413,
+        0.941
+      ]
+    },
+    {
+      "rung": "r0-word-svc",
+      "note": "the 93.19% / 0.61 ms baseline, re-measured on these folds",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.447,
+        "p95": 0.512,
+        "mean": 0.455
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9319,
+      "ece": 0.7601,
+      "mean_confidence": 0.1718,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0656,
+            "coverage": 1.0,
+            "precision": 0.9319,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.0981,
+            "coverage": 0.945,
+            "precision": 0.9501,
+            "residue_rows": 21,
+            "residue_accuracy": 0.619
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1142,
+            "coverage": 0.8691,
+            "precision": 0.9759,
+            "residue_rows": 50,
+            "residue_accuracy": 0.64
+          }
+        ]
+      },
+      "none_recall": 0.6,
+      "false_none_rate": 0.0,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 15,
+          "recall": 0.6
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 12,
+          "recall": 0.923
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8801,
+        0.9764
+      ]
+    },
+    {
+      "rung": "r1-union-svc",
+      "note": "rung 1: vectoriser union",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.996,
+        "p95": 1.129,
+        "mean": 1.012
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9241,
+      "ece": 0.7162,
+      "mean_confidence": 0.2079,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0795,
+            "coverage": 1.0,
+            "precision": 0.9241,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1022,
+            "coverage": 0.9555,
+            "precision": 0.9507,
+            "residue_rows": 17,
+            "residue_accuracy": 0.3529
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1304,
+            "coverage": 0.8691,
+            "precision": 0.9759,
+            "residue_rows": 50,
+            "residue_accuracy": 0.58
+          }
+        ]
+      },
+      "none_recall": 0.52,
+      "false_none_rate": 0.0056,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 13,
+          "recall": 0.52
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8654,
+        0.9741
+      ]
+    },
+    {
+      "rung": "r1-union-svc-C4",
+      "note": "rung 1: union with C swept (selection on these folds)",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.971,
+        "p95": 1.075,
+        "mean": 0.978
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9267,
+      "ece": 0.6832,
+      "mean_confidence": 0.2435,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0834,
+            "coverage": 1.0,
+            "precision": 0.9267,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1088,
+            "coverage": 0.9607,
+            "precision": 0.951,
+            "residue_rows": 15,
+            "residue_accuracy": 0.3333
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1435,
+            "coverage": 0.8796,
+            "precision": 0.9762,
+            "residue_rows": 46,
+            "residue_accuracy": 0.5652
+          }
+        ]
+      },
+      "none_recall": 0.52,
+      "false_none_rate": 0.0056,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 13,
+          "recall": 0.52
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 14,
+          "recall": 0.778
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8656,
+        0.9748
+      ]
+    },
+    {
+      "rung": "r2-word-logreg-C100",
+      "note": "rung 2: natively calibrated, word features",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.496,
+        "p95": 0.731,
+        "mean": 0.68
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9346,
+      "ece": 0.1241,
+      "mean_confidence": 0.8105,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1596,
+            "coverage": 1.0,
+            "precision": 0.9346,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.3359,
+            "coverage": 0.9738,
+            "precision": 0.9516,
+            "residue_rows": 10,
+            "residue_accuracy": 0.3
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.5287,
+            "coverage": 0.8796,
+            "precision": 0.9762,
+            "residue_rows": 46,
+            "residue_accuracy": 0.6304
+          }
+        ]
+      },
+      "none_recall": 0.64,
+      "false_none_rate": 0.0,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 16,
+          "recall": 0.64
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 12,
+          "recall": 0.923
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8863,
+        0.9764
+      ]
+    },
+    {
+      "rung": "r2-union-svc-sigmoid",
+      "note": "rung 2: LinearSVC + sigmoid calibration",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 3.263,
+        "p95": 4.154,
+        "mean": 3.397
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9188,
+      "ece": 0.3166,
+      "mean_confidence": 0.6136,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1955,
+            "coverage": 1.0,
+            "precision": 0.9188,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.3214,
+            "coverage": 0.966,
+            "precision": 0.9512,
+            "residue_rows": 13,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.415,
+            "coverage": 0.8953,
+            "precision": 0.9766,
+            "residue_rows": 40,
+            "residue_accuracy": 0.425
+          }
+        ]
+      },
+      "none_recall": 0.68,
+      "false_none_rate": 0.014,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 17,
+          "recall": 0.68
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 9,
+          "recall": 0.692
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 13,
+          "recall": 0.722
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 17,
+          "recall": 0.895
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 21,
+          "recall": 0.913
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 20,
+          "recall": 0.952
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8739,
+        0.9611
+      ]
+    },
+    {
+      "rung": "r2-word-svc-sigmoid",
+      "note": "rung 2: isolates calibration from the union",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 2.586,
+        "p95": 4.046,
+        "mean": 2.812
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9188,
+      "ece": 0.3352,
+      "mean_confidence": 0.5836,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1706,
+            "coverage": 1.0,
+            "precision": 0.9188,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.3247,
+            "coverage": 0.9476,
+            "precision": 0.9503,
+            "residue_rows": 20,
+            "residue_accuracy": 0.35
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.403,
+            "coverage": 0.8717,
+            "precision": 0.976,
+            "residue_rows": 49,
+            "residue_accuracy": 0.5306
+          }
+        ]
+      },
+      "none_recall": 0.64,
+      "false_none_rate": 0.0084,
+      "ledger": {
+        "projects_query": {
+          "n": 18,
+          "correct": 11,
+          "recall": 0.611
+        },
+        "__none__": {
+          "n": 25,
+          "correct": 16,
+          "recall": 0.64
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 11,
+          "recall": 0.846
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.87,
+        0.9631
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "rung": "r1-union-svc",
+      "baseline": "r0-word-svc",
+      "fold_count": 4,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": -0.0,
+        "sd_points": 3.32,
+        "min_points": -4.21,
+        "max_points": 3.16,
+        "folds_better": 2,
+        "folds_worse": 2,
+        "folds_tied": 0
+      }
+    },
+    {
+      "rung": "r1-union-svc-C4",
+      "baseline": "r0-word-svc",
+      "fold_count": 4,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": 0.26,
+        "sd_points": 4.05,
+        "min_points": -4.21,
+        "max_points": 4.17,
+        "folds_better": 2,
+        "folds_worse": 2,
+        "folds_tied": 0
+      }
+    },
+    {
+      "rung": "r2-word-logreg-C100",
+      "baseline": "r0-word-svc",
+      "fold_count": 4,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": 0.79,
+        "sd_points": 1.0,
+        "min_points": 0.0,
+        "max_points": 2.1,
+        "folds_better": 2,
+        "folds_worse": 0,
+        "folds_tied": 2
+      }
+    },
+    {
+      "rung": "r2-union-svc-sigmoid",
+      "baseline": "r0-word-svc",
+      "fold_count": 4,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": -1.32,
+        "sd_points": 4.95,
+        "min_points": -8.42,
+        "max_points": 3.12,
+        "folds_better": 1,
+        "folds_worse": 1,
+        "folds_tied": 2
+      }
+    },
+    {
+      "rung": "r2-word-svc-sigmoid",
+      "baseline": "r0-word-svc",
+      "fold_count": 4,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": -0.52,
+        "sd_points": 0.6,
+        "min_points": -1.05,
+        "max_points": 0.0,
+        "folds_better": 0,
+        "folds_worse": 2,
+        "folds_tied": 2
+      }
+    },
+    {
+      "rung": "r1-union-svc",
+      "baseline": "r0-word-svc",
+      "fold_count": 5,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": -0.26,
+        "sd_points": 2.51,
+        "min_points": -3.9,
+        "max_points": 2.63,
+        "folds_better": 2,
+        "folds_worse": 2,
+        "folds_tied": 1
+      }
+    },
+    {
+      "rung": "r1-union-svc-C4",
+      "baseline": "r0-word-svc",
+      "fold_count": 5,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": 0.52,
+        "sd_points": 1.49,
+        "min_points": -1.31,
+        "max_points": 2.63,
+        "folds_better": 2,
+        "folds_worse": 1,
+        "folds_tied": 2
+      }
+    },
+    {
+      "rung": "r2-word-logreg-C100",
+      "baseline": "r0-word-svc",
+      "fold_count": 5,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": 1.04,
+        "sd_points": 1.43,
+        "min_points": 0.0,
+        "max_points": 2.63,
+        "folds_better": 2,
+        "folds_worse": 0,
+        "folds_tied": 3
+      }
+    },
+    {
+      "rung": "r2-union-svc-sigmoid",
+      "baseline": "r0-word-svc",
+      "fold_count": 5,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": -0.79,
+        "sd_points": 2.2,
+        "min_points": -3.95,
+        "max_points": 1.32,
+        "folds_better": 2,
+        "folds_worse": 3,
+        "folds_tied": 0
+      }
+    },
+    {
+      "rung": "r2-word-svc-sigmoid",
+      "baseline": "r0-word-svc",
+      "fold_count": 5,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": -2.61,
+        "sd_points": 3.07,
+        "min_points": -5.2,
+        "max_points": 2.63,
+        "folds_better": 1,
+        "folds_worse": 4,
+        "folds_tied": 0
+      }
+    },
+    {
+      "rung": "r1-union-svc",
+      "baseline": "r0-word-svc",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": 0.26,
+        "sd_points": 3.97,
+        "min_points": -5.26,
+        "max_points": 5.26,
+        "folds_better": 5,
+        "folds_worse": 4,
+        "folds_tied": 1
+      }
+    },
+    {
+      "rung": "r1-union-svc-C4",
+      "baseline": "r0-word-svc",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": 0.79,
+        "sd_points": 3.89,
+        "min_points": -5.26,
+        "max_points": 5.26,
+        "folds_better": 6,
+        "folds_worse": 3,
+        "folds_tied": 1
+      }
+    },
+    {
+      "rung": "r2-word-logreg-C100",
+      "baseline": "r0-word-svc",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": 0.52,
+        "sd_points": 1.09,
+        "min_points": 0.0,
+        "max_points": 2.63,
+        "folds_better": 2,
+        "folds_worse": 0,
+        "folds_tied": 8
+      }
+    },
+    {
+      "rung": "r2-union-svc-sigmoid",
+      "baseline": "r0-word-svc",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": -0.29,
+        "sd_points": 4.83,
+        "min_points": -7.89,
+        "max_points": 7.69,
+        "folds_better": 5,
+        "folds_worse": 4,
+        "folds_tied": 1
+      }
+    },
+    {
+      "rung": "r2-word-svc-sigmoid",
+      "baseline": "r0-word-svc",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": -0.27,
+        "sd_points": 5.47,
+        "min_points": -10.52,
+        "max_points": 10.53,
+        "folds_better": 3,
+        "folds_worse": 3,
+        "folds_tied": 4
+      }
+    }
+  ],
+  "error_correlation": {
+    "4": [
+      {
+        "a": "r0-word-svc",
+        "b": "r1-union-svc",
+        "disagreement_rate": 0.0628,
+        "errors_a": 41,
+        "errors_b": 41,
+        "errors_both": 31,
+        "error_jaccard": 0.6078,
+        "only_a": 10,
+        "only_b": 10
+      },
+      {
+        "a": "r0-word-svc",
+        "b": "r1-union-svc-C4",
+        "disagreement_rate": 0.0707,
+        "errors_a": 41,
+        "errors_b": 40,
+        "errors_both": 29,
+        "error_jaccard": 0.5577,
+        "only_a": 12,
+        "only_b": 11
+      },
+      {
+        "a": "r0-word-svc",
+        "b": "r2-word-logreg-C100",
+        "disagreement_rate": 0.0262,
+        "errors_a": 41,
+        "errors_b": 38,
+        "errors_both": 36,
+        "error_jaccard": 0.8372,
+        "only_a": 5,
+        "only_b": 2
+      },
+      {
+        "a": "r0-word-svc",
+        "b": "r2-union-svc-sigmoid",
+        "disagreement_rate": 0.0785,
+        "errors_a": 41,
+        "errors_b": 46,
+        "errors_both": 31,
+        "error_jaccard": 0.5536,
+        "only_a": 10,
+        "only_b": 15
+      },
+      {
+        "a": "r0-word-svc",
+        "b": "r2-word-svc-sigmoid",
+        "disagreement_rate": 0.0314,
+        "errors_a": 41,
+        "errors_b": 43,
+        "errors_both": 38,
+        "error_jaccard": 0.8261,
+        "only_a": 3,
+        "only_b": 5
+      },
+      {
+        "a": "r1-union-svc",
+        "b": "r1-union-svc-C4",
+        "disagreement_rate": 0.0157,
+        "errors_a": 41,
+        "errors_b": 40,
+        "errors_both": 38,
+        "error_jaccard": 0.8837,
+        "only_a": 3,
+        "only_b": 2
+      },
+      {
+        "a": "r1-union-svc",
+        "b": "r2-word-logreg-C100",
+        "disagreement_rate": 0.0707,
+        "errors_a": 41,
+        "errors_b": 38,
+        "errors_both": 28,
+        "error_jaccard": 0.549,
+        "only_a": 13,
+        "only_b": 10
+      },
+      {
+        "a": "r1-union-svc",
+        "b": "r2-union-svc-sigmoid",
+        "disagreement_rate": 0.0759,
+        "errors_a": 41,
+        "errors_b": 46,
+        "errors_both": 31,
+        "error_jaccard": 0.5536,
+        "only_a": 10,
+        "only_b": 15
+      },
+      {
+        "a": "r1-union-svc",
+        "b": "r2-word-svc-sigmoid",
+        "disagreement_rate": 0.0812,
+        "errors_a": 41,
+        "errors_b": 43,
+        "errors_both": 29,
+        "error_jaccard": 0.5273,
+        "only_a": 12,
+        "only_b": 14
+      },
+      {
+        "a": "r1-union-svc-C4",
+        "b": "r2-word-logreg-C100",
+        "disagreement_rate": 0.0733,
+        "errors_a": 40,
+        "errors_b": 38,
+        "errors_both": 27,
+        "error_jaccard": 0.5294,
+        "only_a": 13,
+        "only_b": 11
+      },
+      {
+        "a": "r1-union-svc-C4",
+        "b": "r2-union-svc-sigmoid",
+        "disagreement_rate": 0.0759,
+        "errors_a": 40,
+        "errors_b": 46,
+        "errors_both": 31,
+        "error_jaccard": 0.5636,
+        "only_a": 9,
+        "only_b": 15
+      },
+      {
+        "a": "r1-union-svc-C4",
+        "b": "r2-word-svc-sigmoid",
+        "disagreement_rate": 0.0812,
+        "errors_a": 40,
+        "errors_b": 43,
+        "errors_both": 29,
+        "error_jaccard": 0.537,
+        "only_a": 11,
+        "only_b": 14
+      },
+      {
+        "a": "r2-word-logreg-C100",
+        "b": "r2-union-svc-sigmoid",
+        "disagreement_rate": 0.0838,
+        "errors_a": 38,
+        "errors_b": 46,
+        "errors_both": 30,
+        "error_jaccard": 0.5556,
+        "only_a": 8,
+        "only_b": 16
+      },
+      {
+        "a": "r2-word-logreg-C100",
+        "b": "r2-word-svc-sigmoid",
+        "disagreement_rate": 0.0445,
+        "errors_a": 38,
+        "errors_b": 43,
+        "errors_both": 36,
+        "error_jaccard": 0.8,
+        "only_a": 2,
+        "only_b": 7
+      },
+      {
+        "a": "r2-union-svc-sigmoid",
+        "b": "r2-word-svc-sigmoid",
+        "disagreement_rate": 0.0576,
+        "errors_a": 46,
+        "errors_b": 43,
+        "errors_both": 36,
+        "error_jaccard": 0.6792,
+        "only_a": 10,
+        "only_b": 7
+      }
+    ]
+  },
+  "protocol_notes": {
+    "rowwise": "train on all 200 references, score all 382 rows \u2014 the protocol the 93.19% / 0.61 ms baseline was measured under",
+    "grouped": "folds over phrasing families; a fold trains on references that do not render into that fold's families",
+    "reject_curve": "thresholds chosen on the scored rows: oracle operating points, the ceiling, not the shipped number"
+  }
+}

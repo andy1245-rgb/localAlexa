@@ -1,0 +1,622 @@
+{
+  "folds": {
+    "n_folds": 5,
+    "n_families": 110,
+    "rows_per_fold": [
+      77,
+      77,
+      76,
+      76,
+      76
+    ],
+    "family_fold": {
+      "I need a {duration} timer": 0,
+      "__chitchat__": 0,
+      "abort the {duration} countdown": 0,
+      "add some {item} to the grocery list": 2,
+      "add {item} to my list": 1,
+      "add {item} to the shopping list": 3,
+      "am I free {span}": 4,
+      "any mail I haven't seen": 1,
+      "any meetings {day}": 0,
+      "any unread emails this morning": 0,
+      "are the {room} lights on": 2,
+      "bump the thermostat {direction} a couple degrees": 0,
+      "cancel all my reminders": 4,
+      "cancel my countdown please": 3,
+      "cancel the countdown": 2,
+      "cancel the reminder for {task}": 3,
+      "cancel the {duration} timer": 1,
+      "change the thermostat to {temp}": 2,
+      "check how long is left on the timer": 1,
+      "check the inbox for anything new": 0,
+      "check the {room} light status": 2,
+      "cross {item} off the shopping list": 3,
+      "delete my reminder about {task}": 4,
+      "delete the reminder set for {time}": 1,
+      "delete {item} from my list": 0,
+      "did I leave the {room} lights on": 4,
+      "dig into {topic} for me": 1,
+      "dive into {topic}": 1,
+      "do I have new mail": 4,
+      "don't let me forget to {task} {time}": 4,
+      "drop the temperature to {temp} degrees": 3,
+      "find documentation on {topic}": 2,
+      "find out about {topic}": 1,
+      "fire up the {room} lights": 4,
+      "get rid of the {task} reminder": 3,
+      "give me a summary of the {project} project": 2,
+      "give me a {duration} timer please": 0,
+      "how does {topic} work in the documentation": 0,
+      "how is {project} doing": 1,
+      "how many emails are unread": 3,
+      "how much longer on the timer": 2,
+      "how much time is left on the {duration} timer": 3,
+      "investigate {topic} and give me options": 3,
+      "is the {duration} timer still going": 2,
+      "is the {room} lamp off": 1,
+      "is the {room} light still on": 4,
+      "it's {direction} in here, fix it": 4,
+      "kick off a {duration} countdown": 2,
+      "kill that timer": 1,
+      "kill the {room} lights": 0,
+      "list out my shopping items": 0,
+      "look into {topic}": 1,
+      "look up {topic} in the docs": 0,
+      "make it {direction} in here": 4,
+      "make it {temp} degrees in here": 2,
+      "make the living room {direction}": 0,
+      "pull up what's documented about {topic}": 2,
+      "put the thermostat on {temp}": 1,
+      "put {item} on the grocery list": 4,
+      "read my unread messages": 3,
+      "read the shopping list to me": 2,
+      "remember to {task} {time}": 3,
+      "remind me about {task} {time}": 2,
+      "remind me at {time} to {task}": 1,
+      "remind me to {task} at {time}": 4,
+      "remove the reminder to {task}": 3,
+      "remove the {item} from groceries": 3,
+      "remove the {time} reminder": 2,
+      "remove {item} from the shopping list": 2,
+      "research {topic}": 4,
+      "run a timer for {duration}": 1,
+      "search the docs for {topic}": 3,
+      "set a reminder to {task} {time}": 1,
+      "set a timer for {duration}": 0,
+      "set the heat to {temp} degrees": 1,
+      "set the house temperature to {temp}": 2,
+      "set the temperature to {temp} degrees": 4,
+      "show me the schedule for {day}": 4,
+      "show my shopping list": 0,
+      "shut off the running timer": 4,
+      "start a countdown of {duration}": 4,
+      "start a {duration} timer": 3,
+      "stop the {duration} timer now": 2,
+      "switch the {room} light {state}": 1,
+      "take {item} off the grocery list": 4,
+      "take {item} off the list please": 3,
+      "throw {item} on the shopping list": 4,
+      "time left on the timer please": 3,
+      "turn the heat up to {temp} degrees": 3,
+      "turn the temperature {direction} a bit": 0,
+      "turn the {room} lamp {state}": 3,
+      "turn {state} the {room} lights": 2,
+      "we're out of {item}, add it to groceries": 1,
+      "what am I working on these days": 2,
+      "what do I need to buy": 1,
+      "what do the docs say about {topic}": 4,
+      "what does my {span} look like": 0,
+      "what's happening in {project}": 1,
+      "what's my agenda {day}": 3,
+      "what's on my calendar {day}": 3,
+      "what's on the grocery list today": 0,
+      "what's on the list right now": 4,
+      "what's remaining on the countdown": 3,
+      "what's sitting in my inbox": 2,
+      "what's the state of the {room} lights": 2,
+      "what's the status of my projects": 1,
+      "when does the countdown finish": 4,
+      "which repos are active right now": 3,
+      "{direction} the heat a little": 1,
+      "{room} lights {state} please": 4
+    }
+  },
+  "variants": [
+    {
+      "variant": "r0 word12 svc C=1 (softmax)",
+      "grouped_accuracy": 0.8979,
+      "paired_vs_r0": {
+        "mean_points": 0.0,
+        "sd_points": 0.0,
+        "min_points": 0.0,
+        "max_points": 0.0,
+        "folds_better": 0,
+        "folds_worse": 0,
+        "folds_tied": 5
+      },
+      "ece": 0.7348,
+      "none_recall": 0.6,
+      "false_none_rate": 0.0028,
+      "reject_curve_oracle": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0816,
+            "coverage": 0.9948,
+            "precision": 0.9,
+            "residue_rows": 2,
+            "residue_accuracy": 0.5
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1101,
+            "coverage": 0.8639,
+            "precision": 0.9515,
+            "residue_rows": 52,
+            "residue_accuracy": 0.5577
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1291,
+            "coverage": 0.7147,
+            "precision": 0.978,
+            "residue_rows": 109,
+            "residue_accuracy": 0.6972
+          }
+        ]
+      }
+    },
+    {
+      "variant": "r2-word12 logreg C=1",
+      "grouped_accuracy": 0.8508,
+      "paired_vs_r0": {
+        "mean_points": -4.72,
+        "sd_points": 7.54,
+        "min_points": -11.84,
+        "max_points": 5.19,
+        "folds_better": 2,
+        "folds_worse": 3,
+        "folds_tied": 0
+      },
+      "ece": 0.6859,
+      "none_recall": 0.88,
+      "false_none_rate": 0.0504,
+      "reject_curve_oracle": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1072,
+            "coverage": 0.8901,
+            "precision": 0.9,
+            "residue_rows": 42,
+            "residue_accuracy": 0.4524
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.129,
+            "coverage": 0.6937,
+            "precision": 0.9509,
+            "residue_rows": 117,
+            "residue_accuracy": 0.6239
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1751,
+            "coverage": 0.356,
+            "precision": 0.9779,
+            "residue_rows": 246,
+            "residue_accuracy": 0.7805
+          }
+        ]
+      }
+    },
+    {
+      "variant": "r2-word12 logreg C=10",
+      "grouped_accuracy": 0.9005,
+      "paired_vs_r0": {
+        "mean_points": 0.26,
+        "sd_points": 1.71,
+        "min_points": -1.32,
+        "max_points": 2.63,
+        "folds_better": 2,
+        "folds_worse": 2,
+        "folds_tied": 1
+      },
+      "ece": 0.3425,
+      "none_recall": 0.68,
+      "false_none_rate": 0.0084,
+      "reject_curve_oracle": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1302,
+            "coverage": 1.0,
+            "precision": 0.9005,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.2969,
+            "coverage": 0.8691,
+            "precision": 0.9518,
+            "residue_rows": 50,
+            "residue_accuracy": 0.56
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.3684,
+            "coverage": 0.7932,
+            "precision": 0.9769,
+            "residue_rows": 79,
+            "residue_accuracy": 0.6076
+          }
+        ]
+      }
+    },
+    {
+      "variant": "r2-word12 logreg C=100",
+      "grouped_accuracy": 0.9084,
+      "paired_vs_r0": {
+        "mean_points": 1.05,
+        "sd_points": 1.43,
+        "min_points": 0.0,
+        "max_points": 2.63,
+        "folds_better": 2,
+        "folds_worse": 0,
+        "folds_tied": 3
+      },
+      "ece": 0.1278,
+      "none_recall": 0.68,
+      "false_none_rate": 0.0084,
+      "reject_curve_oracle": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1626,
+            "coverage": 1.0,
+            "precision": 0.9084,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.4793,
+            "coverage": 0.8639,
+            "precision": 0.9515,
+            "residue_rows": 52,
+            "residue_accuracy": 0.6346
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.616,
+            "coverage": 0.788,
+            "precision": 0.9767,
+            "residue_rows": 81,
+            "residue_accuracy": 0.6543
+          }
+        ]
+      }
+    },
+    {
+      "variant": "r2-word12 svc sigmoid cv3",
+      "grouped_accuracy": 0.8717,
+      "paired_vs_r0": {
+        "mean_points": -2.61,
+        "sd_points": 3.07,
+        "min_points": -5.19,
+        "max_points": 2.63,
+        "folds_better": 1,
+        "folds_worse": 4,
+        "folds_tied": 0
+      },
+      "ece": 0.3104,
+      "none_recall": 0.64,
+      "false_none_rate": 0.0112,
+      "reject_curve_oracle": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.3194,
+            "coverage": 0.945,
+            "precision": 0.9003,
+            "residue_rows": 21,
+            "residue_accuracy": 0.381
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.388,
+            "coverage": 0.8508,
+            "precision": 0.9508,
+            "residue_rows": 57,
+            "residue_accuracy": 0.4211
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.4402,
+            "coverage": 0.767,
+            "precision": 0.9761,
+            "residue_rows": 89,
+            "residue_accuracy": 0.5281
+          }
+        ]
+      }
+    },
+    {
+      "variant": "r2-word12 svc sigmoid cv5",
+      "grouped_accuracy": 0.8953,
+      "paired_vs_r0": {
+        "mean_points": -0.27,
+        "sd_points": 1.71,
+        "min_points": -2.63,
+        "max_points": 1.32,
+        "folds_better": 2,
+        "folds_worse": 2,
+        "folds_tied": 1
+      },
+      "ece": 0.3746,
+      "none_recall": 0.68,
+      "false_none_rate": 0.0028,
+      "reject_curve_oracle": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.2137,
+            "coverage": 0.9895,
+            "precision": 0.9021,
+            "residue_rows": 4,
+            "residue_accuracy": 0.25
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.3537,
+            "coverage": 0.8796,
+            "precision": 0.9524,
+            "residue_rows": 46,
+            "residue_accuracy": 0.4783
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.3994,
+            "coverage": 0.788,
+            "precision": 0.9767,
+            "residue_rows": 81,
+            "residue_accuracy": 0.5926
+          }
+        ]
+      }
+    },
+    {
+      "variant": "r2-word12 svc isotonic cv3",
+      "grouped_accuracy": 0.8586,
+      "paired_vs_r0": {
+        "mean_points": -3.91,
+        "sd_points": 4.12,
+        "min_points": -7.79,
+        "max_points": 2.63,
+        "folds_better": 1,
+        "folds_worse": 4,
+        "folds_tied": 0
+      },
+      "ece": 0.1338,
+      "none_recall": 0.44,
+      "false_none_rate": 0.0308,
+      "reject_curve_oracle": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.4222,
+            "coverage": 0.9162,
+            "precision": 0.9029,
+            "residue_rows": 32,
+            "residue_accuracy": 0.375
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.5355,
+            "coverage": 0.7984,
+            "precision": 0.9508,
+            "residue_rows": 77,
+            "residue_accuracy": 0.4935
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.6561,
+            "coverage": 0.6675,
+            "precision": 0.9765,
+            "residue_rows": 127,
+            "residue_accuracy": 0.622
+          }
+        ]
+      }
+    },
+    {
+      "variant": "r2-union svc sigmoid cv3",
+      "grouped_accuracy": 0.8901,
+      "paired_vs_r0": {
+        "mean_points": -0.79,
+        "sd_points": 2.2,
+        "min_points": -3.95,
+        "max_points": 1.32,
+        "folds_better": 2,
+        "folds_worse": 3,
+        "folds_tied": 0
+      },
+      "ece": 0.3022,
+      "none_recall": 0.72,
+      "false_none_rate": 0.0196,
+      "reject_curve_oracle": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.2465,
+            "coverage": 0.9869,
+            "precision": 0.9019,
+            "residue_rows": 5,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.4149,
+            "coverage": 0.8796,
+            "precision": 0.9524,
+            "residue_rows": 46,
+            "residue_accuracy": 0.4348
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.4661,
+            "coverage": 0.8089,
+            "precision": 0.9773,
+            "residue_rows": 73,
+            "residue_accuracy": 0.5205
+          }
+        ]
+      }
+    },
+    {
+      "variant": "r2-union logreg C=10",
+      "grouped_accuracy": 0.8979,
+      "paired_vs_r0": {
+        "mean_points": -0.0,
+        "sd_points": 2.43,
+        "min_points": -2.6,
+        "max_points": 3.9,
+        "folds_better": 1,
+        "folds_worse": 2,
+        "folds_tied": 2
+      },
+      "ece": 0.2119,
+      "none_recall": 0.68,
+      "false_none_rate": 0.0168,
+      "reject_curve_oracle": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1571,
+            "coverage": 0.9974,
+            "precision": 0.9003,
+            "residue_rows": 1,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.3822,
+            "coverage": 0.8848,
+            "precision": 0.9527,
+            "residue_rows": 44,
+            "residue_accuracy": 0.4773
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.5482,
+            "coverage": 0.767,
+            "precision": 0.9761,
+            "residue_rows": 89,
+            "residue_accuracy": 0.6404
+          }
+        ]
+      }
+    },
+    {
+      "variant": "r2-word12 logreg C=100 bal",
+      "grouped_accuracy": 0.8901,
+      "paired_vs_r0": {
+        "mean_points": -0.79,
+        "sd_points": 1.17,
+        "min_points": -2.63,
+        "max_points": 0.0,
+        "folds_better": 0,
+        "folds_worse": 2,
+        "folds_tied": 3
+      },
+      "ece": 0.1075,
+      "none_recall": 0.56,
+      "false_none_rate": 0.0028,
+      "reject_curve_oracle": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.2576,
+            "coverage": 0.9712,
+            "precision": 0.9057,
+            "residue_rows": 11,
+            "residue_accuracy": 0.3636
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.4935,
+            "coverage": 0.856,
+            "precision": 0.9511,
+            "residue_rows": 55,
+            "residue_accuracy": 0.5273
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.6335,
+            "coverage": 0.7827,
+            "precision": 0.9766,
+            "residue_rows": 83,
+            "residue_accuracy": 0.5783
+          }
+        ]
+      }
+    },
+    {
+      "variant": "r2-word12 svc C=1 bal",
+      "grouped_accuracy": 0.8901,
+      "paired_vs_r0": {
+        "mean_points": -0.79,
+        "sd_points": 1.17,
+        "min_points": -2.63,
+        "max_points": 0.0,
+        "folds_better": 0,
+        "folds_worse": 2,
+        "folds_tied": 3
+      },
+      "ece": 0.7263,
+      "none_recall": 0.56,
+      "false_none_rate": 0.0028,
+      "reject_curve_oracle": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.0847,
+            "coverage": 0.9686,
+            "precision": 0.9054,
+            "residue_rows": 12,
+            "residue_accuracy": 0.4167
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1128,
+            "coverage": 0.8508,
+            "precision": 0.9508,
+            "residue_rows": 57,
+            "residue_accuracy": 0.5439
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1316,
+            "coverage": 0.7068,
+            "precision": 0.9815,
+            "residue_rows": 112,
+            "residue_accuracy": 0.6696
+          }
+        ]
+      }
+    }
+  ]
+}
