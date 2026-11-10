@@ -20,6 +20,7 @@ Created with `uv venv .venv-embed --python 3.12`, then:
 uv pip install --python .venv-embed/bin/python torch --index-url https://download.pytorch.org/whl/cpu
 uv pip install --python .venv-embed/bin/python setfit sentence-transformers
 uv pip install --python .venv-embed/bin/python -e .
+uv pip install --python .venv-embed/bin/python pytest   # to run the suite in this env too
 ```
 
 ```
