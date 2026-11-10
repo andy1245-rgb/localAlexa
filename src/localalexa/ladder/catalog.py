@@ -21,6 +21,8 @@ OPTIONAL_RUNG_MODULES = (
     ("r5-ensemble-setfit", "localalexa.ladder.ensemble_rung", "rung_5_ensemble_setfit"),
     ("r5-ensemble-setfit-z", "localalexa.ladder.ensemble_rung", "rung_5_ensemble_setfit_standardised"),
     ("r6-augment", "localalexa.ladder.augment_rung", "rung_6_template_augmented"),
+    ("r6-augment-capped", "localalexa.ladder.augment_rung", "rung_6_template_augmented_cap16"),
+    ("r6-augment-paraphrase", "localalexa.ladder.augment_rung", "rung_6_paraphrase_augmented"),
 )
 
 
@@ -31,10 +33,10 @@ def catalog() -> tuple[list[Rung], list[str]]:
     for name, module_name, factory_name in OPTIONAL_RUNG_MODULES:
         try:
             module = importlib.import_module(module_name)
+            rungs.append(getattr(module, factory_name)())
         except ImportError as exc:  # pragma: no cover - depends on the local env
             skipped.append(f"{name} unavailable: {exc}")
             continue
-        rungs.append(getattr(module, factory_name)())
     return rungs, skipped
 
 

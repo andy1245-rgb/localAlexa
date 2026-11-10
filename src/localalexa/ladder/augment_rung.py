@@ -26,11 +26,11 @@ import json
 from pathlib import Path
 from typing import Sequence
 
-from ..data import expand_template, load_registry
+from ..data import REPO_ROOT, expand_template, load_registry
 from .run import Rung
 from .rungs import rung_2_logreg_c100
 
-PARAPHRASE_PATH = Path(__file__).resolve().parents[2] / "results" / "ladder" / "paraphrases.json"
+PARAPHRASE_PATH = REPO_ROOT / "results" / "ladder" / "paraphrases.json"
 
 
 def template_fills(registry, held_out: frozenset[str]) -> list[tuple[str, str]]:
@@ -105,6 +105,23 @@ def rung_6_template_augmented() -> Rung:
         base.build,
         augment=template_augmenter(registry),
         note="rung 6: + slot fills of the registry's non-held-out templates",
+    )
+
+
+def rung_6_template_augmented_cap16() -> Rung:
+    """The dose that swept best: at most 16 slot fills per label on top of the references.
+
+    Uncapped, 1038 generated rows swamp the 194 hand-written ones and the grouped
+    number falls; the cap is what makes the augmentation a nudge rather than a
+    replacement of the training set.
+    """
+    registry = load_registry()
+    base = rung_2_logreg_c100()
+    return Rung(
+        "r6-template-cap16",
+        base.build,
+        augment=template_augmenter(registry, cap_per_label=16),
+        note="rung 6: + at most 16 registry slot fills per label",
     )
 
 

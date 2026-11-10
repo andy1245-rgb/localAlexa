@@ -19,7 +19,6 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
-from localalexa.ladder import metrics
 from localalexa.ladder.pools import fold_pool
 from localalexa.ladder.predictors import top_k
 from localalexa.ladder.rungs import rung_0_baseline, rung_2_logreg_c100
