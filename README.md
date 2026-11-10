@@ -38,6 +38,32 @@ the middle row shows that dropping one template's slot fills barely moves anythi
 same tool's other references are paraphrases from the same grammar. Intervals resample whole
 phrasing families (110 clusters), not rows — rows inside a family are not independent.
 
+### The classifier ladder (2026-11-10)
+
+Six rungs were built and measured on one grouped fold assignment against the
+93.19% / 0.61 ms baseline — vectoriser union, calibration, SetFit, cross-encoder
+re-rank, ensembles, augmentation. Nothing beat 93.19% at the 0.61 ms budget; the
+rung that beats it by a real margin costs 7.85 ms. The full result, with the
+reject curves and the reasons, is `docs/ladder-results-2026-11-10.md`; the
+artifacts are `results/ladder/`. Latency is one utterance, warm, idle box, median
+of five passes.
+
+| what | grouped acc | rowwise acc | p50 ms | `__none__` recall |
+|---|---:|---:|---:|---:|
+| baseline: word TF-IDF + LinearSVC | 89.79% | 93.19% | 0.39 | 0.60 |
+| word TF-IDF + LogisticRegression | 90.84% | 93.46% | 0.38 | 0.68 |
+| SetFit (MiniLM contrastive + head) | 93.98% | 94.24% | 7.75 | 0.84 |
+| MiniLM cross-encoder re-rank of top 3 | 92.15% | 93.19% | 11.79 | 0.48 |
+| ensemble: logreg + SetFit, standardised | 95.03% | 96.86% | 7.85 | 0.88 |
+| + all registry slot fills (augmentation) | 86.65% | 96.34% | 0.78 | 0.44 |
+
+Three things that table says and an accuracy column hides. The logistic rung takes
+ECE from 0.735 to 0.128 for the same 0.38 ms (the LinearSVC's "confidence" was a
+ranking wearing a probability's clothes). The ensemble improves in 5 of 5 folds
+and lifts coverage at 97.5% precision from 71.5% to 91.9%. And 96.34% is not a
+result — it is the row-wise protocol being fed the generator's own slot fills,
+which is why the honest number beside it is 86.65%.
+
 Tier 0 alone: 76.2% coverage at 83.8% first-hit accuracy, 12% of covered rows ambiguous, 1 of
 25 chitchat rows falsely matched, 67 tool rows unmatched. Tier-1 latency: 0.61 ms p50 for
 LinearSVC, 13–17 ms for the torch MiniLM router (CPU, warm) — re-measure with
@@ -54,10 +80,16 @@ uv pip install --python .venv/bin/python -e . --group dev
 .venv/bin/python -m localalexa classic          # the three TF-IDF configurations
 .venv/bin/python -m localalexa regex            # tier 0 detail, no model needed
 .venv/bin/python -m localalexa cascade          # needs pip install 'localalexa[embeddings]'
+.venv/bin/python -m localalexa ladder --rungs all --folds 5   # the ladder, rungs 0-6
 ```
+
+Rungs 3–4 need torch and a transformer encoder; `docs/ladder-env.md` has the
+second venv, the pinned versions, and why the paraphrase half of rung 6 could not
+be measured on this box.
 
 `data/routing_382.json` and `data/registry.json` ship with the repo, so every number reproduces
 offline. CLINC150 / Banking77 / HWU64 are not vendored; loading them is optional.
+`docs/ladder-results-2026-11-10.md` is the six-rung experiment and its verdict;
 `docs/RESEARCH.md` is the prior research with a dated correction note on top;
 `results/historical/` holds the original experiment JSONs unedited; `experiments/optional/`
 holds the scripts that need a downloaded model or a llama.cpp server. Apache-2.0.
@@ -66,8 +98,10 @@ holds the scripts that need a downloaded model or a llama.cpp server. Apache-2.0
 
 1. Grow the reference pool past 200 utterances — the strict split is the signal that 12
    references per tool is not enough.
-2. Give the LinearSVC tier a calibrated abstain (max-score threshold, like the router's
-   similarity floor) so it can hand off instead of picking a wrong tool.
+2. ~~Give the LinearSVC tier a calibrated abstain~~ — answered in the ladder: swap in
+   `LogisticRegression` on the same features (ECE 0.735 → 0.128, sub-millisecond, no
+   new dependency). Choosing the abstain threshold on out-of-fold predictions rather
+   than on the scored rows is the remaining half of this item.
 3. Attack the known confusions (`light_query`/`light_set`, `timer_*` read/write) with negation
    and disambiguation patterns in tier 0.
 4. int8-ONNX the MiniLM router, then re-measure whether tier 1 earns its memory; firmware last.
