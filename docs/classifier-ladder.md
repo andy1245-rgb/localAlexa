@@ -1,10 +1,14 @@
 # Classifier ladder — is there more in localAlexa than one linear model?
 
-2026-11-10. The operator asked the right question: the last measurement said "use TF-IDF + LinearSVC",
-but that was one point on a curve nobody has walked. This document says which rungs are worth
-climbing, in expected-gain order, and what would make each result untrustworthy.
+> A pre-registered ladder: six rungs, the order to attempt them in, the expected gain and
+> the condition that would make each result untrustworthy. Written before any rung was built;
+> the measured result is [`ladder-results-2026-11-10.md`](ladder-results-2026-11-10.md).
 
-## Where we are
+The last measurement said "use TF-IDF + LinearSVC", but that was one point on a curve nobody
+had walked. This document says which rungs are worth climbing, in expected-gain order, and
+what would make each result untrustworthy.
+
+## The starting point
 
 | model | accuracy | p50 latency | source |
 |---|---:|---:|---|
@@ -61,7 +65,7 @@ An ensemble of models that agree on their mistakes is a slower model with the sa
 
 ### 6. Data augmentation — the highest-ceiling rung, and the least glamorous
 
-Generate paraphrases per intent with a local model (llama.cpp on this box, $0), keep only those the
+Generate paraphrases per intent with a local model (llama.cpp on the local machine, $0), keep only those the
 current model is *unsure* about, have a human spot-check a sample, and add them. At 22 examples per
 class this is where the real headroom is. It is also the only rung that raises the ceiling for
 *every* other rung.
@@ -75,17 +79,17 @@ class this is where the real headroom is. It is also the only rung that raises t
   and accuracy on the rejected residue.
 - **Same folds for every rung.** A ladder measured on different splits is not a ladder.
 - **Do not change `cascade.py` semantics** and do not touch `SMART_ASSUMED_ACC` — replacing that
-  constant is a separate operator decision that is already on his todo list.
+  constant is a separate decision, owned outside this document.
 
 ## Where this lands
 
 `~/toolInterfacer/bench` is being made into a shared harness with dataset adapters and a predictor
-protocol (`docs/harness-spec-2026-11-10.md` there). Build the ladder first with this repo's own
-grouped-CV code so the result exists, then **port the winners onto the harness** so the numbers are
-reproducible in the same place as everything else. Do not block on the harness.
+protocol (`docs/harness-spec-2026-11-10.md` there). The ladder is built first with this repo's own
+grouped-CV code so the result exists on its own, and porting the winners onto the harness is a
+separate step that does not gate the ladder.
 
-## Hard limits
+## Constraints
 
-Branch commits only, never push, no paid API calls, no data deletion. If a package needs installing
-(`setfit`, `sentence-transformers`), install it in a project venv and record the version — that is
+No paid API calls and no data deletion. A package a rung needs (`setfit`,
+`sentence-transformers`) is installed in a project venv, and its version is recorded — that is
 free and allowed.

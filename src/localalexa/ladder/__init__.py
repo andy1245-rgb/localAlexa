@@ -4,7 +4,7 @@ Six rungs, walked in expected-gain order, all scored on one grouped fold
 assignment under identical code. A rung that does not beat rung 0 by more than
 the fold-to-fold spread has not won, whatever the point estimate says.
 
-See ``docs/classifier-ladder-2026-11-10.md`` for the plan and
+See ``docs/classifier-ladder.md`` for the plan and
 ``docs/ladder-results-2026-11-10.md`` for what came back.
 """
 

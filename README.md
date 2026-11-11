@@ -85,7 +85,7 @@ uv pip install --python .venv/bin/python -e . --group dev
 
 Rungs 3–4 need torch and a transformer encoder; `docs/ladder-env.md` has the
 second venv, the pinned versions, and why the paraphrase half of rung 6 could not
-be measured on this box.
+be measured on the available hardware.
 
 `data/routing_382.json` and `data/registry.json` ship with the repo, so every number reproduces
 offline. CLINC150 / Banking77 / HWU64 are not vendored; loading them is optional.
@@ -94,7 +94,7 @@ offline. CLINC150 / Banking77 / HWU64 are not vendored; loading them is optional
 `results/historical/` holds the original experiment JSONs unedited; `experiments/optional/`
 holds the scripts that need a downloaded model or a llama.cpp server. Apache-2.0.
 
-## What I'd do next
+## What remains
 
 1. Grow the reference pool past 200 utterances — the strict split is the signal that 12
    references per tool is not enough.

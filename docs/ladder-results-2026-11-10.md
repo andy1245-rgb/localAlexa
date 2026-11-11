@@ -1,7 +1,7 @@
 # Ladder results — 20× the latency buys +5.2 points; 0.61 ms buys nothing
 
 2026-11-10, branch `ladder/rungs-1-6`. Every rung in
-`docs/classifier-ladder-2026-11-10.md` was built and measured, in order, on one
+`docs/classifier-ladder.md` was built and measured, in order, on one
 fold assignment and one metrics block. `cascade.py` semantics and
 `SMART_ASSUMED_ACC` were not touched.
 
@@ -247,8 +247,8 @@ before any threshold enters the product.
 
 1. **Tier 1 becomes the calibrated logistic model.** Same features, same
    0.38 ms, ECE 0.735 → 0.128, `__none__` recall 0.60 → 0.68, accuracy a tie. No
-   new dependency, no new failure mode. This is the only free win and it is the
-   one to take tonight.
+   new dependency, no new failure mode. This is the only free win, and it is the
+   first one to take.
 2. **If tier 1 may cost what the MiniLM router already costs, ship the ensemble.**
    logreg + SetFit, row-standardised: +5.21 grouped, +3.67 rowwise, `__none__`
    0.88, +20 points of 97.5%-precision coverage, 7.85 ms. It improves in every
@@ -310,8 +310,8 @@ predictable — 0/382 out-of-fold, which is the metric showing the *grouping* is
 wrong rather than the arm. The adapter needs the phrasing family (110 groups),
 derived the way `localalexa.data.phrasing_families` does it.
 
-I did not patch that repo: it is on another branch (`overnight/2026-11-10`) and
-the plan says not to block on the harness. For the port, rung 2 is expressible
+That repository was not patched from here: the adapter's grouping belongs to the
+harness repo, and the ladder is not blocked on it. For the port, rung 2 is expressible
 today as `sklearn_text|vectorizer=tfidf_word|clf=logreg` (plus a `c=` spec key for
 C=100); rung 3 needs a `setfit_text` predictor the harness does not have.
 

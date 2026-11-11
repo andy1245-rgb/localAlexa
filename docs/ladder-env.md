@@ -51,7 +51,7 @@ max_new_tokens=24`, three samples per prompt per utterance:
 Generation cost: 6–28 s per batch of three on this CPU. Eight hundred candidates
 at that rate is over an hour of output like the above — mostly copies of the
 input, with the rest drifting off-intent. No `llama.cpp`, no `ollama`, and no
-GGUF files on this box, so the generator the plan named is not available here and
+GGUF files on the local machine, so the generator the plan named is not available here and
 the one that is cannot do the job.
 
 That is rung 6's paraphrase half recorded as **unmeasured, with the reason**, not
