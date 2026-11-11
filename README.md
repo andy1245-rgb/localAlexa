@@ -94,7 +94,7 @@ offline. CLINC150 / Banking77 / HWU64 are not vendored; loading them is optional
 `results/historical/` holds the original experiment JSONs unedited; `experiments/optional/`
 holds the scripts that need a downloaded model or a llama.cpp server. Apache-2.0.
 
-## What I'd do next
+## What's next
 
 1. Grow the reference pool past 200 utterances — the strict split is the signal that 12
    references per tool is not enough.
