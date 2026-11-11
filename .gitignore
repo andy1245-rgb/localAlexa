@@ -17,6 +17,8 @@ htmlcov/
 results/*
 !results/historical/
 !results/historical/*.json
+!results/ladder/
+!results/ladder/*.json
 
 # Data that is downloaded rather than shipped (CLINC150 / Banking77 / HWU64)
 data/raw/
@@ -25,3 +27,9 @@ data/raw/
 *.gguf
 *.onnx
 *.safetensors
+
+# Heavy ladder venv (setfit / sentence-transformers), recorded in docs/ladder-env.md
+.venv-embed/
+
+# SetFit/transformers scratch output
+checkpoints/

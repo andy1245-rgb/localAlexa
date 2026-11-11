@@ -4,6 +4,7 @@
     python -m localalexa regex                   # tier 0 alone, no model needed
     python -m localalexa classic                 # the three TF-IDF configs
     python -m localalexa cascade                 # full cascade, needs embeddings
+    python -m localalexa ladder --rungs all      # the classifier ladder, docs/classifier-ladder
 
 Every subcommand reads the shipped data under ``data/`` and writes nothing.
 """
@@ -84,6 +85,24 @@ def _cmd_cascade(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_ladder(args: argparse.Namespace) -> int:
+    from .ladder.report import format_table, run_ladder, write_artifact
+    from .ladder.catalog import available_rungs
+
+    rungs = available_rungs(args.rungs)
+    fold_counts = tuple(int(f) for f in args.folds.split(","))
+    payload = run_ladder(
+        rungs,
+        fold_counts=fold_counts,
+        protocols=tuple(args.protocols.split(",")),
+        keep_predictions=args.keep_predictions,
+    )
+    print(format_table(payload))
+    if args.out:
+        print(f"\nwrote {write_artifact(payload, args.out)}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="localalexa", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -106,6 +125,16 @@ def main(argv: list[str] | None = None) -> int:
     cascade_p.add_argument("--sim", type=float, default=0.45)
     cascade_p.add_argument("--conf", type=float, default=0.35)
     cascade_p.set_defaults(func=_cmd_cascade)
+
+    ladder_p = sub.add_parser("ladder", help="the classifier ladder (rungs 0-6)")
+    ladder_p.add_argument("--rungs", default="all", help="comma list of rung names, or 'all'")
+    ladder_p.add_argument("--folds", default="5", help="comma list of grouped fold counts")
+    ladder_p.add_argument(
+        "--protocols", default="grouped,rowwise", help="comma list of grouped,rowwise"
+    )
+    ladder_p.add_argument("--keep-predictions", action="store_true")
+    ladder_p.add_argument("--out", default=None, help="artifact path to write")
+    ladder_p.set_defaults(func=_cmd_ladder)
 
     args = parser.parse_args(argv)
     return int(args.func(args))

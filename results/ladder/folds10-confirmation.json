@@ -1,0 +1,770 @@
+{
+  "bench": {
+    "n_rows": 382,
+    "n_families": 110,
+    "n_labels": 18,
+    "n_reference_rows": 200,
+    "examples_per_intent": 21.2
+  },
+  "fold_assignments": {
+    "10": {
+      "n_folds": 10,
+      "n_families": 110,
+      "rows_per_fold": [
+        39,
+        39,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38
+      ],
+      "family_fold": {
+        "I need a {duration} timer": 7,
+        "__chitchat__": 0,
+        "abort the {duration} countdown": 5,
+        "add some {item} to the grocery list": 5,
+        "add {item} to my list": 4,
+        "add {item} to the shopping list": 4,
+        "am I free {span}": 3,
+        "any mail I haven't seen": 1,
+        "any meetings {day}": 1,
+        "any unread emails this morning": 0,
+        "are the {room} lights on": 9,
+        "bump the thermostat {direction} a couple degrees": 2,
+        "cancel all my reminders": 9,
+        "cancel my countdown please": 8,
+        "cancel the countdown": 7,
+        "cancel the reminder for {task}": 0,
+        "cancel the {duration} timer": 8,
+        "change the thermostat to {temp}": 0,
+        "check how long is left on the timer": 6,
+        "check the inbox for anything new": 5,
+        "check the {room} light status": 9,
+        "cross {item} off the shopping list": 7,
+        "delete my reminder about {task}": 1,
+        "delete the reminder set for {time}": 9,
+        "delete {item} from my list": 3,
+        "did I leave the {room} lights on": 8,
+        "dig into {topic} for me": 8,
+        "dive into {topic}": 1,
+        "do I have new mail": 4,
+        "don't let me forget to {task} {time}": 7,
+        "drop the temperature to {temp} degrees": 2,
+        "find documentation on {topic}": 6,
+        "find out about {topic}": 5,
+        "fire up the {room} lights": 4,
+        "get rid of the {task} reminder": 7,
+        "give me a summary of the {project} project": 7,
+        "give me a {duration} timer please": 6,
+        "how does {topic} work in the documentation": 6,
+        "how is {project} doing": 6,
+        "how many emails are unread": 3,
+        "how much longer on the timer": 2,
+        "how much time is left on the {duration} timer": 1,
+        "investigate {topic} and give me options": 3,
+        "is the {duration} timer still going": 5,
+        "is the {room} lamp off": 4,
+        "is the {room} light still on": 5,
+        "it's {direction} in here, fix it": 3,
+        "kick off a {duration} countdown": 5,
+        "kill that timer": 1,
+        "kill the {room} lights": 2,
+        "list out my shopping items": 0,
+        "look into {topic}": 4,
+        "look up {topic} in the docs": 4,
+        "make it {direction} in here": 3,
+        "make it {temp} degrees in here": 5,
+        "make the living room {direction}": 2,
+        "pull up what's documented about {topic}": 6,
+        "put the thermostat on {temp}": 4,
+        "put {item} on the grocery list": 9,
+        "read my unread messages": 8,
+        "read the shopping list to me": 7,
+        "remember to {task} {time}": 9,
+        "remind me about {task} {time}": 8,
+        "remind me at {time} to {task}": 1,
+        "remind me to {task} at {time}": 3,
+        "remove the reminder to {task}": 2,
+        "remove the {item} from groceries": 9,
+        "remove the {time} reminder": 8,
+        "remove {item} from the shopping list": 7,
+        "research {topic}": 5,
+        "run a timer for {duration}": 7,
+        "search the docs for {topic}": 2,
+        "set a reminder to {task} {time}": 6,
+        "set a timer for {duration}": 1,
+        "set the heat to {temp} degrees": 6,
+        "set the house temperature to {temp}": 0,
+        "set the temperature to {temp} degrees": 3,
+        "show me the schedule for {day}": 6,
+        "show my shopping list": 5,
+        "shut off the running timer": 4,
+        "start a countdown of {duration}": 5,
+        "start a {duration} timer": 4,
+        "stop the {duration} timer now": 9,
+        "switch the {room} light {state}": 9,
+        "take {item} off the grocery list": 8,
+        "take {item} off the list please": 2,
+        "throw {item} on the shopping list": 4,
+        "time left on the timer please": 3,
+        "turn the heat up to {temp} degrees": 7,
+        "turn the temperature {direction} a bit": 1,
+        "turn the {room} lamp {state}": 3,
+        "turn {state} the {room} lights": 2,
+        "we're out of {item}, add it to groceries": 8,
+        "what am I working on these days": 2,
+        "what do I need to buy": 1,
+        "what do the docs say about {topic}": 9,
+        "what does my {span} look like": 6,
+        "what's happening in {project}": 8,
+        "what's my agenda {day}": 3,
+        "what's on my calendar {day}": 1,
+        "what's on the grocery list today": 0,
+        "what's on the list right now": 9,
+        "what's remaining on the countdown": 8,
+        "what's sitting in my inbox": 1,
+        "what's the state of the {room} lights": 2,
+        "what's the status of my projects": 0,
+        "when does the countdown finish": 9,
+        "which repos are active right now": 8,
+        "{direction} the heat a little": 7,
+        "{room} lights {state} please": 6
+      }
+    }
+  },
+  "runs": [
+    {
+      "rung": "r0-word-svc",
+      "note": "the 93.19% / 0.61 ms baseline, re-measured on these folds",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "n_folds": 10,
+      "train_rows": [
+        199,
+        196,
+        198,
+        197,
+        198,
+        198,
+        198,
+        198,
+        199,
+        196
+      ],
+      "fold_rows": [
+        39,
+        39,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.397,
+        "p95": 0.435,
+        "mean": 0.403
+      },
+      "per_fold_accuracy": [
+        0.7436,
+        0.8974,
+        0.8421,
+        1.0,
+        0.8158,
+        0.9211,
+        0.8947,
+        1.0,
+        0.8947,
+        0.9474
+      ],
+      "fold_spread": {
+        "mean": 0.8957,
+        "min": 0.7436,
+        "max": 1.0,
+        "sd": 0.0799
+      },
+      "accuracy": 0.8953,
+      "ece": 0.7328,
+      "mean_confidence": 0.1625,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.083,
+            "coverage": 0.9869,
+            "precision": 0.9019,
+            "residue_rows": 5,
+            "residue_accuracy": 0.4
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1111,
+            "coverage": 0.8586,
+            "precision": 0.9512,
+            "residue_rows": 54,
+            "residue_accuracy": 0.5556
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.1344,
+            "coverage": 0.6649,
+            "precision": 0.9803,
+            "residue_rows": 128,
+            "residue_accuracy": 0.7266
+          }
+        ]
+      },
+      "none_recall": 0.6,
+      "false_none_rate": 0.0028,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 15,
+          "recall": 0.6
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 14,
+          "recall": 0.667
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 12,
+          "recall": 0.923
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8404,
+        0.9459
+      ]
+    },
+    {
+      "rung": "r2-word-logreg-C100",
+      "note": "rung 2: natively calibrated, word features",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "n_folds": 10,
+      "train_rows": [
+        199,
+        196,
+        198,
+        197,
+        198,
+        198,
+        198,
+        198,
+        199,
+        196
+      ],
+      "fold_rows": [
+        39,
+        39,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 0.797,
+        "p95": 3.789,
+        "mean": 1.098
+      },
+      "per_fold_accuracy": [
+        0.7692,
+        0.8974,
+        0.8684,
+        1.0,
+        0.8158,
+        0.9211,
+        0.8947,
+        1.0,
+        0.8947,
+        0.9474
+      ],
+      "fold_spread": {
+        "mean": 0.9009,
+        "min": 0.7692,
+        "max": 1.0,
+        "sd": 0.073
+      },
+      "accuracy": 0.9005,
+      "ece": 0.1209,
+      "mean_confidence": 0.7796,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1608,
+            "coverage": 1.0,
+            "precision": 0.9005,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.5202,
+            "coverage": 0.856,
+            "precision": 0.9511,
+            "residue_rows": 55,
+            "residue_accuracy": 0.6
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.6094,
+            "coverage": 0.788,
+            "precision": 0.9767,
+            "residue_rows": 81,
+            "residue_accuracy": 0.6173
+          }
+        ]
+      },
+      "none_recall": 0.64,
+      "false_none_rate": 0.0084,
+      "ledger": {
+        "__none__": {
+          "n": 25,
+          "correct": 16,
+          "recall": 0.64
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 14,
+          "recall": 0.667
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 20,
+          "recall": 0.8
+        },
+        "projects_query": {
+          "n": 18,
+          "correct": 15,
+          "recall": 0.833
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 20,
+          "recall": 0.87
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 12,
+          "recall": 0.923
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 18,
+          "recall": 0.947
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8494,
+        0.9485
+      ]
+    },
+    {
+      "rung": "r3-setfit-minilm",
+      "note": "rung 3: SetFit contrastive fine-tune + logistic head, MiniLM-L6 encoder",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "n_folds": 10,
+      "train_rows": [
+        199,
+        196,
+        198,
+        197,
+        198,
+        198,
+        198,
+        198,
+        199,
+        196
+      ],
+      "fold_rows": [
+        39,
+        39,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38,
+        38
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 8.209,
+        "p95": 9.732,
+        "mean": 9.096
+      },
+      "per_fold_accuracy": [
+        0.8974,
+        1.0,
+        1.0,
+        0.9737,
+        1.0,
+        1.0,
+        0.7895,
+        0.8158,
+        0.9211,
+        1.0
+      ],
+      "fold_spread": {
+        "mean": 0.9397,
+        "min": 0.7895,
+        "max": 1.0,
+        "sd": 0.0812
+      },
+      "accuracy": 0.9398,
+      "ece": 0.5216,
+      "mean_confidence": 0.4182,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1323,
+            "coverage": 1.0,
+            "precision": 0.9398,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.2076,
+            "coverage": 0.9817,
+            "precision": 0.952,
+            "residue_rows": 7,
+            "residue_accuracy": 0.2857
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.316,
+            "coverage": 0.8743,
+            "precision": 0.976,
+            "residue_rows": 48,
+            "residue_accuracy": 0.6875
+          }
+        ]
+      },
+      "none_recall": 0.84,
+      "false_none_rate": 0.0084,
+      "ledger": {
+        "projects_query": {
+          "n": 18,
+          "correct": 11,
+          "recall": 0.611
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "__none__": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 18,
+          "recall": 0.857
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 23,
+          "recall": 1.0
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 19,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8935,
+        0.9801
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "rung": "r2-word-logreg-C100",
+      "baseline": "r0-word-svc",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": 0.52,
+        "sd_points": 1.09,
+        "min_points": 0.0,
+        "max_points": 2.63,
+        "folds_better": 2,
+        "folds_worse": 0,
+        "folds_tied": 8
+      }
+    },
+    {
+      "rung": "r3-setfit-minilm",
+      "baseline": "r0-word-svc",
+      "fold_count": 10,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": 4.41,
+        "sd_points": 11.97,
+        "min_points": -18.42,
+        "max_points": 18.42,
+        "folds_better": 7,
+        "folds_worse": 3,
+        "folds_tied": 0
+      }
+    }
+  ],
+  "error_correlation": {
+    "10": [
+      {
+        "a": "r0-word-svc",
+        "b": "r2-word-logreg-C100",
+        "disagreement_rate": 0.0157,
+        "errors_a": 40,
+        "errors_b": 38,
+        "errors_both": 37,
+        "error_jaccard": 0.9024,
+        "only_a": 3,
+        "only_b": 1
+      },
+      {
+        "a": "r0-word-svc",
+        "b": "r3-setfit-minilm",
+        "disagreement_rate": 0.1387,
+        "errors_a": 40,
+        "errors_b": 23,
+        "errors_both": 7,
+        "error_jaccard": 0.125,
+        "only_a": 33,
+        "only_b": 16
+      },
+      {
+        "a": "r2-word-logreg-C100",
+        "b": "r3-setfit-minilm",
+        "disagreement_rate": 0.1309,
+        "errors_a": 38,
+        "errors_b": 23,
+        "errors_both": 7,
+        "error_jaccard": 0.1296,
+        "only_a": 31,
+        "only_b": 16
+      }
+    ]
+  },
+  "protocol_notes": {
+    "rowwise": "train on all 200 references, score all 382 rows \u2014 the protocol the 93.19% / 0.61 ms baseline was measured under",
+    "grouped": "folds over phrasing families; a fold trains on references that do not render into that fold's families",
+    "reject_curve": "thresholds chosen on the scored rows: oracle operating points, the ceiling, not the shipped number"
+  }
+}
