@@ -5,8 +5,14 @@
     python -m localalexa classic                 # the three TF-IDF configs
     python -m localalexa cascade                 # full cascade, needs embeddings
     python -m localalexa ladder --rungs all      # the classifier ladder, docs/classifier-ladder
+    python -m localalexa collect summary         # the ten-second weekly read
+    python -m localalexa collect derive          # replay the log into labels/rejects
+    python -m localalexa collect bench           # what logging costs the request path
 
-Every subcommand reads the shipped data under ``data/`` and writes nothing.
+Every subcommand except ``collect`` reads the shipped data under ``data/`` and
+writes nothing; ``collect`` reads and writes the local log under
+``$LOCALALEXA_COLLECT`` (default ``<repo>/var/collect``) and never touches the
+network.
 """
 
 from __future__ import annotations
@@ -103,6 +109,52 @@ def _cmd_ladder(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_collect(args: argparse.Namespace) -> int:
+    from .collection import derive as replay
+    from .collection import summarise, render, measure_append, measure_tap
+    from .collection.corrections import CorrectionRule
+    from .collection.autoaccept import AutoAcceptRule
+    from .collection.log import RequestLog, collect_root, write_jsonl
+    from .collection.records import EffectRecord, RequestRecord
+
+    if args.action == "bench":
+        append = measure_append(args.iterations)
+        tap = measure_tap(max(args.iterations // 4, 50))
+        print(json.dumps({"append_us": append, "observe_us": tap}, indent=2))
+        return 0
+
+    log = RequestLog(args.root)
+    try:
+        records = [RequestRecord.from_dict(row) for row in log.rows() if row.get("kind") == "request"]
+        effects = [EffectRecord.from_dict(row) for row in log.effects() if row.get("kind") == "effect"]
+    finally:
+        log.close()
+
+    if args.action == "derive":
+        derived = replay(
+            records,
+            effects,
+            correction_rule=CorrectionRule(window_seconds=args.window),
+            auto_rule=AutoAcceptRule(margin_threshold=args.margin),
+        )
+        root = collect_root(args.root)
+        written = [
+            write_jsonl(root / "rejects.jsonl", list(derived.reject_pile)),
+            write_jsonl(root / "corrections.jsonl", [c.as_dict() for c in derived.corrections]),
+            write_jsonl(root / "labels.jsonl", [row.as_dict() for row in derived.labels]),
+        ]
+        print(json.dumps({"stats": dict(derived.stats), "wrote": [str(p) for p in written]}, indent=2))
+        return 0
+
+    labels_path = collect_root(args.root) / "labels.jsonl"
+    labels = []
+    if labels_path.is_file():
+        labels = [json.loads(line) for line in labels_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    summary = summarise(records, labels, days=args.days)
+    print(json.dumps(summary.as_dict(), indent=2) if args.json else render(summary))
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="localalexa", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -135,6 +187,16 @@ def main(argv: list[str] | None = None) -> int:
     ladder_p.add_argument("--keep-predictions", action="store_true")
     ladder_p.add_argument("--out", default=None, help="artifact path to write")
     ladder_p.set_defaults(func=_cmd_ladder)
+
+    collect_p = sub.add_parser("collect", help="hands-off collection: log, derive, summarise")
+    collect_p.add_argument("action", choices=("derive", "summary", "bench"))
+    collect_p.add_argument("--root", default=None, help="collection root (default $LOCALALEXA_COLLECT or var/collect)")
+    collect_p.add_argument("--days", type=float, default=7.0, help="summary window in days")
+    collect_p.add_argument("--window", type=float, default=45.0, help="correction window, seconds")
+    collect_p.add_argument("--margin", type=float, default=0.05, help="auto-accept margin threshold")
+    collect_p.add_argument("--iterations", type=int, default=2000, help="bench: appends to measure")
+    collect_p.add_argument("--json", action="store_true", help="summary: machine-readable")
+    collect_p.set_defaults(func=_cmd_collect)
 
     args = parser.parse_args(argv)
     return int(args.func(args))

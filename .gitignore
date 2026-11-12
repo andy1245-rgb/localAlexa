@@ -35,3 +35,6 @@ data/raw/
 
 # SetFit/transformers scratch output
 checkpoints/
+
+# Collected utterances: personal data, never committed
+var/

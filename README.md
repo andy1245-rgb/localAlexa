@@ -75,21 +75,35 @@ quoted: it was measured on a different task whose labels do not overlap these op
 ```bash
 uv venv .venv --python 3.12
 uv pip install --python .venv/bin/python -e . --group dev
-.venv/bin/python -m pytest                      # 61 tests
+.venv/bin/python -m pytest                      # 116 tests
 .venv/bin/python -m localalexa eval --split all # the table above, ~20 s
 .venv/bin/python -m localalexa classic          # the three TF-IDF configurations
 .venv/bin/python -m localalexa regex            # tier 0 detail, no model needed
 .venv/bin/python -m localalexa cascade          # needs pip install 'localalexa[embeddings]'
 .venv/bin/python -m localalexa ladder --rungs all --folds 5   # the ladder, rungs 0-6
+.venv/bin/python -m localalexa collect summary  # the ten-second weekly read
+.venv/bin/python -m localalexa collect bench    # what logging costs the request path
 ```
 
 Rungs 3–4 need torch and a transformer encoder; `docs/ladder-env.md` has the
 second venv, the pinned versions, and why the paraphrase half of rung 6 could not
 be measured on the available hardware.
 
+## Collection
+
+`localalexa.collection` logs every utterance the router sees and turns the log into
+labels without asking the operator anything. The design rests on one rule: **not
+correcting is not evidence of correct**, so silence is never a label. Negatives come
+from corrections (an action, so strong); positives only from a verified action
+effect, a second model agreeing, or the top-2 auto-accept rule. One append per
+request, 0.61 µs p50, written before the response returns; everything else is derived
+by replay and rebuildable when a heuristic changes. Local only, no network, redacted
+at write time. `docs/data-collection.md`.
+
 `data/routing_382.json` and `data/registry.json` ship with the repo, so every number reproduces
 offline. CLINC150 / Banking77 / HWU64 are not vendored; loading them is optional.
 `docs/ladder-results-2026-11-10.md` is the six-rung experiment and its verdict;
+`docs/data-collection.md` is the hands-off collection design and its heuristics;
 `docs/RESEARCH.md` is the prior research with a dated correction note on top;
 `results/historical/` holds the original experiment JSONs unedited; `experiments/optional/`
 holds the scripts that need a downloaded model or a llama.cpp server. Apache-2.0.
