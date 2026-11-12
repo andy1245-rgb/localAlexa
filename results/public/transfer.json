@@ -1,0 +1,2976 @@
+{
+ "bench": {
+  "n_rows": 382,
+  "n_families": 110,
+  "n_labels": 18,
+  "folds": 5,
+  "quoted_baseline": 0.8979,
+  "model": {
+   "svc": "sklearn_text|vectorizer=tfidf_word|clf=linsvc",
+   "logreg": "sklearn_text|vectorizer=tfidf_word|clf=logreg|C=100"
+  }
+ },
+ "datasets": {
+  "CLINC150": {
+   "stats": {
+    "n_rows": 23700,
+    "n_train": 18200,
+    "n_test": 5500,
+    "n_intents": 150,
+    "n_intents_to_none": 143,
+    "n_rows_to_none": 22500,
+    "pct_rows_to_none": 94.9,
+    "pct_rows_mapped": 5.1,
+    "by_tool": {
+     "__none__": 22500,
+     "calendar_today": 300,
+     "reminder_create": 300,
+     "light_set": 150,
+     "shoppinglist_add": 150,
+     "shoppinglist_view": 150,
+     "timer_create": 150
+    },
+    "by_confidence": {
+     "high": 22050,
+     "low": 600,
+     "medium": 1050
+    },
+    "splits": {
+     "test": 5500,
+     "train": 18200
+    }
+   },
+   "dedup": {
+    "n_rows": 23700,
+    "n_unique_texts": 23695,
+    "n_duplicate_texts": 5,
+    "by_tool": {
+     "__none__": 22495,
+     "calendar_today": 300,
+     "reminder_create": 300,
+     "light_set": 150,
+     "shoppinglist_add": 150,
+     "shoppinglist_view": 150,
+     "timer_create": 150
+    }
+   },
+   "train_rows_mapped": 23695,
+   "test_rows": 5500
+  },
+  "HWU64": {
+   "stats": {
+    "n_rows": 11036,
+    "n_train": 9960,
+    "n_test": 1076,
+    "n_intents": 64,
+    "n_intents_to_none": 54,
+    "n_rows_to_none": 9374,
+    "pct_rows_to_none": 84.9,
+    "pct_rows_mapped": 15.1,
+    "by_tool": {
+     "__none__": 9374,
+     "light_set": 692,
+     "calendar_today": 194,
+     "email_unread": 194,
+     "shoppinglist_add": 194,
+     "shoppinglist_remove": 194,
+     "shoppinglist_view": 194
+    },
+    "by_confidence": {
+     "high": 9121,
+     "low": 1139,
+     "medium": 776
+    },
+    "splits": {
+     "test": 1076,
+     "train": 9960
+    }
+   },
+   "dedup": {
+    "n_rows": 11036,
+    "n_unique_texts": 11036,
+    "n_duplicate_texts": 0,
+    "by_tool": {
+     "__none__": 9374,
+     "light_set": 692,
+     "calendar_today": 194,
+     "email_unread": 194,
+     "shoppinglist_add": 194,
+     "shoppinglist_remove": 194,
+     "shoppinglist_view": 194
+    }
+   },
+   "train_rows_mapped": 11036,
+   "test_rows": 1076
+  },
+  "SNIPS": {
+   "stats": {
+    "n_rows": 14484,
+    "n_train": 13784,
+    "n_test": 700,
+    "n_intents": 7,
+    "n_intents_to_none": 7,
+    "n_rows_to_none": 14484,
+    "pct_rows_to_none": 100.0,
+    "pct_rows_mapped": 0.0,
+    "by_tool": {
+     "__none__": 14484
+    },
+    "by_confidence": {
+     "high": 10371,
+     "low": 4113
+    },
+    "splits": {
+     "test": 700,
+     "train": 13784
+    }
+   },
+   "dedup": {
+    "n_rows": 14484,
+    "n_unique_texts": 14306,
+    "n_duplicate_texts": 178,
+    "by_tool": {
+     "__none__": 14306
+    }
+   },
+   "train_rows_mapped": 14306,
+   "test_rows": 700
+  },
+  "ATIS": {
+   "stats": {
+    "n_rows": 5871,
+    "n_train": 4978,
+    "n_test": 893,
+    "n_intents": 26,
+    "n_intents_to_none": 26,
+    "n_rows_to_none": 5871,
+    "pct_rows_to_none": 100.0,
+    "pct_rows_mapped": 0.0,
+    "by_tool": {
+     "__none__": 5871
+    },
+    "by_confidence": {
+     "high": 5628,
+     "medium": 243
+    },
+    "splits": {
+     "test": 893,
+     "train": 4978
+    }
+   },
+   "dedup": {
+    "n_rows": 5871,
+    "n_unique_texts": 5473,
+    "n_duplicate_texts": 398,
+    "by_tool": {
+     "__none__": 5473
+    }
+   },
+   "train_rows_mapped": 5473,
+   "test_rows": 893
+  }
+ },
+ "ceiling_svc": {
+  "arms": {
+   "refs": {
+    "summary": {
+     "n": 382,
+     "correct": 344,
+     "accuracy": 0.9005,
+     "wilson95": [
+      0.8664,
+      0.9267
+     ],
+     "none_recall": 0.6,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 198,
+      "n_test": 77,
+      "accuracy": 0.7662,
+      "correct": 59
+     },
+     {
+      "fold": 1,
+      "n_train": 194,
+      "n_test": 77,
+      "accuracy": 0.974,
+      "correct": 75
+     },
+     {
+      "fold": 2,
+      "n_train": 197,
+      "n_test": 76,
+      "accuracy": 0.9605,
+      "correct": 73
+     },
+     {
+      "fold": 3,
+      "n_train": 194,
+      "n_test": 76,
+      "accuracy": 0.9342,
+      "correct": 71
+     },
+     {
+      "fold": 4,
+      "n_train": 194,
+      "n_test": 76,
+      "accuracy": 0.8684,
+      "correct": 66
+     }
+    ],
+    "n_train_per_fold": [
+     198,
+     194,
+     197,
+     194,
+     194
+    ]
+   },
+   "CLINC150": {
+    "summary": {
+     "n": 382,
+     "correct": 253,
+     "accuracy": 0.6623,
+     "wilson95": [
+      0.6135,
+      0.7079
+     ],
+     "none_recall": 1.0,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 23893,
+      "n_test": 77,
+      "accuracy": 0.8052,
+      "correct": 62
+     },
+     {
+      "fold": 1,
+      "n_train": 23889,
+      "n_test": 77,
+      "accuracy": 0.5974,
+      "correct": 46
+     },
+     {
+      "fold": 2,
+      "n_train": 23892,
+      "n_test": 76,
+      "accuracy": 0.7237,
+      "correct": 55
+     },
+     {
+      "fold": 3,
+      "n_train": 23889,
+      "n_test": 76,
+      "accuracy": 0.5921,
+      "correct": 45
+     },
+     {
+      "fold": 4,
+      "n_train": 23889,
+      "n_test": 76,
+      "accuracy": 0.5921,
+      "correct": 45
+     }
+    ],
+    "n_train_per_fold": [
+     23893,
+     23889,
+     23892,
+     23889,
+     23889
+    ]
+   },
+   "CLINC150_toolonly": {
+    "summary": {
+     "n": 382,
+     "correct": 302,
+     "accuracy": 0.7906,
+     "wilson95": [
+      0.747,
+      0.8284
+     ],
+     "none_recall": 0.24,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 1398,
+      "n_test": 77,
+      "accuracy": 0.6364,
+      "correct": 49
+     },
+     {
+      "fold": 1,
+      "n_train": 1394,
+      "n_test": 77,
+      "accuracy": 0.9351,
+      "correct": 72
+     },
+     {
+      "fold": 2,
+      "n_train": 1397,
+      "n_test": 76,
+      "accuracy": 0.9079,
+      "correct": 69
+     },
+     {
+      "fold": 3,
+      "n_train": 1394,
+      "n_test": 76,
+      "accuracy": 0.7632,
+      "correct": 58
+     },
+     {
+      "fold": 4,
+      "n_train": 1394,
+      "n_test": 76,
+      "accuracy": 0.7105,
+      "correct": 54
+     }
+    ],
+    "n_train_per_fold": [
+     1398,
+     1394,
+     1397,
+     1394,
+     1394
+    ]
+   },
+   "HWU64": {
+    "summary": {
+     "n": 382,
+     "correct": 279,
+     "accuracy": 0.7304,
+     "wilson95": [
+      0.6837,
+      0.7724
+     ],
+     "none_recall": 0.96,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 11234,
+      "n_test": 77,
+      "accuracy": 0.8312,
+      "correct": 64
+     },
+     {
+      "fold": 1,
+      "n_train": 11230,
+      "n_test": 77,
+      "accuracy": 0.6883,
+      "correct": 53
+     },
+     {
+      "fold": 2,
+      "n_train": 11233,
+      "n_test": 76,
+      "accuracy": 0.8289,
+      "correct": 63
+     },
+     {
+      "fold": 3,
+      "n_train": 11230,
+      "n_test": 76,
+      "accuracy": 0.6447,
+      "correct": 49
+     },
+     {
+      "fold": 4,
+      "n_train": 11230,
+      "n_test": 76,
+      "accuracy": 0.6579,
+      "correct": 50
+     }
+    ],
+    "n_train_per_fold": [
+     11234,
+     11230,
+     11233,
+     11230,
+     11230
+    ]
+   },
+   "HWU64_toolonly": {
+    "summary": {
+     "n": 382,
+     "correct": 301,
+     "accuracy": 0.788,
+     "wilson95": [
+      0.7442,
+      0.826
+     ],
+     "none_recall": 0.12,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 1860,
+      "n_test": 77,
+      "accuracy": 0.6104,
+      "correct": 47
+     },
+     {
+      "fold": 1,
+      "n_train": 1856,
+      "n_test": 77,
+      "accuracy": 0.8442,
+      "correct": 65
+     },
+     {
+      "fold": 2,
+      "n_train": 1859,
+      "n_test": 76,
+      "accuracy": 0.9737,
+      "correct": 74
+     },
+     {
+      "fold": 3,
+      "n_train": 1856,
+      "n_test": 76,
+      "accuracy": 0.7368,
+      "correct": 56
+     },
+     {
+      "fold": 4,
+      "n_train": 1856,
+      "n_test": 76,
+      "accuracy": 0.7763,
+      "correct": 59
+     }
+    ],
+    "n_train_per_fold": [
+     1860,
+     1856,
+     1859,
+     1856,
+     1856
+    ]
+   },
+   "SNIPS": {
+    "summary": {
+     "n": 382,
+     "correct": 270,
+     "accuracy": 0.7068,
+     "wilson95": [
+      0.6593,
+      0.7502
+     ],
+     "none_recall": 1.0,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 14504,
+      "n_test": 77,
+      "accuracy": 0.7532,
+      "correct": 58
+     },
+     {
+      "fold": 1,
+      "n_train": 14500,
+      "n_test": 77,
+      "accuracy": 0.6623,
+      "correct": 51
+     },
+     {
+      "fold": 2,
+      "n_train": 14503,
+      "n_test": 76,
+      "accuracy": 0.6974,
+      "correct": 53
+     },
+     {
+      "fold": 3,
+      "n_train": 14500,
+      "n_test": 76,
+      "accuracy": 0.7105,
+      "correct": 54
+     },
+     {
+      "fold": 4,
+      "n_train": 14500,
+      "n_test": 76,
+      "accuracy": 0.7105,
+      "correct": 54
+     }
+    ],
+    "n_train_per_fold": [
+     14504,
+     14500,
+     14503,
+     14500,
+     14500
+    ]
+   },
+   "ATIS": {
+    "summary": {
+     "n": 382,
+     "correct": 324,
+     "accuracy": 0.8482,
+     "wilson95": [
+      0.8087,
+      0.8807
+     ],
+     "none_recall": 1.0,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 5671,
+      "n_test": 77,
+      "accuracy": 0.8442,
+      "correct": 65
+     },
+     {
+      "fold": 1,
+      "n_train": 5667,
+      "n_test": 77,
+      "accuracy": 0.8961,
+      "correct": 69
+     },
+     {
+      "fold": 2,
+      "n_train": 5670,
+      "n_test": 76,
+      "accuracy": 0.8421,
+      "correct": 64
+     },
+     {
+      "fold": 3,
+      "n_train": 5667,
+      "n_test": 76,
+      "accuracy": 0.8553,
+      "correct": 65
+     },
+     {
+      "fold": 4,
+      "n_train": 5667,
+      "n_test": 76,
+      "accuracy": 0.8026,
+      "correct": 61
+     }
+    ],
+    "n_train_per_fold": [
+     5671,
+     5667,
+     5670,
+     5667,
+     5667
+    ]
+   },
+   "union": {
+    "summary": {
+     "n": 382,
+     "correct": 257,
+     "accuracy": 0.6728,
+     "wilson95": [
+      0.6242,
+      0.7179
+     ],
+     "none_recall": 1.0,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 54708,
+      "n_test": 77,
+      "accuracy": 0.7922,
+      "correct": 61
+     },
+     {
+      "fold": 1,
+      "n_train": 54704,
+      "n_test": 77,
+      "accuracy": 0.6234,
+      "correct": 48
+     },
+     {
+      "fold": 2,
+      "n_train": 54707,
+      "n_test": 76,
+      "accuracy": 0.7632,
+      "correct": 58
+     },
+     {
+      "fold": 3,
+      "n_train": 54704,
+      "n_test": 76,
+      "accuracy": 0.6184,
+      "correct": 47
+     },
+     {
+      "fold": 4,
+      "n_train": 54704,
+      "n_test": 76,
+      "accuracy": 0.5658,
+      "correct": 43
+     }
+    ],
+    "n_train_per_fold": [
+     54708,
+     54704,
+     54707,
+     54704,
+     54704
+    ]
+   },
+   "union_high": {
+    "summary": {
+     "n": 382,
+     "correct": 258,
+     "accuracy": 0.6754,
+     "wilson95": [
+      0.6269,
+      0.7204
+     ],
+     "none_recall": 1.0,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 46947,
+      "n_test": 77,
+      "accuracy": 0.8312,
+      "correct": 64
+     },
+     {
+      "fold": 1,
+      "n_train": 46943,
+      "n_test": 77,
+      "accuracy": 0.6883,
+      "correct": 53
+     },
+     {
+      "fold": 2,
+      "n_train": 46946,
+      "n_test": 76,
+      "accuracy": 0.7105,
+      "correct": 54
+     },
+     {
+      "fold": 3,
+      "n_train": 46943,
+      "n_test": 76,
+      "accuracy": 0.6447,
+      "correct": 49
+     },
+     {
+      "fold": 4,
+      "n_train": 46943,
+      "n_test": 76,
+      "accuracy": 0.5,
+      "correct": 38
+     }
+    ],
+    "n_train_per_fold": [
+     46947,
+     46943,
+     46946,
+     46943,
+     46943
+    ]
+   },
+   "union_cap100": {
+    "summary": {
+     "n": 382,
+     "correct": 299,
+     "accuracy": 0.7827,
+     "wilson95": [
+      0.7387,
+      0.8212
+     ],
+     "none_recall": 0.72,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 1798,
+      "n_test": 77,
+      "accuracy": 0.7922,
+      "correct": 61
+     },
+     {
+      "fold": 1,
+      "n_train": 1794,
+      "n_test": 77,
+      "accuracy": 0.8312,
+      "correct": 64
+     },
+     {
+      "fold": 2,
+      "n_train": 1797,
+      "n_test": 76,
+      "accuracy": 0.8289,
+      "correct": 63
+     },
+     {
+      "fold": 3,
+      "n_train": 1794,
+      "n_test": 76,
+      "accuracy": 0.7237,
+      "correct": 55
+     },
+     {
+      "fold": 4,
+      "n_train": 1794,
+      "n_test": 76,
+      "accuracy": 0.7368,
+      "correct": 56
+     }
+    ],
+    "n_train_per_fold": [
+     1798,
+     1794,
+     1797,
+     1794,
+     1794
+    ]
+   },
+   "union_cap25": {
+    "summary": {
+     "n": 382,
+     "correct": 337,
+     "accuracy": 0.8822,
+     "wilson95": [
+      0.846,
+      0.9108
+     ],
+     "none_recall": 0.88,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 598,
+      "n_test": 77,
+      "accuracy": 0.8701,
+      "correct": 67
+     },
+     {
+      "fold": 1,
+      "n_train": 594,
+      "n_test": 77,
+      "accuracy": 0.9481,
+      "correct": 73
+     },
+     {
+      "fold": 2,
+      "n_train": 597,
+      "n_test": 76,
+      "accuracy": 0.9211,
+      "correct": 70
+     },
+     {
+      "fold": 3,
+      "n_train": 594,
+      "n_test": 76,
+      "accuracy": 0.8158,
+      "correct": 62
+     },
+     {
+      "fold": 4,
+      "n_train": 594,
+      "n_test": 76,
+      "accuracy": 0.8553,
+      "correct": 65
+     }
+    ],
+    "n_train_per_fold": [
+     598,
+     594,
+     597,
+     594,
+     594
+    ]
+   },
+   "union_toolonly": {
+    "summary": {
+     "n": 382,
+     "correct": 278,
+     "accuracy": 0.7277,
+     "wilson95": [
+      0.681,
+      0.77
+     ],
+     "none_recall": 0.08,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 3060,
+      "n_test": 77,
+      "accuracy": 0.5584,
+      "correct": 43
+     },
+     {
+      "fold": 1,
+      "n_train": 3056,
+      "n_test": 77,
+      "accuracy": 0.7532,
+      "correct": 58
+     },
+     {
+      "fold": 2,
+      "n_train": 3059,
+      "n_test": 76,
+      "accuracy": 0.9079,
+      "correct": 69
+     },
+     {
+      "fold": 3,
+      "n_train": 3056,
+      "n_test": 76,
+      "accuracy": 0.6842,
+      "correct": 52
+     },
+     {
+      "fold": 4,
+      "n_train": 3056,
+      "n_test": 76,
+      "accuracy": 0.7368,
+      "correct": 56
+     }
+    ],
+    "n_train_per_fold": [
+     3060,
+     3056,
+     3059,
+     3056,
+     3056
+    ]
+   },
+   "union_none25": {
+    "summary": {
+     "n": 382,
+     "correct": 283,
+     "accuracy": 0.7408,
+     "wilson95": [
+      0.6947,
+      0.7822
+     ],
+     "none_recall": 0.28,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 3085,
+      "n_test": 77,
+      "accuracy": 0.6234,
+      "correct": 48
+     },
+     {
+      "fold": 1,
+      "n_train": 3081,
+      "n_test": 77,
+      "accuracy": 0.7532,
+      "correct": 58
+     },
+     {
+      "fold": 2,
+      "n_train": 3084,
+      "n_test": 76,
+      "accuracy": 0.9079,
+      "correct": 69
+     },
+     {
+      "fold": 3,
+      "n_train": 3081,
+      "n_test": 76,
+      "accuracy": 0.6842,
+      "correct": 52
+     },
+     {
+      "fold": 4,
+      "n_train": 3081,
+      "n_test": 76,
+      "accuracy": 0.7368,
+      "correct": 56
+     }
+    ],
+    "n_train_per_fold": [
+     3085,
+     3081,
+     3084,
+     3081,
+     3081
+    ]
+   },
+   "HWU64_cap25": {
+    "summary": {
+     "n": 382,
+     "correct": 336,
+     "accuracy": 0.8796,
+     "wilson95": [
+      0.8431,
+      0.9085
+     ],
+     "none_recall": 0.56,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 373,
+      "n_test": 77,
+      "accuracy": 0.7922,
+      "correct": 61
+     },
+     {
+      "fold": 1,
+      "n_train": 369,
+      "n_test": 77,
+      "accuracy": 0.961,
+      "correct": 74
+     },
+     {
+      "fold": 2,
+      "n_train": 372,
+      "n_test": 76,
+      "accuracy": 0.9605,
+      "correct": 73
+     },
+     {
+      "fold": 3,
+      "n_train": 369,
+      "n_test": 76,
+      "accuracy": 0.8816,
+      "correct": 67
+     },
+     {
+      "fold": 4,
+      "n_train": 369,
+      "n_test": 76,
+      "accuracy": 0.8026,
+      "correct": 61
+     }
+    ],
+    "n_train_per_fold": [
+     373,
+     369,
+     372,
+     369,
+     369
+    ]
+   }
+  },
+  "vs_refs": {
+   "CLINC150": {
+    "delta_accuracy": -0.2382,
+    "fixed": 18,
+    "broke": 109,
+    "mcnemar_p": 0.0,
+    "folds_better": 1,
+    "folds_worse": 4,
+    "folds_tied": 0
+   },
+   "CLINC150_toolonly": {
+    "delta_accuracy": -0.1099,
+    "fixed": 10,
+    "broke": 52,
+    "mcnemar_p": 0.0,
+    "folds_better": 0,
+    "folds_worse": 5,
+    "folds_tied": 0
+   },
+   "HWU64": {
+    "delta_accuracy": -0.1701,
+    "fixed": 17,
+    "broke": 82,
+    "mcnemar_p": 0.0,
+    "folds_better": 1,
+    "folds_worse": 4,
+    "folds_tied": 0
+   },
+   "HWU64_toolonly": {
+    "delta_accuracy": -0.1125,
+    "fixed": 10,
+    "broke": 53,
+    "mcnemar_p": 0.0,
+    "folds_better": 1,
+    "folds_worse": 4,
+    "folds_tied": 0
+   },
+   "SNIPS": {
+    "delta_accuracy": -0.1937,
+    "fixed": 11,
+    "broke": 85,
+    "mcnemar_p": 0.0,
+    "folds_better": 0,
+    "folds_worse": 5,
+    "folds_tied": 0
+   },
+   "ATIS": {
+    "delta_accuracy": -0.0523,
+    "fixed": 10,
+    "broke": 30,
+    "mcnemar_p": 0.0022,
+    "folds_better": 1,
+    "folds_worse": 4,
+    "folds_tied": 0
+   },
+   "union": {
+    "delta_accuracy": -0.2277,
+    "fixed": 18,
+    "broke": 105,
+    "mcnemar_p": 0.0,
+    "folds_better": 1,
+    "folds_worse": 4,
+    "folds_tied": 0
+   },
+   "union_high": {
+    "delta_accuracy": -0.2251,
+    "fixed": 16,
+    "broke": 102,
+    "mcnemar_p": 0.0,
+    "folds_better": 1,
+    "folds_worse": 4,
+    "folds_tied": 0
+   },
+   "union_cap100": {
+    "delta_accuracy": -0.1178,
+    "fixed": 14,
+    "broke": 59,
+    "mcnemar_p": 0.0,
+    "folds_better": 1,
+    "folds_worse": 4,
+    "folds_tied": 0
+   },
+   "union_cap25": {
+    "delta_accuracy": -0.0183,
+    "fixed": 14,
+    "broke": 21,
+    "mcnemar_p": 0.3105,
+    "folds_better": 1,
+    "folds_worse": 4,
+    "folds_tied": 0
+   },
+   "union_toolonly": {
+    "delta_accuracy": -0.1728,
+    "fixed": 10,
+    "broke": 76,
+    "mcnemar_p": 0.0,
+    "folds_better": 0,
+    "folds_worse": 5,
+    "folds_tied": 0
+   },
+   "union_none25": {
+    "delta_accuracy": -0.1597,
+    "fixed": 11,
+    "broke": 72,
+    "mcnemar_p": 0.0,
+    "folds_better": 0,
+    "folds_worse": 5,
+    "folds_tied": 0
+   },
+   "HWU64_cap25": {
+    "delta_accuracy": -0.0209,
+    "fixed": 7,
+    "broke": 15,
+    "mcnemar_p": 0.1338,
+    "folds_better": 1,
+    "folds_worse": 3,
+    "folds_tied": 1
+   }
+  }
+ },
+ "ceiling_logreg": {
+  "arms": {
+   "refs": {
+    "summary": {
+     "n": 382,
+     "correct": 345,
+     "accuracy": 0.9031,
+     "wilson95": [
+      0.8693,
+      0.9289
+     ],
+     "none_recall": 0.64,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 198,
+      "n_test": 77,
+      "accuracy": 0.7792,
+      "correct": 60
+     },
+     {
+      "fold": 1,
+      "n_train": 194,
+      "n_test": 77,
+      "accuracy": 0.974,
+      "correct": 75
+     },
+     {
+      "fold": 2,
+      "n_train": 197,
+      "n_test": 76,
+      "accuracy": 0.9605,
+      "correct": 73
+     },
+     {
+      "fold": 3,
+      "n_train": 194,
+      "n_test": 76,
+      "accuracy": 0.9342,
+      "correct": 71
+     },
+     {
+      "fold": 4,
+      "n_train": 194,
+      "n_test": 76,
+      "accuracy": 0.8684,
+      "correct": 66
+     }
+    ],
+    "n_train_per_fold": [
+     198,
+     194,
+     197,
+     194,
+     194
+    ]
+   },
+   "HWU64": {
+    "summary": {
+     "n": 382,
+     "correct": 278,
+     "accuracy": 0.7277,
+     "wilson95": [
+      0.681,
+      0.77
+     ],
+     "none_recall": 0.92,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 11234,
+      "n_test": 77,
+      "accuracy": 0.8182,
+      "correct": 63
+     },
+     {
+      "fold": 1,
+      "n_train": 11230,
+      "n_test": 77,
+      "accuracy": 0.7143,
+      "correct": 55
+     },
+     {
+      "fold": 2,
+      "n_train": 11233,
+      "n_test": 76,
+      "accuracy": 0.8026,
+      "correct": 61
+     },
+     {
+      "fold": 3,
+      "n_train": 11230,
+      "n_test": 76,
+      "accuracy": 0.6842,
+      "correct": 52
+     },
+     {
+      "fold": 4,
+      "n_train": 11230,
+      "n_test": 76,
+      "accuracy": 0.6184,
+      "correct": 47
+     }
+    ],
+    "n_train_per_fold": [
+     11234,
+     11230,
+     11233,
+     11230,
+     11230
+    ]
+   },
+   "HWU64_toolonly": {
+    "summary": {
+     "n": 382,
+     "correct": 305,
+     "accuracy": 0.7984,
+     "wilson95": [
+      0.7553,
+      0.8356
+     ],
+     "none_recall": 0.16,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 1860,
+      "n_test": 77,
+      "accuracy": 0.6234,
+      "correct": 48
+     },
+     {
+      "fold": 1,
+      "n_train": 1856,
+      "n_test": 77,
+      "accuracy": 0.8701,
+      "correct": 67
+     },
+     {
+      "fold": 2,
+      "n_train": 1859,
+      "n_test": 76,
+      "accuracy": 0.9342,
+      "correct": 71
+     },
+     {
+      "fold": 3,
+      "n_train": 1856,
+      "n_test": 76,
+      "accuracy": 0.7632,
+      "correct": 58
+     },
+     {
+      "fold": 4,
+      "n_train": 1856,
+      "n_test": 76,
+      "accuracy": 0.8026,
+      "correct": 61
+     }
+    ],
+    "n_train_per_fold": [
+     1860,
+     1856,
+     1859,
+     1856,
+     1856
+    ]
+   },
+   "union": {
+    "summary": {
+     "n": 382,
+     "correct": 268,
+     "accuracy": 0.7016,
+     "wilson95": [
+      0.6539,
+      0.7453
+     ],
+     "none_recall": 1.0,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 54708,
+      "n_test": 77,
+      "accuracy": 0.8571,
+      "correct": 66
+     },
+     {
+      "fold": 1,
+      "n_train": 54704,
+      "n_test": 77,
+      "accuracy": 0.6753,
+      "correct": 52
+     },
+     {
+      "fold": 2,
+      "n_train": 54707,
+      "n_test": 76,
+      "accuracy": 0.75,
+      "correct": 57
+     },
+     {
+      "fold": 3,
+      "n_train": 54704,
+      "n_test": 76,
+      "accuracy": 0.6184,
+      "correct": 47
+     },
+     {
+      "fold": 4,
+      "n_train": 54704,
+      "n_test": 76,
+      "accuracy": 0.6053,
+      "correct": 46
+     }
+    ],
+    "n_train_per_fold": [
+     54708,
+     54704,
+     54707,
+     54704,
+     54704
+    ]
+   },
+   "union_cap100": {
+    "summary": {
+     "n": 382,
+     "correct": 304,
+     "accuracy": 0.7958,
+     "wilson95": [
+      0.7525,
+      0.8332
+     ],
+     "none_recall": 0.72,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 1798,
+      "n_test": 77,
+      "accuracy": 0.7922,
+      "correct": 61
+     },
+     {
+      "fold": 1,
+      "n_train": 1794,
+      "n_test": 77,
+      "accuracy": 0.8442,
+      "correct": 65
+     },
+     {
+      "fold": 2,
+      "n_train": 1797,
+      "n_test": 76,
+      "accuracy": 0.8421,
+      "correct": 64
+     },
+     {
+      "fold": 3,
+      "n_train": 1794,
+      "n_test": 76,
+      "accuracy": 0.7237,
+      "correct": 55
+     },
+     {
+      "fold": 4,
+      "n_train": 1794,
+      "n_test": 76,
+      "accuracy": 0.7763,
+      "correct": 59
+     }
+    ],
+    "n_train_per_fold": [
+     1798,
+     1794,
+     1797,
+     1794,
+     1794
+    ]
+   },
+   "union_toolonly": {
+    "summary": {
+     "n": 382,
+     "correct": 291,
+     "accuracy": 0.7618,
+     "wilson95": [
+      0.7166,
+      0.8018
+     ],
+     "none_recall": 0.12,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_train": 3060,
+      "n_test": 77,
+      "accuracy": 0.5714,
+      "correct": 44
+     },
+     {
+      "fold": 1,
+      "n_train": 3056,
+      "n_test": 77,
+      "accuracy": 0.8442,
+      "correct": 65
+     },
+     {
+      "fold": 2,
+      "n_train": 3059,
+      "n_test": 76,
+      "accuracy": 0.9342,
+      "correct": 71
+     },
+     {
+      "fold": 3,
+      "n_train": 3056,
+      "n_test": 76,
+      "accuracy": 0.6974,
+      "correct": 53
+     },
+     {
+      "fold": 4,
+      "n_train": 3056,
+      "n_test": 76,
+      "accuracy": 0.7632,
+      "correct": 58
+     }
+    ],
+    "n_train_per_fold": [
+     3060,
+     3056,
+     3059,
+     3056,
+     3056
+    ]
+   }
+  },
+  "vs_refs": {
+   "HWU64": {
+    "delta_accuracy": -0.1754,
+    "fixed": 15,
+    "broke": 82,
+    "mcnemar_p": 0.0,
+    "folds_better": 1,
+    "folds_worse": 4,
+    "folds_tied": 0
+   },
+   "HWU64_toolonly": {
+    "delta_accuracy": -0.1047,
+    "fixed": 10,
+    "broke": 50,
+    "mcnemar_p": 0.0,
+    "folds_better": 0,
+    "folds_worse": 5,
+    "folds_tied": 0
+   },
+   "union": {
+    "delta_accuracy": -0.2015,
+    "fixed": 16,
+    "broke": 93,
+    "mcnemar_p": 0.0,
+    "folds_better": 1,
+    "folds_worse": 4,
+    "folds_tied": 0
+   },
+   "union_cap100": {
+    "delta_accuracy": -0.1073,
+    "fixed": 13,
+    "broke": 54,
+    "mcnemar_p": 0.0,
+    "folds_better": 1,
+    "folds_worse": 4,
+    "folds_tied": 0
+   },
+   "union_toolonly": {
+    "delta_accuracy": -0.1413,
+    "fixed": 10,
+    "broke": 64,
+    "mcnemar_p": 0.0,
+    "folds_better": 0,
+    "folds_worse": 5,
+    "folds_tied": 0
+   }
+  }
+ },
+ "public_only": {
+  "arms": {
+   "CLINC150": {
+    "summary": {
+     "n": 382,
+     "correct": 105,
+     "accuracy": 0.2749,
+     "wilson95": [
+      0.2325,
+      0.3217
+     ],
+     "none_recall": 1.0,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_test": 77,
+      "accuracy": 0.4416,
+      "correct": 34
+     },
+     {
+      "fold": 1,
+      "n_test": 77,
+      "accuracy": 0.1558,
+      "correct": 12
+     },
+     {
+      "fold": 2,
+      "n_test": 76,
+      "accuracy": 0.4605,
+      "correct": 35
+     },
+     {
+      "fold": 3,
+      "n_test": 76,
+      "accuracy": 0.2105,
+      "correct": 16
+     },
+     {
+      "fold": 4,
+      "n_test": 76,
+      "accuracy": 0.1053,
+      "correct": 8
+     }
+    ],
+    "n_train": 23695,
+    "refused": null
+   },
+   "HWU64": {
+    "summary": {
+     "n": 382,
+     "correct": 115,
+     "accuracy": 0.301,
+     "wilson95": [
+      0.2572,
+      0.3488
+     ],
+     "none_recall": 0.96,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_test": 77,
+      "accuracy": 0.4545,
+      "correct": 35
+     },
+     {
+      "fold": 1,
+      "n_test": 77,
+      "accuracy": 0.1169,
+      "correct": 9
+     },
+     {
+      "fold": 2,
+      "n_test": 76,
+      "accuracy": 0.4868,
+      "correct": 37
+     },
+     {
+      "fold": 3,
+      "n_test": 76,
+      "accuracy": 0.25,
+      "correct": 19
+     },
+     {
+      "fold": 4,
+      "n_test": 76,
+      "accuracy": 0.1974,
+      "correct": 15
+     }
+    ],
+    "n_train": 11036,
+    "refused": null
+   },
+   "SNIPS": {
+    "summary": {
+     "n": 0,
+     "correct": 0,
+     "accuracy": null,
+     "none_recall": null,
+     "n_none": 0,
+     "wilson95": null
+    },
+    "per_fold": [],
+    "n_train": 14306,
+    "refused": "one label only (['__none__']) \u2014 nothing to discriminate"
+   },
+   "ATIS": {
+    "summary": {
+     "n": 0,
+     "correct": 0,
+     "accuracy": null,
+     "none_recall": null,
+     "n_none": 0,
+     "wilson95": null
+    },
+    "per_fold": [],
+    "n_train": 5473,
+    "refused": "one label only (['__none__']) \u2014 nothing to discriminate"
+   },
+   "union": {
+    "summary": {
+     "n": 382,
+     "correct": 143,
+     "accuracy": 0.3743,
+     "wilson95": [
+      0.3273,
+      0.4239
+     ],
+     "none_recall": 1.0,
+     "n_none": 25
+    },
+    "per_fold": [
+     {
+      "fold": 0,
+      "n_test": 77,
+      "accuracy": 0.5065,
+      "correct": 39
+     },
+     {
+      "fold": 1,
+      "n_test": 77,
+      "accuracy": 0.2078,
+      "correct": 16
+     },
+     {
+      "fold": 2,
+      "n_test": 76,
+      "accuracy": 0.5526,
+      "correct": 42
+     },
+     {
+      "fold": 3,
+      "n_test": 76,
+      "accuracy": 0.3553,
+      "correct": 27
+     },
+     {
+      "fold": 4,
+      "n_test": 76,
+      "accuracy": 0.25,
+      "correct": 19
+     }
+    ],
+    "n_train": 54510,
+    "refused": null
+   }
+  },
+  "vs_refs": {
+   "CLINC150": {
+    "delta_accuracy": -0.6256,
+    "fixed": 17,
+    "broke": 256,
+    "mcnemar_p": 0.0,
+    "folds_better": 0,
+    "folds_worse": 5,
+    "folds_tied": 0
+   },
+   "HWU64": {
+    "delta_accuracy": -0.5995,
+    "fixed": 17,
+    "broke": 246,
+    "mcnemar_p": 0.0,
+    "folds_better": 0,
+    "folds_worse": 5,
+    "folds_tied": 0
+   },
+   "union": {
+    "delta_accuracy": -0.5262,
+    "fixed": 17,
+    "broke": 218,
+    "mcnemar_p": 0.0,
+    "folds_better": 0,
+    "folds_worse": 5,
+    "folds_tied": 0
+   }
+  }
+ },
+ "reverse": {
+  "CLINC150": {
+   "summary": {
+    "n": 5500,
+    "correct": 2188,
+    "accuracy": 0.3978,
+    "wilson95": [
+     0.385,
+     0.4108
+    ],
+    "none_recall": 0.3941,
+    "n_none": 5260
+   },
+   "n_train": 382
+  },
+  "HWU64": {
+   "summary": {
+    "n": 1076,
+    "correct": 424,
+    "accuracy": 0.3941,
+    "wilson95": [
+     0.3653,
+     0.4236
+    ],
+    "none_recall": 0.3775,
+    "n_none": 914
+   },
+   "n_train": 382
+  },
+  "SNIPS": {
+   "summary": {
+    "n": 700,
+    "correct": 236,
+    "accuracy": 0.3371,
+    "wilson95": [
+     0.3031,
+     0.373
+    ],
+    "none_recall": 0.3371,
+    "n_none": 700
+   },
+   "n_train": 382
+  },
+  "ATIS": {
+   "summary": {
+    "n": 893,
+    "correct": 100,
+    "accuracy": 0.112,
+    "wilson95": [
+     0.0929,
+     0.1343
+    ],
+    "none_recall": 0.112,
+    "n_none": 893
+   },
+   "n_train": 382
+  },
+  "union": {
+   "n": 8169,
+   "correct": 2948,
+   "accuracy": 0.3609,
+   "wilson95": [
+    0.3505,
+    0.3714
+   ],
+   "none_recall": 0.3546,
+   "n_none": 7767
+  }
+ },
+ "reverse_per_intent": {
+  "CLINC150": {
+   "accept_reservations": {
+    "n": 30,
+    "accuracy": 0.3333,
+    "label": "__none__"
+   },
+   "account_blocked": {
+    "n": 30,
+    "accuracy": 0.2667,
+    "label": "__none__"
+   },
+   "alarm": {
+    "n": 30,
+    "accuracy": 0.1667,
+    "label": "reminder_create"
+   },
+   "application_status": {
+    "n": 30,
+    "accuracy": 0.1333,
+    "label": "__none__"
+   },
+   "apr": {
+    "n": 30,
+    "accuracy": 0.4,
+    "label": "__none__"
+   },
+   "are_you_a_bot": {
+    "n": 30,
+    "accuracy": 0.8,
+    "label": "__none__"
+   },
+   "balance": {
+    "n": 30,
+    "accuracy": 0.2333,
+    "label": "__none__"
+   },
+   "bill_balance": {
+    "n": 30,
+    "accuracy": 0.1333,
+    "label": "__none__"
+   },
+   "bill_due": {
+    "n": 30,
+    "accuracy": 0.5333,
+    "label": "__none__"
+   },
+   "book_flight": {
+    "n": 30,
+    "accuracy": 0.0667,
+    "label": "__none__"
+   },
+   "book_hotel": {
+    "n": 30,
+    "accuracy": 0.3667,
+    "label": "__none__"
+   },
+   "calculator": {
+    "n": 30,
+    "accuracy": 0.5333,
+    "label": "__none__"
+   },
+   "calendar": {
+    "n": 30,
+    "accuracy": 0.7333,
+    "label": "calendar_today"
+   },
+   "calendar_update": {
+    "n": 30,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "calories": {
+    "n": 30,
+    "accuracy": 0.4667,
+    "label": "__none__"
+   },
+   "cancel": {
+    "n": 30,
+    "accuracy": 0.2,
+    "label": "__none__"
+   },
+   "cancel_reservation": {
+    "n": 30,
+    "accuracy": 0.1667,
+    "label": "__none__"
+   },
+   "car_rental": {
+    "n": 30,
+    "accuracy": 0.4667,
+    "label": "__none__"
+   },
+   "card_declined": {
+    "n": 30,
+    "accuracy": 0.3,
+    "label": "__none__"
+   },
+   "carry_on": {
+    "n": 30,
+    "accuracy": 0.3333,
+    "label": "__none__"
+   },
+   "change_accent": {
+    "n": 30,
+    "accuracy": 0.0667,
+    "label": "__none__"
+   },
+   "change_ai_name": {
+    "n": 30,
+    "accuracy": 0.4,
+    "label": "__none__"
+   },
+   "change_language": {
+    "n": 30,
+    "accuracy": 0.8,
+    "label": "__none__"
+   },
+   "change_speed": {
+    "n": 30,
+    "accuracy": 0.6333,
+    "label": "__none__"
+   },
+   "change_user_name": {
+    "n": 30,
+    "accuracy": 0.4,
+    "label": "__none__"
+   },
+   "change_volume": {
+    "n": 30,
+    "accuracy": 0.2333,
+    "label": "__none__"
+   },
+   "confirm_reservation": {
+    "n": 30,
+    "accuracy": 0.3,
+    "label": "__none__"
+   },
+   "cook_time": {
+    "n": 30,
+    "accuracy": 0.5333,
+    "label": "__none__"
+   },
+   "credit_limit": {
+    "n": 30,
+    "accuracy": 0.1333,
+    "label": "__none__"
+   },
+   "credit_limit_change": {
+    "n": 30,
+    "accuracy": 0.2333,
+    "label": "__none__"
+   },
+   "credit_score": {
+    "n": 30,
+    "accuracy": 0.2667,
+    "label": "__none__"
+   },
+   "current_location": {
+    "n": 30,
+    "accuracy": 0.1667,
+    "label": "__none__"
+   },
+   "damaged_card": {
+    "n": 30,
+    "accuracy": 0.1667,
+    "label": "__none__"
+   },
+   "date": {
+    "n": 30,
+    "accuracy": 0.3667,
+    "label": "__none__"
+   },
+   "definition": {
+    "n": 30,
+    "accuracy": 0.4,
+    "label": "__none__"
+   },
+   "direct_deposit": {
+    "n": 30,
+    "accuracy": 0.4,
+    "label": "__none__"
+   },
+   "directions": {
+    "n": 30,
+    "accuracy": 0.1667,
+    "label": "__none__"
+   },
+   "distance": {
+    "n": 30,
+    "accuracy": 0.2333,
+    "label": "__none__"
+   },
+   "do_you_have_pets": {
+    "n": 30,
+    "accuracy": 0.9667,
+    "label": "__none__"
+   },
+   "exchange_rate": {
+    "n": 30,
+    "accuracy": 0.6333,
+    "label": "__none__"
+   },
+   "expiration_date": {
+    "n": 30,
+    "accuracy": 0.3333,
+    "label": "__none__"
+   },
+   "find_phone": {
+    "n": 30,
+    "accuracy": 0.3667,
+    "label": "__none__"
+   },
+   "flight_status": {
+    "n": 30,
+    "accuracy": 0.2667,
+    "label": "__none__"
+   },
+   "flip_coin": {
+    "n": 30,
+    "accuracy": 0.6667,
+    "label": "__none__"
+   },
+   "food_last": {
+    "n": 30,
+    "accuracy": 0.3333,
+    "label": "__none__"
+   },
+   "freeze_account": {
+    "n": 30,
+    "accuracy": 0.0333,
+    "label": "__none__"
+   },
+   "fun_fact": {
+    "n": 30,
+    "accuracy": 0.6333,
+    "label": "__none__"
+   },
+   "gas": {
+    "n": 30,
+    "accuracy": 0.1667,
+    "label": "__none__"
+   },
+   "gas_type": {
+    "n": 30,
+    "accuracy": 0.4667,
+    "label": "__none__"
+   },
+   "goodbye": {
+    "n": 30,
+    "accuracy": 0.7333,
+    "label": "__none__"
+   },
+   "greeting": {
+    "n": 30,
+    "accuracy": 0.6,
+    "label": "__none__"
+   },
+   "how_busy": {
+    "n": 30,
+    "accuracy": 0.2,
+    "label": "__none__"
+   },
+   "how_old_are_you": {
+    "n": 30,
+    "accuracy": 0.8667,
+    "label": "__none__"
+   },
+   "improve_credit_score": {
+    "n": 30,
+    "accuracy": 0.1667,
+    "label": "__none__"
+   },
+   "income": {
+    "n": 30,
+    "accuracy": 0.2333,
+    "label": "__none__"
+   },
+   "ingredient_substitution": {
+    "n": 30,
+    "accuracy": 0.2667,
+    "label": "__none__"
+   },
+   "ingredients_list": {
+    "n": 30,
+    "accuracy": 0.4,
+    "label": "__none__"
+   },
+   "insurance": {
+    "n": 30,
+    "accuracy": 0.3667,
+    "label": "__none__"
+   },
+   "insurance_change": {
+    "n": 30,
+    "accuracy": 0.3,
+    "label": "__none__"
+   },
+   "interest_rate": {
+    "n": 30,
+    "accuracy": 0.1,
+    "label": "__none__"
+   },
+   "international_fees": {
+    "n": 30,
+    "accuracy": 0.2,
+    "label": "__none__"
+   },
+   "international_visa": {
+    "n": 30,
+    "accuracy": 0.1333,
+    "label": "__none__"
+   },
+   "jump_start": {
+    "n": 30,
+    "accuracy": 0.3667,
+    "label": "__none__"
+   },
+   "last_maintenance": {
+    "n": 30,
+    "accuracy": 0.1333,
+    "label": "__none__"
+   },
+   "lost_luggage": {
+    "n": 30,
+    "accuracy": 0.2667,
+    "label": "__none__"
+   },
+   "make_call": {
+    "n": 30,
+    "accuracy": 0.2333,
+    "label": "__none__"
+   },
+   "maybe": {
+    "n": 30,
+    "accuracy": 0.5667,
+    "label": "__none__"
+   },
+   "meal_suggestion": {
+    "n": 30,
+    "accuracy": 0.6,
+    "label": "__none__"
+   },
+   "meaning_of_life": {
+    "n": 30,
+    "accuracy": 0.6667,
+    "label": "__none__"
+   },
+   "measurement_conversion": {
+    "n": 30,
+    "accuracy": 0.6333,
+    "label": "__none__"
+   },
+   "meeting_schedule": {
+    "n": 30,
+    "accuracy": 0.3333,
+    "label": "calendar_today"
+   },
+   "min_payment": {
+    "n": 30,
+    "accuracy": 0.1,
+    "label": "__none__"
+   },
+   "mpg": {
+    "n": 30,
+    "accuracy": 0.3333,
+    "label": "__none__"
+   },
+   "new_card": {
+    "n": 30,
+    "accuracy": 0.5,
+    "label": "__none__"
+   },
+   "next_holiday": {
+    "n": 30,
+    "accuracy": 0.8,
+    "label": "__none__"
+   },
+   "next_song": {
+    "n": 30,
+    "accuracy": 0.5,
+    "label": "__none__"
+   },
+   "no": {
+    "n": 30,
+    "accuracy": 0.1333,
+    "label": "__none__"
+   },
+   "nutrition_info": {
+    "n": 30,
+    "accuracy": 0.5333,
+    "label": "__none__"
+   },
+   "oil_change_how": {
+    "n": 30,
+    "accuracy": 0.5667,
+    "label": "__none__"
+   },
+   "oil_change_when": {
+    "n": 30,
+    "accuracy": 0.4667,
+    "label": "__none__"
+   },
+   "oos": {
+    "n": 1000,
+    "accuracy": 0.432,
+    "label": "__none__"
+   },
+   "order": {
+    "n": 30,
+    "accuracy": 0.2,
+    "label": "__none__"
+   },
+   "order_checks": {
+    "n": 30,
+    "accuracy": 0.3667,
+    "label": "__none__"
+   },
+   "order_status": {
+    "n": 30,
+    "accuracy": 0.2667,
+    "label": "__none__"
+   },
+   "pay_bill": {
+    "n": 30,
+    "accuracy": 0.1667,
+    "label": "__none__"
+   },
+   "payday": {
+    "n": 30,
+    "accuracy": 0.5,
+    "label": "__none__"
+   },
+   "pin_change": {
+    "n": 30,
+    "accuracy": 0.1333,
+    "label": "__none__"
+   },
+   "play_music": {
+    "n": 30,
+    "accuracy": 0.2333,
+    "label": "__none__"
+   },
+   "plug_type": {
+    "n": 30,
+    "accuracy": 0.4667,
+    "label": "__none__"
+   },
+   "pto_balance": {
+    "n": 30,
+    "accuracy": 0.4,
+    "label": "__none__"
+   },
+   "pto_request": {
+    "n": 30,
+    "accuracy": 0.2667,
+    "label": "__none__"
+   },
+   "pto_request_status": {
+    "n": 30,
+    "accuracy": 0.1667,
+    "label": "__none__"
+   },
+   "pto_used": {
+    "n": 30,
+    "accuracy": 0.6,
+    "label": "__none__"
+   },
+   "recipe": {
+    "n": 30,
+    "accuracy": 0.8,
+    "label": "__none__"
+   },
+   "redeem_rewards": {
+    "n": 30,
+    "accuracy": 0.3,
+    "label": "__none__"
+   },
+   "reminder": {
+    "n": 30,
+    "accuracy": 0.0333,
+    "label": "__none__"
+   },
+   "reminder_update": {
+    "n": 30,
+    "accuracy": 0.3333,
+    "label": "reminder_create"
+   },
+   "repeat": {
+    "n": 30,
+    "accuracy": 0.6667,
+    "label": "__none__"
+   },
+   "replacement_card_duration": {
+    "n": 30,
+    "accuracy": 0.2,
+    "label": "__none__"
+   },
+   "report_fraud": {
+    "n": 30,
+    "accuracy": 0.0333,
+    "label": "__none__"
+   },
+   "report_lost_card": {
+    "n": 30,
+    "accuracy": 0.5,
+    "label": "__none__"
+   },
+   "reset_settings": {
+    "n": 30,
+    "accuracy": 0.1,
+    "label": "__none__"
+   },
+   "restaurant_reservation": {
+    "n": 30,
+    "accuracy": 0.3667,
+    "label": "__none__"
+   },
+   "restaurant_reviews": {
+    "n": 30,
+    "accuracy": 0.5333,
+    "label": "__none__"
+   },
+   "restaurant_suggestion": {
+    "n": 30,
+    "accuracy": 0.6667,
+    "label": "__none__"
+   },
+   "rewards_balance": {
+    "n": 30,
+    "accuracy": 0.1667,
+    "label": "__none__"
+   },
+   "roll_dice": {
+    "n": 30,
+    "accuracy": 0.6,
+    "label": "__none__"
+   },
+   "rollover_401k": {
+    "n": 30,
+    "accuracy": 0.4667,
+    "label": "__none__"
+   },
+   "routing": {
+    "n": 30,
+    "accuracy": 0.4,
+    "label": "__none__"
+   },
+   "schedule_maintenance": {
+    "n": 30,
+    "accuracy": 0.1667,
+    "label": "__none__"
+   },
+   "schedule_meeting": {
+    "n": 30,
+    "accuracy": 0.4333,
+    "label": "__none__"
+   },
+   "share_location": {
+    "n": 30,
+    "accuracy": 0.3,
+    "label": "__none__"
+   },
+   "shopping_list": {
+    "n": 30,
+    "accuracy": 0.6,
+    "label": "shoppinglist_view"
+   },
+   "shopping_list_update": {
+    "n": 30,
+    "accuracy": 0.6333,
+    "label": "shoppinglist_add"
+   },
+   "smart_home": {
+    "n": 30,
+    "accuracy": 0.4,
+    "label": "light_set"
+   },
+   "spelling": {
+    "n": 30,
+    "accuracy": 0.7667,
+    "label": "__none__"
+   },
+   "spending_history": {
+    "n": 30,
+    "accuracy": 0.2667,
+    "label": "__none__"
+   },
+   "sync_device": {
+    "n": 30,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "taxes": {
+    "n": 30,
+    "accuracy": 0.2667,
+    "label": "__none__"
+   },
+   "tell_joke": {
+    "n": 30,
+    "accuracy": 0.6,
+    "label": "__none__"
+   },
+   "text": {
+    "n": 30,
+    "accuracy": 0.7333,
+    "label": "__none__"
+   },
+   "thank_you": {
+    "n": 30,
+    "accuracy": 0.8,
+    "label": "__none__"
+   },
+   "time": {
+    "n": 30,
+    "accuracy": 0.4,
+    "label": "__none__"
+   },
+   "timer": {
+    "n": 30,
+    "accuracy": 0.6333,
+    "label": "timer_create"
+   },
+   "timezone": {
+    "n": 30,
+    "accuracy": 0.4333,
+    "label": "__none__"
+   },
+   "tire_change": {
+    "n": 30,
+    "accuracy": 0.6333,
+    "label": "__none__"
+   },
+   "tire_pressure": {
+    "n": 30,
+    "accuracy": 0.2,
+    "label": "__none__"
+   },
+   "todo_list": {
+    "n": 30,
+    "accuracy": 0.1333,
+    "label": "__none__"
+   },
+   "todo_list_update": {
+    "n": 30,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "traffic": {
+    "n": 30,
+    "accuracy": 0.2,
+    "label": "__none__"
+   },
+   "transactions": {
+    "n": 30,
+    "accuracy": 0.1333,
+    "label": "__none__"
+   },
+   "transfer": {
+    "n": 30,
+    "accuracy": 0.2,
+    "label": "__none__"
+   },
+   "translate": {
+    "n": 30,
+    "accuracy": 0.9,
+    "label": "__none__"
+   },
+   "travel_alert": {
+    "n": 30,
+    "accuracy": 0.2667,
+    "label": "__none__"
+   },
+   "travel_notification": {
+    "n": 30,
+    "accuracy": 0.1,
+    "label": "__none__"
+   },
+   "travel_suggestion": {
+    "n": 30,
+    "accuracy": 0.6,
+    "label": "__none__"
+   },
+   "uber": {
+    "n": 30,
+    "accuracy": 0.1,
+    "label": "__none__"
+   },
+   "update_playlist": {
+    "n": 30,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "user_name": {
+    "n": 30,
+    "accuracy": 0.7667,
+    "label": "__none__"
+   },
+   "vaccines": {
+    "n": 30,
+    "accuracy": 0.2,
+    "label": "__none__"
+   },
+   "w2": {
+    "n": 30,
+    "accuracy": 0.1667,
+    "label": "__none__"
+   },
+   "weather": {
+    "n": 30,
+    "accuracy": 0.8667,
+    "label": "__none__"
+   },
+   "what_are_your_hobbies": {
+    "n": 30,
+    "accuracy": 0.6667,
+    "label": "__none__"
+   },
+   "what_can_i_ask_you": {
+    "n": 30,
+    "accuracy": 1.0,
+    "label": "__none__"
+   },
+   "what_is_your_name": {
+    "n": 30,
+    "accuracy": 1.0,
+    "label": "__none__"
+   },
+   "what_song": {
+    "n": 30,
+    "accuracy": 0.4,
+    "label": "__none__"
+   },
+   "where_are_you_from": {
+    "n": 30,
+    "accuracy": 0.7333,
+    "label": "__none__"
+   },
+   "whisper_mode": {
+    "n": 30,
+    "accuracy": 0.0667,
+    "label": "__none__"
+   },
+   "who_do_you_work_for": {
+    "n": 30,
+    "accuracy": 0.9,
+    "label": "__none__"
+   },
+   "who_made_you": {
+    "n": 30,
+    "accuracy": 0.9,
+    "label": "__none__"
+   },
+   "yes": {
+    "n": 30,
+    "accuracy": 0.3333,
+    "label": "__none__"
+   }
+  },
+  "HWU64": {
+   "alarm_query": {
+    "n": 19,
+    "accuracy": 0.4737,
+    "label": "__none__"
+   },
+   "alarm_remove": {
+    "n": 11,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "alarm_set": {
+    "n": 19,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "audio_volume_down": {
+    "n": 8,
+    "accuracy": 0.5,
+    "label": "__none__"
+   },
+   "audio_volume_mute": {
+    "n": 15,
+    "accuracy": 0.1333,
+    "label": "__none__"
+   },
+   "audio_volume_up": {
+    "n": 13,
+    "accuracy": 0.2308,
+    "label": "__none__"
+   },
+   "calendar_query": {
+    "n": 19,
+    "accuracy": 0.2632,
+    "label": "calendar_today"
+   },
+   "calendar_remove": {
+    "n": 19,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "calendar_set": {
+    "n": 19,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "cooking_recipe": {
+    "n": 19,
+    "accuracy": 0.4737,
+    "label": "__none__"
+   },
+   "datetime_convert": {
+    "n": 8,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "datetime_query": {
+    "n": 19,
+    "accuracy": 0.4211,
+    "label": "__none__"
+   },
+   "email_addcontact": {
+    "n": 8,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "email_query": {
+    "n": 19,
+    "accuracy": 0.5789,
+    "label": "email_unread"
+   },
+   "email_querycontact": {
+    "n": 19,
+    "accuracy": 0.4737,
+    "label": "__none__"
+   },
+   "email_sendemail": {
+    "n": 19,
+    "accuracy": 0.2105,
+    "label": "__none__"
+   },
+   "general_affirm": {
+    "n": 19,
+    "accuracy": 0.5789,
+    "label": "__none__"
+   },
+   "general_commandstop": {
+    "n": 19,
+    "accuracy": 0.4211,
+    "label": "__none__"
+   },
+   "general_confirm": {
+    "n": 19,
+    "accuracy": 0.6842,
+    "label": "__none__"
+   },
+   "general_dontcare": {
+    "n": 19,
+    "accuracy": 0.4737,
+    "label": "__none__"
+   },
+   "general_explain": {
+    "n": 19,
+    "accuracy": 0.7895,
+    "label": "__none__"
+   },
+   "general_joke": {
+    "n": 12,
+    "accuracy": 0.5833,
+    "label": "__none__"
+   },
+   "general_negate": {
+    "n": 19,
+    "accuracy": 0.5789,
+    "label": "__none__"
+   },
+   "general_praise": {
+    "n": 19,
+    "accuracy": 0.7895,
+    "label": "__none__"
+   },
+   "general_quirky": {
+    "n": 19,
+    "accuracy": 0.3684,
+    "label": "__none__"
+   },
+   "general_repeat": {
+    "n": 19,
+    "accuracy": 0.4211,
+    "label": "__none__"
+   },
+   "iot_cleaning": {
+    "n": 16,
+    "accuracy": 0.375,
+    "label": "__none__"
+   },
+   "iot_coffee": {
+    "n": 19,
+    "accuracy": 0.1579,
+    "label": "__none__"
+   },
+   "iot_hue_lightchange": {
+    "n": 19,
+    "accuracy": 0.3684,
+    "label": "light_set"
+   },
+   "iot_hue_lightdim": {
+    "n": 12,
+    "accuracy": 0.5833,
+    "label": "light_set"
+   },
+   "iot_hue_lightoff": {
+    "n": 19,
+    "accuracy": 0.8421,
+    "label": "light_set"
+   },
+   "iot_hue_lighton": {
+    "n": 3,
+    "accuracy": 0.6667,
+    "label": "light_set"
+   },
+   "iot_hue_lightup": {
+    "n": 14,
+    "accuracy": 0.3571,
+    "label": "light_set"
+   },
+   "iot_wemo_off": {
+    "n": 9,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "iot_wemo_on": {
+    "n": 7,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "lists_createoradd": {
+    "n": 19,
+    "accuracy": 0.4737,
+    "label": "shoppinglist_add"
+   },
+   "lists_query": {
+    "n": 19,
+    "accuracy": 0.2105,
+    "label": "shoppinglist_view"
+   },
+   "lists_remove": {
+    "n": 19,
+    "accuracy": 0.6842,
+    "label": "shoppinglist_remove"
+   },
+   "music_likeness": {
+    "n": 18,
+    "accuracy": 0.0556,
+    "label": "__none__"
+   },
+   "music_query": {
+    "n": 19,
+    "accuracy": 0.5263,
+    "label": "__none__"
+   },
+   "music_settings": {
+    "n": 7,
+    "accuracy": 0.4286,
+    "label": "__none__"
+   },
+   "news_query": {
+    "n": 19,
+    "accuracy": 0.1579,
+    "label": "__none__"
+   },
+   "play_audiobook": {
+    "n": 19,
+    "accuracy": 0.5263,
+    "label": "__none__"
+   },
+   "play_game": {
+    "n": 19,
+    "accuracy": 0.4737,
+    "label": "__none__"
+   },
+   "play_music": {
+    "n": 19,
+    "accuracy": 0.5789,
+    "label": "__none__"
+   },
+   "play_podcasts": {
+    "n": 19,
+    "accuracy": 0.3684,
+    "label": "__none__"
+   },
+   "play_radio": {
+    "n": 19,
+    "accuracy": 0.4211,
+    "label": "__none__"
+   },
+   "qa_currency": {
+    "n": 19,
+    "accuracy": 0.2632,
+    "label": "__none__"
+   },
+   "qa_definition": {
+    "n": 19,
+    "accuracy": 0.6842,
+    "label": "__none__"
+   },
+   "qa_factoid": {
+    "n": 19,
+    "accuracy": 0.5263,
+    "label": "__none__"
+   },
+   "qa_maths": {
+    "n": 14,
+    "accuracy": 0.5714,
+    "label": "__none__"
+   },
+   "qa_stock": {
+    "n": 19,
+    "accuracy": 0.6316,
+    "label": "__none__"
+   },
+   "recommendation_events": {
+    "n": 19,
+    "accuracy": 0.2105,
+    "label": "__none__"
+   },
+   "recommendation_locations": {
+    "n": 19,
+    "accuracy": 0.3158,
+    "label": "__none__"
+   },
+   "recommendation_movies": {
+    "n": 10,
+    "accuracy": 0.9,
+    "label": "__none__"
+   },
+   "social_post": {
+    "n": 19,
+    "accuracy": 0.3158,
+    "label": "__none__"
+   },
+   "social_query": {
+    "n": 18,
+    "accuracy": 0.2222,
+    "label": "__none__"
+   },
+   "takeaway_order": {
+    "n": 19,
+    "accuracy": 0.2632,
+    "label": "__none__"
+   },
+   "takeaway_query": {
+    "n": 19,
+    "accuracy": 0.4211,
+    "label": "__none__"
+   },
+   "transport_query": {
+    "n": 19,
+    "accuracy": 0.2632,
+    "label": "__none__"
+   },
+   "transport_taxi": {
+    "n": 18,
+    "accuracy": 0.4444,
+    "label": "__none__"
+   },
+   "transport_ticket": {
+    "n": 19,
+    "accuracy": 0.3684,
+    "label": "__none__"
+   },
+   "transport_traffic": {
+    "n": 19,
+    "accuracy": 0.2105,
+    "label": "__none__"
+   },
+   "weather_query": {
+    "n": 19,
+    "accuracy": 0.4211,
+    "label": "__none__"
+   }
+  },
+  "SNIPS": {
+   "AddToPlaylist": {
+    "n": 100,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "BookRestaurant": {
+    "n": 100,
+    "accuracy": 0.81,
+    "label": "__none__"
+   },
+   "GetWeather": {
+    "n": 100,
+    "accuracy": 0.59,
+    "label": "__none__"
+   },
+   "PlayMusic": {
+    "n": 100,
+    "accuracy": 0.2,
+    "label": "__none__"
+   },
+   "RateBook": {
+    "n": 100,
+    "accuracy": 0.21,
+    "label": "__none__"
+   },
+   "SearchCreativeWork": {
+    "n": 100,
+    "accuracy": 0.32,
+    "label": "__none__"
+   },
+   "SearchScreeningEvent": {
+    "n": 100,
+    "accuracy": 0.23,
+    "label": "__none__"
+   }
+  },
+  "ATIS": {
+   "abbreviation": {
+    "n": 33,
+    "accuracy": 0.3636,
+    "label": "__none__"
+   },
+   "aircraft": {
+    "n": 9,
+    "accuracy": 0.5556,
+    "label": "__none__"
+   },
+   "airfare": {
+    "n": 48,
+    "accuracy": 0.0208,
+    "label": "__none__"
+   },
+   "airfare+flight": {
+    "n": 1,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "airline": {
+    "n": 38,
+    "accuracy": 0.5,
+    "label": "__none__"
+   },
+   "airport": {
+    "n": 18,
+    "accuracy": 0.1667,
+    "label": "__none__"
+   },
+   "capacity": {
+    "n": 21,
+    "accuracy": 0.1429,
+    "label": "__none__"
+   },
+   "city": {
+    "n": 6,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "day_name": {
+    "n": 2,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "distance": {
+    "n": 10,
+    "accuracy": 0.4,
+    "label": "__none__"
+   },
+   "flight": {
+    "n": 632,
+    "accuracy": 0.0601,
+    "label": "__none__"
+   },
+   "flight+airfare": {
+    "n": 12,
+    "accuracy": 0.0833,
+    "label": "__none__"
+   },
+   "flight+airline": {
+    "n": 1,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "flight_no": {
+    "n": 8,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "flight_no+airline": {
+    "n": 1,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "flight_time": {
+    "n": 1,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "ground_fare": {
+    "n": 7,
+    "accuracy": 0.1429,
+    "label": "__none__"
+   },
+   "ground_service": {
+    "n": 36,
+    "accuracy": 0.2778,
+    "label": "__none__"
+   },
+   "meal": {
+    "n": 6,
+    "accuracy": 0.0,
+    "label": "__none__"
+   },
+   "quantity": {
+    "n": 3,
+    "accuracy": 1.0,
+    "label": "__none__"
+   }
+  }
+ }
+}

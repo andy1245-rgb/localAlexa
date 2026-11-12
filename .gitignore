@@ -19,6 +19,8 @@ results/*
 !results/historical/*.json
 !results/ladder/
 !results/ladder/*.json
+!results/public/
+!results/public/*.json
 
 # Data that is downloaded rather than shipped (CLINC150 / Banking77 / HWU64)
 data/raw/
