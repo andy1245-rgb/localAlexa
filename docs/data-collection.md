@@ -61,9 +61,26 @@ priority  signal                polarity  strength
 | `route_ms` | the router's own decision time, kept out of the logging budget |
 
 `var/collect/effects.jsonl` — one line per effect check, written when the check
-happens rather than in the hot path. `var/collect/{rejects,corrections,labels}.jsonl`
-are *derived*: rebuilt by replay, discarded and rewritten whenever a heuristic
-changes. The raw two files are the record; nothing else is authoritative.
+happens rather than in the hot path.
+
+Then the derived files, of which there are two kinds:
+
+| file | written by | shape |
+|---|---|---|
+| `corrections.jsonl` | live, appended per correction found | one row per corrected request, with rule and evidence |
+| `labels.jsonl` | live, appended per signal | **events**: every signal that fired, including ones a later one outranks |
+| `rejects.jsonl` | live, appended per below-gate row | the pile |
+| `labels.reduced.jsonl` | `collect derive`, offline | one label per request, strongest wins |
+| `meta.json` | live | which rules and signals produced the files beside it |
+
+The split matters twice. Keeping the events means "auto-accepted by margin, then
+corrected by the operator" survives to be audited — a reduction that dropped the
+superseded row would destroy the only evidence of whether the margin rule is
+safe. And keeping the *reduction* offline is what makes the live path flat: see
+§8.
+
+The raw two files are the record; nothing else is authoritative, and every
+derived file can be rebuilt from them.
 
 There is no fsync by default. A completed `write(2)` survives the process dying,
 which is the crash the brief cares about (the row must not be lost if the process
@@ -155,7 +172,40 @@ confused pairs, auto-accepted labels) plus two that keep the yield honest:
 corrections, and rows that produced nothing at all. `localalexa collect summary
 --json` gives the same numbers machine-readable.
 
-## 8. What it costs the request path
+## 8. The request path
+
+`localalexa.service.Assistant` is the composition root — the thing firmware or an
+HTTP layer calls. `localalexa ask "<utterance>"` runs one request through it from
+the shell, which is how it gets exercised today:
+
+```
+$ localalexa ask "set a timer for five minutes"
+timer_create (tier 0) · confidence 1.000 · no router call
+  candidates: timer_create 1.00
+recorded 88bcfa72e4f841cc in var/collect/requests.jsonl
+settled 1 row(s) in 0.37 ms: 0 correction(s), 0 label(s), wrote nothing
+
+$ localalexa ask "no i meant ten minutes"
+reminder_create (tier 1) · confidence 0.78 · 1.4 ms
+  candidates: reminder_create 0.78, timer_create 0.03, __none__ 0.03
+recorded c464b7fe08fc459b in var/collect/requests.jsonl
+settled 1 row(s) in 1.01 ms: 1 correction(s), 2 label(s), wrote corrections.jsonl, labels.jsonl
+```
+
+Two separate processes, and the second one found the first row by reading the
+log. That is the property the correction detector needs and the reason it runs
+off the logged rows rather than off a request list it happens to have in memory.
+
+The order inside `handle` is the contract: tier 0 regex (the router is not even
+called when exactly one pattern fires, same as `run_cascade` does with its
+residue), else the router, else the log append, else settle, else the response.
+A crash between the decision and the answer loses the answer but never the row.
+
+`settle=False` moves the derivation to an explicit call for a caller that would
+rather batch it; the row guarantee is unaffected. `record_requests=False` turns
+logging off entirely (demos and tests).
+
+## 9. What it costs the request path
 
 Measured on an idle box, 4,000 appends / 1,000 tap calls
 (`localalexa collect bench`):
@@ -169,6 +219,23 @@ The write is under a microsecond. The other 14.6 µs is redaction (2.9 µs), rec
 construction (6.0), `json.dumps` (7.7) and the local ISO timestamp (1.2), and it
 is 3.9% of a 0.39 ms linear routing decision and 0.2% of a 7.8 ms encoder one.
 
+**Settling is flat, and it took a measurement to make it so.** The first
+implementation re-derived the tail on every settle and rewrote the derived files
+when they changed. Measured at 1.6 ms with 50 rows in the tail and **15.6 ms with
+500** — an order of magnitude more than the routing decision it sits next to, and
+growing with traffic:
+
+| tail | settle, rebuilding (rejected) | settle, appending (shipped) |
+|---:|---:|---:|
+| 50 rows | 1.60 ms | 0.21 ms |
+| 200 rows | — | 0.20 ms |
+| 500 rows | 15.60 ms | 0.20 ms |
+
+The shipped version appends one line per signal and reduces offline. The remaining
+cost is the window scan for the previous acted-on row, which is bounded by the
+correction window and not by the log. `tests/test_service.py
+::test_settle_stays_flat_as_the_log_grows` fails if it regresses past 5 ms.
+
 No buffering, because buffering is what would break the crash guarantee, and
 nothing here needs to be deferred at that size. If it ever does, the cheap move is
 a background thread holding a queue and doing the format+write — the record
@@ -181,7 +248,7 @@ A logging failure — full disk, revoked permissions — is counted on the log
 (`.errors`), warned about once per distinct message on stderr, and swallowed. The
 operator still gets their answer.
 
-## 9. Storage and privacy
+## 10. Storage and privacy
 
 Everything is local files under `var/collect/` (override with
 `$LOCALALEXA_COLLECT`), mode `0600`, and `var/` is gitignored. Nothing in the
@@ -215,7 +282,7 @@ without a model is not more regexes; it is that the log is local, private, and t
 operator's to delete. Nothing here expires rows automatically: deletion is a
 decision, not a background job, and it stays the operator's.
 
-## 10. Failure modes of the design itself
+## 11. Failure modes of the design itself
 
 - **Yield is low and bursty.** Quiet traffic yields nothing, which is the intended
   outcome and the reason the summary counts silent rows.
@@ -232,9 +299,10 @@ decision, not a background job, and it stays the operator's.
 - **The detector will be revised.** That is why it writes to a derived file with
   its own rule version, and why the raw log never takes an annotation.
 
-## 11. Reproduce
+## 12. Reproduce
 
 ```bash
+.venv/bin/python -m localalexa ask "turn off the hall light"   # one request, logged and settled
 .venv/bin/python -m localalexa collect bench          # the request-path cost table
 .venv/bin/python -m localalexa collect derive         # rebuild rejects/corrections/labels
 .venv/bin/python -m localalexa collect summary        # the ten-second read
@@ -243,15 +311,21 @@ decision, not a background job, and it stays the operator's.
 .venv/bin/python -m pytest tests/test_collection.py   # 37 tests, one per signal
 ```
 
-Wiring it into a live path is two lines:
+Wiring it into a live path is one object:
 
 ```python
-tap = CollectionTap(RequestLog(), registry=registry)
-router_predict = tap.wrap(SemanticRouter(registry).predict)   # or tap.wrap_batch(...)
+from localalexa.service import Assistant, default_predictor
+
+predictor, why = default_predictor(registry)      # encoder if installed, else the linear stand-in
+assistant = Assistant(registry, predictor=predictor)
+response = assistant.handle("turn off the hall light")   # logged, settled, answered
 ```
 
-and, when the operator's tooling can check an action, one more:
+and, when the operator's tooling can check an action, one more call:
 
 ```python
-log.append_effect(EffectRecord(record.id, time.time(), True, "timer_registry"))
+assistant.append_effect(response.record_id, verified=True, check="timer_registry")
 ```
+
+A caller that would rather own the turn boundary keeps `settle=False` on
+construction and calls `assistant.settle()` when the turn ends.

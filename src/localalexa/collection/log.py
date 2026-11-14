@@ -104,6 +104,44 @@ class RequestLog:
     def effects(self) -> list[dict]:
         return list(self._iter(self.effect_path))
 
+    def read_from(self, offset: int = 0) -> tuple[list[dict], int]:
+        """Rows written since ``offset``, and the offset to pass next time.
+
+        The collector follows the log with this instead of holding the only copy
+        of what happened: a second process appending to the same file is picked
+        up, and a restart resumes from nothing but the file. Only complete lines
+        advance the offset, so a row half-written by a crash is read once the
+        write finishes rather than being parsed as garbage.
+        """
+        return self._read_from(self.path, offset)
+
+    def effects_from(self, offset: int = 0) -> tuple[list[dict], int]:
+        return self._read_from(self.effect_path, offset)
+
+    @staticmethod
+    def _read_from(path: Path, offset: int) -> tuple[list[dict], int]:
+        if not path.is_file():
+            return [], offset
+        size = path.stat().st_size
+        if offset > size:  # the file was rotated or truncated under us
+            offset = 0
+        with path.open("rb") as handle:
+            handle.seek(offset)
+            chunk = handle.read()
+        end = chunk.rfind(b"\n")
+        if end == -1:
+            return [], offset
+        body = chunk[: end + 1]
+        rows = []
+        for line in body.splitlines():
+            if not line.strip():
+                continue
+            try:
+                rows.append(json.loads(line))
+            except json.JSONDecodeError:
+                continue
+        return rows, offset + len(body)
+
     @staticmethod
     def _iter(path: Path) -> Iterator[dict]:
         """Yield parsed rows, skipping any line a crash left half-written."""

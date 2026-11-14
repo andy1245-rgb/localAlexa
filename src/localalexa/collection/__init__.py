@@ -17,6 +17,7 @@ Layout:
 
 ``RequestLog``       one append per utterance, written before the response
 ``CollectionTap``    wraps a router; works out the tier, records, returns
+``Collector``        the tap plus a follower of the log: the live signal emitter
 ``derive``           replays the log into corrections, the reject pile and labels
 ``summarise``        the ten-second weekly read
 ``bench``            what all of it costs the request path, in microseconds
@@ -24,8 +25,9 @@ Layout:
 
 from .autoaccept import Acceptance, AutoAcceptRule, normalise_label
 from .bench import measure_append, measure_tap
+from .collector import Collector, SettleReport
 from .corrections import Correction, CorrectionRule, detect
-from .derive import Derived, derive
+from .derive import Derived, derive, reduce_labels
 from .log import RequestLog, collect_root, new_session, write_jsonl
 from .opinion import SecondOpinion
 from .records import Candidate, EffectRecord, LabelRow, RequestRecord
@@ -39,6 +41,7 @@ __all__ = [
     "AutoAcceptRule",
     "Candidate",
     "CollectionTap",
+    "Collector",
     "Correction",
     "CorrectionRule",
     "Derived",
@@ -47,6 +50,7 @@ __all__ = [
     "RequestLog",
     "RequestRecord",
     "SecondOpinion",
+    "SettleReport",
     "Summary",
     "collect_root",
     "confused_pairs",
@@ -57,6 +61,7 @@ __all__ = [
     "new_session",
     "normalise_label",
     "redact",
+    "reduce_labels",
     "render",
     "summarise",
     "tier_for",

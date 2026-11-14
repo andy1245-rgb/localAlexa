@@ -39,10 +39,12 @@ from .evaluate import (
     row_wise,
 )
 from .router import Choice, SemanticRouter, decide, entropy_confidence, softmax
+from .service import Assistant, Response, default_predictor, linear_predictor
 
 __version__ = "0.1.0"
 
 __all__ = [
+    "Assistant",
     "CHITCHAT_FAMILY",
     "EXPECTED_ROWS",
     "MODEL_SPECS",
@@ -51,6 +53,7 @@ __all__ = [
     "Choice",
     "CompiledPatterns",
     "Registry",
+    "Response",
     "Row",
     "SemanticRouter",
     "SplitResult",
@@ -60,9 +63,11 @@ __all__ = [
     "cascade_metrics",
     "cluster_bootstrap_ci",
     "decide",
+    "default_predictor",
     "entropy_confidence",
     "family_held_out",
     "load_registry",
+    "linear_predictor",
     "load_routing_set",
     "measure",
     "phrasing_families",

@@ -8,6 +8,7 @@
     python -m localalexa collect summary         # the ten-second weekly read
     python -m localalexa collect derive          # replay the log into labels/rejects
     python -m localalexa collect bench           # what logging costs the request path
+    python -m localalexa ask "turn off the hall light"   # one request through the real path
 
 Every subcommand except ``collect`` reads the shipped data under ``data/`` and
 writes nothing; ``collect`` reads and writes the local log under
@@ -109,6 +110,38 @@ def _cmd_ladder(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_ask(args: argparse.Namespace) -> int:
+    from .service import Assistant, default_predictor
+
+    registry = load_registry()
+    predictor, source = default_predictor(registry)
+    assistant = Assistant(
+        registry,
+        predictor=predictor,
+        log=args.root,
+        sim_threshold=args.sim,
+        conf_threshold=args.conf,
+        settle=not args.no_settle,
+        record_requests=not args.no_log,
+    )
+    try:
+        response = assistant.handle(args.text)
+        print(f"predictor: {source}")
+        print(response.describe())
+        if response.record_id:
+            print(f"recorded {response.record_id} in {assistant.collector.log.path}")
+        if response.settled is not None:
+            wrote = ", ".join(response.settled.wrote) or "nothing"
+            print(
+                f"settled {response.settled.new_rows} row(s) in {response.settled.derive_ms} ms: "
+                f"{response.settled.corrections} correction(s), "
+                f"{response.settled.labels} label(s), wrote {wrote}"
+            )
+    finally:
+        assistant.close()
+    return 0
+
+
 def _cmd_collect(args: argparse.Namespace) -> int:
     from .collection import derive as replay
     from .collection import summarise, render, measure_append, measure_tap
@@ -131,25 +164,57 @@ def _cmd_collect(args: argparse.Namespace) -> int:
         log.close()
 
     if args.action == "derive":
+        from .collection.opinion import SecondOpinion
+
         derived = replay(
             records,
             effects,
             correction_rule=CorrectionRule(window_seconds=args.window),
             auto_rule=AutoAcceptRule(margin_threshold=args.margin),
+            opinion=None if args.no_opinion else SecondOpinion(load_registry()),
         )
         root = collect_root(args.root)
         written = [
             write_jsonl(root / "rejects.jsonl", list(derived.reject_pile)),
             write_jsonl(root / "corrections.jsonl", [c.as_dict() for c in derived.corrections]),
-            write_jsonl(root / "labels.jsonl", [row.as_dict() for row in derived.labels]),
+            write_jsonl(root / "labels.jsonl", [row.as_dict() for row in derived.events]),
+            write_jsonl(root / "labels.reduced.jsonl", [row.as_dict() for row in derived.labels]),
         ]
         print(json.dumps({"stats": dict(derived.stats), "wrote": [str(p) for p in written]}, indent=2))
         return 0
 
-    labels_path = collect_root(args.root) / "labels.jsonl"
-    labels = []
+    root = collect_root(args.root)
+    reduced = root / "labels.reduced.jsonl"
+    journal = root / "labels.jsonl"
+    labels_path = reduced if reduced.is_file() else journal
+    labels: list[dict] = []
     if labels_path.is_file():
-        labels = [json.loads(line) for line in labels_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+        labels = [
+            json.loads(line)
+            for line in labels_path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        if labels_path == journal:
+            from .collection.derive import reduce_labels
+            from .collection.records import LabelRow
+
+            labels = [
+                row.as_dict()
+                for row in reduce_labels(
+                    LabelRow(
+                        request_id=row["request_id"],
+                        ts=float(row["ts"]),
+                        text=row["text"],
+                        label=row["label"],
+                        polarity=int(row["polarity"]),
+                        strength=row["strength"],
+                        source=row["source"],
+                        detail=row.get("detail", {}),
+                    )
+                    for row in labels
+                )
+            ]
+
     summary = summarise(records, labels, days=args.days)
     print(json.dumps(summary.as_dict(), indent=2) if args.json else render(summary))
     return 0
@@ -188,6 +253,15 @@ def main(argv: list[str] | None = None) -> int:
     ladder_p.add_argument("--out", default=None, help="artifact path to write")
     ladder_p.set_defaults(func=_cmd_ladder)
 
+    ask_p = sub.add_parser("ask", help="route one utterance through the real request path")
+    ask_p.add_argument("text", help="the utterance")
+    ask_p.add_argument("--root", default=None, help="collection root (default $LOCALALEXA_COLLECT or var/collect)")
+    ask_p.add_argument("--sim", type=float, default=0.45)
+    ask_p.add_argument("--conf", type=float, default=0.35)
+    ask_p.add_argument("--no-log", action="store_true", help="do not record the request")
+    ask_p.add_argument("--no-settle", action="store_true", help="record but do not derive yet")
+    ask_p.set_defaults(func=_cmd_ask)
+
     collect_p = sub.add_parser("collect", help="hands-off collection: log, derive, summarise")
     collect_p.add_argument("action", choices=("derive", "summary", "bench"))
     collect_p.add_argument("--root", default=None, help="collection root (default $LOCALALEXA_COLLECT or var/collect)")
@@ -196,6 +270,9 @@ def main(argv: list[str] | None = None) -> int:
     collect_p.add_argument("--margin", type=float, default=0.05, help="auto-accept margin threshold")
     collect_p.add_argument("--iterations", type=int, default=2000, help="bench: appends to measure")
     collect_p.add_argument("--json", action="store_true", help="summary: machine-readable")
+    collect_p.add_argument(
+        "--no-opinion", action="store_true", help="derive: skip the offline second-opinion signal"
+    )
     collect_p.set_defaults(func=_cmd_collect)
 
     args = parser.parse_args(argv)

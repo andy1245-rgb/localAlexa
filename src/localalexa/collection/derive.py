@@ -13,21 +13,26 @@ second opinion       weak +     a different architecture says the same label
 *no correction*      **none**   not a signal. Inattention is not satisfaction
 ===================  =========  ==================================================
 
-One label per row, the strongest one that applies; anything outranked is recorded
-in the row's ``detail.suppressed`` rather than thrown away, because "the model
-agreed and the operator corrected it" is information about the *agreement rule*,
-not about the operator.
+Two shapes of the same thing:
 
-Rows with no signal produce no label at all. That absence is the design: a log of
-382 utterances with 40 corrections yields 40 negatives and nothing else until an
-effect check or the top-2 rule earns a positive. The count of silent rows is
-reported so the yield is never a surprise.
+``events``
+    every signal that fired for a row, appendable and idempotent — what the live
+    collector journals, one line each, as they happen.
+
+``reduced``
+    one label per request, strongest wins, which is what a training set wants.
+
+Keeping both is not redundancy. "Auto-accepted by margin, then corrected by the
+operator" is the audit trail for the auto-accept rule, and a reduction that
+silently dropped the superseded row would destroy the only evidence of whether
+that rule is safe. The reducer keeps the winner and records the losers in
+``detail.suppressed``.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Mapping, Sequence
+from typing import Any, Iterable, Mapping, Sequence
 
 from ..data import NONE_LABEL
 from .autoaccept import AutoAcceptRule, decide_all as decide_auto
@@ -39,7 +44,74 @@ STRONG = "strong"
 WEAK = "weak"
 AUTO = "auto"
 
-SUPPRESSED = "suppressed"
+SOURCE_PRIORITY: dict[str, int] = {
+    "correction": 50,
+    "effect_failed": 40,
+    "effect": 30,
+    "auto_accept_same_class": 20,
+    "auto_accept_margin": 20,
+    "opinion_agreement": 10,
+}
+
+
+def priority(source: str) -> int:
+    """How strongly a signal outranks the others for the same row."""
+    return SOURCE_PRIORITY.get(source, 0)
+
+
+def label_for(
+    record: RequestRecord,
+    label: str | None,
+    polarity: int,
+    strength: str,
+    source: str,
+    detail: Mapping[str, Any],
+) -> LabelRow:
+    """One label event. The single place a signal becomes a row."""
+    return LabelRow(
+        request_id=record.id,
+        ts=record.ts,
+        text=record.text,
+        label=label or "",
+        polarity=polarity,
+        strength=strength,
+        source=source,
+        detail=detail,
+    )
+
+
+def reduce_labels(events: Iterable[LabelRow]) -> list[LabelRow]:
+    """One label per request: the strongest, with the losers recorded."""
+    grouped: dict[str, list[LabelRow]] = {}
+    order: list[str] = []
+    for event in events:
+        if event.request_id not in grouped:
+            grouped[event.request_id] = []
+            order.append(event.request_id)
+        key = (event.request_id, event.source)
+        if all((existing.request_id, existing.source) != key for existing in grouped[event.request_id]):
+            grouped[event.request_id].append(event)
+
+    reduced: list[LabelRow] = []
+    for request_id in order:
+        ranked = sorted(grouped[request_id], key=lambda row: -priority(row.source))
+        winner = ranked[0]
+        if len(ranked) == 1:
+            reduced.append(winner)
+            continue
+        reduced.append(
+            LabelRow(
+                request_id=winner.request_id,
+                ts=winner.ts,
+                text=winner.text,
+                label=winner.label,
+                polarity=winner.polarity,
+                strength=winner.strength,
+                source=winner.source,
+                detail={**dict(winner.detail), "suppressed": [row.source for row in ranked[1:]]},
+            )
+        )
+    return reduced
 
 
 @dataclass(frozen=True)
@@ -48,6 +120,7 @@ class Derived:
 
     reject_pile: tuple[dict[str, Any], ...] = ()
     corrections: tuple[Correction, ...] = ()
+    events: tuple[LabelRow, ...] = ()
     labels: tuple[LabelRow, ...] = ()
     stats: Mapping[str, Any] = field(default_factory=dict)
 
@@ -64,7 +137,7 @@ def derive(
     aliases: Mapping[str, str] | None = None,
     opinion: SecondOpinion | None = None,
 ) -> Derived:
-    """Replay the log into the reject pile, the correction list and the labels."""
+    """Replay the log into the reject pile, the corrections and the labels."""
     corrections = detect(records, correction_rule)
     corrected = {c.earlier_id: c for c in corrections}
     latest_effect = {e.request_id: e for e in effects}
@@ -75,57 +148,36 @@ def derive(
         predicted = opinion.labels([record.text for record in records])
         opinions = {record.id: label for record, label in zip(records, predicted)}
 
-    labels: list[LabelRow] = []
+    events: list[LabelRow] = []
     for record in records:
-        candidates: list[tuple[int, LabelRow]] = []
-
         correction = corrected.get(record.id)
         if correction is not None and record.label is not None:
-            candidates.append(
-                (
-                    50,
-                    _row(record, record.label, -1, STRONG, "correction", {
-                        "corrected_by": correction.later_id,
-                        "delta_seconds": round(correction.delta_seconds, 3),
-                        "rule": dict(correction.rule),
-                        "evidence": dict(correction.evidence),
-                    }),
-                )
+            events.append(
+                label_for(record, record.label, -1, STRONG, "correction", {
+                    "corrected_by": correction.later_id,
+                    "delta_seconds": round(correction.delta_seconds, 3),
+                    "rule": dict(correction.rule),
+                    "evidence": dict(correction.evidence),
+                })
             )
 
         effect = latest_effect.get(record.id)
         if effect is not None and record.label is not None:
-            if effect.verified:
-                candidates.append(
-                    (
-                        30,
-                        _row(record, record.label, 1, WEAK, "effect", {
-                            "check": effect.check,
-                            "detail": effect.detail,
-                        }),
-                    )
-                )
-            else:
-                candidates.append(
-                    (
-                        40,
-                        _row(record, record.label, -1, WEAK, "effect_failed", {
-                            "check": effect.check,
-                            "detail": effect.detail,
-                        }),
-                    )
-                )
+            source = "effect" if effect.verified else "effect_failed"
+            events.append(
+                label_for(record, record.label, 1 if effect.verified else -1, WEAK, source, {
+                    "check": effect.check,
+                    "detail": effect.detail,
+                })
+            )
 
         acceptance = acceptances.get(record.id)
         if acceptance is not None:
-            candidates.append(
-                (
-                    20,
-                    _row(record, acceptance.label, 1, AUTO, f"auto_accept_{acceptance.rule}", {
-                        "rule_version": acceptance.rule_version,
-                        "detail": dict(acceptance.detail),
-                    }),
-                )
+            events.append(
+                label_for(record, acceptance.label, 1, AUTO, f"auto_accept_{acceptance.rule}", {
+                    "rule_version": acceptance.rule_version,
+                    "detail": dict(acceptance.detail),
+                })
             )
 
         opinion_label = opinions.get(record.id)
@@ -135,30 +187,13 @@ def derive(
             and opinion_label == record.label
             and record.label != NONE_LABEL
         ):
-            candidates.append(
-                (
-                    10,
-                    _row(record, record.label, 1, WEAK, "opinion_agreement", {
-                        "opinion": opinion_label,
-                    }),
-                )
+            events.append(
+                label_for(record, record.label, 1, WEAK, "opinion_agreement", {
+                    "opinion": opinion_label,
+                })
             )
 
-        if not candidates:
-            continue
-        candidates.sort(key=lambda pair: -pair[0])
-        chosen = candidates[0][1]
-        if len(candidates) > 1:
-            chosen = _row(
-                record,
-                chosen.label,
-                chosen.polarity,
-                chosen.strength,
-                chosen.source,
-                {**dict(chosen.detail), SUPPRESSED: [c[1].source for c in candidates[1:]]},
-            )
-        labels.append(chosen)
-
+    labels = reduce_labels(events)
     reject_pile = tuple(
         {
             "id": record.id,
@@ -178,28 +213,9 @@ def derive(
     return Derived(
         reject_pile=reject_pile,
         corrections=tuple(corrections),
+        events=tuple(events),
         labels=tuple(labels),
         stats=_stats(records, labels, corrections, effects, reject_pile),
-    )
-
-
-def _row(
-    record: RequestRecord,
-    label: str,
-    polarity: int,
-    strength: str,
-    source: str,
-    detail: Mapping[str, Any],
-) -> LabelRow:
-    return LabelRow(
-        request_id=record.id,
-        ts=record.ts,
-        text=record.text,
-        label=label,
-        polarity=polarity,
-        strength=strength,
-        source=source,
-        detail=detail,
     )
 
 

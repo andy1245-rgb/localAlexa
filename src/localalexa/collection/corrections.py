@@ -196,7 +196,7 @@ def detect(
     for session_rows in by_session.values():
         for index in range(1, len(session_rows)):
             later = session_rows[index]
-            earlier = _previous_acted_on(session_rows, index, rule.window_seconds)
+            earlier = previous_acted_on(session_rows[:index], later, rule.window_seconds)
             if earlier is None or earlier.id == later.id:
                 continue
             if earlier.id in claimed:
@@ -205,7 +205,7 @@ def detect(
             if earlier.text == later.text:
                 continue
 
-            hit = _classify(earlier, later, rule)
+            hit = classify(earlier, later, rule)
             if hit is None:
                 continue
             claimed.add(earlier.id)
@@ -221,11 +221,18 @@ def detect(
     return corrections
 
 
-def _previous_acted_on(
-    session_rows: Sequence[RequestRecord], index: int, window: float
+def previous_acted_on(
+    records: Sequence[RequestRecord], later: RequestRecord, window: float
 ) -> RequestRecord | None:
-    later = session_rows[index]
-    for earlier in reversed(session_rows[:index]):
+    """The most recent acted-on row *before* ``later``, if it is inside the window.
+
+    One implementation because the live collector asks this about a single new
+    row and the offline detector asks it about the whole log, and the two must
+    agree. ``later`` itself is skipped: a row is not its own predecessor.
+    """
+    for earlier in reversed(list(records)):
+        if earlier.id == later.id:
+            continue
         if later.ts - earlier.ts > window:
             return None
         if earlier.label is not None:
@@ -233,7 +240,7 @@ def _previous_acted_on(
     return None
 
 
-def _classify(
+def classify(
     earlier: RequestRecord, later: RequestRecord, rule: CorrectionRule
 ) -> dict[str, Any] | None:
     """Which branch fires, with the evidence for it. ``None`` when none does."""
