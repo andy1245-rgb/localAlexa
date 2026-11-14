@@ -16,10 +16,15 @@ utterance
   tier 2   abstain -> escalate to a real LLM                             only when unsure
 ```
 
-Tier 0 answers when exactly one tool's patterns fire. Everything else reaches tier 1, which
-returns a label, top similarity, margin and `confidence = 1 − H(p)/ln(K)` over a softmax of
-the per-tool maximum similarities. Under either threshold the row escalates rather than
-guessing, so the expensive tier only sees admitted uncertainty.
+There is no assumed accuracy for that expensive tier. The end-to-end number is reported as a
+curve over tier-2 accuracy plus the break-even point that would be needed to match a single
+classifier (`cascade.e2e_curve`, `cascade.tier2_breakeven`), because a constant with a decimal
+in it reads as a fact and was never one.
+
+Measured grouped (`localalexa compare`, `docs/cascade-vs-classifier.md`): at the production
+gate of 0.35 the cascade cannot beat the best single classifier at any tier-2 accuracy, and
+at a gate of 0.70 it beats it as soon as tier 2 reaches 85%. The gate was the constraint, not
+the expensive model.
 
 ## Measured results
 
@@ -82,6 +87,7 @@ uv pip install --python .venv/bin/python -e . --group dev
 .venv/bin/python -m localalexa cascade          # needs pip install 'localalexa[embeddings]'
 .venv/bin/python -m localalexa ladder --rungs all --folds 5   # the ladder, rungs 0-6
 .venv/bin/python -m localalexa collect summary  # the ten-second weekly read
+.venv/bin/python -m localalexa compare --tier1 logreg   # cascade vs one classifier, grouped
 .venv/bin/python -m localalexa collect bench    # what logging costs the request path
 ```
 
@@ -103,6 +109,7 @@ at write time. `docs/data-collection.md`.
 `data/routing_382.json` and `data/registry.json` ship with the repo, so every number reproduces
 offline. CLINC150 / Banking77 / HWU64 are not vendored; loading them is optional.
 `docs/ladder-results-2026-11-10.md` is the six-rung experiment and its verdict;
+`docs/cascade-vs-classifier.md` is the grouped cascade comparison and what it changed;
 `docs/data-collection.md` is the hands-off collection design and its heuristics;
 `docs/RESEARCH.md` is the prior research with a dated correction note on top;
 `results/historical/` holds the original experiment JSONs unedited; `experiments/optional/`

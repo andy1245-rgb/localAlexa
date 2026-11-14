@@ -9,6 +9,7 @@
     python -m localalexa collect derive          # replay the log into labels/rejects
     python -m localalexa collect bench           # what logging costs the request path
     python -m localalexa ask "turn off the hall light"   # one request through the real path
+    python -m localalexa compare --tier1 logreg          # cascade vs one classifier, grouped
 
 Every subcommand except ``collect`` reads the shipped data under ``data/`` and
 writes nothing; ``collect`` reads and writes the local log under
@@ -87,6 +88,8 @@ def _cmd_cascade(args: argparse.Namespace) -> int:
         router.predict_batch,
         sim_threshold=args.sim,
         conf_threshold=args.conf,
+        tier2_accuracy=args.tier2,
+        target_correct=args.target,
     )
     print(_render(payload))
     return 0
@@ -140,6 +143,30 @@ def _cmd_ask(args: argparse.Namespace) -> int:
     finally:
         assistant.close()
     return 0
+
+
+def _cmd_compare(args: argparse.Namespace) -> int:
+    from .compare import compare, render
+
+    payload = compare(
+        folds=args.folds,
+        tier1_kind=args.tier1,
+        production_gate=args.gate,
+    )
+    print(render(payload))
+    if args.out:
+        target = write_json(args.out, payload)
+        print(f"\nwrote {target}")
+    return 0
+
+
+def write_json(path: str, payload: object) -> str:
+    from pathlib import Path
+
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    return str(target)
 
 
 def _cmd_collect(args: argparse.Namespace) -> int:
@@ -241,7 +268,25 @@ def main(argv: list[str] | None = None) -> int:
     cascade_p = sub.add_parser("cascade", help="regex -> router -> abstain cascade")
     cascade_p.add_argument("--sim", type=float, default=0.45)
     cascade_p.add_argument("--conf", type=float, default=0.35)
+    cascade_p.add_argument(
+        "--tier2",
+        type=float,
+        default=None,
+        help="the tier-2 accuracy you actually measured; omit for the curve only",
+    )
+    cascade_p.add_argument(
+        "--target", type=int, default=None, help="correct rows to break even against"
+    )
     cascade_p.set_defaults(func=_cmd_cascade)
+
+    compare_p = sub.add_parser(
+        "compare", help="the cascade against one classifier, grouped and leak-free"
+    )
+    compare_p.add_argument("--folds", type=int, default=5)
+    compare_p.add_argument("--tier1", choices=("logreg", "router"), default="logreg")
+    compare_p.add_argument("--gate", type=float, default=0.35, help="the production gate")
+    compare_p.add_argument("--out", default=None)
+    compare_p.set_defaults(func=_cmd_compare)
 
     ladder_p = sub.add_parser("ladder", help="the classifier ladder (rungs 0-6)")
     ladder_p.add_argument("--rungs", default="all", help="comma list of rung names, or 'all'")

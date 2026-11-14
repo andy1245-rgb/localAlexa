@@ -140,8 +140,14 @@ def test_metrics_count_escalations_as_errors():
     assert metrics["overall_cascade_accuracy_pct"] == 50.0
     assert metrics["auto_resolved_share_pct"] == 75.0
     assert metrics["escalation_rate_pct"] == 25.0
-    # two of the three auto-resolved were right, one escalation at 95%
-    assert metrics["e2e_smart95_pct"] == 73.8
+    # two of the three auto-resolved were right; one escalation at a stated tier-2
+    # accuracy no longer lives in a constant, so the same number now comes from the curve
+    assert metrics["e2e_curve_pct"]["0.95"] == 73.8
+    assert metrics["e2e_curve_pct"]["1.00"] == 75.0
+    # nothing is assumed: without a target and a measured tier-2 accuracy the output
+    # carries the curve, and those two answer the question the constant used to fake
+    assert metrics["tier2_breakeven"] is None
+    assert metrics["e2e_at_measured_tier2_pct"] is None
 
 
 def test_none_class_flow_separates_leaks_from_escalations():
@@ -212,3 +218,39 @@ def test_regex_tier_reproduces_the_recorded_experiment():
     )
     measured.pop("_hits")
     assert measured == recorded
+
+
+def test_the_break_even_solves_for_the_tier2_accuracy_that_matches_a_target():
+    rows = [
+        CascadeRow("a", "lights", "lights", ("lights",), 0, "lights"),
+        CascadeRow("b", "timer", "timers", (), 1, "timer"),
+        CascadeRow("c", "shopping", "shopping", (), 1, "wrong"),
+        CascadeRow("d", "docs", "knowledge", (), 2, None),
+    ]
+    # two of four auto-resolved correctly, one escalation: matching three needs a
+    # perfect tier 2, and matching two needs none at all
+    strict = cascade_metrics(rows, 0.45, 0.35, target_correct=3)["tier2_breakeven"]
+    assert strict["tier2_accuracy_needed"] == 1.0
+    assert strict["reachable"] is True
+    loose = cascade_metrics(rows, 0.45, 0.35, target_correct=2)["tier2_breakeven"]
+    assert loose["tier2_accuracy_needed"] == 0.0
+    assert "already reach" in loose["note"]
+
+
+def test_an_unreachable_break_even_says_so():
+    rows = [
+        CascadeRow("a", "lights", "lights", ("lights",), 0, "wrong"),
+        CascadeRow("b", "timer", "timers", (), 1, "wrong"),
+        CascadeRow("c", "docs", "knowledge", (), 2, None),
+    ]
+    breakeven = cascade_metrics(rows, 0.45, 0.35, target_correct=3)["tier2_breakeven"]
+    assert breakeven["tier2_accuracy_needed"] == 3.0
+    assert breakeven["reachable"] is False
+    assert "no tier-2 model" in breakeven["note"]
+
+
+def test_nothing_escalating_makes_the_tier2_accuracy_irrelevant():
+    rows = [CascadeRow("a", "lights", "lights", ("lights",), 0, "lights")]
+    breakeven = cascade_metrics(rows, 0.45, 0.35, target_correct=1)["tier2_breakeven"]
+    assert breakeven["tier2_accuracy_needed"] is None
+    assert breakeven["reachable"] is True

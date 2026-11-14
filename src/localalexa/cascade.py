@@ -20,7 +20,10 @@ from typing import Callable, Iterable, Sequence
 from .data import NONE_LABEL, Registry, Row
 from .router import Choice
 
-SMART_ASSUMED_ACC = 0.95  # accuracy assumed for the tier-2 model when costing e2e
+# There is no assumed tier-2 accuracy any more. The end-to-end number is a function of
+# what the tier-2 model actually scores, so it is reported as a curve plus a break-even
+# point instead of a constant with a decimal in it.
+TIER2_GRID: tuple[float, ...] = (0.80, 0.85, 0.90, 0.95, 0.97, 0.99, 1.00)
 POINTS: tuple[tuple[str, float, float], ...] = (
     ("strict", 0.55, 0.50),
     ("medium", 0.45, 0.35),
@@ -151,8 +154,67 @@ def assign_tiers(
     return out
 
 
+def e2e_accuracy(
+    auto_correct: int, escalated: int, n: int, tier2_accuracy: float
+) -> float:
+    """End-to-end accuracy if the escalated rows are answered at ``tier2_accuracy``.
+
+    Linear in that one number and nothing else, which is why the honest output is a
+    curve: the cascade's whole advantage is the escalated share times the accuracy the
+    expensive tier really has.
+    """
+    if n <= 0:
+        return 0.0
+    return 100.0 * (auto_correct + tier2_accuracy * escalated) / n
+
+
+def e2e_curve(
+    auto_correct: int,
+    escalated: int,
+    n: int,
+    *,
+    grid: Iterable[float] = TIER2_GRID,
+) -> dict[str, float]:
+    """End-to-end accuracy at each tier-2 accuracy on the grid."""
+    return {
+        f"{value:.2f}": round(e2e_accuracy(auto_correct, escalated, n, value), 1) for value in grid
+    }
+
+
+def tier2_breakeven(
+    auto_correct: int, escalated: int, n: int, target_correct: int
+) -> dict[str, object]:
+    """The tier-2 accuracy at which this cascade matches ``target_correct`` rows.
+
+    The number that replaces the assumption. Above 1.0, no tier-2 model can save this
+    arrangement at this escalation rate; at or below 0.0, the cheap tiers already beat
+    the target and the expensive tier is optional rather than load-bearing.
+    """
+    if n <= 0:
+        return {"tier2_accuracy_needed": None, "reachable": False, "note": "no rows"}
+    if escalated <= 0:
+        return {
+            "tier2_accuracy_needed": None,
+            "reachable": auto_correct >= target_correct,
+            "note": "nothing escalates, so the tier-2 accuracy cannot move the number",
+        }
+    needed = (target_correct - auto_correct) / escalated
+    if needed <= 0.0:
+        note = "the cheap tiers already reach this target"
+    elif needed > 1.0:
+        note = "no tier-2 model beats this arrangement at this escalation rate"
+    else:
+        note = "reached when the tier-2 model is at least this accurate"
+    return {"tier2_accuracy_needed": round(needed, 4), "reachable": needed <= 1.0, "note": note}
+
+
 def cascade_metrics(
-    cascade_rows: Sequence[CascadeRow], sim_threshold: float, conf_threshold: float
+    cascade_rows: Sequence[CascadeRow],
+    sim_threshold: float,
+    conf_threshold: float,
+    *,
+    tier2_accuracy: float | None = None,
+    target_correct: int | None = None,
 ) -> dict:
     n = len(cascade_rows)
     by_tier = {tier: [r for r in cascade_rows if r.tier == tier] for tier in (0, 1, 2)}
@@ -182,8 +244,17 @@ def cascade_metrics(
         "auto_resolved_share_pct": pct(auto_n, n),
         "auto_resolved_accuracy_pct": pct(auto_correct, auto_n),
         "escalation_rate_pct": pct(escalated, n),
-        "e2e_smart95_pct": round(
-            100.0 * (auto_correct + SMART_ASSUMED_ACC * escalated) / n, 1
+        "e2e_curve_pct": e2e_curve(auto_correct, escalated, n),
+        "e2e_at_measured_tier2_pct": (
+            None
+            if tier2_accuracy is None
+            else round(e2e_accuracy(auto_correct, escalated, n, tier2_accuracy), 1)
+        ),
+        "tier2_accuracy_used": tier2_accuracy,
+        "tier2_breakeven": (
+            None
+            if target_correct is None
+            else tier2_breakeven(auto_correct, escalated, n, target_correct)
         ),
     }
 
@@ -212,6 +283,8 @@ def run_cascade(
     sim_threshold: float = 0.45,
     conf_threshold: float = 0.35,
     sweep_points: Iterable[tuple[str, float, float]] = POINTS,
+    tier2_accuracy: float | None = None,
+    target_correct: int | None = None,
 ) -> dict:
     """Measure the cascade at one operating point and across a threshold sweep.
 
@@ -250,7 +323,9 @@ def run_cascade(
             "registry_tools": len(registry.tool_ids),
             "embedding_model": registry.embedding_model,
             "rows_routed_to_router": len(residue),
-            "smart_model_assumed_accuracy": SMART_ASSUMED_ACC,
+            "tier2_accuracy": tier2_accuracy,
+            "note": "the end-to-end number is a curve over tier-2 accuracy; there is no "
+            "assumed value for the expensive tier",
         },
         "regex_tier": regex,
         "router_residue": {
@@ -259,7 +334,13 @@ def run_cascade(
         },
         "cascade_sweep": sweep,
         "cascade_operating_point": {
-            **cascade_metrics(chosen, sim_threshold, conf_threshold),
+            **cascade_metrics(
+                chosen,
+                sim_threshold,
+                conf_threshold,
+                tier2_accuracy=tier2_accuracy,
+                target_correct=target_correct,
+            ),
             "none_class_flow": none_class_flow(chosen),
             "error_counts": {
                 "tier0_wrong_hits": len(tier0_errors),
