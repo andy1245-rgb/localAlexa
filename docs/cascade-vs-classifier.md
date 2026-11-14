@@ -76,14 +76,16 @@ At 0.35 it cannot win at any tier-2 accuracy.
 The operator's figure reproduces exactly when tier 1 is the production encoder router
 rather than the linear model (`--tier1 router`, `results/compare/cascade-vs-classifier-router.json`):
 
-| tier-1 model | tier 1 alone | tier 1 under the leak | cascade at its best gate |
-|---|---:|---:|---:|
-| word logreg C=100 | 90.84% | 93.46% | 92.9% (gate 0.70, tier 2 at 0.95) |
-| MiniLM router | 89.90% (on routed rows) | 93.46% | **91.9%** (gate 0.80, tier 2 at 0.90) |
+| tier-1 model | answering every row | on the rows the gate routes | under the leak | cascade at its best gate |
+|---|---:|---:|---:|---:|
+| word logreg C=100 | 90.84% | 86.41% | 93.46% | 92.9% (gate 0.70, tier 2 at 0.95) |
+| MiniLM router | 86.65% | 89.90% | 93.46% | **91.9%** (gate 0.80, tier 2 at 0.90) |
 
-Both rows are now in the artifacts, so the claim can be checked instead of remembered. The
-oracle-gate ceiling — perfect escalation, same cheap tiers — is 98.1% at tier-2 0.80 and
-100% at 1.00, i.e. the headroom is in *deciding what to escalate*, not in the model.
+Both rows are now in the artifacts, so the claim can be checked instead of remembered, and
+91.9% is beaten against the 90.84% single classifier in the same file
+(`beats_one_classifier: true`). The oracle-gate ceiling — perfect escalation, same cheap
+tiers — is 98.1% at tier-2 0.80 and 100% at 1.00, i.e. the headroom is in *deciding what to
+escalate*, not in the model.
 
 ## 3. What this changes
 

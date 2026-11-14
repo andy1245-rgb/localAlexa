@@ -289,31 +289,39 @@ before any threshold enters the product.
   Anyone quoting a rowwise number for this corpus is quoting the generator's
   coverage, not the classifier's.
 
-## The harness port, which is blocked on one line
+## The harness port — done, and all four arms reproduce to the row
 
-`~/toolInterfacer/bench` already ships a `localalexa_intents` dataset adapter, so
-the port looked like a spec string. It is not:
+`~/toolInterfacer/bench` now scores the four winners as harness arms on the ladder's own
+folds and training pool. Every arm reproduces its number here exactly, on both protocols
+(2026-11-14, branch `ladder-port/2026-11-10` there):
 
-```
-$ cd ~/toolInterfacer/bench && python3 -m harness.run \
-    --dataset localalexa_intents --cv 5 \
-    --arms "r0=sklearn_text|vectorizer=tfidf_word|clf=linsvc;r2=...|clf=logreg" --reference r0
-grouped CV  r0: 5 folds over 7 groups / 18 labels, stratified by label
-  seed 0: out-of-fold 0/382 = 0.0%
-    WARNING fold(s) [0,1,2,3,4] hold out a label the training side never sees: ...
-```
+| arm | grouped | ladder | rowwise | ladder |
+|---|---:|---:|---:|---:|
+| r0 word-svc | 343/382 | 343 | 356/382 | 356 |
+| r2 word-logreg C=100 | 347/382 | 347 | 357/382 | 357 |
+| r3 SetFit | 359/382 | 359 | 360/382 | 360 |
+| r5 ensemble (logreg + SetFit, standardised) | 363/382 | 363 | 370/382 | 370 |
 
-`harness/rows.py::localalexa_intents` sets `group = r["family"]`, the seven-value
-domain group. Five folds over seven domain groups withhold a whole domain each, so
-every fold contains intents the training side has never seen and nothing is
-predictable — 0/382 out-of-fold, which is the metric showing the *grouping* is
-wrong rather than the arm. The adapter needs the phrasing family (110 groups),
-derived the way `localalexa.data.phrasing_families` does it.
+The first blocker was the one recorded here earlier: `localalexa_intents` groups by the
+seven-value domain `family`, and five folds over seven domains scores **0/382** out of fold
+because every fold withholds whole intents. `group_by=phrasing` fixes that. Three more
+additions were needed to make the port faithful rather than merely runnable —
+`--fold-map` (score on the assignment that produced the numbers), `--fit-pool` with a
+`localalexa_refs` dataset carrying `meta.leaks_into` (train on the reference pool, drop the
+references a fold would leak), and `torch_text`'s `normalize` flag (SetFit's head is trained
+on unit-norm embeddings, so scoring it without the L2 normalisation afterwards is scoring a
+model that never existed).
 
-That repository was not patched from here: the adapter's grouping belongs to the
-harness repo, and the ladder is not blocked on it. For the port, rung 2 is expressible
-today as `sklearn_text|vectorizer=tfidf_word|clf=logreg` (plus a `c=` spec key for
-C=100); rung 3 needs a `setfit_text` predictor the harness does not have.
+Two things the port taught that this document did not know:
+
+* the ensemble's eight-row gap came from **when** the standardisation happens. Standardising
+  each member and then renormalising it back to a distribution rescales a member's vote by
+  its own spread; keeping z-scores through the average and softmaxing once at the end is the
+  definition that reproduces. 355/382 → 363/382.
+* SetFit exported as weights (encoder state + the fitted logistic head) reproduces exactly,
+  which is a stronger statement than "the same recipe runs": the checkpoint is the model.
+
+Details, specs and the two `torch_text` gaps: `bench/docs/ladder-port-2026-11-10.md`.
 
 ## Reproduce
 
