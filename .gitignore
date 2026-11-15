@@ -19,6 +19,7 @@ results/*
 !results/historical/*.json
 !results/ladder/
 !results/ladder/*.json
+!results/cactus_hybrid_results.json
 !results/public/
 !results/public/*.json
 

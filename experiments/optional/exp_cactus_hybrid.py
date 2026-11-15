@@ -53,10 +53,14 @@ Utterance: {text}
 Intent id:"""
 
 
-def load_rows(limit: int = 0) -> tuple[list[dict], tuple[str, ...]]:
+def load_rows(limit: int = 0, stride: int = 1) -> tuple[list[dict], tuple[str, ...]]:
     rows = json.loads((DATA / "routing_382.json").read_text(encoding="utf-8"))
     registry = json.loads((DATA / "registry.json").read_text(encoding="utf-8"))
     options = tuple(tool["id"] for tool in registry["tools"]) + (NONE_ID,)
+    if stride > 1:
+        # systematic sample across the file, which is ordered by intent block, so a stride
+        # keeps every label represented instead of taking the first two intents only
+        rows = rows[::stride]
     if limit:
         rows = rows[:limit]
     return rows, options
@@ -77,6 +81,27 @@ def parse_answer(text: str, options: tuple[str, ...]) -> str:
     return "NO_CALL"
 
 
+def auroc_ci(
+    pairs: list[tuple[float, bool]], *, resamples: int = 2000, seed: int = 0
+) -> tuple[float, float] | None:
+    """Percentile interval for the AUROC, resampling rows."""
+    import random
+
+    if not pairs:
+        return None
+    rng = random.Random(seed)
+    draws = []
+    for _ in range(resamples):
+        sample = [pairs[rng.randrange(len(pairs))] for _ in range(len(pairs))]
+        value = auroc(sample)
+        if value is not None:
+            draws.append(value)
+    if not draws:
+        return None
+    draws.sort()
+    return (round(draws[int(0.025 * len(draws))], 3), round(draws[int(0.975 * len(draws))], 3))
+
+
 def auroc(pairs: list[tuple[float, bool]]) -> float | None:
     """P(score of a correct row > score of an incorrect row), ties counted as half."""
     positives = [score for score, correct in pairs if correct]
@@ -90,17 +115,110 @@ def auroc(pairs: list[tuple[float, bool]]) -> float | None:
     return wins / (len(positives) * len(negatives))
 
 
+def _write(path: Path, per_row: list[dict], args, options, *, partial: bool = False) -> None:
+    """Persist what has been scored so far, with the metrics it supports."""
+    scored = [(row["confidence"], row["correct"]) for row in per_row if row["confidence"] is not None]
+    tools_only = [(row["confidence"], row["correct"]) for row in per_row
+                  if row["confidence"] is not None and row["true"] != NONE_ID]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(
+            {
+                "config": {
+                    "model": MODEL_ID,
+                    "limit": args.limit,
+                    "stride": args.stride,
+                    "max_new_tokens": args.max_new_tokens,
+                    "partial": partial,
+                },
+                "n_rows": len(per_row),
+                "n_scored": len(scored),
+                "n_errors": sum(1 for row in per_row if not row["correct"]),
+                "accuracy": round(sum(1 for row in per_row if row["correct"]) / len(per_row), 4)
+                if per_row else None,
+                "auroc_all_rows": None if auroc(scored) is None else round(auroc(scored), 4),
+                "auroc_tool_rows": None if auroc(tools_only) is None else round(auroc(tools_only), 4),
+                "auroc_ci95": None if auroc_ci(tools_only) is None else list(auroc_ci(tools_only)),
+                "per_row": per_row,
+            },
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+
+def verdict(auroc_value: float | None, n_rows: int, n_errors: int) -> dict:
+    """The gate, stated so that "too few errors to tell" is not read as a failure."""
+    if auroc_value is None:
+        return {
+            "clears": False,
+            "evaluable": False,
+            "verdict": (
+                f"AUROC undefined: {n_errors} wrong out of {n_rows} rows. With too few errors "
+                f"the gate cannot be evaluated either way — this is neither a pass nor a "
+                f"refutation"
+            ),
+        }
+    clears = auroc_value >= AUROC_GATE
+    return {
+        "clears": bool(clears),
+        "evaluable": True,
+        "verdict": (
+            f"confidence separates right from wrong at AUROC {auroc_value:.3f} — usable as a "
+            f"handoff gate"
+            if clears
+            else f"confidence does not separate right from wrong (AUROC {auroc_value:.3f} < "
+            f"{AUROC_GATE}); it cannot gate a handoff"
+        ),
+    }
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--limit", type=int, default=0, help="score at most N rows")
+    parser.add_argument("--stride", type=int, default=1,
+                        help="systematic sample: take every Nth row (the file is ordered by "
+                             "intent block, so stride keeps every label represented)")
     parser.add_argument("--max-new-tokens", type=int, default=12)
     parser.add_argument("--out", default=str(RESULTS / "cactus_hybrid_results.json"))
+    parser.add_argument("--recompute", default="",
+                        help="rebuild the metrics and the verdict from a saved per_row list, "
+                             "without loading the model")
     args = parser.parse_args(argv)
+
+    if args.recompute:
+        saved = json.loads(Path(args.recompute).read_text(encoding="utf-8"))
+        per_row = saved["per_row"]
+        tool_pairs = [(row["confidence"], row["correct"]) for row in per_row
+                      if row["confidence"] is not None and row["true"] != NONE_ID]
+        all_pairs = [(row["confidence"], row["correct"]) for row in per_row
+                     if row["confidence"] is not None]
+        errors = sum(1 for row in per_row if not row["correct"])
+        tool_auroc = auroc(tool_pairs)
+        payload = dict(saved)
+        payload.update({
+            "n_rows": len(per_row),
+            "n_errors": errors,
+            "accuracy": round(sum(1 for row in per_row if row["correct"]) / len(per_row), 4),
+            "auroc_all_rows": None if auroc(all_pairs) is None else round(auroc(all_pairs), 4),
+            "auroc_tool_rows": None if tool_auroc is None else round(tool_auroc, 4),
+            "auroc_ci95": None if auroc_ci(tool_pairs) is None else list(auroc_ci(tool_pairs)),
+            "auroc_all_ci95": None if auroc_ci(all_pairs) is None else list(auroc_ci(all_pairs)),
+            "gate": verdict(None if tool_auroc is None else round(tool_auroc, 4),
+                            len(per_row), errors),
+        })
+        Path(args.out).write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+        print(json.dumps({key: payload[key] for key in (
+            "n_rows", "n_errors", "accuracy", "auroc_tool_rows", "auroc_ci95",
+            "auroc_all_rows", "auroc_all_ci95", "gate")}, indent=2))
+        print(f"wrote {args.out}")
+        return 0
 
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
-    rows, options = load_rows(args.limit)
+    rows, options = load_rows(args.limit, args.stride)
     option_list = ", ".join(options)
     print(f"rows {len(rows)}  options {len(options)}  model {MODEL_ID}")
 
@@ -112,6 +230,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"loaded in {time.perf_counter() - started:.1f}s  "
           f"dtype {next(model.parameters()).dtype}")
 
+    out_path = Path(args.out)
     per_row = []
     for index, row in enumerate(rows):
         prompt = PROMPT.format(options=option_list, text=row["text"])
@@ -151,6 +270,10 @@ def main(argv: list[str] | None = None) -> int:
                 "latency_ms": round(latency, 1),
             }
         )
+        if (index + 1) % 10 == 0:
+            # write what exists so far: an hour of CPU should not be lost to a kill
+            _write(out_path, per_row, args, options, partial=True)
+            print(f"  [checkpoint] {index + 1} rows written")
         if (index + 1) % 10 == 0 or index + 1 == len(rows):
             done = index + 1
             print(f"  {done}/{len(rows)}  last: {predicted} (want {row['tool']}) "
@@ -165,6 +288,7 @@ def main(argv: list[str] | None = None) -> int:
             "model": MODEL_ID,
             "rows": len(rows),
             "limit": args.limit,
+            "stride": args.stride,
             "max_new_tokens": args.max_new_tokens,
             "decoding": "greedy",
             "prompt": PROMPT,
@@ -179,25 +303,20 @@ def main(argv: list[str] | None = None) -> int:
         if per_row else None,
         "auroc_all_rows": None if auroc(scored) is None else round(auroc(scored), 4),
         "auroc_tool_rows": None if auroc(tools_only) is None else round(auroc(tools_only), 4),
+        "auroc_ci95": None if auroc_ci(tools_only) is None else list(auroc_ci(tools_only)),
+        "labels_covered": sorted({row["true"] for row in per_row}),
         "auroc_gate": AUROC_GATE,
         "base_needle3_auroc": BASE_NEEDLE3_AUROC,
         "latency_ms_p50": sorted(row["latency_ms"] for row in per_row)[len(per_row) // 2]
         if per_row else None,
         "per_row": per_row,
     }
-    gate_value = payload["auroc_tool_rows"] if payload["auroc_tool_rows"] is not None else -1
-    payload["gate"] = {
-        "clears": bool(gate_value >= AUROC_GATE),
-        "verdict": (
-            f"confidence separates right from wrong at AUROC {gate_value:.3f} — usable as a "
-            f"handoff gate"
-            if gate_value >= AUROC_GATE
-            else f"confidence does not separate right from wrong (AUROC {gate_value:.3f} < "
-            f"{AUROC_GATE}); it cannot gate a handoff"
-        ),
-    }
+    payload["gate"] = verdict(
+        payload["auroc_tool_rows"],
+        payload["n_rows"],
+        sum(1 for row in per_row if not row["correct"]),
+    )
 
-    out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
     print(f"\naccuracy {payload['accuracy']}")
