@@ -10,6 +10,7 @@
     python -m localalexa collect bench           # what logging costs the request path
     python -m localalexa ask "turn off the hall light"   # one request through the real path
     python -m localalexa compare --tier1 logreg          # cascade vs one classifier, grouped
+    python -m localalexa tier2 --measured <rows.json>    # cascade + a measured tier 2: coverage/precision
 
 Every subcommand except ``collect`` reads the shipped data under ``data/`` and
 writes nothing; ``collect`` reads and writes the local log under
@@ -142,6 +143,21 @@ def _cmd_ask(args: argparse.Namespace) -> int:
             )
     finally:
         assistant.close()
+    return 0
+
+
+def _cmd_tier2(args: argparse.Namespace) -> int:
+    from .tier2 import measure, render
+
+    payload = measure(
+        tier2_path=args.measured,
+        folds=args.folds,
+        tier1_kind=args.tier1,
+    )
+    print(render(payload))
+    if args.out:
+        target = write_json(args.out, payload)
+        print(f"\nwrote {target}")
     return 0
 
 
@@ -287,6 +303,16 @@ def main(argv: list[str] | None = None) -> int:
     compare_p.add_argument("--gate", type=float, default=0.35, help="the production gate")
     compare_p.add_argument("--out", default=None)
     compare_p.set_defaults(func=_cmd_compare)
+
+    tier2_p = sub.add_parser(
+        "tier2", help="join the cascade to a measured tier-2 model: coverage against precision"
+    )
+    tier2_p.add_argument("--measured", required=True,
+                         help="per-row measurement file from experiments/optional/exp_cactus_hybrid.py")
+    tier2_p.add_argument("--folds", type=int, default=5)
+    tier2_p.add_argument("--tier1", choices=("logreg", "router"), default="logreg")
+    tier2_p.add_argument("--out", default=None)
+    tier2_p.set_defaults(func=_cmd_tier2)
 
     ladder_p = sub.add_parser("ladder", help="the classifier ladder (rungs 0-6)")
     ladder_p.add_argument("--rungs", default="all", help="comma list of rung names, or 'all'")

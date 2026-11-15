@@ -148,28 +148,41 @@ def _write(path: Path, per_row: list[dict], args, options, *, partial: bool = Fa
     )
 
 
-def verdict(auroc_value: float | None, n_rows: int, n_errors: int) -> dict:
-    """The gate, stated so that "too few errors to tell" is not read as a failure."""
-    if auroc_value is None:
+def verdict(auroc_all: float | None, auroc_tools: float | None, n_rows: int,
+            n_errors: int) -> dict:
+    """The gate, stated so that the number a user would see leads and nothing hides behind it.
+
+    Both figures must clear, and the **abstain-inclusive** one is the one quoted first. A
+    confidence that separates right from wrong only when the abstain class is excluded is a
+    confidence that fails on the rows where a voice assistant most needs it: deciding whether
+    to act at all. The 17-label figure is reported beside it, never instead of it.
+    """
+    if auroc_all is None or auroc_tools is None:
         return {
             "clears": False,
             "evaluable": False,
+            "headline": "abstain-inclusive AUROC",
             "verdict": (
                 f"AUROC undefined: {n_errors} wrong out of {n_rows} rows. With too few errors "
-                f"the gate cannot be evaluated either way — this is neither a pass nor a "
-                f"refutation"
+                f"the gate cannot be evaluated either way — neither a pass nor a refutation"
             ),
         }
-    clears = auroc_value >= AUROC_GATE
+    clears = auroc_all >= AUROC_GATE and auroc_tools >= AUROC_GATE
+    failing = []
+    if auroc_all < AUROC_GATE:
+        failing.append(f"abstain-inclusive {auroc_all:.3f}")
+    if auroc_tools < AUROC_GATE:
+        failing.append(f"17-label {auroc_tools:.3f}")
     return {
         "clears": bool(clears),
         "evaluable": True,
+        "headline": "abstain-inclusive AUROC",
         "verdict": (
-            f"confidence separates right from wrong at AUROC {auroc_value:.3f} — usable as a "
-            f"handoff gate"
+            f"AUROC {auroc_all:.3f} over all rows (17 labels alone: {auroc_tools:.3f}) — both "
+            f"clear {AUROC_GATE}, so the confidence can gate a handoff"
             if clears
-            else f"confidence does not separate right from wrong (AUROC {auroc_value:.3f} < "
-            f"{AUROC_GATE}); it cannot gate a handoff"
+            else f"AUROC {auroc_all:.3f} over all rows (17 labels alone: {auroc_tools:.3f}) — "
+            f"below {AUROC_GATE} on {', '.join(failing)}; it cannot gate a handoff"
         ),
     }
 
@@ -205,8 +218,12 @@ def main(argv: list[str] | None = None) -> int:
             "auroc_tool_rows": None if tool_auroc is None else round(tool_auroc, 4),
             "auroc_ci95": None if auroc_ci(tool_pairs) is None else list(auroc_ci(tool_pairs)),
             "auroc_all_ci95": None if auroc_ci(all_pairs) is None else list(auroc_ci(all_pairs)),
-            "gate": verdict(None if tool_auroc is None else round(tool_auroc, 4),
-                            len(per_row), errors),
+            "gate": verdict(
+                None if auroc(all_pairs) is None else round(auroc(all_pairs), 4),
+                None if tool_auroc is None else round(tool_auroc, 4),
+                len(per_row),
+                errors,
+            ),
         })
         Path(args.out).write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
         print(json.dumps({key: payload[key] for key in (
@@ -312,6 +329,7 @@ def main(argv: list[str] | None = None) -> int:
         "per_row": per_row,
     }
     payload["gate"] = verdict(
+        payload["auroc_all_rows"],
         payload["auroc_tool_rows"],
         payload["n_rows"],
         sum(1 for row in per_row if not row["correct"]),
@@ -320,7 +338,8 @@ def main(argv: list[str] | None = None) -> int:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
     print(f"\naccuracy {payload['accuracy']}")
-    print(f"AUROC (17 labels) {payload['auroc_tool_rows']}  (all rows {payload['auroc_all_rows']})")
+    print(f"AUROC abstain-inclusive {payload['auroc_all_rows']} "
+          f"(17 labels alone {payload['auroc_tool_rows']})")
     print(f"gate {AUROC_GATE}: {payload['gate']['verdict']}")
     print(f"wrote {out_path}")
     return 0

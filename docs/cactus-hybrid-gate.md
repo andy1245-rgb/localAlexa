@@ -30,11 +30,24 @@ reported rather than the point estimate alone.
 
 ## 2. The gate
 
-| | 17 tool labels | all rows (incl. the abstain class) |
+| | abstain-inclusive (headline) | 17 tool labels |
 |---|---:|---:|
-| **Cactus hybrid** | **0.837** | 0.794 |
-| interval (95%, row bootstrap) | 0.731 – 0.932 | 0.701 – 0.875 |
-| base needle3 (same corpus, same rule) | **0.530** | 0.523 |
+| **Cactus hybrid, full corpus (382 rows)** | filled in below, §2.1 | §2.1 |
+| Cactus hybrid, 128-row systematic sample | **0.794** (95% CI 0.701–0.875) | 0.837 (0.731–0.932) |
+| base needle3, 382 rows | **0.523** | 0.530 |
+
+### 2.1 The full-corpus result
+
+Filled in from `results/cactus_hybrid_full.json` when the run finishes. The protocol and the
+decision rule were fixed before it started, so nothing is chosen after the fact:
+
+* the gate passes **only if both** the abstain-inclusive and the 17-label AUROC are ≥ 0.8;
+* if the abstain-inclusive figure is below 0.8 the verdict is **not usable**, nothing is wired,
+  and there is no prompt tuning, no class-exclusion rescue and no second sample;
+* both intervals are reported, because a point estimate alone is what nearly banked the
+  128-row sample.
+
+### 2.2 What the 128-row sample showed
 
 Base needle3's number reproduces from the historical per-row confidences in
 `results/historical/needle_results.json`, so the comparison is the same arithmetic on both

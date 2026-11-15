@@ -54,6 +54,7 @@ class RowScore:
     model_label: str
     model_confidence: float
     model_similarity: float
+    text: str = ""
 
     @property
     def one_classifier_correct(self) -> bool:
@@ -139,6 +140,7 @@ def collect(
                 RowScore(
                     fold=fold,
                     truth=row.tool,
+                    text=row.text,
                     regex_label=hits[0] if len(hits) == 1 else None,
                     model_label=label,
                     model_confidence=confidence,
