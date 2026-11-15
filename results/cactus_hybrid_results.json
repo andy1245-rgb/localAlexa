@@ -1454,9 +1454,10 @@
     }
   ],
   "gate": {
-    "clears": true,
+    "clears": false,
     "evaluable": true,
-    "verdict": "confidence separates right from wrong at AUROC 0.837 \u2014 usable as a handoff gate"
+    "headline": "abstain-inclusive AUROC",
+    "verdict": "AUROC 0.794 over all rows (17 labels alone: 0.837) \u2014 below 0.8 on abstain-inclusive 0.794; it cannot gate a handoff"
   },
   "n_errors": 20,
   "auroc_all_ci95": [

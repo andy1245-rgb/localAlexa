@@ -26,6 +26,12 @@ gate of 0.35 the cascade cannot beat the best single classifier at any tier-2 ac
 at a gate of 0.70 it beats it as soon as tier 2 reaches 85%. The gate was the constraint, not
 the expensive model.
 
+One tier-2 candidate has been tested against a real gate — a Cactus hybrid checkpoint whose own
+confidence is supposed to say when it is wrong. It failed on the figure that matters:
+abstain-inclusive AUROC **0.794** against a 0.8 bar (0.837 if the non-command rows are excluded,
+which is exactly the exclusion that makes a gate useless). Nothing was wired. See
+`docs/cactus-hybrid-gate.md`.
+
 ## Measured results
 
 382 utterances, 110 phrasing families, 18 labels (17 tools + a none route). Rows come from
