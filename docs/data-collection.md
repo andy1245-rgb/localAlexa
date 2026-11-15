@@ -205,6 +205,49 @@ A crash between the decision and the answer loses the answer but never the row.
 rather batch it; the row guarantee is unaffected. `record_requests=False` turns
 logging off entirely (demos and tests).
 
+### 8.1 The production path, verified with a real utterance
+
+Run with the encoder router — `sentence-transformers`, the model the cascade measurement used —
+rather than the linear stand-in the tests use:
+
+```
+$ .venv-embed/bin/python -m localalexa ask "make the kitchen lights brighter" --root /tmp/svc-e2e
+predictor: sentence-transformers router
+light_set (tier 1) · confidence 0.953 · 853.7 ms
+  candidates: light_set 0.97, light_query 0.03, reminder_create 0.00
+recorded 3696c5d5f487432c in /tmp/svc-e2e/requests.jsonl
+settled 1 row(s) in 1.108 ms: 0 correction(s), 1 label(s), wrote labels.jsonl
+```
+
+The 853.7 ms is the encoder loading inside the first request; the second
+utterance — `"what is on my calendar today"` — was answered by the regex tier in
+no router call at all. The row it wrote, verbatim:
+
+```json
+{"kind":"request","schema":1,"id":"3696c5d5f487432c","ts":1794737150.845664,
+ "at":"2026-11-15T05:05:50","session":"20261115T050549-6ce77e",
+ "text":"make the kitchen lights brighter","redactions":[],"tier":1,"label":"light_set",
+ "confidence":0.953002,"top_sim":0.947187,"margin":0.290662,"gate":false,
+ "sim_threshold":0.45,"conf_threshold":0.35,"route_ms":853.717,
+ "candidates":[{"label":"light_set","score":0.972633},
+               {"label":"light_query","score":0.025706},
+               {"label":"reminder_create","score":0.000267}]}
+```
+
+and the label `settle` derived from it, without the operator doing anything:
+
+```json
+{"kind":"label","schema":1,"request_id":"3696c5d5f487432c","label":"light_set",
+ "polarity":1,"strength":"auto","source":"auto_accept_margin",
+ "detail":{"rule_version":"auto-1","detail":{"margin":0.290662,"threshold":0.05,
+           "top_sim":0.947187}}}
+```
+
+Every file in the collection root is mode `0600`, `rejects.jsonl` and
+`corrections.jsonl` do not exist because nothing was rejected and nothing was
+corrected — absence means "none happened", not "nothing ran" — and `meta.json`
+records which rules and signals produced the view beside it.
+
 ## 9. What it costs the request path
 
 Measured on an idle box, 4,000 appends / 1,000 tap calls

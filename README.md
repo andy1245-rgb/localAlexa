@@ -22,9 +22,16 @@ classifier (`cascade.e2e_curve`, `cascade.tier2_breakeven`), because a constant 
 in it reads as a fact and was never one.
 
 Measured grouped (`localalexa compare`, `docs/cascade-vs-classifier.md`): at the production
-gate of 0.35 the cascade cannot beat the best single classifier at any tier-2 accuracy, and
-at a gate of 0.70 it beats it as soon as tier 2 reaches 85%. The gate was the constraint, not
-the expensive model.
+gate of 0.35 the cascade cannot beat the best single classifier at any tier-2 accuracy — it
+answers 94% of traffic itself at 89.97% while that classifier answers everything at 90.84%, and
+the break-even tier-2 accuracy is 104%, i.e. unreachable. Raise the gate to 0.70 and the picture
+reverses: it answers 83% itself and wins as soon as tier 2 reaches 85%, reaching 92.9% with the
+measured ensemble behind it. **So the verdict is: the cascade is not a way to be more accurate
+than a good classifier, it is a way to be a hundred times cheaper while staying close, and the
+gate threshold — not the expensive model — is the knob that decides whether it wins.** The earlier
+claim that it could not beat one classifier was drawn from the row-wise 93.19% and a tier-1 model
+trained on the rows it was scored on; grouped, tier 1 loses 7 points to the leak and the verdict
+turns on the gate instead. `docs/cascade-vs-classifier.md` has the numbers and the sweep.
 
 One tier-2 candidate has been tested against a real gate — a Cactus hybrid checkpoint whose own
 confidence is supposed to say when it is wrong. It failed on the figure that matters:
