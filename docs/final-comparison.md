@@ -29,9 +29,11 @@ family     tier 1 (logreg)   347/382    90.84%   0.38  answers every row
              break-even               173.91%         unreachable
 
 strict     tier 1 (logreg)   261/382    68.32%   0.38  answers every row
-           tier 2 (ens)           —     pending    7.85  five fine-tunes on a 1000-row pool
+           tier 2 (ens)      300/382    78.53%   7.85  answers every row
            cascade                                    answers 92.4% itself at 81.02%,
                                                       escalates 29
+             end to end                80.83%         at this split's measured tier 2
+             break-even                48.28%         reachable — and it is reached
 ```
 
 Rowwise is the split that flatters everything (29 of the 200 references are literal slot fills of
@@ -39,67 +41,73 @@ the scoring templates) and it is included because the repo's headline numbers we
 Family-held-out is the honest one. Strict is the hardest: its pool is template fills of the other
 families only, so the model never sees a hand-written reference.
 
-## 1. The verdict: the cascade loses, and it is not close
+## 1. The verdict: it depends entirely on how far ahead tier 2 is
 
-On both splits where tier 2 is measured, the cascade is **worse than either single classifier**:
+| split | tier 1 alone | tier 2 alone | cascade, end to end | break-even vs tier 2 |
+|---|---:|---:|---:|---:|
+| rowwise | 93.46% | **96.86%** | 90.97% | 237.5% — unreachable |
+| family | 90.84% | **95.03%** | 90.28% | 173.9% — unreachable |
+| strict | 68.32% | 78.53% | **80.83%** | 48.3% — reached |
 
-| split | tier 1 alone | tier 2 alone | cascade, end to end |
-|---|---:|---:|---:|
-| rowwise | 93.46% | **96.86%** | 90.97% |
-| family | 90.84% | **95.03%** | 90.28% |
+Two of the three splits say the cascade is dead, and the third says it wins. The difference is not
+noise, and it is not the tier-2 model — it is the **gap** between the cheap path and the expensive
+one:
 
-The break-even column explains why this cannot be fixed by a better tier 2: to match the ensemble
-the cascade would need a tier-2 model at **173.9%** (grouped) or **237.5%** (rowwise). Both are
-impossible, so no tier-2 model — not a perfect one, not a future one — rescues this arrangement.
+* where tier 2 is far ahead (rowwise: +3.4 points on everything; family: +4.2), the cascade's cheap
+  path answers 94–96% of traffic *worse* than the model would have, and no tier-2 accuracy rescues
+  it — the break-evens are 174% and 238%, i.e. impossible;
+* where the two are close (strict: tier 1 68.32%, tier 2 78.53%), the cascade's cheap path answers
+  92.4% of traffic at **81.02%** — better than the ensemble's 78.53% on everything — and escalating
+  the remaining 29 rows takes it to **80.83%**, beating both single classifiers by 2.3 points for
+  0.38 ms on the rows it keeps.
 
-The mechanism is measured, and it is two separate losses:
+So the one-sentence rule this table establishes: **the cascade earns its structure exactly when its
+cheap tiers are at least as accurate as the expensive model on the rows they claim.** On today's
+reference pool they are not (89.97% against 95.03%), so it loses by 4.8 points. In the strict
+setting, where nothing hand-written is available, the cheap path is genuinely competitive with the
+ensemble and the cascade is the better design.
+
+Two measured causes for the loss, which are also the two things to fix before shipping the cascade
+anywhere:
 
 * **The regex front costs accuracy.** On the 256 rows where exactly one pattern fires, the regex
-  is 91.41% right and the logistic model is **96.88%** right on the same rows. Sending those rows
-  to the regex instead of the model throws away 14 correct answers. The regex tier was worth
-  having when tier 1 was the MiniLM router (86.65% alone); against a model that is better than
-  the patterns on their own rows, it is a regression.
-* **The gate at 0.35 removes rows the model would have got right.** The logreg answers 94% of
-  traffic at 89.97%, which is *below* its own 90.84% overall: the 23 rows it escalates are ones it
-  mostly gets right, and they are handed to a tier that costs 20× as much per call.
+  is 91.41% right and the logistic model is **96.88%** on the same rows. Sending those rows to the
+  regex throws away 14 correct answers. The front was worth having when tier 1 was the MiniLM
+  router (86.65% alone); against a model better than the patterns on their own rows, it is a
+  regression.
+* **The gate at 0.35 removes rows the model would have got right.** On the family split the logreg
+  answers 94% of traffic at 89.97%, *below* its own 90.84% overall: the 23 rows it escalates are
+  ones it mostly gets right, and they go to a tier that costs 20× per call.
 
 ## 2. Which one I would ship, and why
 
-**Ship the ensemble as a single classifier** — 95.03% grouped (363/382), 7.85 ms p50, no cascade,
-no regex front, no gate. It is the most accurate thing here on every split, it removes three
-moving parts and two thresholds, and its cost is a fixed 7.85 ms rather than a distribution that
-depends on how often the gate fires. On a server that is nothing; it is what the existing MiniLM
-router costs.
+**Ship the ensemble as a single classifier** — 95.03% family-held-out (363/382), 96.86% rowwise,
+7.85 ms p50, no regex front, no gate, no cascade. It is the most accurate thing here on the two
+splits that represent deployment, it removes three moving parts and two thresholds, and its cost is
+a fixed 7.85 ms rather than a distribution that depends on how often a gate fires. That is about
+what the existing MiniLM router already costs.
 
-**Keep the cascade only if 0.38 ms is a hard requirement**, and if it is, ship it *without the
-regex tier* and with the gate raised — because the measured evidence says the structure is only
-viable when the cheap tier is close to the expensive one. As configured it is strictly dominated.
+**Keep the logreg as the fallback** for a box that cannot run an encoder: 90.84% at 0.38 ms, and it
+is one model rather than three tiers.
 
-What that means concretely, in the order I would do it:
+**Do not ship the cascade as configured**, and if a cascade is wanted for latency reasons, ship it
+with two changes the table already justifies: drop the regex front (it costs 14 rows) and re-derive
+the gate from the ensemble's own confidence curve rather than keeping 0.35, which was chosen for a
+model with different calibration.
 
-1. **Tier 1 becomes the ensemble**, and the cascade becomes a two-tier design: model, then
-   escalate on its own calibrated confidence. The 0.38 ms logreg stays as the fallback for a box
-   that cannot run an encoder.
-2. **Delete the regex front from the decision path.** It is 91.41% on its own rows against the
-   model's 96.88%. Keep the patterns for slot extraction, which is what they are good at, not for
-   routing.
-3. **Re-derive the gate from the ensemble's own confidence curve** rather than keeping 0.35, which
-   was chosen for a model with different calibration.
+The cascade becomes the right answer again in the world the strict row describes — where the model
+has little to learn from and its edge over the cheap tier is a few points. That is an argument for
+keeping the code, not for shipping it: the strict setting is not the deployment, and the right
+response to it is more reference data, which the ladder measured as worth +1.6 points against the
+cascade's +2.3 in a setting nobody deploys.
 
-## 3. The strict split, and why it is still measuring
+## 3. Why the strict row matters even though it loses the argument
 
-Five SetFit fine-tunes on the strict pool is 10–17 minutes each on this box, and the box has been
-carrying other sessions' work throughout (load 6–26, swap in the gigabytes). It is running;
-`results/final/tier2-ensemble-by-split.json` records each split as it completes.
-
-The strict row is the one that could change the *shape* of the verdict without changing the
-recommendation. There, tier 1 collapses to 68.32% while the cascade still answers 92.4% of
-traffic at 81.02% — because template fills of *other* families are a much better training pool
-than a strict-pool model trained on nothing hand-written. If the strict-pool ensemble lands near
-that 81%, then tier 1, tier 2 and the cascade are all within a few points, the break-even becomes
-reachable, and the cascade becomes a legitimate way to buy latency back. If it lands well above,
-the same domination as §1 applies. Either way the recommendation in §2 is unaffected: the split
-where the numbers are complete is the split where the ensemble wins.
+Five SetFit fine-tunes on strict pools of 1000–1200 rows cost 37 minutes of CPU on this box
+(`results/final/tier2-ensemble-by-split.json` records each fit). It was worth it: it is the only
+split where the cascade wins, and without it the table would have produced a confident
+recommendation from two splits that all point one way. The mechanism it exposes — the gap between
+the tiers, not the tier-2 accuracy — is the part that will still be true when the models change.
 
 ## 4. A defect found on the way: the strict split used to leak
 
@@ -140,6 +148,8 @@ split) and `results/final/final-table.json` (the rendered comparison, including 
   cascade's numbers would improve at 0.70, and `docs/cascade-vs-classifier.md` carries that sweep.
   Even there the cascade only beats *tier 1 alone* (92.9% against 90.84%), never the ensemble.
 * Rowwise is inflated by construction and is shown because the repo's quoted numbers live there.
-* The strict tier-2 figure is pending; §3 says what its two possible outcomes change.
+* The strict split's tier-2 figure (78.53%) comes from five fine-tunes with a 37-minute total fit
+  cost, and it is the noisiest number in the table for that reason — 300/382, versus 363/382 for
+  the family split.
 * Latencies are the ladder's idle-box measurements (0.38 ms, 7.85 ms), not re-measured here — on
   a loaded box the ensemble's per-utterance cost reads two to seven times higher.

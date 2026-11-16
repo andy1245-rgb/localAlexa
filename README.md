@@ -21,17 +21,21 @@ curve over tier-2 accuracy plus the break-even point that would be needed to mat
 classifier (`cascade.e2e_curve`, `cascade.tier2_breakeven`), because a constant with a decimal
 in it reads as a fact and was never one.
 
-Measured grouped (`localalexa compare`, `docs/cascade-vs-classifier.md`): at the production
-gate of 0.35 the cascade cannot beat the best single classifier at any tier-2 accuracy — it
-answers 94% of traffic itself at 89.97% while that classifier answers everything at 90.84%, and
-the break-even tier-2 accuracy is 104%, i.e. unreachable. Raise the gate to 0.70 and the picture
-reverses: it answers 83% itself and wins as soon as tier 2 reaches 85%, reaching 92.9% with the
-measured ensemble behind it. **So the verdict is: the cascade is not a way to be more accurate
-than a good classifier, it is a way to be a hundred times cheaper while staying close, and the
-gate threshold — not the expensive model — is the knob that decides whether it wins.** The earlier
-claim that it could not beat one classifier was drawn from the row-wise 93.19% and a tier-1 model
-trained on the rows it was scored on; grouped, tier 1 loses 7 points to the leak and the verdict
-turns on the gate instead. `docs/cascade-vs-classifier.md` has the numbers and the sweep.
+**The verdict, in one paragraph.** Measured grouped with the best model in the repo as tier 2
+(logreg + SetFit, 95.03%), the cascade reaches 90.28% end-to-end while that same model answers
+everything at 95.03% — so the cascade loses by 4.8 points, and its break-even tier-2 accuracy is
+174%, meaning no tier-2 model at any quality rescues it. The reason is a gap, not a knob: the
+cheap path answers 94% of traffic at 89.97%, which is worse than the model it is fronting, and the
+regex tier is 91.41% on the 256 rows it claims where the model is 96.88%. In the strict split,
+where nothing hand-written is available and the two tiers land within 10 points of each other, the
+cascade wins (80.83% against 78.53%) — so the honest rule is that **the cascade earns its structure
+exactly when its cheap tiers are at least as accurate as the expensive one, and on today's
+reference pool they are not.** The earlier claim that it could not beat one classifier was drawn
+from the row-wise 93.19% and a tier-1 model trained on the rows it was scored on; grouped, tier 1
+loses 7 points to the leak. Numbers: `docs/cascade-vs-classifier.md` (the gate sweep, where raising
+it to 0.70 makes the cascade beat tier 1 alone) and `docs/final-comparison.md` (the three-split
+table and the shipping decision: **ship the ensemble alone; keep the logreg as the 0.38 ms
+fallback; do not ship the cascade as configured**).
 
 One tier-2 candidate has been tested against a real gate — a Cactus hybrid checkpoint whose own
 confidence is supposed to say when it is wrong. It failed on the figure that matters:
