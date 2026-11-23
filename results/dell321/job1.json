@@ -1,0 +1,232 @@
+{
+  "config": {
+    "diversity_floor": 0.35,
+    "leak_ceiling": 0.8,
+    "rounds": 2,
+    "folds": 5,
+    "recipes": [
+      "linear",
+      "fusion"
+    ]
+  },
+  "generation": {
+    "candidates": 1637,
+    "distinct": 1513,
+    "kept": 878,
+    "dropped_adds_nothing": 633,
+    "dropped_leaks": 2,
+    "similarity_to_pool": {
+      "n": 1513,
+      "min": 0.0,
+      "p10": 0.333,
+      "p50": 0.6,
+      "p90": 1.0,
+      "max": 1.0,
+      "mean": 0.63
+    },
+    "similarity_to_eval": {
+      "n": 880,
+      "min": 0.0,
+      "p10": 0.0,
+      "p50": 0.091,
+      "p90": 0.25,
+      "max": 1.0,
+      "mean": 0.106
+    },
+    "diversity_of_kept": {
+      "n": 878,
+      "min": 0.364,
+      "p10": 0.4,
+      "p50": 0.5,
+      "p90": 0.75,
+      "max": 1.0,
+      "mean": 0.56
+    },
+    "transformations_kept": {
+      "synonym": 155,
+      "polite": 548,
+      "context": 662,
+      "expand": 77,
+      "contract": 4,
+      "reorder": 60,
+      "drop_polite": 5
+    },
+    "examples": [
+      {
+        "text": "before bed, could you do you like pizza?",
+        "transformations": [
+          "context",
+          "polite"
+        ]
+      },
+      {
+        "text": "in the living room, stop my reminder",
+        "transformations": [
+          "context",
+          "synonym"
+        ]
+      },
+      {
+        "text": "could you what is my agenda for today?",
+        "transformations": [
+          "polite",
+          "expand"
+        ]
+      },
+      {
+        "text": "hey, put milk to the shopping list",
+        "transformations": [
+          "synonym",
+          "context"
+        ]
+      },
+      {
+        "text": "what is left on my countdown",
+        "transformations": [
+          "expand"
+        ]
+      },
+      {
+        "text": "hey, show me a 5 minute countdown",
+        "transformations": [
+          "context",
+          "synonym"
+        ]
+      },
+      {
+        "text": "could you what is on the list?",
+        "transformations": [
+          "polite",
+          "expand"
+        ]
+      },
+      {
+        "text": "remove everything from the grocery list in the bedroom",
+        "transformations": [
+          "context",
+          "reorder"
+        ]
+      },
+      {
+        "text": "before bed, could you cancel the reminder about the trash?",
+        "transformations": [
+          "context",
+          "polite"
+        ]
+      },
+      {
+        "text": "find out about openWakeWord alternatives for me",
+        "transformations": [
+          "context",
+          "reorder"
+        ]
+      },
+      {
+        "text": "for me, could you read me the news?",
+        "transformations": [
+          "context",
+          "polite"
+        ]
+      },
+      {
+        "text": "for me, could you turn off the timer?",
+        "transformations": [
+          "context",
+          "polite"
+        ]
+      }
+    ]
+  },
+  "arms": {
+    "linear": {
+      "references": {
+        "name": "linear:references",
+        "accuracy": 0.9031,
+        "correct": 345,
+        "n": 382,
+        "per_fold": [
+          0.7792,
+          0.974,
+          0.9605,
+          0.9342,
+          0.8684
+        ],
+        "spread": {
+          "mean": 0.9033,
+          "sd": 0.0804
+        },
+        "wall_seconds": 0.3
+      },
+      "expanded": {
+        "name": "linear:references+paraphrases",
+        "accuracy": 0.9267,
+        "correct": 354,
+        "n": 382,
+        "per_fold": [
+          0.8831,
+          0.987,
+          0.9605,
+          0.9474,
+          0.8553
+        ],
+        "spread": {
+          "mean": 0.9267,
+          "sd": 0.0552
+        },
+        "wall_seconds": 0.5,
+        "paired_vs_references": {
+          "mean_points": 2.34,
+          "sd_points": 4.63,
+          "folds_better": 3,
+          "folds_worse": 1,
+          "folds_tied": 1
+        }
+      }
+    },
+    "fusion": {
+      "references": {
+        "name": "fusion:references",
+        "accuracy": 0.9503,
+        "correct": 363,
+        "n": 382,
+        "per_fold": [
+          0.9091,
+          0.974,
+          0.9605,
+          0.9737,
+          0.9342
+        ],
+        "spread": {
+          "mean": 0.9503,
+          "sd": 0.0282
+        },
+        "wall_seconds": 27.1
+      },
+      "expanded": {
+        "name": "fusion:references+paraphrases",
+        "accuracy": 0.9424,
+        "correct": 360,
+        "n": 382,
+        "per_fold": [
+          0.8961,
+          0.987,
+          0.9605,
+          0.9737,
+          0.8947
+        ],
+        "spread": {
+          "mean": 0.9424,
+          "sd": 0.0439
+        },
+        "wall_seconds": 16.2,
+        "paired_vs_references": {
+          "mean_points": -0.79,
+          "sd_points": 1.99,
+          "folds_better": 1,
+          "folds_worse": 2,
+          "folds_tied": 2
+        }
+      }
+    }
+  }
+}

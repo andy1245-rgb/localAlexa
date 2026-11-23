@@ -39,3 +39,8 @@ checkpoints/
 
 # Collected utterances: personal data, never committed
 var/
+
+# dell321 overnight results: small JSON plus rendered tables
+!results/dell321/
+!results/dell321/*.json
+!results/dell321/*.md
