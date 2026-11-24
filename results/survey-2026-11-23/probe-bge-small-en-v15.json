@@ -1,0 +1,117 @@
+{
+  "schema": "survey-probe/1",
+  "phase": 3,
+  "model_id": "BAAI/bge-small-en-v1.5",
+  "status": "ok",
+  "error": null,
+  "failed_stage": null,
+  "measured_at": "2026-11-24T01:34:18-0500",
+  "environment": {
+    "hostname": "probe-box",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "machine": "AMD64",
+    "python": "3.11.9",
+    "cpu_count": 8,
+    "torch": "2.11.0+cpu",
+    "torch_threads": 8,
+    "cuda_available": false,
+    "numpy": "2.4.4",
+    "sklearn": "1.8.0",
+    "transformers": "5.6.2",
+    "sentence_transformers": "5.4.1",
+    "setfit": "1.2.0",
+    "datasets": "4.0.0",
+    "huggingface_hub": "1.12.0",
+    "psutil": "5.9.8",
+    "loadavg_1m": null
+  },
+  "corpus": {
+    "source": "localalexa.data.load_routing_set (<repo>/data/routing_382.json)",
+    "n_rows": 382,
+    "truncated": false
+  },
+  "load": {
+    "status": "ok",
+    "load_ms": 9790.5,
+    "import_ms": 9532.0,
+    "error": null
+  },
+  "model": {
+    "params": 33360000,
+    "embedding_dim": 384,
+    "max_seq_length": 512,
+    "license": "mit",
+    "license_source": "huggingface_hub.model_info cardData",
+    "license_error": null,
+    "gated": false,
+    "pipeline_tag": "feature-extraction",
+    "snapshot_path": "C:\\Users\\andre\\.cache\\huggingface\\hub\\models--BAAI--bge-small-en-v1.5\\snapshots\\5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+    "snapshot_bytes": 134505940,
+    "snapshot_files": 11,
+    "snapshot_source": "huggingface_hub.snapshot_download(local_files_only=True)",
+    "snapshot_error": null
+  },
+  "embeddings": {
+    "n_rows": 382,
+    "dim": 384,
+    "dtype": "float32",
+    "wall_ms": 1285.0,
+    "ms_per_row": 3.364,
+    "mean_l2_norm": 1.0,
+    "min_l2_norm": 1.0,
+    "max_l2_norm": 1.0,
+    "finite": true
+  },
+  "memory": {
+    "readings": {
+      "start": 34398208,
+      "after_import": 505815040,
+      "before_load": 525422592,
+      "after_load": 572952576,
+      "after_embed": 685039616,
+      "after_latency": 671760384
+    },
+    "method": "psutil.Process().memory_info().rss (current)",
+    "deltas_bytes": {
+      "after_import_minus_start": 471416832,
+      "before_load_minus_after_import": 19607552,
+      "after_load_minus_before_load": 47529984,
+      "after_embed_minus_after_load": 112087040,
+      "after_latency_minus_after_embed": -13279232
+    }
+  },
+  "latency": {
+    "passes": 5,
+    "n_sentences_per_pass": 382,
+    "warmup_calls": 8,
+    "pass_p50_ms": [
+      28.189,
+      28.971,
+      28.544,
+      28.097,
+      28.155
+    ],
+    "pass_p95_ms": [
+      38.573,
+      40.326,
+      38.149,
+      36.903,
+      40.484
+    ],
+    "p50_ms": 28.189,
+    "p95_ms": 38.573,
+    "p50_spread_ms": 0.873,
+    "method": "single utterance per call, warm, one process, median of the per-pass medians"
+  },
+  "conditions": {
+    "protocol": "single utterance per call, warm, one process, nothing else started by this harness",
+    "passes_requested": 5,
+    "warmup_calls": 8,
+    "batch_size_single_call": 1,
+    "embed_batch_size": 32,
+    "latency_source": "same shape as experiments/ladder/latency_pass.py",
+    "passes_recorded": 5,
+    "loadavg_1m_at_end": null
+  },
+  "stage_errors": {}
+}

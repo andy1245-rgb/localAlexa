@@ -1,0 +1,725 @@
+{
+  "schema": "survey-sweep/1",
+  "phase": 4,
+  "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+  "status": "ok",
+  "error": null,
+  "failed_stage": null,
+  "failed_category": null,
+  "traceback": null,
+  "missing": [],
+  "stage_errors": {},
+  "stage_order": [
+    "setup",
+    "environment",
+    "load",
+    "dtype",
+    "model_facts",
+    "latency_pass",
+    "rowwise",
+    "halves",
+    "comparisons",
+    "determinism",
+    "provenance"
+  ],
+  "measured_at": "2026-11-24T03:07:38-0500",
+  "environment": {
+    "hostname": "andrew-Lenovo-7-14IAL7",
+    "platform": "Linux-6.8.0-149-generic-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "python": "3.12.14",
+    "cpu_count": 12,
+    "torch": "2.15.0+cpu",
+    "torch_threads": 10,
+    "cuda_available": false,
+    "numpy": "2.5.4",
+    "sklearn": "1.9.1",
+    "transformers": "5.22.2",
+    "sentence_transformers": "6.2.0",
+    "setfit": "1.2.0",
+    "datasets": "5.2.0",
+    "huggingface_hub": "2.4.0",
+    "psutil": "7.2.2",
+    "loadavg_1m": 2.451
+  },
+  "load": {
+    "status": "ok",
+    "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "mode": "online",
+    "forced": false,
+    "offline_reason": null,
+    "attempts": [
+      {
+        "mode": "online",
+        "ok": true,
+        "error": null,
+        "seconds": 0.39
+      }
+    ],
+    "load_ms": 390.1,
+    "error": null,
+    "dtype": {
+      "requested": "float32",
+      "device": "cpu",
+      "before": [
+        "float32"
+      ],
+      "after": [
+        "float32"
+      ],
+      "coerced": false,
+      "embeddings": {
+        "torch": "float32",
+        "numpy": "float32"
+      },
+      "note": "cast on CPU only: a bf16 checkpoint on an accelerator is not this harness's problem, and this harness has no CUDA path"
+    },
+    "fit_modes": [
+      "online"
+    ]
+  },
+  "model": {
+    "params": 22713216,
+    "embedding_dim": 384,
+    "max_seq_length": 256,
+    "license": "apache-2.0",
+    "snapshot_bytes": 91578415
+  },
+  "bench": {
+    "n_rows": 382,
+    "n_families": 110,
+    "n_labels": 18,
+    "n_reference_rows": 200
+  },
+  "fold_assignments": {
+    "5": {
+      "source": "~/localAlexa/results/ladder/rung5-ensemble.json",
+      "key": "fold_assignments.5",
+      "n_folds": 5,
+      "n_families": 110,
+      "rows_per_fold": [
+        77,
+        77,
+        76,
+        76,
+        76
+      ],
+      "verified": {
+        "corpus_rows": 382,
+        "rows_per_fold_recomputed": [
+          77,
+          77,
+          76,
+          76,
+          76
+        ],
+        "row_counts_match_artifact": true,
+        "folds_run_in_range_76_77": true
+      },
+      "regenerated_matches_artifact": true,
+      "note": "read from the artifact, not regenerated; regeneration is only cross-checked"
+    }
+  },
+  "recipe": {
+    "name": "rung-3-setfit",
+    "source": "localalexa.ladder.setfit_rung (pairs, epochs, iterations, batch, seed)",
+    "pairs": "SetFit contrastive pairs generated from the fold's training pool",
+    "num_iterations": 8,
+    "num_epochs": 1,
+    "batch_size": 16,
+    "head": "setfit.LogisticRegression on body embeddings",
+    "normalize_embeddings": true,
+    "seed": 0,
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2"
+  },
+  "seeds": {
+    "setfit": 0,
+    "torch": 0,
+    "numpy": 0,
+    "sklearn": 0,
+    "note": "set in survey_setfit.fit and by SetFit's TrainingArguments(seed=...); GroupKFold has no seed, the assignment is read from the artifact"
+  },
+  "folds_run": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "halves": {
+    "selection": {
+      "folds": [
+        0,
+        1,
+        2
+      ],
+      "folds_run": [
+        0,
+        1,
+        2
+      ],
+      "complete": true,
+      "missing_folds": [],
+      "n_folds": 3,
+      "n_rows": 230,
+      "grouped_accuracy": 0.9391,
+      "mean_fold_accuracy": 0.9394,
+      "per_fold_accuracy": {
+        "0": 0.9221,
+        "1": 0.8961,
+        "2": 1.0
+      },
+      "definition": "grouped_accuracy is pooled over the half's rows; mean_fold_accuracy is the mean of the half's per-fold accuracies (equal weight per fold)",
+      "baseline_per_fold_accuracy": {
+        "0": 0.9221,
+        "1": 0.8961,
+        "2": 1.0
+      },
+      "baseline_mean_fold_accuracy": 0.9394
+    },
+    "validation": {
+      "folds": [
+        3,
+        4
+      ],
+      "folds_run": [
+        3,
+        4
+      ],
+      "complete": true,
+      "missing_folds": [],
+      "n_folds": 2,
+      "n_rows": 152,
+      "grouped_accuracy": 0.9408,
+      "mean_fold_accuracy": 0.9408,
+      "per_fold_accuracy": {
+        "3": 0.9079,
+        "4": 0.9737
+      },
+      "definition": "grouped_accuracy is pooled over the half's rows; mean_fold_accuracy is the mean of the half's per-fold accuracies (equal weight per fold)",
+      "baseline_per_fold_accuracy": {
+        "3": 0.9079,
+        "4": 0.9737
+      },
+      "baseline_mean_fold_accuracy": 0.9408
+    },
+    "folds_scored": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "rule": "select on the selection half (folds 0-2) and quote the validation half (folds 3-4); the halves are disjoint family sets by construction of the family-grouped assignment, so the validation number was never selected on"
+  },
+  "runs": [
+    {
+      "rung": "r3-setfit-minilm",
+      "note": "survey phase 4: rung-3 recipe on sentence-transformers/all-MiniLM-L6-v2, 5 fold(s) of the ladder's 5-fold assignment",
+      "protocol": "grouped",
+      "fold_count": 5,
+      "n_folds": 5,
+      "complete": true,
+      "folds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "folds_scored": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "train_rows": [
+        194,
+        199,
+        195,
+        195,
+        194
+      ],
+      "fold_rows": [
+        77,
+        77,
+        76,
+        76,
+        76
+      ],
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 8.278,
+        "p95": 10.92,
+        "mean": 10.361
+      },
+      "per_fold_accuracy": [
+        0.9221,
+        0.8961,
+        1.0,
+        0.9079,
+        0.9737
+      ],
+      "per_fold_accuracy_by_fold": {
+        "0": 0.9221,
+        "1": 0.8961,
+        "2": 1.0,
+        "3": 0.9079,
+        "4": 0.9737
+      },
+      "fold_spread": {
+        "mean": 0.94,
+        "min": 0.8961,
+        "max": 1.0,
+        "sd": 0.0448
+      },
+      "per_fold": [
+        {
+          "fold": 0,
+          "n_rows": 77,
+          "train_rows": 194,
+          "correct": 71,
+          "accuracy": 0.9221,
+          "fit_seconds": 59.24,
+          "latency_ms": {
+            "p50": 8.277,
+            "p95": 10.637,
+            "mean": 12.197
+          }
+        },
+        {
+          "fold": 1,
+          "n_rows": 77,
+          "train_rows": 199,
+          "correct": 69,
+          "accuracy": 0.8961,
+          "fit_seconds": 61.71,
+          "latency_ms": {
+            "p50": 6.73,
+            "p95": 7.716,
+            "mean": 6.769
+          }
+        },
+        {
+          "fold": 2,
+          "n_rows": 76,
+          "train_rows": 195,
+          "correct": 76,
+          "accuracy": 1.0,
+          "fit_seconds": 60.59,
+          "latency_ms": {
+            "p50": 8.733,
+            "p95": 12.344,
+            "mean": 9.385
+          }
+        },
+        {
+          "fold": 3,
+          "n_rows": 76,
+          "train_rows": 195,
+          "correct": 69,
+          "accuracy": 0.9079,
+          "fit_seconds": 61.86,
+          "latency_ms": {
+            "p50": 8.248,
+            "p95": 9.931,
+            "mean": 8.508
+          }
+        },
+        {
+          "fold": 4,
+          "n_rows": 76,
+          "train_rows": 194,
+          "correct": 74,
+          "accuracy": 0.9737,
+          "fit_seconds": 60.25,
+          "latency_ms": {
+            "p50": 8.4,
+            "p95": 11.267,
+            "mean": 14.969
+          }
+        }
+      ],
+      "accuracy": 0.9398,
+      "ece": 0.53,
+      "mean_confidence": 0.4169,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1276,
+            "coverage": 1.0,
+            "precision": 0.9398,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1928,
+            "coverage": 0.9869,
+            "precision": 0.9523,
+            "residue_rows": 5,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.306,
+            "coverage": 0.8691,
+            "precision": 0.9759,
+            "residue_rows": 50,
+            "residue_accuracy": 0.7
+          }
+        ]
+      },
+      "none_recall": 0.84,
+      "false_none_rate": 0.0056,
+      "ledger": {
+        "projects_query": {
+          "n": 18,
+          "correct": 10,
+          "recall": 0.556
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "__none__": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 19,
+          "recall": 0.905
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 24,
+          "recall": 0.96
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 23,
+          "recall": 1.0
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 19,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8909,
+        0.9823
+      ]
+    },
+    {
+      "protocol": "rowwise",
+      "train_rows": 200,
+      "n_rows": 382,
+      "latency_ms": {
+        "p50": 8.811,
+        "p95": 14.676,
+        "mean": 11.391
+      },
+      "per_fold_accuracy": [],
+      "fold_spread": null,
+      "accuracy": 0.9424,
+      "ece": 0.5001,
+      "mean_confidence": 0.4423,
+      "reject_curve": {
+        "n_rows": 382,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1259,
+            "coverage": 1.0,
+            "precision": 0.9424,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.1886,
+            "coverage": 0.9869,
+            "precision": 0.9523,
+            "residue_rows": 5,
+            "residue_accuracy": 0.2
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.3774,
+            "coverage": 0.7775,
+            "precision": 0.9764,
+            "residue_rows": 85,
+            "residue_accuracy": 0.8235
+          }
+        ]
+      },
+      "none_recall": 0.84,
+      "false_none_rate": 0.0,
+      "ledger": {
+        "projects_query": {
+          "n": 18,
+          "correct": 11,
+          "recall": 0.611
+        },
+        "shoppinglist_remove": {
+          "n": 25,
+          "correct": 19,
+          "recall": 0.76
+        },
+        "__none__": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "thermostat_set": {
+          "n": 25,
+          "correct": 22,
+          "recall": 0.88
+        },
+        "light_set": {
+          "n": 25,
+          "correct": 23,
+          "recall": 0.92
+        },
+        "calendar_today": {
+          "n": 21,
+          "correct": 21,
+          "recall": 1.0
+        },
+        "docs_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 7,
+          "correct": 7,
+          "recall": 1.0
+        },
+        "light_query": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_cancel": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "reminder_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "research_deep": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_add": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 6,
+          "correct": 6,
+          "recall": 1.0
+        },
+        "thermostat_offset": {
+          "n": 23,
+          "correct": 23,
+          "recall": 1.0
+        },
+        "timer_cancel": {
+          "n": 19,
+          "correct": 19,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 25,
+          "correct": 25,
+          "recall": 1.0
+        },
+        "timer_status": {
+          "n": 13,
+          "correct": 13,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8946,
+        0.9829
+      ],
+      "rung": "r3-setfit-minilm",
+      "note": "survey phase 4: rung-3 recipe on sentence-transformers/all-MiniLM-L6-v2, 5 fold(s) of the ladder's 5-fold assignment",
+      "fold_count": null
+    }
+  ],
+  "comparisons": [
+    {
+      "rung": "r3-setfit-minilm",
+      "baseline": "r3-setfit-minilm",
+      "fold_count": 5,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": 0.0,
+        "sd_points": 0.0,
+        "min_points": 0.0,
+        "max_points": 0.0,
+        "folds_better": 0,
+        "folds_worse": 0,
+        "folds_tied": 5
+      },
+      "baseline_source": "~/localAlexa/results/ladder/rung5-ensemble.json"
+    },
+    {
+      "rung": "r3-setfit-minilm",
+      "baseline": "r3-setfit-minilm",
+      "fold_count": null,
+      "protocol": "rowwise",
+      "paired": null,
+      "delta_points": 0.0,
+      "baseline_source": "~/localAlexa/results/ladder/rung5-ensemble.json"
+    }
+  ],
+  "incumbent": {
+    "rung": "r3-setfit-minilm",
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2",
+    "source": "~/localAlexa/results/ladder/rung5-ensemble.json",
+    "grouped_accuracy": 0.9398,
+    "rowwise_accuracy": 0.9424,
+    "per_fold_accuracy": [
+      0.9221,
+      0.8961,
+      1.0,
+      0.9079,
+      0.9737
+    ],
+    "latency_p50_ms": 7.944,
+    "none_recall": 0.84,
+    "note": "read from the ladder artifact; its per-fold values are rounded to 4 dp there"
+  },
+  "determinism": {
+    "checked": true,
+    "fold": 0,
+    "identical_predictions": true,
+    "rows_differing": 0,
+    "differing_row_positions": [],
+    "max_confidence_abs_diff": 0.0,
+    "accuracy_first": 0.9221,
+    "accuracy_second": 0.9221,
+    "fit_seconds_second": 61.21,
+    "note": "same fold rebuilt from scratch in the same process; seeds are in this artifact under `seeds`. Two runs are identical when rows_differing is 0."
+  },
+  "trainer_output_dir": "/tmp/surveysweep-3l4juzfw",
+  "skipped": [],
+  "protocol_notes": {
+    "grouped": "folds over phrasing families; a fold trains on the references that do not render into that fold's families (ladder pools.fold_pool)",
+    "rowwise": "train on all 200 references, score all 382 rows \u2014 the protocol the 93.19% / 0.61 ms baseline was measured under",
+    "reject_curve": "thresholds chosen on the scored rows: oracle operating points, the ceiling, not the shipped number",
+    "selection": "folds 0-2 select, folds 3-4 validate; never select on validation"
+  },
+  "latency_passes": {
+    "passes": 5,
+    "n_sentences_per_pass": 382,
+    "warmup_calls": 8,
+    "pass_p50_ms": [
+      8.674,
+      8.574,
+      8.222,
+      6.759,
+      7.018
+    ],
+    "pass_p95_ms": [
+      18.16,
+      12.359,
+      11.211,
+      9.874,
+      9.831
+    ],
+    "p50_ms": 8.222,
+    "p95_ms": 11.211,
+    "p50_spread_ms": 1.915,
+    "method": "single utterance per call, warm, one process, median of the per-pass medians",
+    "conditions": {
+      "measured_on": "model trained on fold 4's pool, scored on all 382 rows",
+      "torch_threads": 10,
+      "loadavg_1m": 2.451,
+      "protocol": "same as experiments/ladder/latency_pass.py: run alone, repeat, median"
+    }
+  },
+  "provenance": {
+    "reproduces_artifact": true,
+    "per_fold_delta_from_artifact_points": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "note": "this model IS the incumbent encoder, so these deltas measure whether the survey's recipe reproduces rung 3 rather than beating it"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "schema": "survey-probe/1",
+  "phase": 3,
+  "model_id": "ibm-granite/granite-embedding-30m-english",
+  "status": "ok",
+  "error": null,
+  "failed_stage": null,
+  "measured_at": "2026-11-24T01:36:09-0500",
+  "environment": {
+    "hostname": "probe-box",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "machine": "AMD64",
+    "python": "3.11.9",
+    "cpu_count": 8,
+    "torch": "2.11.0+cpu",
+    "torch_threads": 8,
+    "cuda_available": false,
+    "numpy": "2.4.4",
+    "sklearn": "1.8.0",
+    "transformers": "5.6.2",
+    "sentence_transformers": "5.4.1",
+    "setfit": "1.2.0",
+    "datasets": "4.0.0",
+    "huggingface_hub": "1.12.0",
+    "psutil": "5.9.8",
+    "loadavg_1m": null
+  },
+  "corpus": {
+    "source": "localalexa.data.load_routing_set (<repo>/data/routing_382.json)",
+    "n_rows": 382,
+    "truncated": false
+  },
+  "load": {
+    "status": "ok",
+    "load_ms": 10410.3,
+    "import_ms": 9662.8,
+    "error": null
+  },
+  "model": {
+    "params": 30295296,
+    "embedding_dim": 384,
+    "max_seq_length": 512,
+    "license": "apache-2.0",
+    "license_source": "huggingface_hub.model_info cardData",
+    "license_error": null,
+    "gated": false,
+    "pipeline_tag": "sentence-similarity",
+    "snapshot_path": "C:\\Users\\andre\\.cache\\huggingface\\hub\\models--ibm-granite--granite-embedding-30m-english\\snapshots\\9b5b096411652ec1189c68fcfb90d0a82c5b45af",
+    "snapshot_bytes": 63232033,
+    "snapshot_files": 11,
+    "snapshot_source": "huggingface_hub.snapshot_download(local_files_only=True)",
+    "snapshot_error": null
+  },
+  "embeddings": {
+    "n_rows": 382,
+    "dim": 384,
+    "dtype": "float32",
+    "wall_ms": 647.7,
+    "ms_per_row": 1.696,
+    "mean_l2_norm": 0.9999,
+    "min_l2_norm": 0.9975,
+    "max_l2_norm": 1.0029,
+    "finite": true
+  },
+  "memory": {
+    "readings": {
+      "start": 34537472,
+      "after_import": 506118144,
+      "before_load": 525275136,
+      "after_load": 578334720,
+      "after_embed": 642502656,
+      "after_latency": 668336128
+    },
+    "method": "psutil.Process().memory_info().rss (current)",
+    "deltas_bytes": {
+      "after_import_minus_start": 471580672,
+      "before_load_minus_after_import": 19156992,
+      "after_load_minus_before_load": 53059584,
+      "after_embed_minus_after_load": 64167936,
+      "after_latency_minus_after_embed": 25833472
+    }
+  },
+  "latency": {
+    "passes": 5,
+    "n_sentences_per_pass": 382,
+    "warmup_calls": 8,
+    "pass_p50_ms": [
+      11.712,
+      11.676,
+      11.685,
+      11.731,
+      11.696
+    ],
+    "pass_p95_ms": [
+      13.569,
+      15.049,
+      13.455,
+      14.947,
+      13.583
+    ],
+    "p50_ms": 11.696,
+    "p95_ms": 13.583,
+    "p50_spread_ms": 0.055,
+    "method": "single utterance per call, warm, one process, median of the per-pass medians"
+  },
+  "conditions": {
+    "protocol": "single utterance per call, warm, one process, nothing else started by this harness",
+    "passes_requested": 5,
+    "warmup_calls": 8,
+    "batch_size_single_call": 1,
+    "embed_batch_size": 32,
+    "latency_source": "same shape as experiments/ladder/latency_pass.py",
+    "passes_recorded": 5,
+    "loadavg_1m_at_end": null
+  },
+  "stage_errors": {}
+}

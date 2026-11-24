@@ -1,0 +1,532 @@
+{
+  "schema": "survey-phase4-table/1",
+  "generated_at": "2026-11-24T04:18:31-05:00",
+  "generator": "experiments/survey/report_phase4.py",
+  "command": "report_phase4.py --sweeps results/survey-2026-11-23/sweeps/*.json",
+  "rule": {
+    "selection_folds": [
+      0,
+      1,
+      2
+    ],
+    "validation_folds": [
+      3,
+      4
+    ],
+    "rank_on": "selection-half pooled grouped accuracy only",
+    "quote_on": "validation-half paired per-fold delta vs the incumbent",
+    "win_condition": "|mean| > sd of the validation-half paired deltas, one consistent sign",
+    "verdict_order": [
+      "win: the selection-half winner clears its own validation spread",
+      "ranking does not transfer: no such win, and the halves disagree on the top model (or a model that was not picked clears the spread)",
+      "incumbent stands: no model clears its spread and the halves agree"
+    ],
+    "pooled_all_folds": "not a selection criterion \u2014 reported, never decided on"
+  },
+  "claimed_schema": "survey-sweep/1",
+  "inputs": [
+    "results/survey-2026-11-23/sweeps/Snowflake__snowflake-arctic-embed-xs.json",
+    "results/survey-2026-11-23/sweeps/ibm-granite__granite-embedding-30m-english.json",
+    "results/survey-2026-11-23/sweeps/sentence-transformers__all-MiniLM-L6-v2.json",
+    "results/survey-2026-11-23/sweeps/sentence-transformers__paraphrase-MiniLM-L3-v2.json"
+  ],
+  "incumbent": {
+    "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+    "swept_here": true,
+    "selection_pooled": 0.9391,
+    "validation_pooled": 0.9408,
+    "validation_mean_fold": 0.9408,
+    "per_fold_accuracy": {
+      "0": 0.9221,
+      "1": 0.8961,
+      "2": 1.0,
+      "3": 0.9079,
+      "4": 0.9737
+    }
+  },
+  "verdict": {
+    "form": "ranking_does_not_transfer",
+    "label": "the ranking does not transfer",
+    "headline": "the ranking does not transfer",
+    "text": "the ranking does not transfer \u2014 the selection half picks sentence-transformers/all-MiniLM-L6-v2 (0.9391) and the validation half points at Snowflake/snowflake-arctic-embed-xs (0.9868). Recommend the incumbent for stability; do not crown a model on the rows that would have selected it.",
+    "winner": {
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "selection_pooled": 0.9391304347826087,
+      "selection_mean_fold": 0.9393939393939393,
+      "validation_pooled": 0.9407894736842105,
+      "validation_mean_fold": 0.9407894736842106,
+      "validation_delta": {
+        "n_folds": 2,
+        "mean_points": 0.0,
+        "sd_points": 0.0,
+        "min_points": 0.0,
+        "max_points": 0.0,
+        "folds_improved": 0,
+        "folds_worse": 0,
+        "folds_tied": 2,
+        "sign_consistent": false,
+        "spread_defined": true
+      },
+      "selection_delta": {
+        "n_folds": 3,
+        "mean_points": 0.0,
+        "sd_points": 0.0,
+        "min_points": 0.0,
+        "max_points": 0.0,
+        "folds_improved": 0,
+        "folds_worse": 0,
+        "folds_tied": 3,
+        "sign_consistent": false,
+        "spread_defined": true
+      }
+    },
+    "validation_top": {
+      "model_id": "Snowflake/snowflake-arctic-embed-xs",
+      "validation_pooled": 0.9868421052631579
+    },
+    "top_differs": true,
+    "clearers": []
+  },
+  "falsifier": {
+    "kind": "single_fold",
+    "model_id": "Snowflake/snowflake-arctic-embed-xs",
+    "fold": 3,
+    "correct": 68,
+    "n_rows": 76,
+    "accuracy": 0.8947,
+    "actual_accuracy": 0.9868,
+    "rows_changed": 7,
+    "new_form": "incumbent_stands",
+    "new_label": "nothing beats the incumbent; the incumbent stands",
+    "new_headline": "nothing beats the incumbent; the incumbent stands"
+  },
+  "ranking_selection": [
+    {
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "pooled": 0.9391304347826087,
+      "mean_fold": 0.9393939393939393
+    },
+    {
+      "model_id": "ibm-granite/granite-embedding-30m-english",
+      "pooled": 0.9391304347826087,
+      "mean_fold": 0.9393939393939393
+    },
+    {
+      "model_id": "Snowflake/snowflake-arctic-embed-xs",
+      "pooled": 0.8434782608695652,
+      "mean_fold": 0.8433014354066986
+    },
+    {
+      "model_id": "sentence-transformers/paraphrase-MiniLM-L3-v2",
+      "pooled": 0.8391304347826087,
+      "mean_fold": 0.8389724310776943
+    }
+  ],
+  "ranking_validation": [
+    {
+      "model_id": "Snowflake/snowflake-arctic-embed-xs",
+      "pooled": 0.9868421052631579,
+      "mean_fold": 0.9868421052631579
+    },
+    {
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "pooled": 0.9407894736842105,
+      "mean_fold": 0.9407894736842106
+    },
+    {
+      "model_id": "sentence-transformers/paraphrase-MiniLM-L3-v2",
+      "pooled": 0.9407894736842105,
+      "mean_fold": 0.9407894736842105
+    },
+    {
+      "model_id": "ibm-granite/granite-embedding-30m-english",
+      "pooled": 0.9276315789473685,
+      "mean_fold": 0.9276315789473684
+    }
+  ],
+  "models": [
+    {
+      "model_id": "ibm-granite/granite-embedding-30m-english",
+      "path": "results/survey-2026-11-23/sweeps/ibm-granite__granite-embedding-30m-english.json",
+      "swept_here": true,
+      "measured_at": "2026-11-24T04:06:08-0500",
+      "selection": {
+        "folds": [
+          0,
+          1,
+          2
+        ],
+        "pooled": 0.9391304347826087,
+        "mean_fold": 0.9393939393939393,
+        "n_rows": 230
+      },
+      "validation": {
+        "folds": [
+          3,
+          4
+        ],
+        "pooled": 0.9276315789473685,
+        "mean_fold": 0.9276315789473684,
+        "n_rows": 152
+      },
+      "per_fold_accuracy": {
+        "0": 0.9351,
+        "1": 0.8831,
+        "2": 1.0,
+        "3": 0.9342,
+        "4": 0.9211
+      },
+      "fold_rows": {
+        "0": 77,
+        "1": 77,
+        "2": 76,
+        "3": 76,
+        "4": 76
+      },
+      "per_fold_delta_points": {
+        "0": 1.3,
+        "1": -1.3,
+        "2": 0.0,
+        "3": 2.63,
+        "4": -5.26
+      },
+      "paired_all_folds": {
+        "n_folds": 5,
+        "mean_points": -0.53,
+        "sd_points": 3.03,
+        "min_points": -5.26,
+        "max_points": 2.63,
+        "folds_improved": 2,
+        "folds_worse": 2,
+        "folds_tied": 1,
+        "sign_consistent": false,
+        "spread_defined": true
+      },
+      "paired_selection_half": {
+        "n_folds": 3,
+        "mean_points": 0.0,
+        "sd_points": 1.3,
+        "min_points": -1.3,
+        "max_points": 1.3,
+        "folds_improved": 1,
+        "folds_worse": 1,
+        "folds_tied": 1,
+        "sign_consistent": false,
+        "spread_defined": true
+      },
+      "paired_validation_half": {
+        "n_folds": 2,
+        "mean_points": -1.32,
+        "sd_points": 5.58,
+        "min_points": -5.26,
+        "max_points": 2.63,
+        "folds_improved": 1,
+        "folds_worse": 1,
+        "folds_tied": 0,
+        "sign_consistent": false,
+        "spread_defined": true
+      },
+      "clears_validation_spread": false,
+      "wins_validation": false,
+      "loses_validation": false,
+      "none_recall": 0.92,
+      "false_none_rate": 0.0224,
+      "ece": 0.6484,
+      "p50_ms": 6.318,
+      "p50_source": "latency_passes.p50_ms (dedicated pass)",
+      "pooled_all_folds": {
+        "grouped": 0.9346,
+        "rowwise": 0.9293,
+        "not_a_selection_criterion": true
+      }
+    },
+    {
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "path": "results/survey-2026-11-23/sweeps/sentence-transformers__all-MiniLM-L6-v2.json",
+      "swept_here": true,
+      "measured_at": "2026-11-24T03:57:34-0500",
+      "selection": {
+        "folds": [
+          0,
+          1,
+          2
+        ],
+        "pooled": 0.9391304347826087,
+        "mean_fold": 0.9393939393939393,
+        "n_rows": 230
+      },
+      "validation": {
+        "folds": [
+          3,
+          4
+        ],
+        "pooled": 0.9407894736842105,
+        "mean_fold": 0.9407894736842106,
+        "n_rows": 152
+      },
+      "per_fold_accuracy": {
+        "0": 0.9221,
+        "1": 0.8961,
+        "2": 1.0,
+        "3": 0.9079,
+        "4": 0.9737
+      },
+      "fold_rows": {
+        "0": 77,
+        "1": 77,
+        "2": 76,
+        "3": 76,
+        "4": 76
+      },
+      "per_fold_delta_points": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0
+      },
+      "paired_all_folds": {
+        "n_folds": 5,
+        "mean_points": 0.0,
+        "sd_points": 0.0,
+        "min_points": 0.0,
+        "max_points": 0.0,
+        "folds_improved": 0,
+        "folds_worse": 0,
+        "folds_tied": 5,
+        "sign_consistent": false,
+        "spread_defined": true
+      },
+      "paired_selection_half": {
+        "n_folds": 3,
+        "mean_points": 0.0,
+        "sd_points": 0.0,
+        "min_points": 0.0,
+        "max_points": 0.0,
+        "folds_improved": 0,
+        "folds_worse": 0,
+        "folds_tied": 3,
+        "sign_consistent": false,
+        "spread_defined": true
+      },
+      "paired_validation_half": {
+        "n_folds": 2,
+        "mean_points": 0.0,
+        "sd_points": 0.0,
+        "min_points": 0.0,
+        "max_points": 0.0,
+        "folds_improved": 0,
+        "folds_worse": 0,
+        "folds_tied": 2,
+        "sign_consistent": false,
+        "spread_defined": true
+      },
+      "clears_validation_spread": false,
+      "wins_validation": false,
+      "loses_validation": false,
+      "none_recall": 0.84,
+      "false_none_rate": 0.0056,
+      "ece": 0.53,
+      "p50_ms": 11.702,
+      "p50_source": "latency_passes.p50_ms (dedicated pass)",
+      "pooled_all_folds": {
+        "grouped": 0.9398,
+        "rowwise": 0.9424,
+        "not_a_selection_criterion": true
+      }
+    },
+    {
+      "model_id": "Snowflake/snowflake-arctic-embed-xs",
+      "path": "results/survey-2026-11-23/sweeps/Snowflake__snowflake-arctic-embed-xs.json",
+      "swept_here": true,
+      "measured_at": "2026-11-24T04:11:57-0500",
+      "selection": {
+        "folds": [
+          0,
+          1,
+          2
+        ],
+        "pooled": 0.8434782608695652,
+        "mean_fold": 0.8433014354066986,
+        "n_rows": 230
+      },
+      "validation": {
+        "folds": [
+          3,
+          4
+        ],
+        "pooled": 0.9868421052631579,
+        "mean_fold": 0.9868421052631579,
+        "n_rows": 152
+      },
+      "per_fold_accuracy": {
+        "0": 0.9091,
+        "1": 0.8182,
+        "2": 0.8026,
+        "3": 0.9868,
+        "4": 0.9868
+      },
+      "fold_rows": {
+        "0": 77,
+        "1": 77,
+        "2": 76,
+        "3": 76,
+        "4": 76
+      },
+      "per_fold_delta_points": {
+        "0": -1.3,
+        "1": -7.79,
+        "2": -19.74,
+        "3": 7.89,
+        "4": 1.32
+      },
+      "paired_all_folds": {
+        "n_folds": 5,
+        "mean_points": -3.92,
+        "sd_points": 10.48,
+        "min_points": -19.74,
+        "max_points": 7.89,
+        "folds_improved": 2,
+        "folds_worse": 3,
+        "folds_tied": 0,
+        "sign_consistent": false,
+        "spread_defined": true
+      },
+      "paired_selection_half": {
+        "n_folds": 3,
+        "mean_points": -9.61,
+        "sd_points": 9.35,
+        "min_points": -19.74,
+        "max_points": -1.3,
+        "folds_improved": 0,
+        "folds_worse": 3,
+        "folds_tied": 0,
+        "sign_consistent": true,
+        "spread_defined": true
+      },
+      "paired_validation_half": {
+        "n_folds": 2,
+        "mean_points": 4.61,
+        "sd_points": 4.65,
+        "min_points": 1.32,
+        "max_points": 7.89,
+        "folds_improved": 2,
+        "folds_worse": 0,
+        "folds_tied": 0,
+        "sign_consistent": true,
+        "spread_defined": true
+      },
+      "clears_validation_spread": false,
+      "wins_validation": false,
+      "loses_validation": false,
+      "none_recall": 0.88,
+      "false_none_rate": 0.0168,
+      "ece": 0.5832,
+      "p50_ms": 6.701,
+      "p50_source": "latency_passes.p50_ms (dedicated pass)",
+      "pooled_all_folds": {
+        "grouped": 0.9005,
+        "rowwise": 0.9031,
+        "not_a_selection_criterion": true
+      }
+    },
+    {
+      "model_id": "sentence-transformers/paraphrase-MiniLM-L3-v2",
+      "path": "results/survey-2026-11-23/sweeps/sentence-transformers__paraphrase-MiniLM-L3-v2.json",
+      "swept_here": true,
+      "measured_at": "2026-11-24T04:02:59-0500",
+      "selection": {
+        "folds": [
+          0,
+          1,
+          2
+        ],
+        "pooled": 0.8391304347826087,
+        "mean_fold": 0.8389724310776943,
+        "n_rows": 230
+      },
+      "validation": {
+        "folds": [
+          3,
+          4
+        ],
+        "pooled": 0.9407894736842105,
+        "mean_fold": 0.9407894736842105,
+        "n_rows": 152
+      },
+      "per_fold_accuracy": {
+        "0": 0.8701,
+        "1": 0.8442,
+        "2": 0.8026,
+        "3": 0.9474,
+        "4": 0.9342
+      },
+      "fold_rows": {
+        "0": 77,
+        "1": 77,
+        "2": 76,
+        "3": 76,
+        "4": 76
+      },
+      "per_fold_delta_points": {
+        "0": -5.19,
+        "1": -5.19,
+        "2": -19.74,
+        "3": 3.95,
+        "4": -3.95
+      },
+      "paired_all_folds": {
+        "n_folds": 5,
+        "mean_points": -6.03,
+        "sd_points": 8.56,
+        "min_points": -19.74,
+        "max_points": 3.95,
+        "folds_improved": 1,
+        "folds_worse": 4,
+        "folds_tied": 0,
+        "sign_consistent": false,
+        "spread_defined": true
+      },
+      "paired_selection_half": {
+        "n_folds": 3,
+        "mean_points": -10.04,
+        "sd_points": 8.4,
+        "min_points": -19.74,
+        "max_points": -5.19,
+        "folds_improved": 0,
+        "folds_worse": 3,
+        "folds_tied": 0,
+        "sign_consistent": true,
+        "spread_defined": true
+      },
+      "paired_validation_half": {
+        "n_folds": 2,
+        "mean_points": -0.0,
+        "sd_points": 5.58,
+        "min_points": -3.95,
+        "max_points": 3.95,
+        "folds_improved": 1,
+        "folds_worse": 1,
+        "folds_tied": 0,
+        "sign_consistent": false,
+        "spread_defined": true
+      },
+      "clears_validation_spread": false,
+      "wins_validation": false,
+      "loses_validation": false,
+      "none_recall": 0.72,
+      "false_none_rate": 0.0224,
+      "ece": 0.5547,
+      "p50_ms": 3.667,
+      "p50_source": "latency_passes.p50_ms (dedicated pass)",
+      "pooled_all_folds": {
+        "grouped": 0.8796,
+        "rowwise": 0.8953,
+        "not_a_selection_criterion": true
+      }
+    }
+  ],
+  "failed_sweeps": [],
+  "warnings": [],
+  "notes": []
+}

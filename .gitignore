@@ -44,3 +44,8 @@ var/
 !results/dell321/
 !results/dell321/*.json
 !results/dell321/*.md
+
+# The survey evidence is published: every number in the base-model survey must be
+# traceable to a file a reader can open.
+!results/survey-2026-11-23/
+!results/survey-2026-11-23/**

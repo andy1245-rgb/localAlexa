@@ -1,0 +1,117 @@
+{
+  "schema": "survey-probe/1",
+  "phase": 3,
+  "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+  "status": "ok",
+  "error": null,
+  "failed_stage": null,
+  "measured_at": "2026-11-23T15:19:05-0500",
+  "environment": {
+    "hostname": "andrew-Lenovo-7-14IAL7",
+    "platform": "Linux-6.8.0-149-generic-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "python": "3.12.14",
+    "cpu_count": 12,
+    "torch": "2.15.0+cpu",
+    "torch_threads": 10,
+    "cuda_available": false,
+    "numpy": "2.5.4",
+    "sklearn": "1.9.1",
+    "transformers": "5.22.2",
+    "sentence_transformers": "6.2.0",
+    "setfit": "1.2.0",
+    "datasets": "5.2.0",
+    "huggingface_hub": "2.4.0",
+    "psutil": "7.2.2",
+    "loadavg_1m": 8.286
+  },
+  "corpus": {
+    "source": "localalexa.data.load_routing_set (<repo>/data/routing_382.json)",
+    "n_rows": 382,
+    "truncated": false
+  },
+  "load": {
+    "status": "ok",
+    "load_ms": 389.3,
+    "import_ms": 3198.5,
+    "error": null
+  },
+  "model": {
+    "params": 22713216,
+    "embedding_dim": 384,
+    "max_seq_length": 256,
+    "license": "apache-2.0",
+    "license_source": "huggingface_hub.model_info cardData",
+    "license_error": null,
+    "gated": false,
+    "pipeline_tag": "sentence-similarity",
+    "snapshot_path": "~/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "snapshot_bytes": 91578415,
+    "snapshot_files": 11,
+    "snapshot_source": "huggingface_hub.snapshot_download(local_files_only=True)",
+    "snapshot_error": null
+  },
+  "embeddings": {
+    "n_rows": 382,
+    "dim": 384,
+    "dtype": "float32",
+    "wall_ms": 694.5,
+    "ms_per_row": 1.818,
+    "mean_l2_norm": 1.0,
+    "min_l2_norm": 1.0,
+    "max_l2_norm": 1.0,
+    "finite": true
+  },
+  "memory": {
+    "readings": {
+      "start": 33091584,
+      "after_import": 519856128,
+      "before_load": 530923520,
+      "after_load": 560717824,
+      "after_embed": 638599168,
+      "after_latency": 639066112
+    },
+    "method": "psutil.Process().memory_info().rss (current)",
+    "deltas_bytes": {
+      "after_import_minus_start": 486764544,
+      "before_load_minus_after_import": 11067392,
+      "after_load_minus_before_load": 29794304,
+      "after_embed_minus_after_load": 77881344,
+      "after_latency_minus_after_embed": 466944
+    }
+  },
+  "latency": {
+    "passes": 5,
+    "n_sentences_per_pass": 382,
+    "warmup_calls": 8,
+    "pass_p50_ms": [
+      6.172,
+      6.464,
+      6.33,
+      6.448,
+      6.29
+    ],
+    "pass_p95_ms": [
+      6.943,
+      8.014,
+      8.019,
+      8.457,
+      7.878
+    ],
+    "p50_ms": 6.33,
+    "p95_ms": 8.014,
+    "p50_spread_ms": 0.292,
+    "method": "single utterance per call, warm, one process, median of the per-pass medians"
+  },
+  "conditions": {
+    "protocol": "single utterance per call, warm, one process, nothing else started by this harness",
+    "passes_requested": 5,
+    "warmup_calls": 8,
+    "batch_size_single_call": 1,
+    "embed_batch_size": 32,
+    "latency_source": "same shape as experiments/ladder/latency_pass.py",
+    "passes_recorded": 5,
+    "loadavg_1m_at_end": 8.704
+  },
+  "stage_errors": {}
+}

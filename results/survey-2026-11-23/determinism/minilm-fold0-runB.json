@@ -1,0 +1,421 @@
+{
+  "schema": "survey-sweep/1",
+  "phase": 4,
+  "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+  "status": "ok",
+  "error": null,
+  "failed_stage": null,
+  "measured_at": "2026-11-23T15:02:53-0500",
+  "environment": {
+    "hostname": "andrew-Lenovo-7-14IAL7",
+    "platform": "Linux-6.8.0-149-generic-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "python": "3.12.14",
+    "cpu_count": 12,
+    "torch": "2.15.0+cpu",
+    "torch_threads": 10,
+    "cuda_available": false,
+    "numpy": "2.5.4",
+    "sklearn": "1.9.1",
+    "transformers": "5.22.2",
+    "sentence_transformers": "6.2.0",
+    "setfit": "1.2.0",
+    "datasets": "5.2.0",
+    "huggingface_hub": "2.4.0",
+    "psutil": "7.2.2",
+    "loadavg_1m": 13.902
+  },
+  "load": {
+    "status": "ok",
+    "load_ms": 480.3,
+    "error": null
+  },
+  "model": {
+    "params": 22713216,
+    "embedding_dim": 384,
+    "max_seq_length": 256,
+    "license": "apache-2.0",
+    "snapshot_bytes": 91578415
+  },
+  "bench": {
+    "n_rows": 382,
+    "n_families": 110,
+    "n_labels": 18,
+    "n_reference_rows": 200
+  },
+  "fold_assignments": {
+    "5": {
+      "source": "~/localAlexa/results/ladder/rung5-ensemble.json",
+      "key": "fold_assignments.5",
+      "n_folds": 5,
+      "n_families": 110,
+      "rows_per_fold": [
+        77,
+        77,
+        76,
+        76,
+        76
+      ],
+      "verified": {
+        "corpus_rows": 382,
+        "rows_per_fold_recomputed": [
+          77,
+          77,
+          76,
+          76,
+          76
+        ],
+        "row_counts_match_artifact": true,
+        "folds_run_in_range_76_77": true
+      },
+      "regenerated_matches_artifact": true,
+      "note": "read from the artifact, not regenerated; regeneration is only cross-checked"
+    }
+  },
+  "recipe": {
+    "name": "rung-3-setfit",
+    "source": "localalexa.ladder.setfit_rung (pairs, epochs, iterations, batch, seed)",
+    "pairs": "SetFit contrastive pairs generated from the fold's training pool",
+    "num_iterations": 8,
+    "num_epochs": 1,
+    "batch_size": 16,
+    "head": "setfit.LogisticRegression on body embeddings",
+    "normalize_embeddings": true,
+    "seed": 0,
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2"
+  },
+  "seeds": {
+    "setfit": 0,
+    "torch": 0,
+    "numpy": 0,
+    "sklearn": 0,
+    "note": "set in survey_setfit.fit and by SetFit's TrainingArguments(seed=...); GroupKFold has no seed, the assignment is read from the artifact"
+  },
+  "folds_run": [
+    0
+  ],
+  "halves": {
+    "selection": {
+      "folds": [
+        0,
+        1,
+        2
+      ],
+      "folds_run": [
+        0
+      ],
+      "complete": false,
+      "missing_folds": [
+        1,
+        2
+      ],
+      "n_folds": 1,
+      "n_rows": 77,
+      "grouped_accuracy": 0.9221,
+      "mean_fold_accuracy": 0.9221,
+      "per_fold_accuracy": {
+        "0": 0.9221
+      },
+      "definition": "grouped_accuracy is pooled over the half's rows; mean_fold_accuracy is the mean of the half's per-fold accuracies (equal weight per fold)",
+      "baseline_per_fold_accuracy": {
+        "0": 0.9221
+      },
+      "baseline_mean_fold_accuracy": 0.9221
+    },
+    "validation": {
+      "folds": [
+        3,
+        4
+      ],
+      "folds_run": [],
+      "complete": false,
+      "missing_folds": [
+        3,
+        4
+      ],
+      "n_folds": 0,
+      "n_rows": 0,
+      "grouped_accuracy": null,
+      "mean_fold_accuracy": null,
+      "per_fold_accuracy": {},
+      "definition": "grouped_accuracy is pooled over the half's rows; mean_fold_accuracy is the mean of the half's per-fold accuracies (equal weight per fold)",
+      "baseline_per_fold_accuracy": {},
+      "baseline_mean_fold_accuracy": null
+    },
+    "rule": "select on the selection half (folds 0-2) and quote the validation half (folds 3-4); the halves are disjoint family sets by construction of the family-grouped assignment, so the validation number was never selected on"
+  },
+  "runs": [
+    {
+      "rung": "r3-setfit-minilm",
+      "note": "survey phase 4: rung-3 recipe on sentence-transformers/all-MiniLM-L6-v2, 1 fold(s) of the ladder's 5-fold assignment",
+      "protocol": "grouped",
+      "fold_count": 1,
+      "n_folds": 1,
+      "complete": false,
+      "folds": [
+        0
+      ],
+      "train_rows": [
+        194
+      ],
+      "fold_rows": [
+        77
+      ],
+      "n_rows": 77,
+      "latency_ms": {
+        "p50": 8.154,
+        "p95": 9.901,
+        "mean": 8.317
+      },
+      "per_fold_accuracy": [
+        0.9221
+      ],
+      "fold_spread": {
+        "mean": 0.9221,
+        "min": 0.9221,
+        "max": 0.9221,
+        "sd": 0.0
+      },
+      "per_fold": [
+        {
+          "fold": 0,
+          "n_rows": 77,
+          "train_rows": 194,
+          "correct": 71,
+          "accuracy": 0.9221,
+          "fit_seconds": 92.6,
+          "latency_ms": {
+            "p50": 8.154,
+            "p95": 9.901,
+            "mean": 8.317
+          }
+        }
+      ],
+      "accuracy": 0.9221,
+      "ece": 0.5514,
+      "mean_confidence": 0.3843,
+      "reject_curve": {
+        "n_rows": 77,
+        "points": [
+          {
+            "target_precision": 0.9,
+            "threshold": 0.1276,
+            "coverage": 1.0,
+            "precision": 0.9221,
+            "residue_rows": 0,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.95,
+            "threshold": 0.2163,
+            "coverage": 0.961,
+            "precision": 0.9595,
+            "residue_rows": 3,
+            "residue_accuracy": 0.0
+          },
+          {
+            "target_precision": 0.975,
+            "threshold": 0.2887,
+            "coverage": 0.8052,
+            "precision": 0.9839,
+            "residue_rows": 15,
+            "residue_accuracy": 0.6667
+          }
+        ]
+      },
+      "none_recall": 0.84,
+      "false_none_rate": 0.0385,
+      "ledger": {
+        "calendar_today": {
+          "n": 6,
+          "correct": 4,
+          "recall": 0.667
+        },
+        "__none__": {
+          "n": 25,
+          "correct": 21,
+          "recall": 0.84
+        },
+        "docs_query": {
+          "n": 9,
+          "correct": 9,
+          "recall": 1.0
+        },
+        "email_unread": {
+          "n": 2,
+          "correct": 2,
+          "recall": 1.0
+        },
+        "light_set": {
+          "n": 2,
+          "correct": 2,
+          "recall": 1.0
+        },
+        "shoppinglist_remove": {
+          "n": 5,
+          "correct": 5,
+          "recall": 1.0
+        },
+        "shoppinglist_view": {
+          "n": 3,
+          "correct": 3,
+          "recall": 1.0
+        },
+        "thermostat_offset": {
+          "n": 12,
+          "correct": 12,
+          "recall": 1.0
+        },
+        "timer_cancel": {
+          "n": 5,
+          "correct": 5,
+          "recall": 1.0
+        },
+        "timer_create": {
+          "n": 8,
+          "correct": 8,
+          "recall": 1.0
+        }
+      },
+      "cluster_bootstrap_ci95": [
+        0.8614,
+        1.0
+      ],
+      "predictions": {
+        "0": [
+          "timer_create",
+          "timer_create",
+          "timer_create",
+          "timer_create",
+          "timer_create",
+          "timer_create",
+          "timer_create",
+          "timer_create",
+          "timer_cancel",
+          "timer_cancel",
+          "timer_cancel",
+          "timer_cancel",
+          "timer_cancel",
+          "shoppinglist_remove",
+          "shoppinglist_remove",
+          "shoppinglist_remove",
+          "shoppinglist_remove",
+          "shoppinglist_remove",
+          "shoppinglist_view",
+          "shoppinglist_view",
+          "shoppinglist_view",
+          "thermostat_offset",
+          "thermostat_offset",
+          "thermostat_offset",
+          "thermostat_offset",
+          "thermostat_offset",
+          "thermostat_offset",
+          "thermostat_offset",
+          "thermostat_offset",
+          "thermostat_offset",
+          "thermostat_offset",
+          "thermostat_offset",
+          "thermostat_offset",
+          "light_set",
+          "light_set",
+          "docs_query",
+          "docs_query",
+          "docs_query",
+          "docs_query",
+          "docs_query",
+          "docs_query",
+          "docs_query",
+          "docs_query",
+          "docs_query",
+          "email_unread",
+          "email_unread",
+          "__none__",
+          "calendar_today",
+          "__none__",
+          "calendar_today",
+          "calendar_today",
+          "calendar_today",
+          "__none__",
+          "__none__",
+          "__none__",
+          "__none__",
+          "__none__",
+          "__none__",
+          "__none__",
+          "__none__",
+          "__none__",
+          "__none__",
+          "docs_query",
+          "calendar_today",
+          "__none__",
+          "__none__",
+          "__none__",
+          "__none__",
+          "__none__",
+          "__none__",
+          "__none__",
+          "thermostat_offset",
+          "__none__",
+          "__none__",
+          "__none__",
+          "shoppinglist_remove",
+          "__none__"
+        ]
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "rung": "r3-setfit-minilm",
+      "baseline": "r3-setfit-minilm",
+      "fold_count": 1,
+      "protocol": "grouped",
+      "paired": {
+        "mean_points": 0.0,
+        "sd_points": 0.0,
+        "min_points": 0.0,
+        "max_points": 0.0,
+        "folds_better": 0,
+        "folds_worse": 0,
+        "folds_tied": 1
+      },
+      "baseline_source": "~/localAlexa/results/ladder/rung5-ensemble.json"
+    }
+  ],
+  "incumbent": {
+    "rung": "r3-setfit-minilm",
+    "encoder": "sentence-transformers/all-MiniLM-L6-v2",
+    "source": "~/localAlexa/results/ladder/rung5-ensemble.json",
+    "grouped_accuracy": 0.9398,
+    "rowwise_accuracy": 0.9424,
+    "per_fold_accuracy": [
+      0.9221,
+      0.8961,
+      1.0,
+      0.9079,
+      0.9737
+    ],
+    "latency_p50_ms": 7.944,
+    "none_recall": 0.84,
+    "note": "read from the ladder artifact; its per-fold values are rounded to 4 dp there"
+  },
+  "determinism": {
+    "checked": false
+  },
+  "skipped": [
+    "rowwise (--no-rowwise)"
+  ],
+  "protocol_notes": {
+    "grouped": "folds over phrasing families; a fold trains on the references that do not render into that fold's families (ladder pools.fold_pool)",
+    "rowwise": "train on all 200 references, score all 382 rows \u2014 the protocol the 93.19% / 0.61 ms baseline was measured under",
+    "reject_curve": "thresholds chosen on the scored rows: oracle operating points, the ceiling, not the shipped number",
+    "selection": "folds 0-2 select, folds 3-4 validate; never select on validation"
+  },
+  "provenance": {
+    "reproduces_artifact": true,
+    "per_fold_delta_from_artifact_points": [
+      0.0
+    ],
+    "note": "this model IS the incumbent encoder, so these deltas measure whether the survey's recipe reproduces rung 3 rather than beating it"
+  }
+}

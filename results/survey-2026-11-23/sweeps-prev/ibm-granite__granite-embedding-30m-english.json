@@ -1,0 +1,9 @@
+{
+  "schema": "survey-sweep/1",
+  "phase": 4,
+  "model_id": "ibm-granite/granite-embedding-30m-english",
+  "status": "error",
+  "failed_stage": "harness",
+  "error": "RuntimeError: Found dtype Float but expected BFloat16",
+  "measured_at": "2026-11-24T02:43:21-0500"
+}
