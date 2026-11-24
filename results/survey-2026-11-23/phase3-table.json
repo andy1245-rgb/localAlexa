@@ -68,7 +68,7 @@
       "p50_spread_ms": 0.292,
       "passes": 5,
       "conditions": {
-        "hostname": "probe-box",
+        "hostname": "probe-box-b",
         "platform": "Linux-6.8.0-149-generic-x86_64-with-glibc2.35",
         "python": "3.12.14",
         "torch": "2.15.0+cpu",
@@ -397,7 +397,7 @@
       "differing_values": {
         "hostname": [
           "probe-box",
-          "probe-box"
+          "probe-box-b"
         ],
         "platform": [
           "Windows-10-10.0.26200-SP0",
@@ -420,7 +420,7 @@
   ],
   "warnings": [
     "Snowflake/snowflake-arctic-embed-xs: licence unread (no licence field in the model card) \u2014 check by hand before shipping",
-    "this probe set spans 2 hosts (probe-box, probe-box): a ceiling derived on one host is not a ceiling on another, and the p50 column is not comparable across them \u2014 split the set by host before trusting a drop"
+    "this probe set spans 2 hosts (probe-box, probe-box-b): a ceiling derived on one host is not a ceiling on another, and the p50 column is not comparable across them \u2014 split the set by host before trusting a drop"
   ],
   "notes": [
     "`sentence-transformers/all-MiniLM-L6-v2` was probed again under identical conditions: kept `results/survey-2026-11-23/probe-canary-start-MiniLM-L6.json` (2026-11-24T01:31:45-0500), ignored `results/survey-2026-11-23/probe-canary-end-MiniLM-L6.json` (2026-11-24T01:36:55-0500) \u2014 a repeat measurement, not a conflict",

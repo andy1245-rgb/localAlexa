@@ -24,7 +24,7 @@
   ],
   "measured_at": "2026-11-24T03:07:38-0500",
   "environment": {
-    "hostname": "probe-box",
+    "hostname": "probe-box-b",
     "platform": "Linux-6.8.0-149-generic-x86_64-with-glibc2.35",
     "machine": "x86_64",
     "python": "3.12.14",

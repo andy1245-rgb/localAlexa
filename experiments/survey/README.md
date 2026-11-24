@@ -28,7 +28,7 @@ Both scripts need `torch` (CPU build), `sentence-transformers`, `setfit`,
 .venv-embed/bin/python experiments/survey/probe_model.py --help
 ```
 
-On `dell321`, use an interpreter that has those packages — not the system Python
+On `probe-box`, use an interpreter that has those packages — not the system Python
 unless it already does:
 
 ```bat
@@ -597,7 +597,7 @@ wrote, and the commands that produced them.
 ```
 
 **Phase 3 probe** (`probe-sentence-transformers__all-MiniLM-L6-v2.json`), on
-`probe-box`, python 3.12.14, torch 2.15.0+cpu, 10 torch threads:
+`probe-box-b`, python 3.12.14, torch 2.15.0+cpu, 10 torch threads:
 
 | field | value |
 |---|---|
@@ -646,7 +646,7 @@ its dedicated pass (7.662 ms) sits 0.28 ms from the ladder's 7.944 ms; the same
 artefact produced by the same recipe on the same folds at loadavg 10 read
 9.711 ms for that pass and 446.057 ms p95 in-fold. The probe shows the same
 effect on its own: 8.623 ms at loadavg 9.4, 6.330 ms once the machine quietened.
-The recorded conditions are what make that readable; a sweep on `dell321`
+The recorded conditions are what make that readable; a sweep on `probe-box`
 should be quoted with its own.
 
 ### Determinism, checked twice
@@ -729,7 +729,7 @@ Verified on this box (linux, `.venv-embed`, the real 382 rows):
 
 Not verified here, and why:
 
-- **`dell321` itself.** Nothing in this directory has been run on the Windows
+- **`probe-box` itself.** Nothing in this directory has been run on the Windows
   box *by this checkout*. The three completed Windows sweeps in
   `results/survey-2026-11-23/sweeps/` were written by the previous revision of
   this harness; nothing added here — the `dtype` stage, the offline fallback,
@@ -738,7 +738,7 @@ Not verified here, and why:
   `psapi`, paths come from `pathlib`, the artefact is written through a
   same-directory temp file and an `os.replace`), but the Windows memory fallback
   and the Windows command lines above are reasoned, not executed. Say so before
-  quoting a `dell321` number as if this harness had produced it.
+  quoting a `probe-box` number as if this harness had produced it.
 - **The bf16 checkpoint itself.** No bf16 encoder has been through the real code
   path. The cast is proven against stub bodies with real torch dtypes, and
   against MiniLM, which is float32 and therefore untouched. `granite-embedding-30m-english`

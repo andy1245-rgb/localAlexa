@@ -201,7 +201,7 @@ but reasoned as an F5 kill; the count survives and it is listed under F5 in §2.
 
 **(a) The ceiling descends from one anchor that is not the brief's incumbent number.** F1 converts ~10 ms
 into a parameter ceiling using a measured p50, and the number it used — **6.33 ms** — is an *encoder-only*
-embed of 382 rows on `probe-box` (12 logical CPUs, torch 2.15.0+cpu, python 3.12.14, loadavg
+embed of 382 rows on `probe-box-b` (12 logical CPUs, torch 2.15.0+cpu, python 3.12.14, loadavg
 8.29→8.70), not the SetFit rung the brief names at **7.75 ms**. So the ceiling is `22.7M × 10/6.33` =
 **35.9M** or, on the brief's own anchor, `22.7M × 10/7.75` = **29.3M**. The audit says "four of the five
 survivors" sit above 29.3M while naming two; on the shortlist's own counts I can reproduce **two** (granite
@@ -286,7 +286,7 @@ were 0.055–1.406 ms.
 | `snowflake-arctic-embed-xs` | ok | 22.57M | 384 | 512 | **none** (card field empty) | 87.1 | 34.2 | 2.231 | **12.126** | 17.67 | pass on latency; **out on licence** |
 | `granite-embedding-30m-english` | ok | 30.30M | 384 | 512 | apache-2.0 | 60.3 | 50.6 | 1.696 | **11.696** | 13.58 | **pass** |
 | `bge-small-en-v1.5` | ok | 33.36M | 384 | 512 | mit | 128.3 | 45.3 | 3.364 | **28.189** | 38.57 | **drop — 1.88× the incumbent** |
-| *anchor row, other host* — `all-MiniLM-L6-v2` | ok | 22.71M | 384 | 256 | apache-2.0 | 87.3 | 28.4 | 1.818 | 6.330 | 8.01 | not comparable: `probe-box`, torch 2.15.0+cpu, py 3.12.14, 12 CPUs, loadavg 8.29 |
+| *anchor row, other host* — `all-MiniLM-L6-v2` | ok | 22.71M | 384 | 256 | apache-2.0 | 87.3 | 28.4 | 1.818 | 6.330 | 8.01 | not comparable: `probe-box-b`, torch 2.15.0+cpu, py 3.12.14, 12 CPUs, loadavg 8.29 |
 
 Six probes on the box — two of them the same model, which is what a canary is for — and one on a different
 host. All six loaded, all returned 384 dims and finite normalised embeddings, and every one embedded all 382

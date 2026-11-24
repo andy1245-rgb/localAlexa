@@ -6,10 +6,17 @@ script under `experiments/survey/`, and the script that produced it is named bes
 
 ## Publication note
 
-Host names and absolute paths were **normalised for publication**: the measurement machine appears
-as `probe-box` and user home directories as `~`. Nothing else was altered — no number, no model
-name, no verdict, no timestamp. The substitution is mechanical and applies only to those two
-strings; if you re-run the scripts on your own machine the files will contain your own paths.
+Host names and absolute paths were **normalised for publication**, and because the tables here turn
+on the difference between machines, each machine keeps its own label. `probe-box` is the Windows
+CPU box — Intel Core Ultra 7 258V, 8 logical cores, 31.57 GB RAM, Python 3.11.9, torch 2.11.0+cpu —
+on which most of the probe rows were measured. `probe-box-b` is the Linux machine — 12 logical
+CPUs, Python 3.12.14, torch 2.15.0+cpu — behind the 6.33 ms MiniLM anchor, the fold-determinism
+runs and the five-fold rerun. They differ in platform, Python, torch build and thread count, which
+is why a p50 from one is not comparable to a p50 from the other, and why `phase3-table.md` prints
+both canary rows rather than merging them. User home directories appear as `~`. Nothing else was
+altered — no number, no model name, no verdict, no timestamp. The substitution is mechanical and
+applies only to those three strings; if you re-run the scripts on your own machine the files will
+carry your own host name and paths.
 
 ## Phase 1 — the landscape
 
