@@ -92,9 +92,10 @@ tier 2 it does not beat that model. On the family-held-out split:
 | **the cascade, end to end** (gate 0.35) | 90.28% | — | — |
 
 It loses for a reason that is not a knob. The cheap path answers 94.0% of traffic itself at
-89.97% — worse than the model it is fronting — so the remaining 23 rows barely matter, and the
-break-even tier-2 accuracy needed to match a single classifier is **174%**: no tier-2 model at
-any quality rescues this operating point. The gate, not the expensive tier, is the constraint.
+89.97% — worse than the model it is fronting — so the remaining 23 rows barely matter: the
+tier-2 accuracy needed to match the 95.03% arm is **174%**, and 104% to match the single
+classifier. No tier-2 model at any quality rescues this operating point. The gate, not the
+expensive tier, is the constraint.
 Swept at 0.70 the cascade does beat tier 1 alone (92.9% at a tier-2 accuracy of 0.95) and still
 never reaches the ensemble. One split disagrees — on the strict split, where the two cheap
 tiers land within 10 points of each other, the cascade wins 80.83% to 78.53%, which is an
@@ -145,6 +146,14 @@ uv pip install --python .venv/bin/python -e .
 .venv/bin/python -m localalexa compare --tier1 logreg   # cascade vs one classifier, grouped
 ```
 
+The remaining subcommands reproduce the research records rather than the front page:
+`ladder --rungs all` (the six-rung ladder; the encoder rungs print a skip line until the
+extras are installed), `collect summary|derive|bench` (the local request log), and `cascade`
+(the regex → router → abstain path, which needs the extras).
+`tier2 --measured results/cactus_hybrid_results.json` joins the cascade to the committed
+per-row measurement of the Cactus checkpoint, while `classic` reruns the three TF-IDF
+configurations.
+
 The test suite is 177 cases and takes a couple of minutes:
 
 ```bash
@@ -152,7 +161,8 @@ uv pip install --python .venv/bin/python pytest
 .venv/bin/python -m pytest
 ```
 
-The encoder tiers are optional and need torch plus a one-time model download:
+The encoder tiers are optional and need `sentence-transformers`, which brings torch, plus a
+one-time model download:
 `uv pip install --python .venv/bin/python -e '.[embeddings]'`. Everything above runs offline
 against the data committed here.
 
@@ -180,14 +190,16 @@ against the data committed here.
 | `data/` | the shipped corpus and tool registry — every number here reproduces from these two files |
 | `docs/` | research records, measurement results and experiment briefs; indexed in `docs/README.md` |
 | `experiments/` | the scripts that produced the results, including `experiments/optional/` for the ones needing a downloaded model |
-| `results/` | committed artefacts: the ladder JSONs, historical records, the Cactus sample |
+| `results/` | committed artefacts: the ladder JSONs, historical records, the Cactus sample, the public-corpus transfer and the dell321 runs |
 | `checkpoints/` | gitignored SetFit scratch output — model weights are not distributed |
 
 ## Licence and attribution
 
 Apache-2.0, copyright 2026 Andrew Radu — the full text is in `LICENSE`. The corpus and registry
-in `data/` are part of the project under the same terms; CLINC150, Banking77 and HWU64 are not
-vendored and loading them is optional. Third-party work this builds on: scikit-learn for the
-linear models, SetFit and `sentence-transformers/all-MiniLM-L6-v2` for the encoder rungs
-(downloaded, never vendored), and the Cactus hybrid checkpoint that was measured and rejected.
-Prior research notes, including a dated correction to an early number, are in `docs/RESEARCH.md`.
+in `data/` are part of the project under the same terms; CLINC150, HWU64, SNIPS and ATIS are
+not vendored and loading them is optional — all four were measured as substitutes for the
+shipped corpus and none was adopted as training data (`docs/public-data-2026-11-10.md`).
+Third-party work this builds on: scikit-learn for the linear models, SetFit and
+`sentence-transformers/all-MiniLM-L6-v2` for the encoder rungs (downloaded, never vendored), and
+the Cactus hybrid checkpoint that was measured and rejected. Prior research notes, including a
+dated correction to an early number, are in `docs/RESEARCH.md`.
