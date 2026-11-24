@@ -9,6 +9,8 @@ call and no network in the inference path.
 
 This is the software layer only — the utterance arrives as text. Microphone, wake word,
 ESP32 firmware and on-device deployment are not in this repository and have not been built.
+There is no remote tier and there will not be one: the model runs here because the alternative
+costs privacy and latency.
 
 ## What it does
 
@@ -32,8 +34,8 @@ light_query (tier 1) · confidence 0.474 · 2.4 ms
 ```
 
 That second answer is wrong — chitchat has no route, and the linear tier picks the nearest
-tool rather than abstaining. The `2.4 ms` in that line is the full request path on this box,
-not the isolated latency measurement below.
+tool rather than abstaining; the `2.4 ms` is the full request path here, not the isolated
+latency below.
 
 The labels are 17 tools plus a `none` route: timers, lights, thermostat, shopping lists,
 calendar, reminders, documents, research and projects. The design is a three-tier cascade:
@@ -80,6 +82,23 @@ besides speed is calibration: expected calibration error 0.735 → 0.128 for the
 The encoder alternatives cost 20×: a SetFit model at 93.98% grouped for 7.75 ms, and a
 row-standardised logreg + SetFit ensemble at 95.03% for 7.85 ms.
 
+### The shipped encoder was re-measured against three alternatives, and kept
+
+MiniLM-L6 is not an assumption. Four encoders were swept with the rung-3 SetFit recipe on the
+ladder's own five family-held-out folds and read on halves: three folds that selected, two that
+selected nothing and only report. Selection ranked the incumbent first at **0.9391** (tied with
+granite); validation ranked `snowflake-arctic-embed-xs` first at **0.9868**, after it came third
+of four on the selection half, **9.6 points** back. **The ranking does not transfer, so no
+candidate is supported and the incumbent stands** — a measured conclusion, not inertia, and
+worth exactly its margin: seven rows in one fold move it to "nothing beats it". Evidence:
+[`results/survey-2026-11-23/`](results/survey-2026-11-23/README.md).
+
+The same survey killed two estimates: latency does not follow parameter count across
+architectures (granite at 30.3M measured **11.70 ms**, arctic-embed-xs at 22.6M **12.13 ms**),
+and the ~10 ms budget is already broken by the incumbent itself on the probe box — **15.02 ms**
+p50, a repeat canary five minutes later at 15.58 ms — so a comparison has to be a ratio against
+the incumbent's same-session median.
+
 ### The cascade was measured and lost
 
 The cascade is the design this repo was built around, and with the best model in the repo as
@@ -104,15 +123,29 @@ argument for keeping the code and not for deploying it.
 **Shipped decision, from the same comparison: run the ensemble as a single classifier, keep the
 logreg as the 0.38 ms fallback, do not ship the cascade as configured.** Record and full
 three-split, three-arm table: `docs/final-comparison.md`; gate sweep and the withdrawn earlier
-verdict: `docs/cascade-vs-classifier.md`. The run artefacts behind those tables are not
-distributed in this repository.
+verdict: `docs/cascade-vs-classifier.md`; the run artefacts behind them are not distributed here.
+
+### Two follow-ups: new wordings helped the weak arm, a hierarchy did not exist
+
+Deterministic paraphrases of the 200 references — politeness, context clause, adverbial reorder,
+contractions, curated synonyms — filtered for diversity and for leakage against the held-out
+rows, then retrained on the same five folds: 878 rows kept of 1,637. Where this word model reads
+90.31% against this box's 90.84% (scikit-learn drift, same model), it gains **90.31% → 92.67%**
+(+2.34 ± 4.63) and its fold spread narrows 8.04% → 5.52%; the fusion gains **nothing** (95.03% →
+94.24%, −0.79 ± 1.99), a similarity member already covering a paraphrase of a reference.
+
+A two-stage label hierarchy lost too, and its premise failed the confusion matrix: with the
+registry's seven families as buckets only **43.24%** of errors stay inside one, because
+`light_query`/`light_set` absorb strays — a hub, not a tree. The one split that beats flat
+isolates that pair at **91.37%** top-2, +1.06 points inside a 6.78% fold spread, for 2.3× the
+latency. Both ran overnight on the probe box; the record is indexed in `docs/README.md`.
 
 ### Tier 2 has been tried once
 
 One Cactus hybrid checkpoint was tested for the only property that makes a tier-2 handoff worth
 anything — whether its own confidence knows when it is wrong. Abstain-inclusive AUROC **0.794**
-against a 0.8 bar (0.837 if the `none` rows are excluded, which is the exclusion that makes a
-gate useless), on 128 of 382 rows. Nothing was wired. `docs/cactus-hybrid-gate.md`.
+against a 0.8 bar (0.837 excluding `none` rows, the exclusion that makes a gate useless), on 128
+of 382 rows. Nothing was wired. `docs/cactus-hybrid-gate.md`.
 
 ## How it was measured
 
@@ -122,9 +155,8 @@ with the spread beside them — a gain smaller than the fold-to-fold spread is n
 here. Where a hyperparameter or a threshold was chosen on the folds it is scored on, the
 document says so. Latency was measured in a separate pass, alone on the box, because the
 latencies recorded inside training runs drift with load. Row-wise accuracy is reported only
-because the repo's earlier claims live there, and one rung demonstrates why: feeding the model
-every registry slot fill scores 96.34% row-wise and 86.65% grouped — the 96.34% is the
-protocol, not the model.
+because the repo's earlier claims live there: feeding the model every registry slot fill scores
+96.34% row-wise and 86.65% grouped, so the 96.34% is the protocol, not the model.
 
 The six-rung ladder and its verdicts are `docs/ladder-results-2026-11-10.md`; the plan it was
 pre-registered against is `docs/classifier-ladder.md`; six further structures are in
@@ -147,11 +179,10 @@ uv pip install --python .venv/bin/python -e .
 ```
 
 The remaining subcommands reproduce the research records rather than the front page:
-`ladder --rungs all` (the six-rung ladder; the encoder rungs print a skip line until the
-extras are installed), `collect summary|derive|bench` (the local request log), and `cascade`
-(the regex → router → abstain path, which needs the extras).
-`tier2 --measured results/cactus_hybrid_results.json` joins the cascade to the committed
-per-row measurement of the Cactus checkpoint, while `classic` reruns the three TF-IDF
+`ladder --rungs all` for the six-rung ladder (the encoder rungs print a skip line until the
+extras are installed), `collect summary|derive|bench` for the local request log, `cascade` for
+the regex → router → abstain path, `tier2 --measured results/cactus_hybrid_results.json` to join
+the cascade to the committed per-row Cactus measurement, and `classic` for the three TF-IDF
 configurations.
 
 The test suite is 177 cases and takes a couple of minutes:
@@ -190,15 +221,19 @@ against the data committed here.
 | `data/` | the shipped corpus and tool registry — every number here reproduces from these two files |
 | `docs/` | research records, measurement results and experiment briefs; indexed in `docs/README.md` |
 | `experiments/` | the scripts that produced the results, including `experiments/optional/` for the ones needing a downloaded model |
-| `results/` | committed artefacts: the ladder JSONs, historical records, the Cactus sample, the public-corpus transfer and the dell321 runs |
+| `results/` | committed artefacts: the ladder JSONs, historical records, the Cactus sample, the public-corpus transfer, the overnight job tables, and the [base-model survey evidence](results/survey-2026-11-23/README.md) — 84 sourced rows, six probes, the determinism runs and the sweeps, with its host and path normalisation explained |
 | `checkpoints/` | gitignored SetFit scratch output — model weights are not distributed |
 
 ## Licence and attribution
 
 Apache-2.0, copyright 2026 Andrew Radu — the full text is in `LICENSE`. The corpus and registry
 in `data/` are part of the project under the same terms; CLINC150, HWU64, SNIPS and ATIS are
-not vendored and loading them is optional — all four were measured as substitutes for the
-shipped corpus and none was adopted as training data (`docs/public-data-2026-11-10.md`).
+not vendored and loading them is optional — all four were measured, alone and as unions, and
+none was adopted as training data (`docs/public-data-2026-11-10.md`). The reason is not
+fastidiousness: three of the four are 85–100% out of scope for these 17 tools, so the added rows
+land on `__none__` and the model learns to abstain — `__none__` recall 1.00 on the uncapped
+union, 22.77 points lost. The fair test, 25 rows per label, is still 1.83 points down and
+indistinguishable from noise (p = 0.31).
 Third-party work this builds on: scikit-learn for the linear models, SetFit and
 `sentence-transformers/all-MiniLM-L6-v2` for the encoder rungs (downloaded, never vendored), and
 the Cactus hybrid checkpoint that was measured and rejected. Prior research notes, including a
