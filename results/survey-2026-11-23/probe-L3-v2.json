@@ -45,7 +45,7 @@
     "license_error": null,
     "gated": false,
     "pipeline_tag": "sentence-similarity",
-    "snapshot_path": "C:\\Users\\andre\\.cache\\huggingface\\hub\\models--sentence-transformers--paraphrase-MiniLM-L3-v2\\snapshots\\4ca70771034acceecb2e72475f72050fcdde4ddc",
+    "snapshot_path": "~/.cache/huggingface/hub/models--sentence-transformers--paraphrase-MiniLM-L3-v2/snapshots/4ca70771034acceecb2e72475f72050fcdde4ddc",
     "snapshot_bytes": 70272721,
     "snapshot_files": 11,
     "snapshot_source": "huggingface_hub.snapshot_download(local_files_only=True)",

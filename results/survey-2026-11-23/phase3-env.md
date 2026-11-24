@@ -14,10 +14,10 @@ cache, was pulled from the Hub to close that gap (`07_download_proof.py`). Detai
 ## (a) Remote path
 
 ```
-C:\Users\andre\base-model-survey          workspace root (303 files / 28.3 MB excl. venv, +1,774 venv files)
-C:\Users\andre\base-model-survey\.venv    venv, --system-site-packages
-C:\Users\andre\localalexa-subset.tgz      the 3.93 MB tar that delivered the repo subset
-C:\Users\andre\0[1-9]_*.ps1               the setup scripts, as run (archive copy: base-model-survey\setup\
+~/base-model-survey                       workspace root (303 files / 28.3 MB excl. venv, +1,774 venv files)
+~/base-model-survey/.venv                 venv, --system-site-packages
+~/localalexa-subset.tgz                   the 3.93 MB tar that delivered the repo subset
+~/0[1-9]_*.ps1                            the setup scripts, as run (archive copy: base-model-survey\setup\
                                            holds 01-06 and 08; 09_counts.ps1 postdates it)
 ```
 
@@ -32,16 +32,16 @@ tar -czf /tmp/localalexa-subset.tgz \
     --exclude='__pycache__' --exclude='.pytest_cache' --exclude='*.pyc' \
     -C ~/localAlexa \
     data src experiments tests docs pyproject.toml results/ladder
-scp -o ConnectTimeout=8 /tmp/localalexa-subset.tgz probe-box:C:/Users/andre/
-ssh probe-box 'powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\andre\02_extract.ps1'
+scp -o ConnectTimeout=8 /tmp/localalexa-subset.tgz probe-box:~/
+ssh probe-box 'powershell -NoProfile -ExecutionPolicy Bypass -File ~/02_extract.ps1'
 ```
 
-`02_extract.ps1` runs `tar.exe -xzf C:\Users\andre\localalexa-subset.tgz -C C:\Users\andre\base-model-survey`.
+`02_extract.ps1` runs `tar.exe -xzf ~/localalexa-subset.tgz -C ~/base-model-survey`.
 
 Verification (02_extract.ps1 output):
 
 ```
-archive         = C:\Users\andre\localalexa-subset.tgz bytes=3932831
+archive         = ~/localalexa-subset.tgz bytes=3932831
 extract         = ok
 remote_files    = 299
 present data\routing_382.json = 41176 bytes
@@ -81,13 +81,13 @@ check pyproject.toml present=True bytes=970
 Native interpreter, untouched:
 
 ```
-C:\Users\andre\AppData\Local\Programs\Python\Python311\python.exe   (3.11.9, pip 25.3)
+~/AppData/Local/Programs/Python/Python311/python.exe   (3.11.9, pip 25.3)
 ```
 
 Venv creation — `--system-site-packages` is what avoids re-downloading torch:
 
 ```
-powershell> & C:\Users\andre\AppData\Local\Programs\Python\Python311\python.exe -m venv --system-site-packages C:\Users\andre\base-model-survey\.venv
+powershell> & ~/AppData/Local/Programs/Python/Python311/python.exe -m venv --system-site-packages ~/base-model-survey/.venv
 ```
 
 Package install — dry-run first, because pip was about to be pointed at a venv that inherits the
@@ -95,9 +95,9 @@ box's whole system site, and any resolver decision that touched `torch` or `tran
 caught before it happened:
 
 ```
-powershell> & C:\Users\andre\base-model-survey\.venv\Scripts\python.exe -m pip install --dry-run setfit
+powershell> & ~/base-model-survey/.venv/Scripts/python.exe -m pip install --dry-run setfit
    ... Would install evaluate-0.4.6 fsspec-2025.3.0 requests-2.34.2 setfit-1.2.0
-powershell> & C:\Users\andre\base-model-survey\.venv\Scripts\python.exe -m pip install setfit
+powershell> & ~/base-model-survey/.venv/Scripts/python.exe -m pip install setfit
    ... Successfully installed evaluate-0.4.6 fsspec-2025.3.0 requests-2.34.2 setfit-1.2.0
 ```
 
@@ -125,7 +125,7 @@ Read from the venv itself (`importlib.metadata` + `__version__`), on 2026-11-23.
 | component | version | source |
 |---|---|---|
 | Python | 3.11.9 (CPython, AMD64, 64-bit) | native interpreter |
-| venv | `C:\Users\andre\base-model-survey\.venv` | `--system-site-packages` |
+| venv | `~/base-model-survey/.venv` | `--system-site-packages` |
 | torch | **2.11.0+cpu** (`torch_cuda=false`, `torch.version.cuda is None`) | inherited |
 | transformers | **5.6.2** | inherited |
 | sentence-transformers | 5.4.1 | inherited |
@@ -153,7 +153,7 @@ can pipe stdout straight into a parser. Canonical run, verbatim:
 
 ```
 python                3.11.9 (CPython, AMD64)
-executable            C:\Users\andre\base-model-survey\.venv\Scripts\python.exe
+executable            ~/base-model-survey/.venv/Scripts/python.exe
 cores / ram           8 / 31.57 GB
 torch                 2.11.0
 transformers          5.6.2
@@ -169,8 +169,8 @@ load sentence-transformers/all-MiniLM-L6-v2  2572 ms, dim=384
 encodes               160 single-sentence calls (32 sentences x 5 passes)
 latency per sentence  median 12.478 ms, p95 16.873 ms, first warm call 29 ms
 snapshot 1110a243fdf4  87.3 MB total, 87.3 MB excluding ['1_Pooling']
-hf repo cache dir     1019.0 MB at C:\Users\andre\.cache\huggingface\hub\models--sentence-transformers--all-MiniLM-L6-v2
-{"arch":"AMD64","bits":64,"core_count":8,"embed_dim":384,"encodes":160,"encoding":"utf-8","executable":"C:\\Users\\andre\\base-model-survey\\.venv\\Scripts\\python.exe","first_call_ms":28.999,"huggingface_hub":"1.12.0","load_ms":2572.3,"median_ms_per_sentence":12.4782,"model":"sentence-transformers/all-MiniLM-L6-v2","model_size_bytes":91578415,"numpy":"2.4.4","ok":true,"p95_ms_per_sentence":16.8727,"passes":5,"python":"3.11.9","python_impl":"CPython","ram_gb":31.57,"rss_mb":550.2,"scikit_learn":"1.8.0","sentences":32,"sentence_transformers":"5.4.1","setfit":"1.2.0","snapshot_bytes":91578415,"snapshot_extra_dirs":["1_Pooling"],"torch":"2.11.0","torch_cuda":false,"torch_threads":8,"transformers":"5.6.2"}
+hf repo cache dir     1019.0 MB at ~/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2
+{"arch":"AMD64","bits":64,"core_count":8,"embed_dim":384,"encodes":160,"encoding":"utf-8","executable":"~/base-model-survey/.venv/Scripts/python.exe","first_call_ms":28.999,"huggingface_hub":"1.12.0","load_ms":2572.3,"median_ms_per_sentence":12.4782,"model":"sentence-transformers/all-MiniLM-L6-v2","model_size_bytes":91578415,"numpy":"2.4.4","ok":true,"p95_ms_per_sentence":16.8727,"passes":5,"python":"3.11.9","python_impl":"CPython","ram_gb":31.57,"rss_mb":550.2,"scikit_learn":"1.8.0","sentences":32,"sentence_transformers":"5.4.1","setfit":"1.2.0","snapshot_bytes":91578415,"snapshot_extra_dirs":["1_Pooling"],"torch":"2.11.0","torch_cuda":false,"torch_threads":8,"transformers":"5.6.2"}
 ```
 
 Three runs of the same script, for spread rather than a point estimate:
@@ -196,13 +196,13 @@ disk: **87.3 MB** (the resolved snapshot), 1019 MB for the whole hub directory �
 this one absent), then downloads and loads it:
 
 ```
-hub cache            C:\Users\andre\.cache\huggingface\hub
+hub cache            ~/.cache/huggingface/hub
 repos present before 14: Cactus-Compute/needle3, NeoQuasar/Kronos-Tokenizer-2k, NeoQuasar/Kronos-Tokenizer-base, NeoQuasar/Kronos-base, NeoQuasar/Kronos-mini, NeoQuasar/Kronos-small, Qwen/Qwen3.5-0.8B, Systran/faster-distil-whisper-large-v3, Systran/faster-whisper-small.en, ggerganov/whisper.cpp, istupakov/parakeet-tdt-0.6b-v3-onnx, sentence-transformers/all-MiniLM-L6-v2, sentence-transformers/clip-ViT-B-32, vikhyatk/moondream2
 Warning: You are sending unauthenticated requests to the HF Hub. ...
 Loading weights:   0%|          | 0/55 [00:00<?, ?it/s]Loading weights: 100%|##########| 55/55 [00:00<00:00, 6429.57it/s]
 downloaded+loaded    26.6 s, dim=384, on disk 134.0 MB
 latency              median 8.152 ms per single-sentence encode (96 calls)
-{"download_and_load_s":26.6,"downloaded_from_hub":true,"embed_dim":384,"encodes":96,"first_call_ms":18.676,"hub_cache":"C:\\Users\\andre\\.cache\\huggingface\\hub","median_ms_per_sentence":8.1518,"model":"sentence-transformers/paraphrase-MiniLM-L3-v2","ok":true,"on_disk_bytes":140545482,"repos_present_before":14,"torch":"2.11.0+cpu"}
+{"download_and_load_s":26.6,"downloaded_from_hub":true,"embed_dim":384,"encodes":96,"first_call_ms":18.676,"hub_cache":"~/.cache/huggingface/hub","median_ms_per_sentence":8.1518,"model":"sentence-transformers/paraphrase-MiniLM-L3-v2","ok":true,"on_disk_bytes":140545482,"repos_present_before":14,"torch":"2.11.0+cpu"}
 ```
 
 Model chosen for this: `sentence-transformers/paraphrase-MiniLM-L3-v2` — Apache-2.0, 61 MB of
@@ -235,17 +235,17 @@ Working patterns, exactly as run:
 ssh -o ConnectTimeout=8 probe-box 'Get-Command tar.exe | Select-Object -ExpandProperty Source; (Get-CimInstance Win32_Processor).NumberOfLogicalProcessors'
 
 # 2. send a file: to the workspace, or to the home dir
-scp -o ConnectTimeout=8 probe.py         probe-box:C:/Users/andre/base-model-survey/
-scp -o ConnectTimeout=8 03_venv.ps1      probe-box:C:/Users/andre/
+scp -o ConnectTimeout=8 probe.py         probe-box:~/base-model-survey/
+scp -o ConnectTimeout=8 03_venv.ps1      probe-box:~/
 
 # 3. run a scp'd script by path (this is the default for anything non-trivial)
-ssh -o ConnectTimeout=8 probe-box 'powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\andre\03_venv.ps1'
+ssh -o ConnectTimeout=8 probe-box 'powershell -NoProfile -ExecutionPolicy Bypass -File ~/03_venv.ps1'
 
 # 4. run a python script with the workspace venv  <-- the phase-3/4 workhorse
-ssh -o ConnectTimeout=8 probe-box '& C:\Users\andre\base-model-survey\.venv\Scripts\python.exe C:\Users\andre\base-model-survey\probe.py'
+ssh -o ConnectTimeout=8 probe-box '& ~/base-model-survey/.venv/Scripts/python.exe ~/base-model-survey/probe.py'
 
 # 5. pull a small result back
-scp -o ConnectTimeout=8 probe-box:C:/Users/andre/base-model-survey/results/foo.json ./results/survey-2026-11-23/
+scp -o ConnectTimeout=8 probe-box:~/base-model-survey/results/foo.json ./results/survey-2026-11-23/
 ```
 
 Wrap every call in `timeout N` locally if there is any chance of a hang. Things that are **not** to
@@ -263,7 +263,7 @@ be done, learned the hard way today:
   removes one class of doubt from the quoting story.
 
 Convention for later stages: keep python entry points in the workspace root, keep `.ps1` wrappers in
-`C:\Users\andre\`, and quote every fact back with the script or command that produced it.
+`~/`, and quote every fact back with the script or command that produced it.
 
 ---
 

@@ -45,7 +45,7 @@
   },
   "fold_assignments": {
     "5": {
-      "source": "C:\\Users\\andre\\base-model-survey\\results\\ladder\\rung5-ensemble.json",
+      "source": "~/base-model-survey/results/ladder/rung5-ensemble.json",
       "key": "fold_assignments.5",
       "n_folds": 5,
       "n_families": 110,
@@ -564,7 +564,7 @@
         "folds_worse": 3,
         "folds_tied": 0
       },
-      "baseline_source": "C:\\Users\\andre\\base-model-survey\\results\\ladder\\rung5-ensemble.json"
+      "baseline_source": "~/base-model-survey/results/ladder/rung5-ensemble.json"
     },
     {
       "rung": "r3-setfit-Snowflake__snowflake-arctic-embed-xs",
@@ -573,13 +573,13 @@
       "protocol": "rowwise",
       "paired": null,
       "delta_points": -3.93,
-      "baseline_source": "C:\\Users\\andre\\base-model-survey\\results\\ladder\\rung5-ensemble.json"
+      "baseline_source": "~/base-model-survey/results/ladder/rung5-ensemble.json"
     }
   ],
   "incumbent": {
     "rung": "r3-setfit-minilm",
     "encoder": "sentence-transformers/all-MiniLM-L6-v2",
-    "source": "C:\\Users\\andre\\base-model-survey\\results\\ladder\\rung5-ensemble.json",
+    "source": "~/base-model-survey/results/ladder/rung5-ensemble.json",
     "grouped_accuracy": 0.9398,
     "rowwise_accuracy": 0.9424,
     "per_fold_accuracy": [

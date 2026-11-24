@@ -1,7 +1,7 @@
 # 08_finalize.ps1 - remove stale build metadata, archive the setup scripts, print the final state.
-# Run: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\andre\08_finalize.ps1
+# Run: powershell -NoProfile -ExecutionPolicy Bypass -File ~/08_finalize.ps1
 $ErrorActionPreference = 'Stop'
-$root  = 'C:\Users\andre\base-model-survey'
+$root  = '~/base-model-survey'
 $setup = Join-Path $root 'setup'
 $venvPy = Join-Path $root '.venv\Scripts\python.exe'
 
@@ -13,7 +13,7 @@ if (Test-Path $egg) {
 }
 
 New-Item -ItemType Directory -Force -Path $setup | Out-Null
-Get-ChildItem -Path 'C:\Users\andre' -File -Filter '0*.ps1' | ForEach-Object {
+Get-ChildItem -Path '~' -File -Filter '0*.ps1' | ForEach-Object {
     Copy-Item $_.FullName -Destination $setup -Force
     Write-Output ('archived            ' + $_.Name)
 }
@@ -34,7 +34,7 @@ Write-Output '--- reproducibility check: repo imports from the workspace, no ins
 $chk = @'
 import sys, json
 from pathlib import Path
-root = Path(r"C:\Users\andre\base-model-survey")
+root = Path(r"~/base-model-survey")
 sys.path.insert(0, str(root / "src"))
 import localalexa
 rows = json.loads((root / "data" / "routing_382.json").read_text(encoding="utf-8"))

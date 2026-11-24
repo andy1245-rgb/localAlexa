@@ -1,8 +1,8 @@
 # 02_extract.ps1 - unpack the repo subset into the workspace and verify it.
-# Run: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\andre\base-model-survey\02_extract.ps1
+# Run: powershell -NoProfile -ExecutionPolicy Bypass -File ~/base-model-survey/02_extract.ps1
 $ErrorActionPreference = 'Stop'
-$root = 'C:\Users\andre\base-model-survey'
-$tgz  = 'C:\Users\andre\localalexa-subset.tgz'
+$root = '~/base-model-survey'
+$tgz  = '~/localalexa-subset.tgz'
 
 Write-Output ('archive         = ' + $tgz + ' bytes=' + (Get-Item $tgz).Length)
 

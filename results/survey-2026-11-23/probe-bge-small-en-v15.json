@@ -45,7 +45,7 @@
     "license_error": null,
     "gated": false,
     "pipeline_tag": "feature-extraction",
-    "snapshot_path": "C:\\Users\\andre\\.cache\\huggingface\\hub\\models--BAAI--bge-small-en-v1.5\\snapshots\\5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+    "snapshot_path": "~/.cache/huggingface/hub/models--BAAI--bge-small-en-v1.5/snapshots/5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
     "snapshot_bytes": 134505940,
     "snapshot_files": 11,
     "snapshot_source": "huggingface_hub.snapshot_download(local_files_only=True)",

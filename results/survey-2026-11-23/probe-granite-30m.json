@@ -45,7 +45,7 @@
     "license_error": null,
     "gated": false,
     "pipeline_tag": "sentence-similarity",
-    "snapshot_path": "C:\\Users\\andre\\.cache\\huggingface\\hub\\models--ibm-granite--granite-embedding-30m-english\\snapshots\\9b5b096411652ec1189c68fcfb90d0a82c5b45af",
+    "snapshot_path": "~/.cache/huggingface/hub/models--ibm-granite--granite-embedding-30m-english/snapshots/9b5b096411652ec1189c68fcfb90d0a82c5b45af",
     "snapshot_bytes": 63232033,
     "snapshot_files": 11,
     "snapshot_source": "huggingface_hub.snapshot_download(local_files_only=True)",

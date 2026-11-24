@@ -40,7 +40,7 @@ The same model id was probed under different conditions. Both rows are printed a
 
 | field | probe 1 | probe 2 |
 |---|---|---|
-| `hostname` | probe-box | andrew-Lenovo-7-14IAL7 |
+| `hostname` | probe-box | probe-box |
 | `platform` | Windows-10-10.0.26200-SP0 | Linux-6.8.0-149-generic-x86_64-with-glibc2.35 |
 | `python` | 3.11.9 | 3.12.14 |
 | `torch` | 2.11.0+cpu | 2.15.0+cpu |
@@ -53,7 +53,7 @@ The same model id was probed under different conditions. Both rows are printed a
 
 | model | host | torch | threads | loadavg | passes |
 |---|---|---|---:|---:|---:|
-| `sentence-transformers/all-MiniLM-L6-v2 (probe 2)` | andrew-Lenovo-7-14IAL7 | 2.15.0+cpu | 10 | 8.29 | 5 |
+| `sentence-transformers/all-MiniLM-L6-v2 (probe 2)` | probe-box | 2.15.0+cpu | 10 | 8.29 | 5 |
 | `sentence-transformers/paraphrase-MiniLM-L3-v2` | probe-box | 2.11.0+cpu | 8 | — | 5 |
 | `ibm-granite/granite-embedding-30m-english` | probe-box | 2.11.0+cpu | 8 | — | 5 |
 | `Snowflake/snowflake-arctic-embed-xs` | probe-box | 2.11.0+cpu | 8 | — | 5 |
@@ -65,7 +65,7 @@ p50 across rows is only comparable when the box was as quiet for one as for the 
 ## Warnings (advisory — they do not change a decision)
 
 - Snowflake/snowflake-arctic-embed-xs: licence unread (no licence field in the model card) — check by hand before shipping
-- this probe set spans 2 hosts (probe-box, andrew-Lenovo-7-14IAL7): a ceiling derived on one host is not a ceiling on another, and the p50 column is not comparable across them — split the set by host before trusting a drop
+- this probe set spans 2 hosts (probe-box, probe-box): a ceiling derived on one host is not a ceiling on another, and the p50 column is not comparable across them — split the set by host before trusting a drop
 
 ## Notes
 

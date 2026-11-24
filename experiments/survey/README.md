@@ -597,7 +597,7 @@ wrote, and the commands that produced them.
 ```
 
 **Phase 3 probe** (`probe-sentence-transformers__all-MiniLM-L6-v2.json`), on
-`andrew-Lenovo-7-14IAL7`, python 3.12.14, torch 2.15.0+cpu, 10 torch threads:
+`probe-box`, python 3.12.14, torch 2.15.0+cpu, 10 torch threads:
 
 | field | value |
 |---|---|

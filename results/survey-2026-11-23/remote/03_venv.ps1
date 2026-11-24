@@ -1,8 +1,8 @@
 # 03_venv.ps1 - create the venv over system site-packages and report what is already visible.
-# Run: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\andre\base-model-survey\03_venv.ps1
+# Run: powershell -NoProfile -ExecutionPolicy Bypass -File ~/base-model-survey/03_venv.ps1
 $ErrorActionPreference = 'Stop'
-$root   = 'C:\Users\andre\base-model-survey'
-$sysPy  = 'C:\Users\andre\AppData\Local\Programs\Python\Python311\python.exe'
+$root   = '~/base-model-survey'
+$sysPy  = '~/AppData/Local/Programs/Python/Python311/python.exe'
 $venv   = Join-Path $root '.venv'
 $venvPy = Join-Path $venv 'Scripts\python.exe'
 

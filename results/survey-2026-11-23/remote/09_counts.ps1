@@ -1,7 +1,7 @@
 # 09_counts.ps1 - exact file counts per group, and clear generated __pycache__.
-# Run: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\andre\09_counts.ps1
+# Run: powershell -NoProfile -ExecutionPolicy Bypass -File ~/09_counts.ps1
 $ErrorActionPreference = 'Stop'
-$root = 'C:\Users\andre\base-model-survey'
+$root = '~/base-model-survey'
 
 $pyc = @(Get-ChildItem -Path $root -Recurse -Directory -Filter '__pycache__' | Where-Object { $_.FullName -notmatch '\\\.venv\\' })
 foreach ($d in $pyc) { Remove-Item -Path $d.FullName -Recurse -Force }

@@ -1,16 +1,16 @@
-# Overnight on dell321: paraphrases help the weak model, the two-stage bucket loses
+# Overnight on probe-box: paraphrases help the weak model, the two-stage bucket loses
 
 2026-11-23, branch `collect/2026-11-10`. Both jobs from
-`docs/dell321-overnight-brief-2026-11-23.md` ran on `dell321` over ssh, CPU only, 8 logical
+`docs/dell321-overnight-brief-2026-11-23.md` ran on `probe-box` over ssh, CPU only, 8 logical
 cores, Python 3.11.9 / scikit-learn 1.8.0 / numpy 2.4.4. Nothing ran against the sshfs mount:
-the corpus and `src/localalexa` were copied with `scp` to `C:\Users\andre\alexa-finetune\`, the
+the corpus and `src/localalexa` were copied with `scp` to `~/alexa-finetune/`, the
 `.git` directory was never copied, and only JSON came back (`results/dell321/job1.json`,
 `job2.json`; the tables below are rendered from them by
 `experiments/dell321/render_report.py`).
 
 **The box's flat baseline is 90.31%, not the 90.84% this machine measures** — one row of drift
 from the scikit-learn version, the same effect `docs/public-data-2026-11-10.md` documented. Every
-comparison below is internal to dell321.
+comparison below is internal to probe-box.
 
 ## Job 1 — paraphrase families: +2.34 for the weak model, −0.79 for the strong one
 
@@ -113,9 +113,9 @@ consistent with this repo's own fusion result (§ the six variants: fusion 95.03
 ## Reproduce
 
 ```bash
-# on dell321 (paths as copied)
-ssh dell321 "cd C:\Users\andre\alexa-finetune; \$env:PYTHONPATH='C:\Users\andre\alexa-finetune\src'; python job1_paraphrase_families.py --recipes linear,fusion --out results/dell321/job1.json"
-ssh dell321 "cd C:\Users\andre\alexa-finetune; \$env:PYTHONPATH='C:\Users\andre\alexa-finetune\src'; python job2_two_stage_bucket.py --sizes 3,4,5 --out results/dell321/job2.json"
+# on probe-box (paths as copied)
+ssh probe-box "cd ~/alexa-finetune; \$env:PYTHONPATH='~/alexa-finetune/src'; python job1_paraphrase_families.py --recipes linear,fusion --out results/dell321/job1.json"
+ssh probe-box "cd ~/alexa-finetune; \$env:PYTHONPATH='~/alexa-finetune/src'; python job2_two_stage_bucket.py --sizes 3,4,5 --out results/dell321/job2.json"
 
 # here, from the retrieved JSON
 .venv/bin/python experiments/dell321/render_report.py

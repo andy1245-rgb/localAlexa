@@ -1,7 +1,7 @@
 # 01_prep.ps1 - create the remote workspace and print box facts.
-# Run: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\andre\base-model-survey\01_prep.ps1
+# Run: powershell -NoProfile -ExecutionPolicy Bypass -File ~/base-model-survey/01_prep.ps1
 $ErrorActionPreference = 'Stop'
-$root = 'C:\Users\andre\base-model-survey'
+$root = '~/base-model-survey'
 
 Write-Output ('date            = ' + (Get-Date -Format o))
 Write-Output ('user            = ' + $env:USERNAME)
@@ -18,7 +18,7 @@ if (Test-Path $root) {
 
 # Sibling dirs must not be touched; report only.
 foreach ($sib in @('alexa-finetune', 'base-model-survey')) {
-    $p = 'C:\Users\andre\' + $sib
+    $p = '~/' + $sib
     Write-Output ('sibling ' + $sib + ' = ' + (Test-Path $p))
 }
 
@@ -33,5 +33,5 @@ foreach ($d in (Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Name -mat
     Write-Output ('drive ' + $d.Name + ' free_gb = ' + [math]::Round($d.Free / 1GB, 2))
 }
 
-$py = 'C:\Users\andre\AppData\Local\Programs\Python\Python311\python.exe'
+$py = '~/AppData/Local/Programs/Python/Python311/python.exe'
 Write-Output ('python_exe      = ' + $py + ' exists=' + (Test-Path $py))

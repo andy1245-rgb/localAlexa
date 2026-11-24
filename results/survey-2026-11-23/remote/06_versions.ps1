@@ -1,10 +1,10 @@
 # 06_versions.ps1 - exact version strings + whether the Hub snapshot was fetched during this run.
-# Run: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\andre\base-model-survey\06_versions.ps1
+# Run: powershell -NoProfile -ExecutionPolicy Bypass -File ~/base-model-survey/06_versions.ps1
 $ErrorActionPreference = 'Stop'
-$root   = 'C:\Users\andre\base-model-survey'
+$root   = '~/base-model-survey'
 $venvPy = Join-Path $root '.venv\Scripts\python.exe'
-$sysPy  = 'C:\Users\andre\AppData\Local\Programs\Python\Python311\python.exe'
-$repo   = 'C:\Users\andre\.cache\huggingface\hub\models--sentence-transformers--all-MiniLM-L6-v2'
+$sysPy  = '~/AppData/Local/Programs/Python/Python311/python.exe'
+$repo   = '~/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2'
 
 Write-Output ('now                 = ' + (Get-Date -Format o))
 Write-Output ('venv_pip            = ' + (& $venvPy -m pip --version))

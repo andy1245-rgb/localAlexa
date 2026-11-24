@@ -15,7 +15,7 @@ Read `docs/ladder-results-2026-11-10.md` first. The incumbent is **SetFit on Min
   edge; a bigger model is not automatically a better one.
 - **Latency budget**: the linear path is 0.38 ms, the ensemble 7.85 ms. A candidate that cannot
   answer inside ~10 ms on CPU is out, whatever its accuracy — this may end up on a Raspberry Pi.
-- **CPU only** where measurement happens. The target box (`dell321`) has an Intel Core Ultra 7 258V,
+- **CPU only** where measurement happens. The target box (`probe-box`) has an Intel Core Ultra 7 258V,
   torch 2.11.0+cpu, transformers 5.6.2, Python 3.11.9, no CUDA, an Arc 140V iGPU that nothing here
   will use.
 - **Licence must be permissive**, because the repo is public and credits its dependencies.
@@ -49,7 +49,7 @@ the eliminations are half the value, and they stop anyone re-proposing a 7B mode
 
 ## Phase 3 — verify capability on the actual box
 
-For each shortlisted model, on `dell321`, prove it rather than trust it: download, load, embed the
+For each shortlisted model, on `probe-box`, prove it rather than trust it: download, load, embed the
 382 rows, measure median and p95 latency, and record model size on disk and resident memory. No
 fine-tuning yet. A model that cannot be downloaded, or that runs at 200 ms/utterance on CPU, is out
 now rather than after a night of training.

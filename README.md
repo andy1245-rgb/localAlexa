@@ -84,10 +84,10 @@ row-standardised logreg + SetFit ensemble at 95.03% for 7.85 ms.
 
 ### The shipped encoder was re-measured against three alternatives, and kept
 
-MiniLM-L6 is not an assumption. Four encoders were swept with the rung-3 SetFit recipe on the
+Four encoders were swept with the rung-3 SetFit recipe on the
 ladder's own five family-held-out folds and read on halves: three folds that selected, two that
-selected nothing and only report. Selection ranked the incumbent first at **0.9391** (tied with
-granite); validation ranked `snowflake-arctic-embed-xs` first at **0.9868**, after it came third
+selected nothing and only report. Selection ranked the incumbent, MiniLM-L6, first at **0.9391** (tied
+with granite); validation ranked `snowflake-arctic-embed-xs` first at **0.9868**, after it came third
 of four on the selection half, **9.6 points** back. **The ranking does not transfer, so no
 candidate is supported and the incumbent stands** — a measured conclusion, not inertia, and
 worth exactly its margin: seven rows in one fold move it to "nothing beats it". Evidence:
@@ -125,12 +125,12 @@ logreg as the 0.38 ms fallback, do not ship the cascade as configured.** Record 
 three-split, three-arm table: `docs/final-comparison.md`; gate sweep and the withdrawn earlier
 verdict: `docs/cascade-vs-classifier.md`; the run artefacts behind them are not distributed here.
 
-### Two follow-ups: new wordings helped the weak arm, a hierarchy did not exist
+### Two follow-ups: new wordings helped the weak arm, and a hierarchy lost
 
 Deterministic paraphrases of the 200 references — politeness, context clause, adverbial reorder,
 contractions, curated synonyms — filtered for diversity and for leakage against the held-out
-rows, then retrained on the same five folds: 878 rows kept of 1,637. Where this word model reads
-90.31% against this box's 90.84% (scikit-learn drift, same model), it gains **90.31% → 92.67%**
+rows, then retrained on the same five folds: 878 rows kept of 1,637. Where the same logreg reads
+90.31% on the probe box against its 90.84% here (scikit-learn drift), it gains **90.31% → 92.67%**
 (+2.34 ± 4.63) and its fold spread narrows 8.04% → 5.52%; the fusion gains **nothing** (95.03% →
 94.24%, −0.79 ± 1.99), a similarity member already covering a paraphrase of a reference.
 
@@ -181,9 +181,9 @@ uv pip install --python .venv/bin/python -e .
 The remaining subcommands reproduce the research records rather than the front page:
 `ladder --rungs all` for the six-rung ladder (the encoder rungs print a skip line until the
 extras are installed), `collect summary|derive|bench` for the local request log, `cascade` for
-the regex → router → abstain path, `tier2 --measured results/cactus_hybrid_results.json` to join
-the cascade to the committed per-row Cactus measurement, and `classic` for the three TF-IDF
-configurations.
+the regex → router → abstain path, which needs the extras, `tier2 --measured
+results/cactus_hybrid_results.json` to join the cascade to the committed per-row Cactus
+measurement, and `classic` for the three TF-IDF configurations.
 
 The test suite is 177 cases and takes a couple of minutes:
 

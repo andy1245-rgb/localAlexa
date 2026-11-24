@@ -1,19 +1,19 @@
-# Overnight on dell321: paraphrase families, and the two-stage bucket
+# Overnight on probe-box: paraphrase families, and the two-stage bucket
 
 2026-11-23. Operator's call: the ceiling is not label redesign, it is **multiple steps — general
 buckets, then specific ones** — and the data needs more *phrasings*, not more slot fills. Both run
-tonight on `dell321`, CPU only, and both are measured on the same grouped folds as everything else.
+tonight on `probe-box`, CPU only, and both are measured on the same grouped folds as everything else.
 
 ## Box facts, verified today
 
 ```
-ssh dell321  (PowerShell 5.1 default; use wsl -d Ubuntu -- bash -lc "..." for POSIX)
+ssh probe-box  (PowerShell 5.1 default; use wsl -d Ubuntu -- bash -lc "..." for POSIX)
 Python 3.11.9 · torch 2.11.0+cpu · transformers 5.6.2 · pip 25.3 · 211.6 GB free
 No CUDA. Intel Arc 140V iGPU present and NOT to be used - torch-xpu is a rabbit hole, stay on CPU.
 8 logical cores. `&&` does not exist in PowerShell; `2>nul` creates a file named nul, use 2>$null.
 ```
 
-Never touch the sshfs mount from either side. Everything lives in `C:\Users\andre\alexa-finetune\`
+Never touch the sshfs mount from either side. Everything lives in `~/alexa-finetune/`
 and comes back as small JSON plus a markdown table.
 
 ## Job 1 — paraphrase families, not fills

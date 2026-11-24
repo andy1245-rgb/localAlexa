@@ -1,7 +1,7 @@
 # 04_pip.ps1 - install only what the venv cannot already see, then record exact resolved versions.
-# Run: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\andre\base-model-survey\04_pip.ps1
+# Run: powershell -NoProfile -ExecutionPolicy Bypass -File ~/base-model-survey/04_pip.ps1
 $ErrorActionPreference = 'Stop'
-$root   = 'C:\Users\andre\base-model-survey'
+$root   = '~/base-model-survey'
 $venvPy = Join-Path $root '.venv\Scripts\python.exe'
 $log    = Join-Path $root 'pip-install.log'
 

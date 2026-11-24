@@ -45,7 +45,7 @@
     "license_error": null,
     "gated": false,
     "pipeline_tag": "sentence-similarity",
-    "snapshot_path": "C:\\Users\\andre\\.cache\\huggingface\\hub\\models--Snowflake--snowflake-arctic-embed-xs\\snapshots\\d8c86521100d3556476a063fc2342036d45c106f",
+    "snapshot_path": "~/.cache/huggingface/hub/models--Snowflake--snowflake-arctic-embed-xs/snapshots/d8c86521100d3556476a063fc2342036d45c106f",
     "snapshot_bytes": 91304871,
     "snapshot_files": 11,
     "snapshot_source": "huggingface_hub.snapshot_download(local_files_only=True)",

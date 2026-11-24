@@ -201,7 +201,7 @@ but reasoned as an F5 kill; the count survives and it is listed under F5 in §2.
 
 **(a) The ceiling descends from one anchor that is not the brief's incumbent number.** F1 converts ~10 ms
 into a parameter ceiling using a measured p50, and the number it used — **6.33 ms** — is an *encoder-only*
-embed of 382 rows on `andrew-Lenovo-7-14IAL7` (12 logical CPUs, torch 2.15.0+cpu, python 3.12.14, loadavg
+embed of 382 rows on `probe-box` (12 logical CPUs, torch 2.15.0+cpu, python 3.12.14, loadavg
 8.29→8.70), not the SetFit rung the brief names at **7.75 ms**. So the ceiling is `22.7M × 10/6.33` =
 **35.9M** or, on the brief's own anchor, `22.7M × 10/7.75` = **29.3M**. The audit says "four of the five
 survivors" sit above 29.3M while naming two; on the shortlist's own counts I can reproduce **two** (granite
@@ -272,7 +272,7 @@ counted in another family, and family E's four recipe rows whose body is counted
 
 ## 3. Phase 3 — proved on the box
 
-The box: **`dell321`**, Intel Core Ultra 7 258V, **8 logical cores**, 31.57 GB RAM, **Python 3.11.9**, **torch
+The box: **`probe-box`**, Intel Core Ultra 7 258V, **8 logical cores**, 31.57 GB RAM, **Python 3.11.9**, **torch
 2.11.0+cpu** (`torch.version.cuda is None`), **transformers 5.6.2**, sentence-transformers 5.4.1, setfit 1.2.0,
 no CUDA, Arc 140V iGPU unused. Protocol: `experiments/survey/probe_model.py`, one process, one utterance per
 call, 8 warmup calls, 5 passes over all 382 rows, p50 = median of the per-pass medians. Per-pass p50 spreads
@@ -286,7 +286,7 @@ were 0.055–1.406 ms.
 | `snowflake-arctic-embed-xs` | ok | 22.57M | 384 | 512 | **none** (card field empty) | 87.1 | 34.2 | 2.231 | **12.126** | 17.67 | pass on latency; **out on licence** |
 | `granite-embedding-30m-english` | ok | 30.30M | 384 | 512 | apache-2.0 | 60.3 | 50.6 | 1.696 | **11.696** | 13.58 | **pass** |
 | `bge-small-en-v1.5` | ok | 33.36M | 384 | 512 | mit | 128.3 | 45.3 | 3.364 | **28.189** | 38.57 | **drop — 1.88× the incumbent** |
-| *anchor row, other host* — `all-MiniLM-L6-v2` | ok | 22.71M | 384 | 256 | apache-2.0 | 87.3 | 28.4 | 1.818 | 6.330 | 8.01 | not comparable: `andrew-Lenovo-7-14IAL7`, torch 2.15.0+cpu, py 3.12.14, 12 CPUs, loadavg 8.29 |
+| *anchor row, other host* — `all-MiniLM-L6-v2` | ok | 22.71M | 384 | 256 | apache-2.0 | 87.3 | 28.4 | 1.818 | 6.330 | 8.01 | not comparable: `probe-box`, torch 2.15.0+cpu, py 3.12.14, 12 CPUs, loadavg 8.29 |
 
 Six probes on the box — two of them the same model, which is what a canary is for — and one on a different
 host. All six loaded, all returned 384 dims and finite normalised embeddings, and every one embedded all 382
@@ -528,7 +528,7 @@ it must have meant never mentions SetFit; it is deleted rather than re-cited. Al
 ```
 
 On the box every command is prefixed with that box's interpreter and run through one `ssh` layer:
-`& C:\Users\andre\base-model-survey\.venv\Scripts\python.exe <script>`. `--offline` is what a re-run should
+`& ~/base-model-survey/.venv/Scripts/python.exe <script>`. `--offline` is what a re-run should
 use: every model this survey measured is already in that cache.
 
 ### Artefacts

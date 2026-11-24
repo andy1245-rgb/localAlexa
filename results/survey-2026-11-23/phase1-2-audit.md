@@ -274,7 +274,7 @@ The brief states the incumbent at **7.75 ms**; `results/ladder/latency.json` giv
 (`r3-setfit-minilm`) `p50_ms: 7.75` over 5 passes on 382 rows under the documented protocol. Phase 2
 never mentions 7.75 anywhere (0 occurrences) and anchors on **6.33 ms** — which comes from
 `probe-sentence-transformers__all-MiniLM-L6-v2.json`, an **encoder-only embed** run on
-`andrew-Lenovo-7-14IAL7` with `torch 2.15.0+cpu`, `python 3.12.14`, 12 logical CPUs, `loadavg_1m` 8.286
+`probe-box` with `torch 2.15.0+cpu`, `python 3.12.14`, 12 logical CPUs, `loadavg_1m` 8.286
 → 8.704. Three consequences the document does not draw:
 
 1. The ceiling is anchor-dependent. `22.7 × 10 / 7.75` = **29.3M**, and at 29.3M four of the five

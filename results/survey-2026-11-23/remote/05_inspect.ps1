@@ -1,9 +1,9 @@
 # 05_inspect.ps1 - explain the HF cache size, and confirm setfit + the repo import on this box.
-# Run: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\andre\base-model-survey\05_inspect.ps1
+# Run: powershell -NoProfile -ExecutionPolicy Bypass -File ~/base-model-survey/05_inspect.ps1
 $ErrorActionPreference = 'Stop'
-$root   = 'C:\Users\andre\base-model-survey'
+$root   = '~/base-model-survey'
 $venvPy = Join-Path $root '.venv\Scripts\python.exe'
-$repo   = 'C:\Users\andre\.cache\huggingface\hub\models--sentence-transformers--all-MiniLM-L6-v2'
+$repo   = '~/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2'
 
 Write-Output '--- HF repo cache: snapshots present ---'
 $snaps = Get-ChildItem -Path (Join-Path $repo 'snapshots') -Directory -ErrorAction SilentlyContinue
@@ -22,7 +22,7 @@ Write-Output '--- import checks (venv) ---'
 $check = @'
 import json, sys
 from pathlib import Path
-root = Path(r"C:\Users\andre\base-model-survey")
+root = Path(r"~/base-model-survey")
 sys.path.insert(0, str(root / "src"))
 
 out = {"python": sys.version.split()[0]}
